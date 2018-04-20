@@ -15,7 +15,7 @@ public class Koneksi {
     String url = "jdbc:mysql://localhost/";
     String user = "root";
     String pass = "";
-    String db = "dbsni";
+    String db = "dbgaram";
 
     public String GetUrl() {
         return url;
