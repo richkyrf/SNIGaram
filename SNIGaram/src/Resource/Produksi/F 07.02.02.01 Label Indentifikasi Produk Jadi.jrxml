@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="F 07.02.02.01 Label Indentifikasi Produk Jadi" language="groovy" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="681fcae0-315d-47c3-91ca-fbcc5a2553a6">
-	<property name="ireport.zoom" value="1.1000000000000008"/>
+	<property name="ireport.zoom" value="1.0000000000000009"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="Judul" class="java.lang.String" isForPrompting="false">
@@ -146,7 +146,7 @@
 	<detail>
 		<band height="20" splitType="Stretch">
 			<textField isStretchWithOverflow="true" pattern="#,##0">
-				<reportElement stretchType="RelativeToTallestObject" x="275" y="0" width="55" height="20" uuid="acc4f516-d8ff-43e7-9e5a-d52b8ec22748"/>
+				<reportElement stretchType="RelativeToTallestObject" x="275" y="0" width="56" height="20" uuid="acc4f516-d8ff-43e7-9e5a-d52b8ec22748"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -215,8 +215,8 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Tanggal}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="330" y="0" width="25" height="20" uuid="50fcea89-edfd-40f4-94c5-0d6fab3acf6f"/>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToTallestObject" x="330" y="0" width="25" height="20" uuid="50fcea89-edfd-40f4-94c5-0d6fab3acf6f"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -283,7 +283,7 @@
 				<textFieldExpression><![CDATA[$P{Garis}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0">
-				<reportElement x="275" y="0" width="55" height="20" uuid="169b7952-5384-4f3d-96a4-198302cb8519"/>
+				<reportElement x="275" y="0" width="56" height="20" uuid="169b7952-5384-4f3d-96a4-198302cb8519"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
