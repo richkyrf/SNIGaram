@@ -28,7 +28,6 @@ public class List extends javax.swing.JFrame {
         Type = type;
         initComponents();
         setVisible(true);
-        JBRegister.setVisible(false);
         setTitle("List " + type);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -53,7 +52,6 @@ public class List extends javax.swing.JFrame {
         jbuttonF4 = new KomponenGUI.JbuttonF();
         jcomCari1 = new KomponenGUI.JcomCari();
         jbuttonF5 = new KomponenGUI.JbuttonF();
-        JBRegister = new KomponenGUI.JbuttonF();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -97,13 +95,6 @@ public class List extends javax.swing.JFrame {
             }
         });
 
-        JBRegister.setText("Register");
-        JBRegister.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JBRegisterActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -118,8 +109,6 @@ public class List extends javax.swing.JFrame {
                         .addGap(10, 10, 10)
                         .addComponent(jbuttonF4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(JBRegister, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jbuttonF3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jbuttonF5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -140,8 +129,7 @@ public class List extends javax.swing.JFrame {
                     .addComponent(jbuttonF2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbuttonF3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbuttonF4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbuttonF5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JBRegister, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jbuttonF5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -177,10 +165,6 @@ public class List extends javax.swing.JFrame {
                 throw new AssertionError();
         }
     }//GEN-LAST:event_formWindowClosed
-
-    private void JBRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBRegisterActionPerformed
-
-    }//GEN-LAST:event_JBRegisterActionPerformed
 
     /**
      * @param args the command line arguments
@@ -223,7 +207,6 @@ public class List extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private KomponenGUI.JbuttonF JBRegister;
     private KomponenGUI.JbuttonF jbuttonF1;
     private KomponenGUI.JbuttonF jbuttonF2;
     private KomponenGUI.JbuttonF jbuttonF3;
@@ -294,9 +277,9 @@ public class List extends javax.swing.JFrame {
     public void load() {
         switch (Type) {
             case "Pengujian Produk Jadi":
-                jcomCari1.setQuery("SELECT `IdPengujianBarangJadi` as 'ID', DATE_FORMAT(`Tanggal`,'%d-%m-%Y') as 'Tanggal', `KadarKIO3` as 'Kadar KIO3', `KadarAir` as 'Kadar Air', `KadarNaCl` as 'Kadar NaCl', `Warna`, `Penguji`, `Keterangan` FROM `snitbpengujianbarangjadi` WHERE 1");
-                jcomCari1.setRender(new int[]{3,4,5}, new String[]{"Decimal","Decimal","Decimal"});
-                jcomCari1.setOrder(" ORDER BY `JenisBarang`, `NamaBarang` ");
+                jcomCari1.setQuery("SELECT `IdPengujianBarangJadi` as 'ID', DATE_FORMAT(`Tanggal`,'%d-%m-%Y') as 'Tanggal',REPLACE(`KadarKIO3`,'.',',') as 'Kadar KIO3', REPLACE(`KadarAir`,'.',',') as 'Kadar Air', REPLACE(`KadarNaCl`,'.',',') as 'Kadar NaCl', `Warna`, `Penguji`, `Keterangan` FROM `snitbpengujianbarangjadi` WHERE 1");
+                jcomCari1.setRender(new int[]{2, 3, 4}, new String[]{"Decimal", "Decimal", "Decimal"});
+                jcomCari1.setOrder(" ORDER BY `Tanggal` ");
                 break;
             default:
                 throw new AssertionError();
