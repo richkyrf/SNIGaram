@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package LaporanLab;
+package LaporanProduksi;
 
 import KomponenGUI.FDateF;
 import LSubProces.FLaporan;
@@ -17,12 +17,12 @@ import net.sf.jasperreports.engine.JRParameter;
  *
  * @author richk
  */
-public class LaporanLab extends javax.swing.JFrame {
+public class LaporanProduksi extends javax.swing.JFrame {
 
     /**
      * Creates new form LaporanLab
      */
-    public LaporanLab(String type) {
+    public LaporanProduksi(String type) {
         initComponents();
         setTitle(type);
         setVisible(true);
@@ -57,31 +57,11 @@ public class LaporanLab extends javax.swing.JFrame {
 
         JDTanggal.setDate(new Date());
         JDTanggal.setDateFormatString("dd-MM-yyyy");
-        JDTanggal.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                JDTanggalPropertyChange(evt);
-            }
-        });
-        JDTanggal.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                JDTanggalKeyPressed(evt);
-            }
-        });
 
         jlableF2.setText("s/d");
 
         JDTanggal1.setDate(new Date());
         JDTanggal1.setDateFormatString("dd-MM-yyyy");
-        JDTanggal1.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                JDTanggal1PropertyChange(evt);
-            }
-        });
-        JDTanggal1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                JDTanggal1KeyPressed(evt);
-            }
-        });
 
         jbuttonF1.setText("Tampilkan");
         jbuttonF1.addActionListener(new java.awt.event.ActionListener() {
@@ -126,22 +106,6 @@ public class LaporanLab extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void JDTanggalPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_JDTanggalPropertyChange
-
-    }//GEN-LAST:event_JDTanggalPropertyChange
-
-    private void JDTanggalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JDTanggalKeyPressed
-
-    }//GEN-LAST:event_JDTanggalKeyPressed
-
-    private void JDTanggal1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_JDTanggal1PropertyChange
-        // TODO add your handling code here:
-    }//GEN-LAST:event_JDTanggal1PropertyChange
-
-    private void JDTanggal1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JDTanggal1KeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_JDTanggal1KeyPressed
-
     private void jbuttonF1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbuttonF1ActionPerformed
         HashMap hashs = new HashMap();
         java.util.Locale locale = new Locale("id", "ID");
@@ -150,22 +114,27 @@ public class LaporanLab extends javax.swing.JFrame {
         hashs.put("Tanggal_Akhir", FDateF.datetostr(JDTanggal1.getDate(), "yyyy-MM-dd"));
         FLaporan fLaporan = new FLaporan();
         fLaporan.sethashmap(hashs);
-        if (getTitle().equals("Laporan Pengujian Produk Jadi")) {
-            fLaporan.setfilename("Citta/Laboratorium/F 07.03.00.01 Hasil Inspeksi dan Pengujian Produk Jadi");
-            History.simpanhistory(GlobalVar.VarL.username, "F 07.03.00.01 Hasil Inspeksi dan Pengujian Produk Jadi");
+        if (getTitle().equals("Laporan Indentifikasi Produk Jadi")) {
+            fLaporan.setfilename("Produksi/F 07.02.02.01 Label Indentifikasi Produk Jadi");
+            History.simpanhistory(GlobalVar.VarL.username, "F 07.02.02.01 Label Indentifikasi Produk Jadi");
+        } else if (getTitle().equals("Laporan Penyerahan Produk Jadi")) {
+            fLaporan.setfilename("Produksi/F 07.06.00.03 Buku Kendali Gudang Penyerahan Produk Jadi");
+            History.simpanhistory(GlobalVar.VarL.username, "F 07.06.00.03 Buku Kendali Gudang Penyerahan Produk Jadi");
         } else {
-            fLaporan.setfilename("Citta/Laboratorium/F 07.03.00.02 Hasil Inspeksi dan Pengujian Bahan Baku");
-            History.simpanhistory(GlobalVar.VarL.username, "F 07.03.00.02 Hasil Inspeksi dan Pengujian Bahan Baku");
+            fLaporan.setfilename("Produksi/F 08.06.00.01 Data Produksi");
+            History.simpanhistory(GlobalVar.VarL.username, "F 08.06.00.01 Data Produksi");
         }
         fLaporan.setErorm("Gagal Menampilkan " + this.getTitle());
         fLaporan.excute();
     }//GEN-LAST:event_jbuttonF1ActionPerformed
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        if (getTitle().equals("Laporan Pengujian Produk Jadi")) {
-            GlobalVar.Var.laporanPengujianProdukJadi = null;
+        if (getTitle().equals("Laporan Indentifikasi Produk Jadi")) {
+            GlobalVar.Var.laporanIndentifikasiProdukJadi = null;
+        } else if (getTitle().equals("Laporan Penyerahan Produk Jadi")) {
+            GlobalVar.Var.laporanPenyerahanProdukJadi = null;
         } else {
-            GlobalVar.Var.laporanPengujianBahanBaku = null;
+            GlobalVar.Var.laporanDataProduksi = null;
         }
     }//GEN-LAST:event_formWindowClosed
 
@@ -186,20 +155,20 @@ public class LaporanLab extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LaporanLab.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LaporanProduksi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LaporanLab.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LaporanProduksi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LaporanLab.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LaporanProduksi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LaporanLab.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LaporanProduksi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LaporanLab("").setVisible(true);
+                new LaporanProduksi("").setVisible(true);
             }
         });
     }
