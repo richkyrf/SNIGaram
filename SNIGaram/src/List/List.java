@@ -11,6 +11,7 @@ import KomponenGUI.FDateF;
 import LSubProces.Insert;
 import java.util.Date;
 import static GlobalVar.Var.*;
+import MasterTeknik.MasterBarangTeknik;
 import ProsesLab.*;
 
 /**
@@ -22,10 +23,8 @@ public class List extends javax.swing.JFrame {
     /**
      * Creates new form ListKaryawan
      */
-    String Type;
 
     public List(String type) {
-        Type = type;
         initComponents();
         setVisible(true);
         setTitle("List " + type);
@@ -157,12 +156,15 @@ public class List extends javax.swing.JFrame {
     }//GEN-LAST:event_jbuttonF5ActionPerformed
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        switch (Type) {
+        switch (getTitle()) {
             case "Pengujian Produk Jadi":
                 listPengujianProdukJadi = null;
                 break;
             case "Pengujian Bahan Baku":
                 listPengujianBahanBaku = null;
+                break;
+            case "Barang Teknik":
+                listBarangTeknik = null;
                 break;
             default:
                 throw new AssertionError();
@@ -221,7 +223,7 @@ public class List extends javax.swing.JFrame {
     }
 
     void tambah() {
-        switch (Type) {
+        switch (getTitle()) {
             case "Pengujian Produk Jadi":
                 if (tambahPengujianProdukJadi == null) {
                     tambahPengujianProdukJadi = new PengujianProdukJadi();
@@ -238,6 +240,14 @@ public class List extends javax.swing.JFrame {
                     tambahPengujianBahanBaku.toFront();
                 }
                 break;
+            case "Barang Teknik":
+                if (tambahBarangTeknik == null) {
+                    tambahBarangTeknik = new MasterBarangTeknik();
+                } else {
+                    tambahBarangTeknik.setState(NORMAL);
+                    tambahBarangTeknik.toFront();
+                }
+                break;
             default:
                 throw new AssertionError();
         }
@@ -250,12 +260,15 @@ public class List extends javax.swing.JFrame {
         } else {
             Delete delete = new Delete();
             Boolean berhasil = false;
-            switch (Type) {
+            switch (getTitle()) {
                 case "Pengujian Produk Jadi":
-                    berhasil = delete.Hapus(jcomCari1.GetIDTable(), "DELETE FROM `snitbpengujianprodukjadi` WHERE `IdPengujianProdukJadi` = " + jcomCari1.GetIDTable(), Type, this);
+                    berhasil = delete.Hapus(jcomCari1.GetIDTable(), "DELETE FROM `snitbpengujianprodukjadi` WHERE `IdPengujianProdukJadi` = " + jcomCari1.GetIDTable(), getTitle(), this);
                     break;
                 case "Pengujian Bahan Baku":
-                    berhasil = delete.Hapus(jcomCari1.GetIDTable(), "DELETE FROM `snitbpengujianbahanbaku` WHERE `IdPengujianBahanBaku` = " + jcomCari1.GetIDTable(), Type, this);
+                    berhasil = delete.Hapus(jcomCari1.GetIDTable(), "DELETE FROM `snitbpengujianbahanbaku` WHERE `IdPengujianBahanBaku` = " + jcomCari1.GetIDTable(), getTitle(), this);
+                    break;
+                case "Barang Teknik":
+                    berhasil = delete.Hapus(jcomCari1.GetIDTable(), "DELETE FROM `snitbmbarangteknik` WHERE `IdBarangTeknik` = " + jcomCari1.GetIDTable(), getTitle(), this);
                     break;
                 default:
                     throw new AssertionError();
@@ -270,7 +283,7 @@ public class List extends javax.swing.JFrame {
         if (jcomCari1.getSelectedRow() < 0) {
             JOptionPane.showMessageDialog(this, "Silahkan Pilih Data Terlebih Dahulu", "Information", JOptionPane.INFORMATION_MESSAGE);
         } else {
-            switch (Type) {
+            switch (getTitle()) {
                 case "Pengujian Produk Jadi":
                     if (ubahPengujianProdukJadi == null) {
                         ubahPengujianProdukJadi = new PengujianProdukJadi(jcomCari1.GetIDTable());
@@ -287,6 +300,14 @@ public class List extends javax.swing.JFrame {
                         ubahPengujianBahanBaku.toFront();
                     }
                     break;
+                case "Barang Teknik":
+                    if (ubahBarangTeknik == null) {
+                        ubahBarangTeknik = new MasterBarangTeknik(jcomCari1.GetIDTable());
+                    } else {
+                        ubahBarangTeknik.setState(NORMAL);
+                        ubahBarangTeknik.toFront();
+                    }
+                    break;
                 default:
                     throw new AssertionError();
             }
@@ -294,7 +315,7 @@ public class List extends javax.swing.JFrame {
     }
 
     public void load() {
-        switch (Type) {
+        switch (getTitle()) {
             case "Pengujian Produk Jadi":
                 jcomCari1.setQuery("SELECT `IdPengujianProdukJadi` as 'ID', DATE_FORMAT(`Tanggal`,'%d-%m-%Y') as 'Tanggal',REPLACE(`KadarKIO3`,'.',',') as 'Kadar KIO3', REPLACE(`KadarAir`,'.',',') as 'Kadar Air', REPLACE(`KadarNaCl`,'.',',') as 'Kadar NaCl', `Warna`, `Penguji`, `Keterangan` FROM `snitbpengujianprodukjadi` WHERE 1");
                 jcomCari1.setRender(new int[]{2, 3, 4}, new String[]{"Decimal", "Decimal", "Decimal"});
@@ -304,6 +325,11 @@ public class List extends javax.swing.JFrame {
                 jcomCari1.setQuery("SELECT `IdPengujianBahanBaku` as 'ID', DATE_FORMAT(`Tanggal`,'%d-%m-%Y') as 'Tanggal', REPLACE(`KadarAir`,'.',',') as 'Kadar Air', REPLACE(`KadarNaCl`,'.',',') as 'Kadar NaCl', `Warna`, `Penguji`, `Keterangan` FROM `snitbpengujianbahanbaku` WHERE 1");
                 jcomCari1.setRender(new int[]{3, 4}, new String[]{"Decimal", "Decimal"});
                 jcomCari1.setOrder(" ORDER BY `Tanggal` ");
+                break;
+            case "Barang Teknik":
+                jcomCari1.setQuery("SELECT `IdBarangTeknik` as 'ID', `NamaBarang` as 'Nama Barang', `Merk`, `Jumlah`, DATE_FORMAT(`WaktuKalibrasi`,'%d-%m-%Y') as 'Waktu Kalibrasi', `Keterangan`, IF(`Status`=1,'Aktif','Tidak Aktif') as 'Status' FROM `snitbmbarangteknik` WHERE 1");
+                jcomCari1.setRender(new int[]{3}, new String[]{"Number"});
+                jcomCari1.setOrder(" ORDER BY `NamaBarang` ");
                 break;
             default:
                 throw new AssertionError();

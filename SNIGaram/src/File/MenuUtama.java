@@ -44,6 +44,7 @@ public class MenuUtama extends javax.swing.JFrame {
         JMIGantiPassword = new javax.swing.JMenuItem();
         JMIExit = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
+        jMenuItem7 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
@@ -101,7 +102,16 @@ public class MenuUtama extends javax.swing.JFrame {
 
         JMenuBar.add(JMFile);
 
-        jMenu1.setText("Master");
+        jMenu1.setText("Master Teknik");
+
+        jMenuItem7.setText("Master Barang Teknik");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem7);
+
         JMenuBar.add(jMenu1);
 
         jMenu2.setText("Proses Lab");
@@ -213,7 +223,7 @@ public class MenuUtama extends javax.swing.JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         if (listPengujianProdukJadi == null) {
-            listPengujianProdukJadi = new List("Pengujian Produk Jadi");
+            listPengujianProdukJadi = new List(jMenuItem1.getText());
         } else {
             listPengujianProdukJadi.setState(NORMAL);
             listPengujianProdukJadi.toFront();
@@ -231,7 +241,7 @@ public class MenuUtama extends javax.swing.JFrame {
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         if (listPengujianBahanBaku == null) {
-            listPengujianBahanBaku = new List("Pengujian Bahan Baku");
+            listPengujianBahanBaku = new List(jMenuItem3.getText());
         } else {
             listPengujianBahanBaku.setState(NORMAL);
             listPengujianBahanBaku.toFront();
@@ -249,7 +259,7 @@ public class MenuUtama extends javax.swing.JFrame {
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         if (laporanPengujianProdukJadi == null) {
-            laporanPengujianProdukJadi = new LaporanLab("Laporan Pengujian Produk Jadi");
+            laporanPengujianProdukJadi = new LaporanLab(jMenuItem5.getText());
         } else {
             laporanPengujianProdukJadi.setState(NORMAL);
             laporanPengujianProdukJadi.toFront();
@@ -258,12 +268,21 @@ public class MenuUtama extends javax.swing.JFrame {
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         if (laporanPengujianBahanBaku == null) {
-            laporanPengujianBahanBaku = new LaporanLab("Laporan Pengujian Bahan Baku");
+            laporanPengujianBahanBaku = new LaporanLab(jMenuItem6.getText());
         } else {
             laporanPengujianBahanBaku.setState(NORMAL);
             laporanPengujianBahanBaku.toFront();
         }
     }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        if (listBarangTeknik == null) {
+            listBarangTeknik = new List(jMenuItem7.getText());
+        } else {
+            listBarangTeknik.setState(NORMAL);
+            listBarangTeknik.toFront();
+        }
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -318,5 +337,6 @@ public class MenuUtama extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
     // End of variables declaration//GEN-END:variables
 }
