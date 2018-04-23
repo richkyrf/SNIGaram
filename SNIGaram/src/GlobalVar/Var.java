@@ -7,6 +7,7 @@ package GlobalVar;
 
 import LaporanLab.*;
 import File.*;
+import LaporanProduksi.LaporanProduksi;
 import List.*;
 import MasterTeknik.*;
 import ProsesLab.*;
@@ -30,4 +31,5 @@ public class Var {
     public static PengujianBahanBaku tambahPengujianBahanBaku, ubahPengujianBahanBaku;
     
     public static LaporanLab laporanPengujianProdukJadi, laporanPengujianBahanBaku;
+    public static LaporanProduksi laporanIndentifikasiProdukJadi, laporanPenyerahanProdukJadi, laporanDataProduksi;
 }
