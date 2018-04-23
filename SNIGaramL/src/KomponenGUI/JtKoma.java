@@ -35,7 +35,7 @@ public class JtKoma extends JTextField {
 
     }
 
-    public void setint(int s) {
+    public void setInt(int s) {
         if (s <= 9) {
             setText("0" + Integer.toString(s));
         } else {
@@ -43,7 +43,7 @@ public class JtKoma extends JTextField {
         }
     }
 
-    public int getint() {
+    public int getInt() {
         String s = getText();
         if (s.isEmpty()) {
             return 0;

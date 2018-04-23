@@ -194,9 +194,6 @@ public class List extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -244,7 +241,7 @@ public class List extends javax.swing.JFrame {
             Boolean berhasil = false;
             switch (Type) {
                 case "Pengujian Produk Jadi":
-                    berhasil = delete.Hapus(jcomCari1.GetIDTable(), "DELETE FROM `snitbpengujianprodukjadi` WHERE `IdPengujian` = " + jcomCari1.GetIDTable(), Type, this);
+                    berhasil = delete.Hapus(jcomCari1.GetIDTable(), "DELETE FROM `snitbpengujianprodukjadi` WHERE `IdPengujianProdukJadi` = " + jcomCari1.GetIDTable(), Type, this);
                     break;
                 default:
                     throw new AssertionError();
@@ -277,7 +274,7 @@ public class List extends javax.swing.JFrame {
     public void load() {
         switch (Type) {
             case "Pengujian Produk Jadi":
-                jcomCari1.setQuery("SELECT `IdPengujianBarangJadi` as 'ID', DATE_FORMAT(`Tanggal`,'%d-%m-%Y') as 'Tanggal',REPLACE(`KadarKIO3`,'.',',') as 'Kadar KIO3', REPLACE(`KadarAir`,'.',',') as 'Kadar Air', REPLACE(`KadarNaCl`,'.',',') as 'Kadar NaCl', `Warna`, `Penguji`, `Keterangan` FROM `snitbpengujianbarangjadi` WHERE 1");
+                jcomCari1.setQuery("SELECT `IdPengujianProdukJadi` as 'ID', DATE_FORMAT(`Tanggal`,'%d-%m-%Y') as 'Tanggal',REPLACE(`KadarKIO3`,'.',',') as 'Kadar KIO3', REPLACE(`KadarAir`,'.',',') as 'Kadar Air', REPLACE(`KadarNaCl`,'.',',') as 'Kadar NaCl', `Warna`, `Penguji`, `Keterangan` FROM `snitbpengujianprodukjadi` WHERE 1");
                 jcomCari1.setRender(new int[]{2, 3, 4}, new String[]{"Decimal", "Decimal", "Decimal"});
                 jcomCari1.setOrder(" ORDER BY `Tanggal` ");
                 break;
