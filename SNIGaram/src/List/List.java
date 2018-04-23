@@ -161,6 +161,9 @@ public class List extends javax.swing.JFrame {
             case "Pengujian Produk Jadi":
                 listPengujianProdukJadi = null;
                 break;
+            case "Pengujian Bahan Baku":
+                listPengujianBahanBaku = null;
+                break;
             default:
                 throw new AssertionError();
         }
@@ -227,6 +230,14 @@ public class List extends javax.swing.JFrame {
                     tambahPengujianProdukJadi.toFront();
                 }
                 break;
+            case "Pengujian Bahan Baku":
+                if (tambahPengujianBahanBaku == null) {
+                    tambahPengujianBahanBaku = new PengujianBahanBaku();
+                } else {
+                    tambahPengujianBahanBaku.setState(NORMAL);
+                    tambahPengujianBahanBaku.toFront();
+                }
+                break;
             default:
                 throw new AssertionError();
         }
@@ -242,6 +253,9 @@ public class List extends javax.swing.JFrame {
             switch (Type) {
                 case "Pengujian Produk Jadi":
                     berhasil = delete.Hapus(jcomCari1.GetIDTable(), "DELETE FROM `snitbpengujianprodukjadi` WHERE `IdPengujianProdukJadi` = " + jcomCari1.GetIDTable(), Type, this);
+                    break;
+                case "Pengujian Bahan Baku":
+                    berhasil = delete.Hapus(jcomCari1.GetIDTable(), "DELETE FROM `snitbpengujianbahanbaku` WHERE `IdPengujianBahanBaku` = " + jcomCari1.GetIDTable(), Type, this);
                     break;
                 default:
                     throw new AssertionError();
@@ -265,6 +279,14 @@ public class List extends javax.swing.JFrame {
                         ubahPengujianProdukJadi.toFront();
                     }
                     break;
+                case "Pengujian Bahan Baku":
+                    if (ubahPengujianBahanBaku == null) {
+                        ubahPengujianBahanBaku = new PengujianBahanBaku(jcomCari1.GetIDTable());
+                    } else {
+                        ubahPengujianBahanBaku.setState(NORMAL);
+                        ubahPengujianBahanBaku.toFront();
+                    }
+                    break;
                 default:
                     throw new AssertionError();
             }
@@ -276,6 +298,11 @@ public class List extends javax.swing.JFrame {
             case "Pengujian Produk Jadi":
                 jcomCari1.setQuery("SELECT `IdPengujianProdukJadi` as 'ID', DATE_FORMAT(`Tanggal`,'%d-%m-%Y') as 'Tanggal',REPLACE(`KadarKIO3`,'.',',') as 'Kadar KIO3', REPLACE(`KadarAir`,'.',',') as 'Kadar Air', REPLACE(`KadarNaCl`,'.',',') as 'Kadar NaCl', `Warna`, `Penguji`, `Keterangan` FROM `snitbpengujianprodukjadi` WHERE 1");
                 jcomCari1.setRender(new int[]{2, 3, 4}, new String[]{"Decimal", "Decimal", "Decimal"});
+                jcomCari1.setOrder(" ORDER BY `Tanggal` ");
+                break;
+            case "Pengujian Bahan Baku":
+                jcomCari1.setQuery("SELECT `IdPengujianBahanBaku` as 'ID', DATE_FORMAT(`Tanggal`,'%d-%m-%Y') as 'Tanggal', REPLACE(`KadarAir`,'.',',') as 'Kadar Air', REPLACE(`KadarNaCl`,'.',',') as 'Kadar NaCl', `Warna`, `Penguji`, `Keterangan` FROM `snitbpengujianbahanbaku` WHERE 1");
+                jcomCari1.setRender(new int[]{3, 4}, new String[]{"Decimal", "Decimal"});
                 jcomCari1.setOrder(" ORDER BY `Tanggal` ");
                 break;
             default:

@@ -31,7 +31,7 @@ public class PengujianProdukJadi extends javax.swing.JFrame {
     public PengujianProdukJadi() {
         initComponents();
         setVisible(true);
-        setTitle("Tambah Penerimaan");
+        setTitle("Tambah Pengujian Produk Jadi");
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         jbuttonF3.setVisible(false);
@@ -41,7 +41,7 @@ public class PengujianProdukJadi extends javax.swing.JFrame {
         IdEdit = idEdit.toString();
         initComponents();
         setVisible(true);
-        setTitle("Ubah Penerimaan");
+        setTitle("Ubah Pengujian Produk Jadi");
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         jbuttonF1.setVisible(false);

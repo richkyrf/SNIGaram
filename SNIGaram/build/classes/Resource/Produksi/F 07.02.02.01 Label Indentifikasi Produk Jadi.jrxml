@@ -1,37 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="F 07.02.02.01 Label Indentifikasi Produk Jadi" language="groovy" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="681fcae0-315d-47c3-91ca-fbcc5a2553a6">
-	<property name="ireport.zoom" value="1.1000000000000008"/>
+	<property name="ireport.zoom" value="1.2100000000000017"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
-	<parameter name="Judul" class="java.lang.String" isForPrompting="false">
-		<defaultValueExpression><![CDATA["LABEL IDENTIFIKASI PRODUK JADI"]]></defaultValueExpression>
-	</parameter>
-	<parameter name="Nomor" class="java.lang.String" isForPrompting="false">
-		<defaultValueExpression><![CDATA["IGC-F 07.02.02.01"]]></defaultValueExpression>
-	</parameter>
-	<parameter name="Mengetahui" class="java.lang.String" isForPrompting="false">
-		<defaultValueExpression><![CDATA["Mengetahui"]]></defaultValueExpression>
-	</parameter>
-	<parameter name="Manajer_Produksi" class="java.lang.String" isForPrompting="false">
-		<defaultValueExpression><![CDATA["Manajer Produksi"]]></defaultValueExpression>
-	</parameter>
-	<parameter name="Jambi" class="java.lang.String" isForPrompting="false">
-		<defaultValueExpression><![CDATA["Jambi, "]]></defaultValueExpression>
-	</parameter>
+	<property name="ireport.y" value="1"/>
 	<parameter name="Tanggal" class="java.util.Date" isForPrompting="false">
 		<defaultValueExpression><![CDATA[new Date()]]></defaultValueExpression>
-	</parameter>
-	<parameter name="Garis" class="java.lang.String" isForPrompting="false">
-		<defaultValueExpression><![CDATA["_____________________"]]></defaultValueExpression>
-	</parameter>
-	<parameter name="Footer" class="java.lang.String" isForPrompting="false">
-		<defaultValueExpression><![CDATA["Rev. 0, Tanggal Terbit 20 Januari 2014"]]></defaultValueExpression>
-	</parameter>
-	<parameter name="Pak" class="java.lang.String" isForPrompting="false">
-		<defaultValueExpression><![CDATA["Pak"]]></defaultValueExpression>
-	</parameter>
-	<parameter name="Total" class="java.lang.String" isForPrompting="false">
-		<defaultValueExpression><![CDATA["Total"]]></defaultValueExpression>
 	</parameter>
 	<queryString>
 		<![CDATA[SELECT `Tanggal`, REPLACE(REPLACE(REPLACE(IF(`NamaBarang` LIKE '%1/2 KG%' OR `NamaBarang` LIKE '%8 ONS%',REPLACE(REPLACE(`NamaBarang`,'G. HALUS','Garam Halus Duo Angso'),'G. KASAR','Garam Kasar Duo Angso'),REPLACE(REPLACE(`NamaBarang`,'G. HALUS','Garam Halus Tiga Bola'),'G. KASAR','Garam Kasar Tiga Bola')),'GRAM','Gram'),'ONS','Ons'),'KG','Kg') AS 'Jenis Produk', SUM(`JumlahHasil`) AS 'Jumlah', '' AS 'Kode Produksi', '' AS 'Keterangan' FROM `tbpacking` AS A JOIN `tbmbarang` AS B ON A.`IdBarangHasil`=B.`IdBarang` WHERE `NamaBarang` NOT LIKE '%@50 KG%' AND `IdPartai` IS NOT NULL GROUP BY `Tanggal`, `NamaBarang`]]>
@@ -54,26 +27,23 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="60" splitType="Stretch">
-			<textField>
-				<reportElement x="0" y="20" width="555" height="20" uuid="3619ace3-cf12-46d1-a636-4ca81bb3ba29"/>
+		<band height="64" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="20" width="555" height="20" uuid="ff3628b7-a217-408b-9681-0765a91eaa16"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Gadugi" size="12" isBold="true" isUnderline="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$P{Judul}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="0" y="39" width="555" height="20" uuid="08bf101c-7489-408e-a874-3272885abb3f"/>
-				<textElement textAlignment="Center" verticalAlignment="Top">
+				<text><![CDATA[LABEL IDENTIFIKASI PRODUK JADI]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="39" width="555" height="20" uuid="825c4732-ece4-4980-aef0-e76dff4f8278"/>
+				<textElement textAlignment="Center">
 					<font fontName="Gadugi" size="12"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$P{Nomor}]]></textFieldExpression>
-			</textField>
+				<text><![CDATA[IGC-F 07.02.02.01]]></text>
+			</staticText>
 		</band>
 	</title>
-	<pageHeader>
-		<band height="5" splitType="Stretch"/>
-	</pageHeader>
 	<columnHeader>
 		<band height="20" splitType="Stretch">
 			<staticText>
@@ -146,7 +116,7 @@
 	<detail>
 		<band height="20" splitType="Stretch">
 			<textField isStretchWithOverflow="true" pattern="#,##0">
-				<reportElement stretchType="RelativeToTallestObject" x="275" y="0" width="55" height="20" uuid="acc4f516-d8ff-43e7-9e5a-d52b8ec22748"/>
+				<reportElement stretchType="RelativeToTallestObject" x="275" y="0" width="56" height="20" uuid="acc4f516-d8ff-43e7-9e5a-d52b8ec22748"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -215,8 +185,8 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Tanggal}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="330" y="0" width="25" height="20" uuid="50fcea89-edfd-40f4-94c5-0d6fab3acf6f"/>
+			<staticText>
+				<reportElement x="330" y="0" width="25" height="20" uuid="ed79bda3-656e-4126-8d8b-062db39d44ae"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -224,66 +194,35 @@
 					<bottomPen lineWidth="0.5"/>
 					<rightPen lineWidth="0.5"/>
 				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
+				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Gadugi" size="12"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$P{Pak}]]></textFieldExpression>
-			</textField>
+				<text><![CDATA[Pak]]></text>
+			</staticText>
 		</band>
 	</detail>
-	<columnFooter>
-		<band height="5" splitType="Stretch"/>
-	</columnFooter>
 	<pageFooter>
-		<band height="20" splitType="Stretch">
-			<textField>
-				<reportElement x="355" y="0" width="200" height="20" uuid="abe405c6-96f4-4bfb-bc05-3f2d16217139"/>
-				<textElement textAlignment="Right">
+		<band height="25" splitType="Stretch">
+			<staticText>
+				<reportElement x="355" y="5" width="200" height="20" uuid="7fb84955-4c0b-47a6-9b86-4b9f43a69469"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Gadugi"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$P{Footer}]]></textFieldExpression>
-			</textField>
+				<text><![CDATA[Rev. 0, Tanggal Terbit 20 Januari 2014]]></text>
+			</staticText>
 		</band>
 	</pageFooter>
 	<summary>
 		<band height="142" splitType="Stretch">
-			<textField>
-				<reportElement x="0" y="61" width="140" height="20" uuid="943d6a77-418e-478e-af3f-0d02621ff818"/>
-				<textElement textAlignment="Center">
-					<font fontName="Gadugi" size="12"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$P{Mengetahui}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="0" y="122" width="140" height="20" uuid="dc32f298-0052-4135-9d72-ac404135ea4c"/>
-				<textElement textAlignment="Center">
-					<font fontName="Gadugi" size="12"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$P{Manajer_Produksi}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="416" y="41" width="40" height="20" uuid="edc65752-3381-41dd-aa8a-02c8d493b580"/>
-				<textElement textAlignment="Right">
-					<font fontName="Gadugi" size="12"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$P{Jambi}]]></textFieldExpression>
-			</textField>
 			<textField pattern="dd/MM/yyyy">
 				<reportElement x="455" y="41" width="100" height="20" uuid="639494fb-846d-48bc-9b22-511e47237dd7"/>
-				<textElement>
+				<textElement verticalAlignment="Middle">
 					<font fontName="Gadugi" size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{Tanggal}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="415" y="122" width="140" height="20" uuid="35fd5ef2-91a0-49d6-bd1c-daaffdce803c"/>
-				<textElement textAlignment="Justified">
-					<font fontName="Gadugi" size="12"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$P{Garis}]]></textFieldExpression>
-			</textField>
 			<textField pattern="#,##0">
-				<reportElement x="275" y="0" width="55" height="20" uuid="169b7952-5384-4f3d-96a4-198302cb8519"/>
+				<reportElement x="275" y="0" width="56" height="20" uuid="169b7952-5384-4f3d-96a4-198302cb8519"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -296,8 +235,8 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$V{Total}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="330" y="0" width="25" height="20" uuid="baf8281b-c509-4fdf-9023-8436dca024fe"/>
+			<staticText>
+				<reportElement x="330" y="0" width="25" height="20" uuid="848618d2-fd03-492b-b750-942e9bf73cb5"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -305,13 +244,13 @@
 					<bottomPen lineWidth="0.5"/>
 					<rightPen lineWidth="0.5"/>
 				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
+				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Gadugi" size="12" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$P{Pak}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="0" y="0" width="275" height="20" uuid="cbb7834f-3f6c-4015-8065-67d6761b6f97"/>
+				<text><![CDATA[Pak]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="275" height="20" uuid="405a25f9-b582-4ebb-a295-953d8ee32911"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -322,10 +261,10 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Gadugi" size="12" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$P{Total}]]></textFieldExpression>
-			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement x="355" y="0" width="200" height="20" uuid="ce0a67a4-143a-4613-9264-374072c293e6"/>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="355" y="0" width="200" height="20" uuid="f97d7573-36f0-470a-b35a-e9fe3643731a"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -336,8 +275,36 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Gadugi" size="12" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
-			</textField>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="61" width="140" height="20" uuid="c9a8ebbf-1813-419d-8d18-c23db28c664f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Gadugi" size="12"/>
+				</textElement>
+				<text><![CDATA[Mengetahui]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="122" width="140" height="20" uuid="8581de20-e086-4569-a0e5-cc26fa3fd7de"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Gadugi" size="12"/>
+				</textElement>
+				<text><![CDATA[Manager Produksi]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="416" y="41" width="40" height="20" uuid="1776a53e-4775-4f49-b36e-05719125899d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Gadugi" size="12"/>
+				</textElement>
+				<text><![CDATA[Jambi,]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="415" y="122" width="140" height="20" uuid="f5bc1bea-f014-40bb-a287-40b199a10a32"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Gadugi" size="12"/>
+				</textElement>
+				<text><![CDATA[_____________________]]></text>
+			</staticText>
 		</band>
 	</summary>
 </jasperReport>

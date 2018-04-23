@@ -5,9 +5,10 @@
  */
 package File;
 
-import static GlobalVar.Var.tambahPengujianProdukJadi;
-import List.List;
-import ProsesLab.PengujianProdukJadi;
+import static GlobalVar.Var.*;
+import LaporanLab.LaporanLab;
+import List.*;
+import ProsesLab.*;
 import static java.awt.Frame.NORMAL;
 
 /**
@@ -45,9 +46,13 @@ public class MenuUtama extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
+        jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -99,7 +104,7 @@ public class MenuUtama extends javax.swing.JFrame {
         jMenu1.setText("Master");
         JMenuBar.add(jMenu1);
 
-        jMenu2.setText("Proses");
+        jMenu2.setText("Proses Lab");
 
         jMenuItem2.setText("Pengujian Produk Jadi");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
@@ -108,6 +113,14 @@ public class MenuUtama extends javax.swing.JFrame {
             }
         });
         jMenu2.add(jMenuItem2);
+
+        jMenuItem4.setText("Pengujian Bahan Baku");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem4);
 
         JMenuBar.add(jMenu2);
 
@@ -121,9 +134,34 @@ public class MenuUtama extends javax.swing.JFrame {
         });
         jMenu3.add(jMenuItem1);
 
+        jMenuItem3.setText("Pengujian Bahan Baku");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem3);
+
         JMenuBar.add(jMenu3);
 
-        jMenu4.setText("Laporan");
+        jMenu4.setText("LaporanLab");
+
+        jMenuItem5.setText("Laporan Pengujian Produk Jadi");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem5);
+
+        jMenuItem6.setText("Laporan Pengujian Bahan Baku");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem6);
+
         JMenuBar.add(jMenu4);
 
         setJMenuBar(JMenuBar);
@@ -143,20 +181,20 @@ public class MenuUtama extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void JMITambahUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMITambahUserActionPerformed
-        if (GlobalVar.Var.tambahUser == null) {
-            GlobalVar.Var.tambahUser = new TambahUser();
+        if (tambahUser == null) {
+            tambahUser = new TambahUser();
         } else {
-            GlobalVar.Var.tambahUser.setState(NORMAL);
-            GlobalVar.Var.tambahUser.toFront();
+            tambahUser.setState(NORMAL);
+            tambahUser.toFront();
         }
     }//GEN-LAST:event_JMITambahUserActionPerformed
 
     private void JMIGantiPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMIGantiPasswordActionPerformed
-        if (GlobalVar.Var.gantiPassword == null) {
-            GlobalVar.Var.gantiPassword = new GantiPassword();
+        if (gantiPassword == null) {
+            gantiPassword = new GantiPassword();
         } else {
-            GlobalVar.Var.gantiPassword.setState(NORMAL);
-            GlobalVar.Var.gantiPassword.toFront();
+            gantiPassword.setState(NORMAL);
+            gantiPassword.toFront();
         }
     }//GEN-LAST:event_JMIGantiPasswordActionPerformed
 
@@ -165,20 +203,20 @@ public class MenuUtama extends javax.swing.JFrame {
     }//GEN-LAST:event_JMIExitActionPerformed
 
     private void JMIResetPasswordUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMIResetPasswordUserActionPerformed
-        if (GlobalVar.Var.resetPasswordUser == null) {
-            GlobalVar.Var.resetPasswordUser = new ResetPasswordUser();
+        if (resetPasswordUser == null) {
+            resetPasswordUser = new ResetPasswordUser();
         } else {
-            GlobalVar.Var.resetPasswordUser.setState(NORMAL);
-            GlobalVar.Var.resetPasswordUser.toFront();
+            resetPasswordUser.setState(NORMAL);
+            resetPasswordUser.toFront();
         }
     }//GEN-LAST:event_JMIResetPasswordUserActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        if (GlobalVar.Var.listPengujianProdukJadi == null) {
-            GlobalVar.Var.listPengujianProdukJadi = new List("Pengujian Produk Jadi");
+        if (listPengujianProdukJadi == null) {
+            listPengujianProdukJadi = new List("Pengujian Produk Jadi");
         } else {
-            GlobalVar.Var.listPengujianProdukJadi.setState(NORMAL);
-            GlobalVar.Var.listPengujianProdukJadi.toFront();
+            listPengujianProdukJadi.setState(NORMAL);
+            listPengujianProdukJadi.toFront();
         }
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
@@ -190,6 +228,42 @@ public class MenuUtama extends javax.swing.JFrame {
             tambahPengujianProdukJadi.toFront();
         }
     }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        if (listPengujianBahanBaku == null) {
+            listPengujianBahanBaku = new List("Pengujian Bahan Baku");
+        } else {
+            listPengujianBahanBaku.setState(NORMAL);
+            listPengujianBahanBaku.toFront();
+        }
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        if (tambahPengujianBahanBaku == null) {
+            tambahPengujianBahanBaku = new PengujianBahanBaku();
+        } else {
+            tambahPengujianBahanBaku.setState(NORMAL);
+            tambahPengujianBahanBaku.toFront();
+        }
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        if (laporanPengujianProdukJadi == null) {
+            laporanPengujianProdukJadi = new LaporanLab("Laporan Pengujian Produk Jadi");
+        } else {
+            laporanPengujianProdukJadi.setState(NORMAL);
+            laporanPengujianProdukJadi.toFront();
+        }
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        if (laporanPengujianBahanBaku == null) {
+            laporanPengujianBahanBaku = new LaporanLab("Laporan Pengujian Bahan Baku");
+        } else {
+            laporanPengujianBahanBaku.setState(NORMAL);
+            laporanPengujianBahanBaku.toFront();
+        }
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -240,5 +314,9 @@ public class MenuUtama extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
     // End of variables declaration//GEN-END:variables
 }
