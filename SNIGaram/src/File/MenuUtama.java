@@ -7,7 +7,6 @@ package File;
 
 import static GlobalVar.Var.*;
 import LaporanLab.LaporanLab;
-import LaporanProduksi.LaporanProduksi;
 import List.*;
 import ProsesLab.*;
 import static java.awt.Frame.NORMAL;
@@ -44,20 +43,17 @@ public class MenuUtama extends javax.swing.JFrame {
         SFile = new javax.swing.JPopupMenu.Separator();
         JMIGantiPassword = new javax.swing.JMenuItem();
         JMIExit = new javax.swing.JMenuItem();
-        JMMaster = new javax.swing.JMenu();
-        JMProsesLab = new javax.swing.JMenu();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem7 = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
-        JMListLab = new javax.swing.JMenu();
+        jMenu3 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
-        JMLaporanLab = new javax.swing.JMenu();
+        jMenu4 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
-        JMLaporanProduksi = new javax.swing.JMenu();
-        jMenuItem7 = new javax.swing.JMenuItem();
-        jMenuItem8 = new javax.swing.JMenuItem();
-        jMenuItem9 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -106,10 +102,19 @@ public class MenuUtama extends javax.swing.JFrame {
 
         JMenuBar.add(JMFile);
 
-        JMMaster.setText("Master");
-        JMenuBar.add(JMMaster);
+        jMenu1.setText("Master Teknik");
 
-        JMProsesLab.setText("Proses Lab");
+        jMenuItem7.setText("Master Barang Teknik");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem7);
+
+        JMenuBar.add(jMenu1);
+
+        jMenu2.setText("Proses Lab");
 
         jMenuItem2.setText("Pengujian Produk Jadi");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
@@ -117,7 +122,7 @@ public class MenuUtama extends javax.swing.JFrame {
                 jMenuItem2ActionPerformed(evt);
             }
         });
-        JMProsesLab.add(jMenuItem2);
+        jMenu2.add(jMenuItem2);
 
         jMenuItem4.setText("Pengujian Bahan Baku");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
@@ -125,11 +130,11 @@ public class MenuUtama extends javax.swing.JFrame {
                 jMenuItem4ActionPerformed(evt);
             }
         });
-        JMProsesLab.add(jMenuItem4);
+        jMenu2.add(jMenuItem4);
 
-        JMenuBar.add(JMProsesLab);
+        JMenuBar.add(jMenu2);
 
-        JMListLab.setText("List Lab");
+        jMenu3.setText("List Lab");
 
         jMenuItem1.setText("Pengujian Produk Jadi");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -137,7 +142,7 @@ public class MenuUtama extends javax.swing.JFrame {
                 jMenuItem1ActionPerformed(evt);
             }
         });
-        JMListLab.add(jMenuItem1);
+        jMenu3.add(jMenuItem1);
 
         jMenuItem3.setText("Pengujian Bahan Baku");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
@@ -145,11 +150,11 @@ public class MenuUtama extends javax.swing.JFrame {
                 jMenuItem3ActionPerformed(evt);
             }
         });
-        JMListLab.add(jMenuItem3);
+        jMenu3.add(jMenuItem3);
 
-        JMenuBar.add(JMListLab);
+        JMenuBar.add(jMenu3);
 
-        JMLaporanLab.setText("Laporan Lab");
+        jMenu4.setText("LaporanLab");
 
         jMenuItem5.setText("Laporan Pengujian Produk Jadi");
         jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
@@ -157,7 +162,7 @@ public class MenuUtama extends javax.swing.JFrame {
                 jMenuItem5ActionPerformed(evt);
             }
         });
-        JMLaporanLab.add(jMenuItem5);
+        jMenu4.add(jMenuItem5);
 
         jMenuItem6.setText("Laporan Pengujian Bahan Baku");
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
@@ -165,37 +170,9 @@ public class MenuUtama extends javax.swing.JFrame {
                 jMenuItem6ActionPerformed(evt);
             }
         });
-        JMLaporanLab.add(jMenuItem6);
+        jMenu4.add(jMenuItem6);
 
-        JMenuBar.add(JMLaporanLab);
-
-        JMLaporanProduksi.setText("Laporan Produksi");
-
-        jMenuItem7.setText("Laporan Indentifikasi Produk Jadi");
-        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem7ActionPerformed(evt);
-            }
-        });
-        JMLaporanProduksi.add(jMenuItem7);
-
-        jMenuItem8.setText("Laporan Penyerahan Produk Jadi");
-        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem8ActionPerformed(evt);
-            }
-        });
-        JMLaporanProduksi.add(jMenuItem8);
-
-        jMenuItem9.setText("Laporan Data Produksi");
-        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem9ActionPerformed(evt);
-            }
-        });
-        JMLaporanProduksi.add(jMenuItem9);
-
-        JMenuBar.add(JMLaporanProduksi);
+        JMenuBar.add(jMenu4);
 
         setJMenuBar(JMenuBar);
 
@@ -246,7 +223,7 @@ public class MenuUtama extends javax.swing.JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         if (listPengujianProdukJadi == null) {
-            listPengujianProdukJadi = new List("Pengujian Produk Jadi");
+            listPengujianProdukJadi = new List(jMenuItem1.getText());
         } else {
             listPengujianProdukJadi.setState(NORMAL);
             listPengujianProdukJadi.toFront();
@@ -264,7 +241,7 @@ public class MenuUtama extends javax.swing.JFrame {
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         if (listPengujianBahanBaku == null) {
-            listPengujianBahanBaku = new List("Pengujian Bahan Baku");
+            listPengujianBahanBaku = new List(jMenuItem3.getText());
         } else {
             listPengujianBahanBaku.setState(NORMAL);
             listPengujianBahanBaku.toFront();
@@ -282,7 +259,7 @@ public class MenuUtama extends javax.swing.JFrame {
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         if (laporanPengujianProdukJadi == null) {
-            laporanPengujianProdukJadi = new LaporanLab("Laporan Pengujian Produk Jadi");
+            laporanPengujianProdukJadi = new LaporanLab(jMenuItem5.getText());
         } else {
             laporanPengujianProdukJadi.setState(NORMAL);
             laporanPengujianProdukJadi.toFront();
@@ -291,7 +268,7 @@ public class MenuUtama extends javax.swing.JFrame {
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         if (laporanPengujianBahanBaku == null) {
-            laporanPengujianBahanBaku = new LaporanLab("Laporan Pengujian Bahan Baku");
+            laporanPengujianBahanBaku = new LaporanLab(jMenuItem6.getText());
         } else {
             laporanPengujianBahanBaku.setState(NORMAL);
             laporanPengujianBahanBaku.toFront();
@@ -299,31 +276,13 @@ public class MenuUtama extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
-        if (laporanIndentifikasiProdukJadi == null) {
-            laporanIndentifikasiProdukJadi = new LaporanProduksi("Laporan Indentifikasi Produk Jadi");
+        if (listBarangTeknik == null) {
+            listBarangTeknik = new List(jMenuItem7.getText());
         } else {
-            laporanIndentifikasiProdukJadi.setState(NORMAL);
-            laporanIndentifikasiProdukJadi.toFront();
+            listBarangTeknik.setState(NORMAL);
+            listBarangTeknik.toFront();
         }
     }//GEN-LAST:event_jMenuItem7ActionPerformed
-
-    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
-        if (laporanPenyerahanProdukJadi == null) {
-            laporanPenyerahanProdukJadi = new LaporanProduksi("Laporan Penyerahan Produk Jadi");
-        } else {
-            laporanPenyerahanProdukJadi.setState(NORMAL);
-            laporanPenyerahanProdukJadi.toFront();
-        }
-    }//GEN-LAST:event_jMenuItem8ActionPerformed
-
-    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
-        if (laporanDataProduksi == null) {
-            laporanDataProduksi = new LaporanProduksi("Laporan Data Produksi");
-        } else {
-            laporanDataProduksi.setState(NORMAL);
-            laporanDataProduksi.toFront();
-        }
-    }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -366,13 +325,12 @@ public class MenuUtama extends javax.swing.JFrame {
     private javax.swing.JMenuItem JMIGantiPassword;
     private javax.swing.JMenuItem JMIResetPasswordUser;
     private javax.swing.JMenuItem JMITambahUser;
-    private javax.swing.JMenu JMLaporanLab;
-    private javax.swing.JMenu JMLaporanProduksi;
-    private javax.swing.JMenu JMListLab;
-    private javax.swing.JMenu JMMaster;
-    private javax.swing.JMenu JMProsesLab;
     private javax.swing.JMenuBar JMenuBar;
     private javax.swing.JPopupMenu.Separator SFile;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
@@ -380,7 +338,5 @@ public class MenuUtama extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
-    private javax.swing.JMenuItem jMenuItem9;
     // End of variables declaration//GEN-END:variables
 }
