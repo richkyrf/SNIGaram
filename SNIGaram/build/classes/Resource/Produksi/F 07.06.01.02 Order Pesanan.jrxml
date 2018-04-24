@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="F 08.06.00.01 Data Produksi" language="groovy" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="681fcae0-315d-47c3-91ca-fbcc5a2553a6">
+<<<<<<< HEAD
+	<property name="ireport.zoom" value="1.1000000000000028"/>
+=======
 	<property name="ireport.zoom" value="1.0000000000000016"/>
+>>>>>>> 95e30212c60b13f40e5b27a8c67315a22517b46b
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="Tanggal" class="java.util.Date" isForPrompting="false">
@@ -13,6 +17,22 @@
 		<defaultValueExpression><![CDATA["2018-12-31"]]></defaultValueExpression>
 	</parameter>
 	<queryString>
+<<<<<<< HEAD
+		<![CDATA[SELECT B.`Tanggal`, SUM(`KarungPelita`) AS 'Jumlah Produk', 'Sak' AS 'Satuan', IF(`NamaBarang` LIKE '%GRM KSR%',REPLACE(`NamaBarang`,`NamaBarang`,'Garam Kasar'),IF(`NamaBarang` LIKE '%GRM HLS%',REPLACE(`NamaBarang`,`NamaBarang`,'Garam Halus'),'')) AS 'Jenis Produk', '1 Bulan' AS 'Jangka Waktu', '' AS 'Keterangan' FROM `tbpenerimaan` AS A JOIN `tbmpartai` AS B ON A.`IdPartai`=B.`IdPartai` JOIN `tbmbarang` AS C ON B.`IdBarang`=C.`IdBarang` WHERE `IdPeminta`=1 AND B.`Tanggal` BETWEEN $P{Tanggal_Awal} AND $P{Tanggal_Akhir} GROUP BY `Tanggal`, `NamaBarang`]]>
+	</queryString>
+	<field name="Tanggal" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Jumlah Produk" class="java.math.BigDecimal"/>
+	<field name="Satuan" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Jenis Produk" class="java.lang.String"/>
+	<field name="Jangka Waktu" class="java.lang.String"/>
+	<field name="Keterangan" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+=======
 		<![CDATA[SELECT `Tanggal`, REPLACE(REPLACE(REPLACE(IF(`NamaBarang` LIKE '%1/2 KG%' OR `NamaBarang` LIKE '%8 ONS%',REPLACE(REPLACE(`NamaBarang`,'G. HALUS','Garam Halus Duo Angso'),'G. KASAR','Garam Kasar Duo Angso'),REPLACE(REPLACE(`NamaBarang`,'G. HALUS','Garam Halus Tiga Bola'),'G. KASAR','Garam Kasar Tiga Bola')),'GRAM','Gram'),'ONS','Ons'),'KG','Kg') AS 'Nama Produksi', SUM(`JumlahHasil`) AS 'Jumlah', '' AS 'Keterangan' FROM `tbpacking` AS A JOIN `tbmbarang` AS B ON A.`IdBarangHasil`=B.`IdBarang` WHERE `NamaBarang` NOT LIKE '%@50 KG%' AND `IdPartai` IS NOT NULL AND `Tanggal` BETWEEN $P{Tanggal_Awal} AND $P{Tanggal_Akhir} GROUP BY `Tanggal`, `NamaBarang`]]>
 	</queryString>
 	<field name="Tanggal" class="java.sql.Timestamp">
@@ -28,6 +48,7 @@
 	<variable name="Total" class="java.lang.Integer" calculation="Sum">
 		<variableExpression><![CDATA[$F{Jumlah}]]></variableExpression>
 	</variable>
+>>>>>>> 95e30212c60b13f40e5b27a8c67315a22517b46b
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -52,8 +73,14 @@
 	<columnHeader>
 		<band height="20" splitType="Stretch">
 			<staticText>
+<<<<<<< HEAD
+				<reportElement x="40" y="0" width="70" height="20" uuid="d386ad15-d658-49c8-b234-5617e318e05f"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="0.5"/>
+=======
 				<reportElement x="40" y="0" width="70" height="20" uuid="7e0b8123-0606-461c-b709-04427e0427cc"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+>>>>>>> 95e30212c60b13f40e5b27a8c67315a22517b46b
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
 					<bottomPen lineWidth="0.5"/>
@@ -65,8 +92,14 @@
 				<text><![CDATA[Tanggal]]></text>
 			</staticText>
 			<staticText>
+<<<<<<< HEAD
+				<reportElement x="110" y="0" width="100" height="20" uuid="b178a566-bcc4-45d0-b4a2-4f993d50d9a1"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="0.5"/>
+=======
 				<reportElement x="110" y="0" width="265" height="20" uuid="48abee30-4497-4c60-96c6-89aebc73e156"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+>>>>>>> 95e30212c60b13f40e5b27a8c67315a22517b46b
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
 					<bottomPen lineWidth="0.5"/>
@@ -75,11 +108,20 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Gadugi" size="12" isBold="true"/>
 				</textElement>
+<<<<<<< HEAD
+				<text><![CDATA[Jumlah Produk]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="210" y="0" width="145" height="20" uuid="f12756d5-09e3-4a6f-bffc-5636293db5f3"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="0.5"/>
+=======
 				<text><![CDATA[Nama Produksi]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="375" y="0" width="80" height="20" uuid="de4e18ac-5cad-45e9-9564-271efd43f8a9"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+>>>>>>> 95e30212c60b13f40e5b27a8c67315a22517b46b
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
 					<bottomPen lineWidth="0.5"/>
@@ -88,11 +130,34 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Gadugi" size="12" isBold="true"/>
 				</textElement>
+<<<<<<< HEAD
+				<text><![CDATA[Jenis Produk]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="355" y="0" width="100" height="20" uuid="d34a55b0-c322-486d-a993-da4e4c8a630c"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Gadugi" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Jangka Waktu]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="455" y="0" width="100" height="20" uuid="1452b8ca-26a4-4a01-ae8a-c402811bac09"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="0.5"/>
+=======
 				<text><![CDATA[Jumlah]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="455" y="0" width="100" height="20" uuid="00c07f34-4934-4c94-b21a-29f7c55d420b"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+>>>>>>> 95e30212c60b13f40e5b27a8c67315a22517b46b
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
 					<bottomPen lineWidth="0.5"/>
@@ -104,8 +169,14 @@
 				<text><![CDATA[Keterangan]]></text>
 			</staticText>
 			<staticText>
+<<<<<<< HEAD
+				<reportElement x="0" y="0" width="40" height="20" uuid="6daabfec-e1fb-447e-9afa-7de00bdffed8"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="0.5"/>
+=======
 				<reportElement x="0" y="0" width="40" height="20" uuid="a10dafb1-ca8b-4f8a-a508-691f518fa82e"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+>>>>>>> 95e30212c60b13f40e5b27a8c67315a22517b46b
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
 					<bottomPen lineWidth="0.5"/>
@@ -120,8 +191,27 @@
 	</columnHeader>
 	<detail>
 		<band height="20" splitType="Stretch">
+<<<<<<< HEAD
+			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy">
+				<reportElement stretchType="RelativeToTallestObject" x="40" y="0" width="70" height="20" uuid="e5fe0c6f-3048-4a5f-8bb4-d488fd7722c8"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Gadugi" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Tanggal}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0">
+				<reportElement stretchType="RelativeToTallestObject" x="110" y="0" width="78" height="20" uuid="d1a32121-f7f9-4137-9388-a094faf4f756"/>
+=======
 			<textField isStretchWithOverflow="true" pattern="#,##0">
 				<reportElement stretchType="RelativeToTallestObject" x="375" y="0" width="56" height="20" uuid="acc4f516-d8ff-43e7-9e5a-d52b8ec22748"/>
+>>>>>>> 95e30212c60b13f40e5b27a8c67315a22517b46b
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -132,6 +222,26 @@
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Gadugi" size="12"/>
 				</textElement>
+<<<<<<< HEAD
+				<textFieldExpression><![CDATA[$F{Jumlah Produk}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToTallestObject" x="187" y="0" width="23" height="20" uuid="c6459d8f-4a4b-49df-9ec4-074ca8e8a746"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Gadugi" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Satuan}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToTallestObject" x="210" y="0" width="145" height="20" uuid="80dde730-9092-468a-a498-022e1e585f63"/>
+=======
 				<textFieldExpression><![CDATA[$F{Jumlah}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
@@ -150,6 +260,7 @@
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="">
 				<reportElement stretchType="RelativeToTallestObject" x="110" y="0" width="265" height="20" uuid="bfc8afc9-61ca-4250-a1b2-2d0e20681d81"/>
+>>>>>>> 95e30212c60b13f40e5b27a8c67315a22517b46b
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -157,6 +268,15 @@
 					<bottomPen lineWidth="0.5"/>
 					<rightPen lineWidth="0.5"/>
 				</box>
+<<<<<<< HEAD
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Gadugi" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Jenis Produk}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToTallestObject" x="355" y="0" width="100" height="20" uuid="1fe4aba7-aad7-4b66-b9d7-3a70f907e483"/>
+=======
 				<textElement textAlignment="Justified" verticalAlignment="Middle">
 					<font fontName="Gadugi" size="12"/>
 				</textElement>
@@ -164,6 +284,7 @@
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy">
 				<reportElement stretchType="RelativeToTallestObject" x="40" y="0" width="70" height="20" uuid="c9ceef90-1bba-4a24-a593-1daca01324c8"/>
+>>>>>>> 95e30212c60b13f40e5b27a8c67315a22517b46b
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -174,6 +295,26 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Gadugi" size="12"/>
 				</textElement>
+<<<<<<< HEAD
+				<textFieldExpression><![CDATA[$F{Jangka Waktu}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToTallestObject" x="455" y="0" width="100" height="20" uuid="5b924c3e-27a8-43e7-9803-bfb3fc40d416"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Gadugi" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Keterangan}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToTallestObject" x="0" y="0" width="40" height="20" uuid="2b00f87a-4901-4a76-9f3e-bd23042f4d42"/>
+=======
 				<textFieldExpression><![CDATA[$F{Tanggal}]]></textFieldExpression>
 			</textField>
 			<staticText>
@@ -192,6 +333,7 @@
 			</staticText>
 			<textField isStretchWithOverflow="true">
 				<reportElement stretchType="RelativeToTallestObject" x="0" y="0" width="40" height="20" uuid="e2e21948-fd5d-4454-a1c2-cdfdcdeb28ef"/>
+>>>>>>> 95e30212c60b13f40e5b27a8c67315a22517b46b
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
