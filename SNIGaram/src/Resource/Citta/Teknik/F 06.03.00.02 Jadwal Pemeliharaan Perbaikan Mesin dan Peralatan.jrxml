@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="F 06.03.00.02 Jadwal Pemeliharaan Perbaikan Mesin dan Peralatan" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="681fcae0-315d-47c3-91ca-fbcc5a2553a6">
 	<property name="ireport.zoom" value="1.2100000000000022"/>
-	<property name="ireport.x" value="86"/>
+	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="Tanggal" class="java.util.Date" isForPrompting="false">
 		<defaultValueExpression><![CDATA[new Date()]]></defaultValueExpression>
@@ -15,40 +15,40 @@
 	<queryString>
 		<![CDATA[SELECT a.`IdBarangTeknik`, `NamaBarang`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`, `11`, `12`, '' as 'Keterangan' FROM `snitbmbarangteknik`a
 	LEFT JOIN (
-SELECT `IdBarangTeknik`, COUNT(*) as '1' FROM `snitbpemeliharaan` WHERE DATE_FORMAT(`Tanggal`,'%m') = '01' GROUP BY `IdBarangTeknik`) b
+SELECT `IdBarangTeknik`, COUNT(*) as '1' FROM `snitbpemeliharaan` WHERE DATE_FORMAT(`Tanggal`,'%m') = '01' AND `Tanggal` BETWEEN $P{Tanggal_Awal} AND $P{Tanggal_Akhir} GROUP BY `IdBarangTeknik`) b
 ON a.`IdBarangTeknik`=b.`IdBarangTeknik`
 	LEFT JOIN (
-SELECT `IdBarangTeknik`, COUNT(*) as '2' FROM `snitbpemeliharaan` WHERE DATE_FORMAT(`Tanggal`,'%m') = '02' GROUP BY `IdBarangTeknik`) c
+SELECT `IdBarangTeknik`, COUNT(*) as '2' FROM `snitbpemeliharaan` WHERE DATE_FORMAT(`Tanggal`,'%m') = '02' AND `Tanggal` BETWEEN $P{Tanggal_Awal} AND $P{Tanggal_Akhir} GROUP BY `IdBarangTeknik`) c
 ON a.`IdBarangTeknik`=c.`IdBarangTeknik`
 	LEFT JOIN (
-SELECT `IdBarangTeknik`, COUNT(*) as '3' FROM `snitbpemeliharaan` WHERE DATE_FORMAT(`Tanggal`,'%m') = '03' GROUP BY `IdBarangTeknik`) d
+SELECT `IdBarangTeknik`, COUNT(*) as '3' FROM `snitbpemeliharaan` WHERE DATE_FORMAT(`Tanggal`,'%m') = '03' AND `Tanggal` BETWEEN $P{Tanggal_Awal} AND $P{Tanggal_Akhir} GROUP BY `IdBarangTeknik`) d
 ON a.`IdBarangTeknik`=d.`IdBarangTeknik`
 	LEFT JOIN (
-SELECT `IdBarangTeknik`, COUNT(*) as '4' FROM `snitbpemeliharaan` WHERE DATE_FORMAT(`Tanggal`,'%m') = '04' GROUP BY `IdBarangTeknik`) e
+SELECT `IdBarangTeknik`, COUNT(*) as '4' FROM `snitbpemeliharaan` WHERE DATE_FORMAT(`Tanggal`,'%m') = '04' AND `Tanggal` BETWEEN $P{Tanggal_Awal} AND $P{Tanggal_Akhir} GROUP BY `IdBarangTeknik`) e
 ON a.`IdBarangTeknik`=e.`IdBarangTeknik`
 	LEFT JOIN (
-SELECT `IdBarangTeknik`, COUNT(*) as '5' FROM `snitbpemeliharaan` WHERE DATE_FORMAT(`Tanggal`,'%m') = '05' GROUP BY `IdBarangTeknik`) f
+SELECT `IdBarangTeknik`, COUNT(*) as '5' FROM `snitbpemeliharaan` WHERE DATE_FORMAT(`Tanggal`,'%m') = '05' AND `Tanggal` BETWEEN $P{Tanggal_Awal} AND $P{Tanggal_Akhir} GROUP BY `IdBarangTeknik`) f
 ON a.`IdBarangTeknik`=f.`IdBarangTeknik`
 	LEFT JOIN (
-SELECT `IdBarangTeknik`, COUNT(*) as '6' FROM `snitbpemeliharaan` WHERE DATE_FORMAT(`Tanggal`,'%m') = '06' GROUP BY `IdBarangTeknik`) g
+SELECT `IdBarangTeknik`, COUNT(*) as '6' FROM `snitbpemeliharaan` WHERE DATE_FORMAT(`Tanggal`,'%m') = '06' AND `Tanggal` BETWEEN $P{Tanggal_Awal} AND $P{Tanggal_Akhir} GROUP BY `IdBarangTeknik`) g
 ON a.`IdBarangTeknik`=g.`IdBarangTeknik`
 	LEFT JOIN (
-SELECT `IdBarangTeknik`, COUNT(*) as '7' FROM `snitbpemeliharaan` WHERE DATE_FORMAT(`Tanggal`,'%m') = '07' GROUP BY `IdBarangTeknik`) h
+SELECT `IdBarangTeknik`, COUNT(*) as '7' FROM `snitbpemeliharaan` WHERE DATE_FORMAT(`Tanggal`,'%m') = '07' AND `Tanggal` BETWEEN $P{Tanggal_Awal} AND $P{Tanggal_Akhir} GROUP BY `IdBarangTeknik`) h
 ON a.`IdBarangTeknik`=h.`IdBarangTeknik`
 	LEFT JOIN (
-SELECT `IdBarangTeknik`, COUNT(*) as '8' FROM `snitbpemeliharaan` WHERE DATE_FORMAT(`Tanggal`,'%m') = '08' GROUP BY `IdBarangTeknik`) i
+SELECT `IdBarangTeknik`, COUNT(*) as '8' FROM `snitbpemeliharaan` WHERE DATE_FORMAT(`Tanggal`,'%m') = '08' AND `Tanggal` BETWEEN $P{Tanggal_Awal} AND $P{Tanggal_Akhir} GROUP BY `IdBarangTeknik`) i
 ON a.`IdBarangTeknik`=i.`IdBarangTeknik`
 	LEFT JOIN (
-SELECT `IdBarangTeknik`, COUNT(*) as '9' FROM `snitbpemeliharaan` WHERE DATE_FORMAT(`Tanggal`,'%m') = '09' GROUP BY `IdBarangTeknik`) j
+SELECT `IdBarangTeknik`, COUNT(*) as '9' FROM `snitbpemeliharaan` WHERE DATE_FORMAT(`Tanggal`,'%m') = '09' AND `Tanggal` BETWEEN $P{Tanggal_Awal} AND $P{Tanggal_Akhir} GROUP BY `IdBarangTeknik`) j
 ON a.`IdBarangTeknik`=j.`IdBarangTeknik`
 	LEFT JOIN (
-SELECT `IdBarangTeknik`, COUNT(*) as '10' FROM `snitbpemeliharaan` WHERE DATE_FORMAT(`Tanggal`,'%m') = '10' GROUP BY `IdBarangTeknik`) k
+SELECT `IdBarangTeknik`, COUNT(*) as '10' FROM `snitbpemeliharaan` WHERE DATE_FORMAT(`Tanggal`,'%m') = '10' AND `Tanggal` BETWEEN $P{Tanggal_Awal} AND $P{Tanggal_Akhir} GROUP BY `IdBarangTeknik`) k
 ON a.`IdBarangTeknik`=k.`IdBarangTeknik`
 	LEFT JOIN (
-SELECT `IdBarangTeknik`, COUNT(*) as '11' FROM `snitbpemeliharaan` WHERE DATE_FORMAT(`Tanggal`,'%m') = '11' GROUP BY `IdBarangTeknik`) l
+SELECT `IdBarangTeknik`, COUNT(*) as '11' FROM `snitbpemeliharaan` WHERE DATE_FORMAT(`Tanggal`,'%m') = '11' AND `Tanggal` BETWEEN $P{Tanggal_Awal} AND $P{Tanggal_Akhir} GROUP BY `IdBarangTeknik`) l
 ON a.`IdBarangTeknik`=l.`IdBarangTeknik`
 	LEFT JOIN (
-SELECT `IdBarangTeknik`, COUNT(*) as '12' FROM `snitbpemeliharaan` WHERE DATE_FORMAT(`Tanggal`,'%m') = '12' GROUP BY `IdBarangTeknik`) m
+SELECT `IdBarangTeknik`, COUNT(*) as '12' FROM `snitbpemeliharaan` WHERE DATE_FORMAT(`Tanggal`,'%m') = '12' AND `Tanggal` BETWEEN $P{Tanggal_Awal} AND $P{Tanggal_Akhir} GROUP BY `IdBarangTeknik`) m
 ON a.`IdBarangTeknik`=m.`IdBarangTeknik`]]>
 	</queryString>
 	<field name="IdBarangTeknik" class="java.lang.Integer">

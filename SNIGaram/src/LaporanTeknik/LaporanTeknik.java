@@ -24,6 +24,12 @@ public class LaporanTeknik extends javax.swing.JFrame {
      * Creates new form LaporanLab
      */
     public LaporanTeknik(String type) {
+        if (type.equals("Laporan Daftar Peralatan")) {
+            jlableF1.setVisible(false);
+            JDTanggal.setVisible(false);
+            jlableF2.setVisible(false);
+            JDTanggal1.setVisible(false);
+        }
         initComponents();
         setTitle(type);
         setVisible(true);
@@ -147,16 +153,16 @@ public class LaporanTeknik extends javax.swing.JFrame {
         HashMap hashs = new HashMap();
         java.util.Locale locale = new Locale("id", "ID");
         hashs.put(JRParameter.REPORT_LOCALE, locale);
-        hashs.put("Tanggal_Awal", FDateF.datetostr(JDTanggal.getDate(), "yyyy-MM-dd"));
-        hashs.put("Tanggal_Akhir", FDateF.datetostr(JDTanggal1.getDate(), "yyyy-MM-dd"));
         FLaporan fLaporan = new FLaporan();
         fLaporan.sethashmap(hashs);
         if (getTitle().equals("Laporan Daftar Barang")) {
-            fLaporan.setfilename("Citta/Laboratorium/F 07.03.00.01 Hasil Inspeksi dan Pengujian Produk Jadi");
-            History.simpanhistory(GlobalVar.VarL.username, "F 07.03.00.01 Hasil Inspeksi dan Pengujian Produk Jadi");
+            fLaporan.setfilename("Citta/Teknik/F 07.04.00.01 Daftar Peralatan");
+            History.simpanhistory(GlobalVar.VarL.username, "F 07.04.00.01 Daftar Peralatan");
         } else {
-            fLaporan.setfilename("Citta/Laboratorium/F 07.03.00.02 Hasil Inspeksi dan Pengujian Bahan Baku");
-            History.simpanhistory(GlobalVar.VarL.username, "F 07.03.00.02 Hasil Inspeksi dan Pengujian Bahan Baku");
+            hashs.put("Tanggal_Awal", FDateF.datetostr(JDTanggal.getDate(), "yyyy-MM-dd"));
+            hashs.put("Tanggal_Akhir", FDateF.datetostr(JDTanggal1.getDate(), "yyyy-MM-dd"));
+            fLaporan.setfilename("Citta/Teknik/F 06.03.00.02 Jadwal Pemeliharaan Perbaikan Mesin dan Peralatan");
+            History.simpanhistory(GlobalVar.VarL.username, "F 06.03.00.02 Jadwal Pemeliharaan Perbaikan Mesin dan Peralatan");
         }
         fLaporan.setErorm("Gagal Menampilkan " + this.getTitle());
         fLaporan.excute();
