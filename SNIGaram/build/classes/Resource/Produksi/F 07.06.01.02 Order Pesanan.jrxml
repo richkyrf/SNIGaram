@@ -13,7 +13,7 @@
 		<defaultValueExpression><![CDATA["2018-12-31"]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[SELECT * FROM (SELECT B.`Tanggal`, SUM(`KarungPelita`) AS 'Jumlah Produk', 'Sak' AS 'Satuan', IF(`NamaBarang` LIKE '%GRM KSR%',REPLACE(`NamaBarang`,`NamaBarang`,'Garam Kasar'),IF(`NamaBarang` LIKE '%GRM HLS%',REPLACE(`NamaBarang`,`NamaBarang`,'Garam Halus'),'')) AS 'Jenis Produk', '1 Bulan' AS 'Jangka Waktu', '' AS 'Keterangan' FROM `tbpenerimaan` AS A JOIN `tbmpartai` AS B ON A.`IdPartai`=B.`IdPartai` JOIN `tbmbarang` AS C ON B.`IdBarang`=C.`IdBarang` WHERE `IdPeminta`=1 AND B.`Tanggal` BETWEEN $P{Tanggal_Awal} AND $P{Tanggal_Akhir} GROUP BY `Tanggal`, `NamaBarang` UNION ALL SELECT `Tanggal`, SUM(`Netto`) AS 'Jumlah Produk', 'Kg' AS 'Satuan', IF(`NamaBarangLain` LIKE '%PLASTIK LUAR%',REPLACE(`NamaBarangLain`,`NamaBarangLain`,'Plastik Luar'),IF(`NamaBarangLain` LIKE '%PLASTIK DLM%',REPLACE(`NamaBarangLain`,`NamaBarangLain`,'Plastik Dalam'),IF(`NamaBarangLain` LIKE '%IODIUM%',REPLACE(`NamaBarangLain`,`NamaBarangLain`,'Iodium'),''))) AS 'Jenis Produk', '1 Bulan' AS 'Jangka Waktu', '' AS 'Keterangan' FROM `tbpenerimaanlain` AS A JOIN `tbmbaranglain` AS B ON A.`IdBarangLain`=B.`IdBarangLain` WHERE (`IdJenisBarangLain`=1 OR `IdJenisBarangLain`=2 OR `IdJenisBarangLain`=4) AND `Tanggal` BETWEEN $P{Tanggal_Awal} AND $P{Tanggal_Akhir} GROUP BY `Tanggal`, `NamaBarangLain`) AS tbtemp ORDER BY `Tanggal`]]>
+		<![CDATA[SELECT B.`Tanggal`, SUM(`KarungPelita`) AS 'Jumlah Produk', 'Sak' AS 'Satuan', IF(`NamaBarang` LIKE '%GRM KSR%',REPLACE(`NamaBarang`,`NamaBarang`,'Garam Kasar'),IF(`NamaBarang` LIKE '%GRM HLS%',REPLACE(`NamaBarang`,`NamaBarang`,'Garam Halus'),'')) AS 'Jenis Produk', '1 Bulan' AS 'Jangka Waktu', '' AS 'Keterangan' FROM `tbpenerimaan` AS A JOIN `tbmpartai` AS B ON A.`IdPartai`=B.`IdPartai` JOIN `tbmbarang` AS C ON B.`IdBarang`=C.`IdBarang` WHERE `IdPeminta`=1 AND B.`Tanggal` BETWEEN $P{Tanggal_Awal} AND $P{Tanggal_Akhir} GROUP BY `Tanggal`, `NamaBarang`]]>
 	</queryString>
 	<field name="Tanggal" class="java.sql.Date">
 		<fieldDescription><![CDATA[]]></fieldDescription>
@@ -249,43 +249,36 @@
 			</staticText>
 		</band>
 	</pageFooter>
-	<lastPageFooter>
-		<band height="154">
+	<summary>
+		<band height="121" splitType="Stretch">
 			<textField pattern="dd/MM/yyyy">
-				<reportElement x="455" y="13" width="100" height="20" uuid="639494fb-846d-48bc-9b22-511e47237dd7"/>
+				<reportElement x="455" y="20" width="100" height="20" uuid="639494fb-846d-48bc-9b22-511e47237dd7"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Gadugi" size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{Tanggal}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="416" y="13" width="40" height="20" uuid="1776a53e-4775-4f49-b36e-05719125899d"/>
+				<reportElement x="416" y="20" width="40" height="20" uuid="1776a53e-4775-4f49-b36e-05719125899d"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Gadugi" size="12"/>
 				</textElement>
 				<text><![CDATA[Jambi,]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="33" width="175" height="20" uuid="f5bc1bea-f014-40bb-a287-40b199a10a32"/>
+				<reportElement x="0" y="40" width="175" height="20" uuid="f5bc1bea-f014-40bb-a287-40b199a10a32"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Gadugi" size="12"/>
 				</textElement>
 				<text><![CDATA[Disetujui,]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="380" y="33" width="175" height="20" uuid="7389da6b-f5a7-46c8-a405-0b09cbe3ebcc"/>
+				<reportElement x="380" y="40" width="175" height="20" uuid="7389da6b-f5a7-46c8-a405-0b09cbe3ebcc"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Gadugi" size="12"/>
 				</textElement>
 				<text><![CDATA[Dibuat]]></text>
 			</staticText>
-			<staticText>
-				<reportElement x="375" y="134" width="180" height="20" uuid="18823cc0-c1a7-4a66-89ec-5cd49ced5742"/>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font fontName="Gadugi"/>
-				</textElement>
-				<text><![CDATA[Rev. 0, Tanggal Terbit 20 Januari 2014]]></text>
-			</staticText>
 		</band>
-	</lastPageFooter>
+	</summary>
 </jasperReport>
