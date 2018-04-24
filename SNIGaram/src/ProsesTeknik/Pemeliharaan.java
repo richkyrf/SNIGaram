@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package MasterTeknik;
+package ProsesTeknik;
 
 import ProsesLab.*;
 import KomponenGUI.FDateF;
@@ -22,27 +22,27 @@ import javax.swing.UIManager;
  *
  * @author Gudang Garam
  */
-public class MasterBarangTeknik extends javax.swing.JFrame {
+public class Pemeliharaan extends javax.swing.JFrame {
 
     /**
      * Creates new form PengujianBahanBaku
      */
     String IdEdit;
 
-    public MasterBarangTeknik() {
+    public Pemeliharaan() {
         initComponents();
         setVisible(true);
-        setTitle("Tambah Barang Teknik");
+        setTitle("Tambah Pemeliharaan");
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         jbuttonF3.setVisible(false);
     }
 
-    public MasterBarangTeknik(Object idEdit) {
+    public Pemeliharaan(Object idEdit) {
         IdEdit = idEdit.toString();
         initComponents();
         setVisible(true);
-        setTitle("Ubah Barang Teknik");
+        setTitle("Ubah Pemeliharaan");
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         jbuttonF1.setVisible(false);
@@ -52,25 +52,20 @@ public class MasterBarangTeknik extends javax.swing.JFrame {
 
     void loadEditData() {
         DRunSelctOne dRunSelctOne = new DRunSelctOne();
-        dRunSelctOne.setQuery("SELECT `IdBarangTeknik` as 'ID', `NamaBarang` as 'Nama Barang', `Merk`, `Jumlah`, DATE_FORMAT(`WaktuKalibrasi`,'%d-%m-%Y') as 'Waktu Kalibrasi', `Keterangan`, IF(`Status`=1,'Aktif','Tidak Aktif') as 'Status' FROM `snitbmbarangteknik` WHERE `IdBarangTeknik` = " + IdEdit);
+        dRunSelctOne.setQuery("SELECT `IdPemeliharaan` as 'ID', DATE_FORMAT(`Tanggal`,'%d-%m-%Y') as 'Tanggal', `NamaBarang` as 'Nama Barang', `Deskripsi`, a.`Keterangan` FROM `snitbpemeliharaan`a JOIN `snitbmbarangteknik`b ON a.`IdBarangTeknik`=b.`IdBarangTeknik` WHERE `IdPemeliharaan` = " + IdEdit);
         ArrayList<String> list = dRunSelctOne.excute();
-        JTNamaBarang.setText(list.get(1));
-        JTMerk.setText(list.get(2));
-        JTJumlah.setText(list.get(3));
-        JDTanggal.setDate(FDateF.strtodate(list.get(4), "dd-MM-yyyy"));
-        JTAKeterangan.setText(list.get(6));
-        JCBStatus.setSelected(list.get(7).equals("Aktif"));
+        JDTanggal.setDate(FDateF.strtodate(list.get(1), "dd-MM-yyyy"));
+        JCNamaBarang.setSelectedItem(list.get(2));
+        JTDeskripsi.setText(list.get(3));
+        JTAKeterangan.setText(list.get(4));
     }
 
     Boolean checkInput() {
-        if (JTNamaBarang.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Nama Barang Tidak Boleh Kosong");
+        if (JDTanggal.getDate() == null) {
+            JOptionPane.showMessageDialog(null, "Tanggal Tidak Boleh Kosong");
             return false;
-        } else if (JTJumlah.getInt() == 0) {
-            JOptionPane.showMessageDialog(null, "Jumlah Tidak Boleh Kosong");
-            return false;
-        } else if (JDTanggal.getDate() == null) {
-            JOptionPane.showMessageDialog(null, "Waktu Kalibrasi Tidak Boleh Kosong");
+        } else if (JCNamaBarang.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(null, "Silahkan Pilih Nama Barang Terlebih Dahulu");
             return false;
         } else {
             return true;
@@ -97,18 +92,12 @@ public class MasterBarangTeknik extends javax.swing.JFrame {
         jlableF6 = new KomponenGUI.JlableF();
         jScrollPane1 = new javax.swing.JScrollPane();
         JTAKeterangan = new KomponenGUI.JTextAreaF();
-        jlableF8 = new KomponenGUI.JlableF();
-        jlableF34 = new KomponenGUI.JlableF();
         jlableF9 = new KomponenGUI.JlableF();
         jlableF35 = new KomponenGUI.JlableF();
-        JTNamaBarang = new KomponenGUI.JtextF();
         jlableF10 = new KomponenGUI.JlableF();
         jlableF36 = new KomponenGUI.JlableF();
-        JTMerk = new KomponenGUI.JtextF();
-        JTJumlah = new KomponenGUI.JRibuanTextField();
-        JLNetto4 = new KomponenGUI.JlableF();
-        JLNetto5 = new KomponenGUI.JlableF();
-        JCBStatus = new KomponenGUI.JCheckBoxF();
+        JTDeskripsi = new KomponenGUI.JtextF();
+        JCNamaBarang = new KomponenGUI.JcomboboxF();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -159,7 +148,7 @@ public class MasterBarangTeknik extends javax.swing.JFrame {
             }
         });
 
-        jlableF23.setText("Waktu Kalibrasi");
+        jlableF23.setText("Tanggal");
 
         jlableF24.setText(":");
 
@@ -182,47 +171,29 @@ public class MasterBarangTeknik extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(JTAKeterangan);
 
-        jlableF8.setText("Status");
-
-        jlableF34.setText(":");
-
         jlableF9.setText("Nama Barang");
 
         jlableF35.setText(":");
 
-        JTNamaBarang.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                JTNamaBarangKeyPressed(evt);
-            }
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                JTNamaBarangKeyReleased(evt);
-            }
-        });
-
-        jlableF10.setText("Merk");
+        jlableF10.setText("Deskripsi");
 
         jlableF36.setText(":");
 
-        JTMerk.addKeyListener(new java.awt.event.KeyAdapter() {
+        JTDeskripsi.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                JTMerkKeyPressed(evt);
+                JTDeskripsiKeyPressed(evt);
             }
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                JTMerkKeyReleased(evt);
+                JTDeskripsiKeyReleased(evt);
             }
         });
 
-        JTJumlah.addKeyListener(new java.awt.event.KeyAdapter() {
+        JCNamaBarang.load("SELECT '--Pilih Nama Barang--' as 'NamaBarang' UNION ALL SELECT `NamaBarang` FROM `snitbmbarangteknik` ORDER BY `NamaBarang` ");
+        JCNamaBarang.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                JTJumlahKeyPressed(evt);
+                JCNamaBarangKeyPressed(evt);
             }
         });
-
-        JLNetto4.setText(":");
-
-        JLNetto5.setText("Jumlah");
-
-        JCBStatus.setText("Aktif");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -232,76 +203,65 @@ public class MasterBarangTeknik extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jlableF8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jlableF3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jlableF9, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)
-                                .addComponent(jlableF10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(JLNetto5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(jlableF23, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jlableF35, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jlableF36, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(JLNetto4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jlableF24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jlableF6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jlableF34, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(JTMerk, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(JTNamaBarang, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(JTJumlah, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(JDTanggal, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(JCBStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jbuttonF4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                         .addComponent(jbuttonF3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jbuttonF2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jbuttonF1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(10, 10, 10))
+                        .addComponent(jbuttonF1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jlableF3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jlableF10, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jlableF9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jlableF23, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jlableF24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jlableF35, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(JDTanggal, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(JCNamaBarang, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jlableF36, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(JTDeskripsi, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jlableF6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jlableF9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jlableF35, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JTNamaBarang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jlableF10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jlableF36, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JTMerk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JLNetto5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JLNetto4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JTJumlah, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jlableF23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jlableF24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(JDTanggal, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlableF9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jlableF35, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JCNamaBarang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlableF10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jlableF36, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JTDeskripsi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jlableF3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jlableF6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jlableF34, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jlableF8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(JCBStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbuttonF1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -336,7 +296,7 @@ public class MasterBarangTeknik extends javax.swing.JFrame {
 
     private void JDTanggalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JDTanggalKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            JTAKeterangan.requestFocus();
+            JCNamaBarang.requestFocus();
         }
     }//GEN-LAST:event_JDTanggalKeyPressed
 
@@ -352,9 +312,9 @@ public class MasterBarangTeknik extends javax.swing.JFrame {
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         if (IdEdit == null) {
-            GlobalVar.Var.tambahBarangTeknik = null;
+            GlobalVar.Var.tambahPemeliharaan = null;
         } else {
-            GlobalVar.Var.ubahBarangTeknik = null;
+            GlobalVar.Var.tambahPemeliharaan = null;
         }
     }//GEN-LAST:event_formWindowClosed
 
@@ -368,31 +328,21 @@ public class MasterBarangTeknik extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jScrollPane1KeyPressed
 
-    private void JTNamaBarangKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JTNamaBarangKeyPressed
+    private void JTDeskripsiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JTDeskripsiKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            JTMerk.requestFocus();
+            JTAKeterangan.requestFocus();
         }
-    }//GEN-LAST:event_JTNamaBarangKeyPressed
+    }//GEN-LAST:event_JTDeskripsiKeyPressed
 
-    private void JTNamaBarangKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JTNamaBarangKeyReleased
+    private void JTDeskripsiKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JTDeskripsiKeyReleased
         // TODO add your handling code here:
-    }//GEN-LAST:event_JTNamaBarangKeyReleased
+    }//GEN-LAST:event_JTDeskripsiKeyReleased
 
-    private void JTMerkKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JTMerkKeyPressed
+    private void JCNamaBarangKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JCNamaBarangKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            JTJumlah.requestFocus();
+            JTDeskripsi.requestFocus();
         }
-    }//GEN-LAST:event_JTMerkKeyPressed
-
-    private void JTMerkKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JTMerkKeyReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_JTMerkKeyReleased
-
-    private void JTJumlahKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JTJumlahKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            JDTanggal.requestFocus();
-        }
-    }//GEN-LAST:event_JTJumlahKeyPressed
+    }//GEN-LAST:event_JCNamaBarangKeyPressed
 
     /**
      * @param args the command line arguments
@@ -411,27 +361,14 @@ public class MasterBarangTeknik extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MasterBarangTeknik.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Pemeliharaan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MasterBarangTeknik.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Pemeliharaan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MasterBarangTeknik.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Pemeliharaan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MasterBarangTeknik.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Pemeliharaan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -439,20 +376,16 @@ public class MasterBarangTeknik extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MasterBarangTeknik().setVisible(true);
+                new Pemeliharaan().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private KomponenGUI.JCheckBoxF JCBStatus;
+    private KomponenGUI.JcomboboxF JCNamaBarang;
     private static KomponenGUI.JdateCF JDTanggal;
-    private KomponenGUI.JlableF JLNetto4;
-    private KomponenGUI.JlableF JLNetto5;
     private KomponenGUI.JTextAreaF JTAKeterangan;
-    private KomponenGUI.JRibuanTextField JTJumlah;
-    private KomponenGUI.JtextF JTMerk;
-    private KomponenGUI.JtextF JTNamaBarang;
+    private KomponenGUI.JtextF JTDeskripsi;
     private javax.swing.JScrollPane jScrollPane1;
     private KomponenGUI.JbuttonF jbuttonF1;
     private KomponenGUI.JbuttonF jbuttonF2;
@@ -462,11 +395,9 @@ public class MasterBarangTeknik extends javax.swing.JFrame {
     private KomponenGUI.JlableF jlableF23;
     private KomponenGUI.JlableF jlableF24;
     private KomponenGUI.JlableF jlableF3;
-    private KomponenGUI.JlableF jlableF34;
     private KomponenGUI.JlableF jlableF35;
     private KomponenGUI.JlableF jlableF36;
     private KomponenGUI.JlableF jlableF6;
-    private KomponenGUI.JlableF jlableF8;
     private KomponenGUI.JlableF jlableF9;
     // End of variables declaration//GEN-END:variables
 
@@ -474,18 +405,16 @@ public class MasterBarangTeknik extends javax.swing.JFrame {
         if (checkInput()) {
             Insert insert = new Insert();
             Boolean berhasil = false;
-            berhasil = insert.simpan("INSERT INTO `snitbmbarangteknik`(`NamaBarang`, `Merk`, `Jumlah`, `WaktuKalibrasi`, `Keterangan`, `Status`) VALUES ('" + JTNamaBarang.getText() + "','" + JTMerk.getText() + "','" + JTJumlah.getInt() + "','" + FDateF.datetostr(JDTanggal.getDate(), "yyyy-MM-dd") + "','" + JTAKeterangan.getText() + "'," + JCBStatus.isSelected() + ")", "Barang Teknik", this);
+            berhasil = insert.simpan("INSERT INTO `snitbpemeliharaan`(`Tanggal`, `IdBarangTeknik`, `Deskripsi`, `Keterangan`) VALUES ('" + FDateF.datetostr(JDTanggal.getDate(), "yyyy-MM-dd") + "',(SELECT `IdBarangTeknik` FROM `snitbmbarangteknik` WHERE `NamaBarang` = '" + JCNamaBarang.getSelectedItem() + "'),'" + JTDeskripsi.getText() + "','" + JTAKeterangan.getText() + "')", "Barang Teknik", this);
             if (berhasil) {
-                if (GlobalVar.Var.listBarangTeknik != null) {
-                    GlobalVar.Var.listBarangTeknik.load();
+                if (GlobalVar.Var.listPemeliharaan != null) {
+                    GlobalVar.Var.listPemeliharaan.load();
                 }
                 if (tutup) {
-                    GlobalVar.Var.tambahBarangTeknik.dispose();
-                    GlobalVar.Var.tambahBarangTeknik = null;
+                    GlobalVar.Var.tambahPemeliharaan.dispose();
+                    GlobalVar.Var.tambahPemeliharaan = null;
                 } else {
-                    JTNamaBarang.setText("");
-                    JTMerk.setText("");
-                    JTJumlah.setText("0");
+                    JTDeskripsi.setText("");
                     JTAKeterangan.setText("");
                 }
             }
@@ -496,9 +425,9 @@ public class MasterBarangTeknik extends javax.swing.JFrame {
         if (checkInput()) {
             Update update = new Update();
             Boolean berhasil = false;
-            berhasil = update.Ubah("UPDATE `snitbmbarangteknik` SET `NamaBarang`='" + JTNamaBarang.getText() + "',`Merk`='" + JTMerk.getText() + "',`Jumlah`='" + JTJumlah.getInt() + "',`WaktuKalibrasi`='" + FDateF.datetostr(JDTanggal.getDate(), "yyyy-MM-dd") + "',`Keterangan`='" + JTAKeterangan.getText() + "',`Status`=" + JCBStatus.isSelected() + " WHERE `IdBarangTeknik` = " + IdEdit, "Barang Teknik", this);
-            if (GlobalVar.Var.listBarangTeknik != null) {
-                GlobalVar.Var.listBarangTeknik.load();
+            berhasil = update.Ubah("UPDATE `snitbpemeliharaan` SET `Tanggal`='" + FDateF.datetostr(JDTanggal.getDate(), "yyyy-MM-dd") + "',`IdBarangTeknik`=(SELECT `IdBarangTeknik` FROM `snitbmbarangteknik` WHERE `NamaBarang` = '" + JCNamaBarang.getSelectedItem() + "'),`Deskripsi`='" + JTDeskripsi.getText() + "',`Keterangan`='" + JTAKeterangan.getText() + "' WHERE `IdPemeliharaan` = " + IdEdit, "Pemeliharaan", this);
+            if (GlobalVar.Var.listPemeliharaan != null) {
+                GlobalVar.Var.listPemeliharaan.load();
             }
             if (berhasil) {
                 dispose();

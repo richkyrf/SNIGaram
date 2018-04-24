@@ -5,12 +5,13 @@
  */
 package GlobalVar;
 
+import ProsesTeknik.BarangTeknik;
 import LaporanLab.*;
 import File.*;
 import LaporanProduksi.LaporanProduksi;
 import List.*;
-import MasterTeknik.*;
 import ProsesLab.*;
+import ProsesTeknik.Pemeliharaan;
 
 /**
  *
@@ -23,9 +24,10 @@ public class Var {
     public static ResetPasswordUser resetPasswordUser;
     public static GantiPassword gantiPassword;
 
-    public static List listPengujianProdukJadi, listPengujianBahanBaku, listBarangTeknik;
+    public static List listPengujianProdukJadi, listPengujianBahanBaku, listBarangTeknik, listPemeliharaan;
     
-    public static MasterBarangTeknik tambahBarangTeknik, ubahBarangTeknik;
+    public static BarangTeknik tambahBarangTeknik, ubahBarangTeknik;
+    public static Pemeliharaan tambahPemeliharaan, ubahPemeliharaan;
     
     public static PengujianProdukJadi tambahPengujianProdukJadi, ubahPengujianProdukJadi;
     public static PengujianBahanBaku tambahPengujianBahanBaku, ubahPengujianBahanBaku;

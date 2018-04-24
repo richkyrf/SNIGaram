@@ -7,8 +7,11 @@ package File;
 
 import static GlobalVar.Var.*;
 import LaporanLab.LaporanLab;
+import LaporanProduksi.LaporanProduksi;
 import List.*;
+import ProsesTeknik.BarangTeknik;
 import ProsesLab.*;
+import ProsesTeknik.Pemeliharaan;
 import static java.awt.Frame.NORMAL;
 
 /**
@@ -43,17 +46,25 @@ public class MenuUtama extends javax.swing.JFrame {
         SFile = new javax.swing.JPopupMenu.Separator();
         JMIGantiPassword = new javax.swing.JMenuItem();
         JMIExit = new javax.swing.JMenuItem();
-        jMenu1 = new javax.swing.JMenu();
+        JMMaster = new javax.swing.JMenu();
         jMenuItem7 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
+        jMenuItem11 = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem12 = new javax.swing.JMenuItem();
+        jMenuItem13 = new javax.swing.JMenuItem();
+        JMProsesLab = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
+        JMListLab = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
-        jMenu4 = new javax.swing.JMenu();
+        JMLaporanLab = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
+        JMLaporanProduksi = new javax.swing.JMenu();
+        jMenuItem8 = new javax.swing.JMenuItem();
+        jMenuItem9 = new javax.swing.JMenuItem();
+        jMenuItem10 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -102,19 +113,47 @@ public class MenuUtama extends javax.swing.JFrame {
 
         JMenuBar.add(JMFile);
 
-        jMenu1.setText("Master Teknik");
+        JMMaster.setText("Proses Teknik");
 
-        jMenuItem7.setText("Master Barang Teknik");
+        jMenuItem7.setText("Barang Teknik");
         jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem7ActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem7);
+        JMMaster.add(jMenuItem7);
+
+        jMenuItem11.setText("Pemeliharaan");
+        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem11ActionPerformed(evt);
+            }
+        });
+        JMMaster.add(jMenuItem11);
+
+        JMenuBar.add(JMMaster);
+
+        jMenu1.setText("List Teknik");
+
+        jMenuItem12.setText("Barang Teknik");
+        jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem12ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem12);
+
+        jMenuItem13.setText("Pemeliharaan");
+        jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem13ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem13);
 
         JMenuBar.add(jMenu1);
 
-        jMenu2.setText("Proses Lab");
+        JMProsesLab.setText("Proses Lab");
 
         jMenuItem2.setText("Pengujian Produk Jadi");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
@@ -122,7 +161,7 @@ public class MenuUtama extends javax.swing.JFrame {
                 jMenuItem2ActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem2);
+        JMProsesLab.add(jMenuItem2);
 
         jMenuItem4.setText("Pengujian Bahan Baku");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
@@ -130,11 +169,11 @@ public class MenuUtama extends javax.swing.JFrame {
                 jMenuItem4ActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem4);
+        JMProsesLab.add(jMenuItem4);
 
-        JMenuBar.add(jMenu2);
+        JMenuBar.add(JMProsesLab);
 
-        jMenu3.setText("List Lab");
+        JMListLab.setText("List Lab");
 
         jMenuItem1.setText("Pengujian Produk Jadi");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -142,7 +181,7 @@ public class MenuUtama extends javax.swing.JFrame {
                 jMenuItem1ActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem1);
+        JMListLab.add(jMenuItem1);
 
         jMenuItem3.setText("Pengujian Bahan Baku");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
@@ -150,11 +189,11 @@ public class MenuUtama extends javax.swing.JFrame {
                 jMenuItem3ActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem3);
+        JMListLab.add(jMenuItem3);
 
-        JMenuBar.add(jMenu3);
+        JMenuBar.add(JMListLab);
 
-        jMenu4.setText("LaporanLab");
+        JMLaporanLab.setText("Laporan Lab");
 
         jMenuItem5.setText("Laporan Pengujian Produk Jadi");
         jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
@@ -162,7 +201,7 @@ public class MenuUtama extends javax.swing.JFrame {
                 jMenuItem5ActionPerformed(evt);
             }
         });
-        jMenu4.add(jMenuItem5);
+        JMLaporanLab.add(jMenuItem5);
 
         jMenuItem6.setText("Laporan Pengujian Bahan Baku");
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
@@ -170,9 +209,37 @@ public class MenuUtama extends javax.swing.JFrame {
                 jMenuItem6ActionPerformed(evt);
             }
         });
-        jMenu4.add(jMenuItem6);
+        JMLaporanLab.add(jMenuItem6);
 
-        JMenuBar.add(jMenu4);
+        JMenuBar.add(JMLaporanLab);
+
+        JMLaporanProduksi.setText("Laporan Produksi");
+
+        jMenuItem8.setText("Laporan Indentifikasi Produk Jadi");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
+        JMLaporanProduksi.add(jMenuItem8);
+
+        jMenuItem9.setText("Laporan Penyerahan Produk Jadi");
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
+        JMLaporanProduksi.add(jMenuItem9);
+
+        jMenuItem10.setText("Laporan Data Produksi");
+        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
+        JMLaporanProduksi.add(jMenuItem10);
+
+        JMenuBar.add(JMLaporanProduksi);
 
         setJMenuBar(JMenuBar);
 
@@ -276,13 +343,67 @@ public class MenuUtama extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        if (tambahBarangTeknik == null) {
+            tambahBarangTeknik = new BarangTeknik();
+        } else {
+            tambahBarangTeknik.setState(NORMAL);
+            tambahBarangTeknik.toFront();
+        }
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
+
+    private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
+        if (tambahPemeliharaan == null) {
+            tambahPemeliharaan = new Pemeliharaan();
+        } else {
+            tambahPemeliharaan.setState(NORMAL);
+            tambahPemeliharaan.toFront();
+        }
+    }//GEN-LAST:event_jMenuItem11ActionPerformed
+
+    private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
         if (listBarangTeknik == null) {
             listBarangTeknik = new List(jMenuItem7.getText());
         } else {
             listBarangTeknik.setState(NORMAL);
             listBarangTeknik.toFront();
         }
-    }//GEN-LAST:event_jMenuItem7ActionPerformed
+    }//GEN-LAST:event_jMenuItem12ActionPerformed
+
+    private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
+        if (listPemeliharaan == null) {
+            listPemeliharaan = new List(jMenuItem13.getText());
+        } else {
+            listPemeliharaan.setState(NORMAL);
+            listPemeliharaan.toFront();
+        }
+    }//GEN-LAST:event_jMenuItem13ActionPerformed
+
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {
+        if (laporanIndentifikasiProdukJadi == null) {
+            laporanIndentifikasiProdukJadi = new LaporanProduksi(jMenuItem8.getText());
+        } else {
+            laporanIndentifikasiProdukJadi.setState(NORMAL);
+            laporanIndentifikasiProdukJadi.toFront();
+        }
+    }
+
+    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {
+        if (laporanPenyerahanProdukJadi == null) {
+            laporanPenyerahanProdukJadi = new LaporanProduksi(jMenuItem9.getText());
+        } else {
+            laporanPenyerahanProdukJadi.setState(NORMAL);
+            laporanPenyerahanProdukJadi.toFront();
+        }
+    }
+
+    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {
+        if (laporanDataProduksi == null) {
+            laporanDataProduksi = new LaporanProduksi(jMenuItem10.getText());
+        } else {
+            laporanDataProduksi.setState(NORMAL);
+            laporanDataProduksi.toFront();
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -325,18 +446,26 @@ public class MenuUtama extends javax.swing.JFrame {
     private javax.swing.JMenuItem JMIGantiPassword;
     private javax.swing.JMenuItem JMIResetPasswordUser;
     private javax.swing.JMenuItem JMITambahUser;
+    private javax.swing.JMenu JMLaporanLab;
+    private javax.swing.JMenu JMLaporanProduksi;
+    private javax.swing.JMenu JMListLab;
+    private javax.swing.JMenu JMMaster;
+    private javax.swing.JMenu JMProsesLab;
     private javax.swing.JMenuBar JMenuBar;
     private javax.swing.JPopupMenu.Separator SFile;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem10;
+    private javax.swing.JMenuItem jMenuItem11;
+    private javax.swing.JMenuItem jMenuItem12;
+    private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItem9;
     // End of variables declaration//GEN-END:variables
 }
