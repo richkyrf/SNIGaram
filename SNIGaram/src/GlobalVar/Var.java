@@ -9,6 +9,7 @@ import ProsesTeknik.BarangTeknik;
 import LaporanLab.*;
 import File.*;
 import LaporanProduksi.LaporanProduksi;
+import LaporanTeknik.LaporanTeknik;
 import List.*;
 import ProsesLab.*;
 import ProsesTeknik.Pemeliharaan;
@@ -33,5 +34,6 @@ public class Var {
     public static PengujianBahanBaku tambahPengujianBahanBaku, ubahPengujianBahanBaku;
     
     public static LaporanLab laporanPengujianProdukJadi, laporanPengujianBahanBaku;
+    public static LaporanTeknik laporanDaftarBarang, laporanPemeliharaan;
     public static LaporanProduksi laporanIndentifikasiProdukJadi, laporanPenyerahanProdukJadi, laporanDataProduksi;
 }
