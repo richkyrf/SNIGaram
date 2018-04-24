@@ -215,7 +215,7 @@ public class MenuUtama extends javax.swing.JFrame {
         jMenuItem8.setText("Laporan Indentifikasi Produk Jadi");
         jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem7ActionPerformed(evt);
+                jMenuItem8ActionPerformed(evt);
             }
         });
         JMLaporanProduksi.add(jMenuItem8);
@@ -223,7 +223,7 @@ public class MenuUtama extends javax.swing.JFrame {
         jMenuItem9.setText("Laporan Penyerahan Produk Jadi");
         jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem8ActionPerformed(evt);
+                jMenuItem9ActionPerformed(evt);
             }
         });
         JMLaporanProduksi.add(jMenuItem9);
@@ -231,7 +231,7 @@ public class MenuUtama extends javax.swing.JFrame {
         jMenuItem10.setText("Laporan Data Produksi");
         jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem9ActionPerformed(evt);
+                jMenuItem10ActionPerformed(evt);
             }
         });
         JMLaporanProduksi.add(jMenuItem10);

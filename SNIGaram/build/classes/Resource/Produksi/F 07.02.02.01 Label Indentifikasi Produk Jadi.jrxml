@@ -245,15 +245,54 @@
 			</staticText>
 		</band>
 	</pageFooter>
-	<summary>
-		<band height="142" splitType="Stretch">
+	<lastPageFooter>
+		<band height="154">
 			<textField pattern="dd/MM/yyyy">
-				<reportElement x="455" y="41" width="100" height="20" uuid="639494fb-846d-48bc-9b22-511e47237dd7"/>
+				<reportElement x="455" y="13" width="100" height="20" uuid="639494fb-846d-48bc-9b22-511e47237dd7"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Gadugi" size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{Tanggal}]]></textFieldExpression>
 			</textField>
+			<staticText>
+				<reportElement x="0" y="33" width="140" height="20" uuid="c9a8ebbf-1813-419d-8d18-c23db28c664f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Gadugi" size="12"/>
+				</textElement>
+				<text><![CDATA[Mengetahui]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="94" width="140" height="20" uuid="8581de20-e086-4569-a0e5-cc26fa3fd7de"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Gadugi" size="12"/>
+				</textElement>
+				<text><![CDATA[Manajer Produksi]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="416" y="13" width="40" height="20" uuid="1776a53e-4775-4f49-b36e-05719125899d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Gadugi" size="12"/>
+				</textElement>
+				<text><![CDATA[Jambi,]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="415" y="94" width="140" height="20" uuid="f5bc1bea-f014-40bb-a287-40b199a10a32"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Gadugi" size="12"/>
+				</textElement>
+				<text><![CDATA[_____________________]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="375" y="134" width="180" height="20" uuid="9cf60145-d52d-4040-a25c-cf0a0c4f0bb1"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Gadugi"/>
+				</textElement>
+				<text><![CDATA[Rev. 0, Tanggal Terbit 20 Januari 2014]]></text>
+			</staticText>
+		</band>
+	</lastPageFooter>
+	<summary>
+		<band height="20" splitType="Stretch">
 			<textField pattern="#,##0">
 				<reportElement x="295" y="0" width="56" height="20" uuid="169b7952-5384-4f3d-96a4-198302cb8519"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
@@ -309,34 +348,6 @@
 					<font fontName="Gadugi" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="0" y="61" width="140" height="20" uuid="c9a8ebbf-1813-419d-8d18-c23db28c664f"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Gadugi" size="12"/>
-				</textElement>
-				<text><![CDATA[Mengetahui]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="0" y="122" width="140" height="20" uuid="8581de20-e086-4569-a0e5-cc26fa3fd7de"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Gadugi" size="12"/>
-				</textElement>
-				<text><![CDATA[Manajer Produksi]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="416" y="41" width="40" height="20" uuid="1776a53e-4775-4f49-b36e-05719125899d"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Gadugi" size="12"/>
-				</textElement>
-				<text><![CDATA[Jambi,]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="415" y="122" width="140" height="20" uuid="f5bc1bea-f014-40bb-a287-40b199a10a32"/>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Gadugi" size="12"/>
-				</textElement>
-				<text><![CDATA[_____________________]]></text>
 			</staticText>
 		</band>
 	</summary>
