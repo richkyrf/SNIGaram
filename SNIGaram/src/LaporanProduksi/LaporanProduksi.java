@@ -114,12 +114,18 @@ public class LaporanProduksi extends javax.swing.JFrame {
         hashs.put("Tanggal_Akhir", FDateF.datetostr(JDTanggal1.getDate(), "yyyy-MM-dd"));
         FLaporan fLaporan = new FLaporan();
         fLaporan.sethashmap(hashs);
-        if (getTitle().equals("Laporan Indentifikasi Produk Jadi")) {
+        if (getTitle().equals("Laporan Persediaan Barang")) {
+            fLaporan.setfilename("Produksi/F 07.02.00.02 Kartu Persediaan Barang");
+            History.simpanhistory(GlobalVar.VarL.username, "F 07.02.00.02 Kartu Persediaan Barang");
+        } else if (getTitle().equals("Laporan Indentifikasi Produk Jadi")) {
             fLaporan.setfilename("Produksi/F 07.02.02.01 Label Indentifikasi Produk Jadi");
             History.simpanhistory(GlobalVar.VarL.username, "F 07.02.02.01 Label Indentifikasi Produk Jadi");
         } else if (getTitle().equals("Laporan Penyerahan Produk Jadi")) {
             fLaporan.setfilename("Produksi/F 07.06.00.03 Buku Kendali Gudang Penyerahan Produk Jadi");
             History.simpanhistory(GlobalVar.VarL.username, "F 07.06.00.03 Buku Kendali Gudang Penyerahan Produk Jadi");
+        } else if (getTitle().equals("Laporan Order Pesanan")) {
+            fLaporan.setfilename("Produksi/F 07.06.01.02 Order Pesanan");
+            History.simpanhistory(GlobalVar.VarL.username, "F 07.06.01.02 Order Pesanan");
         } else {
             fLaporan.setfilename("Produksi/F 08.06.00.01 Data Produksi");
             History.simpanhistory(GlobalVar.VarL.username, "F 08.06.00.01 Data Produksi");
@@ -129,10 +135,14 @@ public class LaporanProduksi extends javax.swing.JFrame {
     }//GEN-LAST:event_jbuttonF1ActionPerformed
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        if (getTitle().equals("Laporan Indentifikasi Produk Jadi")) {
+        if (getTitle().equals("Laporan Persediaan Barang")) {
+            GlobalVar.Var.laporanPersediaanBarang = null;
+        } else if (getTitle().equals("Laporan Indentifikasi Produk Jadi")) {
             GlobalVar.Var.laporanIndentifikasiProdukJadi = null;
         } else if (getTitle().equals("Laporan Penyerahan Produk Jadi")) {
             GlobalVar.Var.laporanPenyerahanProdukJadi = null;
+        } else if (getTitle().equals("Laporan Order Pesanan")) {
+            GlobalVar.Var.laporanOrderPesanan = null;
         } else {
             GlobalVar.Var.laporanDataProduksi = null;
         }

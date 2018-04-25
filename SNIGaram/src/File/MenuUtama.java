@@ -47,31 +47,33 @@ public class MenuUtama extends javax.swing.JFrame {
         SFile = new javax.swing.JPopupMenu.Separator();
         JMIGantiPassword = new javax.swing.JMenuItem();
         JMIExit = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
+        JMProses = new javax.swing.JMenu();
         JMProsesLab = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        JMMaster = new javax.swing.JMenu();
-        jMenuItem7 = new javax.swing.JMenuItem();
-        jMenuItem11 = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
+        JMIPengujianProdukJadi = new javax.swing.JMenuItem();
+        JMIPengujianBahanBaku = new javax.swing.JMenuItem();
+        JMProsesTeknik = new javax.swing.JMenu();
+        JMIBarangTeknik = new javax.swing.JMenuItem();
+        JMIPemeliharaan = new javax.swing.JMenuItem();
+        JMList = new javax.swing.JMenu();
         JMListLab = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem12 = new javax.swing.JMenuItem();
-        jMenuItem13 = new javax.swing.JMenuItem();
-        jMenu4 = new javax.swing.JMenu();
+        JMIListPengujianProdukJadi = new javax.swing.JMenuItem();
+        JMIListPengujianBahanBaku = new javax.swing.JMenuItem();
+        JMListTeknik = new javax.swing.JMenu();
+        JMIListBarangTeknik = new javax.swing.JMenuItem();
+        JMIListPemeliharaan = new javax.swing.JMenuItem();
+        JMLaporan = new javax.swing.JMenu();
         JMLaporanProduksi = new javax.swing.JMenu();
-        jMenuItem8 = new javax.swing.JMenuItem();
-        jMenuItem9 = new javax.swing.JMenuItem();
-        jMenuItem10 = new javax.swing.JMenuItem();
+        JMILaporanPersediaanBarang = new javax.swing.JMenuItem();
+        JMILaporanIdentifikasiProdukJadi = new javax.swing.JMenuItem();
+        JMILaporanPenyerahanProdukJadi = new javax.swing.JMenuItem();
+        JMILaporanOrderPesanan = new javax.swing.JMenuItem();
+        JMILaporanDataProduksi = new javax.swing.JMenuItem();
         JMLaporanLab = new javax.swing.JMenu();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
-        jMenu5 = new javax.swing.JMenu();
-        jMenuItem14 = new javax.swing.JMenuItem();
-        jMenuItem15 = new javax.swing.JMenuItem();
+        JMILaporanPengujianProdukJadi = new javax.swing.JMenuItem();
+        JMILaporanPengujianBahanBaku = new javax.swing.JMenuItem();
+        JMLaporanTeknik = new javax.swing.JMenu();
+        JMILaporanDaftarBarang = new javax.swing.JMenuItem();
+        JMILaporanPemeliharaan = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -120,165 +122,181 @@ public class MenuUtama extends javax.swing.JFrame {
 
         JMenuBar.add(JMFile);
 
-        jMenu2.setText("Proses");
+        JMProses.setText("Proses");
 
         JMProsesLab.setText("Proses Lab");
 
-        jMenuItem2.setText("Pengujian Produk Jadi");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        JMIPengujianProdukJadi.setText("Pengujian Produk Jadi");
+        JMIPengujianProdukJadi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                JMIPengujianProdukJadiActionPerformed(evt);
             }
         });
-        JMProsesLab.add(jMenuItem2);
+        JMProsesLab.add(JMIPengujianProdukJadi);
 
-        jMenuItem4.setText("Pengujian Bahan Baku");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+        JMIPengujianBahanBaku.setText("Pengujian Bahan Baku");
+        JMIPengujianBahanBaku.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
+                JMIPengujianBahanBakuActionPerformed(evt);
             }
         });
-        JMProsesLab.add(jMenuItem4);
+        JMProsesLab.add(JMIPengujianBahanBaku);
 
-        jMenu2.add(JMProsesLab);
+        JMProses.add(JMProsesLab);
 
-        JMMaster.setText("Proses Teknik");
+        JMProsesTeknik.setText("Proses Teknik");
 
-        jMenuItem7.setText("Barang Teknik");
-        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+        JMIBarangTeknik.setText("Barang Teknik");
+        JMIBarangTeknik.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem7ActionPerformed(evt);
+                JMIBarangTeknikActionPerformed(evt);
             }
         });
-        JMMaster.add(jMenuItem7);
+        JMProsesTeknik.add(JMIBarangTeknik);
 
-        jMenuItem11.setText("Pemeliharaan");
-        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
+        JMIPemeliharaan.setText("Pemeliharaan");
+        JMIPemeliharaan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem11ActionPerformed(evt);
+                JMIPemeliharaanActionPerformed(evt);
             }
         });
-        JMMaster.add(jMenuItem11);
+        JMProsesTeknik.add(JMIPemeliharaan);
 
-        jMenu2.add(JMMaster);
+        JMProses.add(JMProsesTeknik);
 
-        JMenuBar.add(jMenu2);
+        JMenuBar.add(JMProses);
 
-        jMenu3.setText("List");
+        JMList.setText("List");
 
         JMListLab.setText("List Lab");
 
-        jMenuItem1.setText("Pengujian Produk Jadi");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        JMIListPengujianProdukJadi.setText("Pengujian Produk Jadi");
+        JMIListPengujianProdukJadi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                JMIListPengujianProdukJadiActionPerformed(evt);
             }
         });
-        JMListLab.add(jMenuItem1);
+        JMListLab.add(JMIListPengujianProdukJadi);
 
-        jMenuItem3.setText("Pengujian Bahan Baku");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        JMIListPengujianBahanBaku.setText("Pengujian Bahan Baku");
+        JMIListPengujianBahanBaku.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+                JMIListPengujianBahanBakuActionPerformed(evt);
             }
         });
-        JMListLab.add(jMenuItem3);
+        JMListLab.add(JMIListPengujianBahanBaku);
 
-        jMenu3.add(JMListLab);
+        JMList.add(JMListLab);
 
-        jMenu1.setText("List Teknik");
+        JMListTeknik.setText("List Teknik");
 
-        jMenuItem12.setText("Barang Teknik");
-        jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
+        JMIListBarangTeknik.setText("Barang Teknik");
+        JMIListBarangTeknik.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem12ActionPerformed(evt);
+                JMIListBarangTeknikActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem12);
+        JMListTeknik.add(JMIListBarangTeknik);
 
-        jMenuItem13.setText("Pemeliharaan");
-        jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
+        JMIListPemeliharaan.setText("Pemeliharaan");
+        JMIListPemeliharaan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem13ActionPerformed(evt);
+                JMIListPemeliharaanActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem13);
+        JMListTeknik.add(JMIListPemeliharaan);
 
-        jMenu3.add(jMenu1);
+        JMList.add(JMListTeknik);
 
-        JMenuBar.add(jMenu3);
+        JMenuBar.add(JMList);
 
-        jMenu4.setText("Laporan");
+        JMLaporan.setText("Laporan");
 
         JMLaporanProduksi.setText("Laporan Produksi");
 
-        jMenuItem8.setText("Laporan Indentifikasi Produk Jadi");
-        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+        JMILaporanPersediaanBarang.setText("Laporan Persediaan Barang");
+        JMILaporanPersediaanBarang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem8ActionPerformed(evt);
+                JMILaporanPersediaanBarangActionPerformed(evt);
             }
         });
-        JMLaporanProduksi.add(jMenuItem8);
+        JMLaporanProduksi.add(JMILaporanPersediaanBarang);
 
-        jMenuItem9.setText("Laporan Penyerahan Produk Jadi");
-        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+        JMILaporanIdentifikasiProdukJadi.setText("Laporan Indentifikasi Produk Jadi");
+        JMILaporanIdentifikasiProdukJadi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem9ActionPerformed(evt);
+                JMILaporanIdentifikasiProdukJadiActionPerformed(evt);
             }
         });
-        JMLaporanProduksi.add(jMenuItem9);
+        JMLaporanProduksi.add(JMILaporanIdentifikasiProdukJadi);
 
-        jMenuItem10.setText("Laporan Data Produksi");
-        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+        JMILaporanPenyerahanProdukJadi.setText("Laporan Penyerahan Produk Jadi");
+        JMILaporanPenyerahanProdukJadi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem10ActionPerformed(evt);
+                JMILaporanPenyerahanProdukJadiActionPerformed(evt);
             }
         });
-        JMLaporanProduksi.add(jMenuItem10);
+        JMLaporanProduksi.add(JMILaporanPenyerahanProdukJadi);
 
-        jMenu4.add(JMLaporanProduksi);
+        JMILaporanOrderPesanan.setText("Laporan Order Pesanan");
+        JMILaporanOrderPesanan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JMILaporanOrderPesananActionPerformed(evt);
+            }
+        });
+        JMLaporanProduksi.add(JMILaporanOrderPesanan);
+
+        JMILaporanDataProduksi.setText("Laporan Data Produksi");
+        JMILaporanDataProduksi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JMILaporanDataProduksiActionPerformed(evt);
+            }
+        });
+        JMLaporanProduksi.add(JMILaporanDataProduksi);
+
+        JMLaporan.add(JMLaporanProduksi);
 
         JMLaporanLab.setText("Laporan Lab");
 
-        jMenuItem5.setText("Laporan Pengujian Produk Jadi");
-        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+        JMILaporanPengujianProdukJadi.setText("Laporan Pengujian Produk Jadi");
+        JMILaporanPengujianProdukJadi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem5ActionPerformed(evt);
+                JMILaporanPengujianProdukJadiActionPerformed(evt);
             }
         });
-        JMLaporanLab.add(jMenuItem5);
+        JMLaporanLab.add(JMILaporanPengujianProdukJadi);
 
-        jMenuItem6.setText("Laporan Pengujian Bahan Baku");
-        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+        JMILaporanPengujianBahanBaku.setText("Laporan Pengujian Bahan Baku");
+        JMILaporanPengujianBahanBaku.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem6ActionPerformed(evt);
+                JMILaporanPengujianBahanBakuActionPerformed(evt);
             }
         });
-        JMLaporanLab.add(jMenuItem6);
+        JMLaporanLab.add(JMILaporanPengujianBahanBaku);
 
-        jMenu4.add(JMLaporanLab);
+        JMLaporan.add(JMLaporanLab);
 
-        jMenu5.setText("Laporan Teknik");
+        JMLaporanTeknik.setText("Laporan Teknik");
 
-        jMenuItem14.setText("Laporan Daftar Barang");
-        jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
+        JMILaporanDaftarBarang.setText("Laporan Daftar Barang");
+        JMILaporanDaftarBarang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem14ActionPerformed(evt);
+                JMILaporanDaftarBarangActionPerformed(evt);
             }
         });
-        jMenu5.add(jMenuItem14);
+        JMLaporanTeknik.add(JMILaporanDaftarBarang);
 
-        jMenuItem15.setText("Laporan Pemeliharaan");
-        jMenuItem15.addActionListener(new java.awt.event.ActionListener() {
+        JMILaporanPemeliharaan.setText("Laporan Pemeliharaan");
+        JMILaporanPemeliharaan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem15ActionPerformed(evt);
+                JMILaporanPemeliharaanActionPerformed(evt);
             }
         });
-        jMenu5.add(jMenuItem15);
+        JMLaporanTeknik.add(JMILaporanPemeliharaan);
 
-        jMenu4.add(jMenu5);
+        JMLaporan.add(JMLaporanTeknik);
 
-        JMenuBar.add(jMenu4);
+        JMenuBar.add(JMLaporan);
 
         setJMenuBar(JMenuBar);
 
@@ -327,140 +345,158 @@ public class MenuUtama extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_JMIResetPasswordUserActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void JMIListPengujianProdukJadiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMIListPengujianProdukJadiActionPerformed
         if (listPengujianProdukJadi == null) {
-            listPengujianProdukJadi = new List(jMenuItem1.getText());
+            listPengujianProdukJadi = new List(JMIListPengujianProdukJadi.getText());
         } else {
             listPengujianProdukJadi.setState(NORMAL);
             listPengujianProdukJadi.toFront();
         }
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_JMIListPengujianProdukJadiActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void JMIPengujianProdukJadiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMIPengujianProdukJadiActionPerformed
         if (tambahPengujianProdukJadi == null) {
             tambahPengujianProdukJadi = new PengujianProdukJadi();
         } else {
             tambahPengujianProdukJadi.setState(NORMAL);
             tambahPengujianProdukJadi.toFront();
         }
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_JMIPengujianProdukJadiActionPerformed
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+    private void JMIListPengujianBahanBakuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMIListPengujianBahanBakuActionPerformed
         if (listPengujianBahanBaku == null) {
-            listPengujianBahanBaku = new List(jMenuItem3.getText());
+            listPengujianBahanBaku = new List(JMIListPengujianBahanBaku.getText());
         } else {
             listPengujianBahanBaku.setState(NORMAL);
             listPengujianBahanBaku.toFront();
         }
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
+    }//GEN-LAST:event_JMIListPengujianBahanBakuActionPerformed
 
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+    private void JMIPengujianBahanBakuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMIPengujianBahanBakuActionPerformed
         if (tambahPengujianBahanBaku == null) {
             tambahPengujianBahanBaku = new PengujianBahanBaku();
         } else {
             tambahPengujianBahanBaku.setState(NORMAL);
             tambahPengujianBahanBaku.toFront();
         }
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
+    }//GEN-LAST:event_JMIPengujianBahanBakuActionPerformed
 
-    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+    private void JMILaporanPengujianProdukJadiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMILaporanPengujianProdukJadiActionPerformed
         if (laporanPengujianProdukJadi == null) {
-            laporanPengujianProdukJadi = new LaporanLab(jMenuItem5.getText());
+            laporanPengujianProdukJadi = new LaporanLab(JMILaporanPengujianProdukJadi.getText());
         } else {
             laporanPengujianProdukJadi.setState(NORMAL);
             laporanPengujianProdukJadi.toFront();
         }
-    }//GEN-LAST:event_jMenuItem5ActionPerformed
+    }//GEN-LAST:event_JMILaporanPengujianProdukJadiActionPerformed
 
-    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+    private void JMILaporanPengujianBahanBakuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMILaporanPengujianBahanBakuActionPerformed
         if (laporanPengujianBahanBaku == null) {
-            laporanPengujianBahanBaku = new LaporanLab(jMenuItem6.getText());
+            laporanPengujianBahanBaku = new LaporanLab(JMILaporanPengujianBahanBaku.getText());
         } else {
             laporanPengujianBahanBaku.setState(NORMAL);
             laporanPengujianBahanBaku.toFront();
         }
-    }//GEN-LAST:event_jMenuItem6ActionPerformed
+    }//GEN-LAST:event_JMILaporanPengujianBahanBakuActionPerformed
 
-    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+    private void JMIBarangTeknikActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMIBarangTeknikActionPerformed
         if (tambahBarangTeknik == null) {
             tambahBarangTeknik = new BarangTeknik();
         } else {
             tambahBarangTeknik.setState(NORMAL);
             tambahBarangTeknik.toFront();
         }
-    }//GEN-LAST:event_jMenuItem7ActionPerformed
+    }//GEN-LAST:event_JMIBarangTeknikActionPerformed
 
-    private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
+    private void JMIPemeliharaanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMIPemeliharaanActionPerformed
         if (tambahPemeliharaan == null) {
             tambahPemeliharaan = new Pemeliharaan();
         } else {
             tambahPemeliharaan.setState(NORMAL);
             tambahPemeliharaan.toFront();
         }
-    }//GEN-LAST:event_jMenuItem11ActionPerformed
+    }//GEN-LAST:event_JMIPemeliharaanActionPerformed
 
-    private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
+    private void JMIListBarangTeknikActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMIListBarangTeknikActionPerformed
         if (listBarangTeknik == null) {
-            listBarangTeknik = new List(jMenuItem7.getText());
+            listBarangTeknik = new List(JMIBarangTeknik.getText());
         } else {
             listBarangTeknik.setState(NORMAL);
             listBarangTeknik.toFront();
         }
-    }//GEN-LAST:event_jMenuItem12ActionPerformed
+    }//GEN-LAST:event_JMIListBarangTeknikActionPerformed
 
-    private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
+    private void JMIListPemeliharaanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMIListPemeliharaanActionPerformed
         if (listPemeliharaan == null) {
-            listPemeliharaan = new List(jMenuItem13.getText());
+            listPemeliharaan = new List(JMIListPemeliharaan.getText());
         } else {
             listPemeliharaan.setState(NORMAL);
             listPemeliharaan.toFront();
         }
-    }//GEN-LAST:event_jMenuItem13ActionPerformed
+    }//GEN-LAST:event_JMIListPemeliharaanActionPerformed
 
-    private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
+    private void JMILaporanDaftarBarangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMILaporanDaftarBarangActionPerformed
         if (laporanDaftarBarang == null) {
-            laporanDaftarBarang = new LaporanTeknik(jMenuItem14.getText());
+            laporanDaftarBarang = new LaporanTeknik(JMILaporanDaftarBarang.getText());
         } else {
             laporanDaftarBarang.setState(NORMAL);
             laporanDaftarBarang.toFront();
         }
-    }//GEN-LAST:event_jMenuItem14ActionPerformed
+    }//GEN-LAST:event_JMILaporanDaftarBarangActionPerformed
 
-    private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
+    private void JMILaporanPemeliharaanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMILaporanPemeliharaanActionPerformed
         if (laporanPemeliharaan == null) {
-            laporanPemeliharaan = new LaporanTeknik(jMenuItem15.getText());
+            laporanPemeliharaan = new LaporanTeknik(JMILaporanPemeliharaan.getText());
         } else {
             laporanPemeliharaan.setState(NORMAL);
             laporanPemeliharaan.toFront();
         }
-    }//GEN-LAST:event_jMenuItem15ActionPerformed
+    }//GEN-LAST:event_JMILaporanPemeliharaanActionPerformed
 
-    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {
+    private void JMILaporanIdentifikasiProdukJadiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMILaporanIdentifikasiProdukJadiActionPerformed
         if (laporanIndentifikasiProdukJadi == null) {
-            laporanIndentifikasiProdukJadi = new LaporanProduksi(jMenuItem8.getText());
+            laporanIndentifikasiProdukJadi = new LaporanProduksi(JMILaporanIdentifikasiProdukJadi.getText());
         } else {
             laporanIndentifikasiProdukJadi.setState(NORMAL);
             laporanIndentifikasiProdukJadi.toFront();
         }
-    }
+    }//GEN-LAST:event_JMILaporanIdentifikasiProdukJadiActionPerformed
 
-    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {
+    private void JMILaporanPenyerahanProdukJadiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMILaporanPenyerahanProdukJadiActionPerformed
         if (laporanPenyerahanProdukJadi == null) {
-            laporanPenyerahanProdukJadi = new LaporanProduksi(jMenuItem9.getText());
+            laporanPenyerahanProdukJadi = new LaporanProduksi(JMILaporanPenyerahanProdukJadi.getText());
         } else {
             laporanPenyerahanProdukJadi.setState(NORMAL);
             laporanPenyerahanProdukJadi.toFront();
         }
-    }
+    }//GEN-LAST:event_JMILaporanPenyerahanProdukJadiActionPerformed
 
-    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {
+    private void JMILaporanDataProduksiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMILaporanDataProduksiActionPerformed
         if (laporanDataProduksi == null) {
-            laporanDataProduksi = new LaporanProduksi(jMenuItem10.getText());
+            laporanDataProduksi = new LaporanProduksi(JMILaporanDataProduksi.getText());
         } else {
             laporanDataProduksi.setState(NORMAL);
             laporanDataProduksi.toFront();
         }
-    }
+    }//GEN-LAST:event_JMILaporanDataProduksiActionPerformed
+
+    private void JMILaporanOrderPesananActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMILaporanOrderPesananActionPerformed
+        if (laporanOrderPesanan == null) {
+            laporanOrderPesanan = new LaporanProduksi(JMILaporanOrderPesanan.getText());
+        } else {
+            laporanOrderPesanan.setState(NORMAL);
+            laporanOrderPesanan.toFront();
+        }
+    }//GEN-LAST:event_JMILaporanOrderPesananActionPerformed
+
+    private void JMILaporanPersediaanBarangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMILaporanPersediaanBarangActionPerformed
+        if (laporanPersediaanBarang == null) {
+            laporanPersediaanBarang = new LaporanProduksi(JMILaporanPersediaanBarang.getText());
+        } else {
+            laporanPersediaanBarang.setState(NORMAL);
+            laporanPersediaanBarang.toFront();
+        }
+    }//GEN-LAST:event_JMILaporanPersediaanBarangActionPerformed
 
     /**
      * @param args the command line arguments
@@ -499,36 +535,38 @@ public class MenuUtama extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu JMFile;
+    private javax.swing.JMenuItem JMIBarangTeknik;
     private javax.swing.JMenuItem JMIExit;
     private javax.swing.JMenuItem JMIGantiPassword;
+    private javax.swing.JMenuItem JMILaporanDaftarBarang;
+    private javax.swing.JMenuItem JMILaporanDataProduksi;
+    private javax.swing.JMenuItem JMILaporanIdentifikasiProdukJadi;
+    private javax.swing.JMenuItem JMILaporanOrderPesanan;
+    private javax.swing.JMenuItem JMILaporanPemeliharaan;
+    private javax.swing.JMenuItem JMILaporanPengujianBahanBaku;
+    private javax.swing.JMenuItem JMILaporanPengujianProdukJadi;
+    private javax.swing.JMenuItem JMILaporanPenyerahanProdukJadi;
+    private javax.swing.JMenuItem JMILaporanPersediaanBarang;
+    private javax.swing.JMenuItem JMIListBarangTeknik;
+    private javax.swing.JMenuItem JMIListPemeliharaan;
+    private javax.swing.JMenuItem JMIListPengujianBahanBaku;
+    private javax.swing.JMenuItem JMIListPengujianProdukJadi;
+    private javax.swing.JMenuItem JMIPemeliharaan;
+    private javax.swing.JMenuItem JMIPengujianBahanBaku;
+    private javax.swing.JMenuItem JMIPengujianProdukJadi;
     private javax.swing.JMenuItem JMIResetPasswordUser;
     private javax.swing.JMenuItem JMITambahUser;
+    private javax.swing.JMenu JMLaporan;
     private javax.swing.JMenu JMLaporanLab;
     private javax.swing.JMenu JMLaporanProduksi;
+    private javax.swing.JMenu JMLaporanTeknik;
+    private javax.swing.JMenu JMList;
     private javax.swing.JMenu JMListLab;
-    private javax.swing.JMenu JMMaster;
+    private javax.swing.JMenu JMListTeknik;
+    private javax.swing.JMenu JMProses;
     private javax.swing.JMenu JMProsesLab;
+    private javax.swing.JMenu JMProsesTeknik;
     private javax.swing.JMenuBar JMenuBar;
     private javax.swing.JPopupMenu.Separator SFile;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem10;
-    private javax.swing.JMenuItem jMenuItem11;
-    private javax.swing.JMenuItem jMenuItem12;
-    private javax.swing.JMenuItem jMenuItem13;
-    private javax.swing.JMenuItem jMenuItem14;
-    private javax.swing.JMenuItem jMenuItem15;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
-    private javax.swing.JMenuItem jMenuItem9;
     // End of variables declaration//GEN-END:variables
 }
