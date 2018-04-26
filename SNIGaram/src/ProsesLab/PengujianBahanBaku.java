@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
+import static GlobalVar.Var.*;
 
 /**
  *
@@ -538,12 +539,12 @@ public class PengujianBahanBaku extends javax.swing.JFrame {
             Boolean berhasil = false;
             berhasil = insert.simpan("INSERT INTO `snitbpengujianbahanbaku`(`Tanggal`, `KadarAir`, `KadarNaCl`, `Warna`, `Penguji`, `Keterangan`) VALUES ('" + FDateF.datetostr(JDTanggal.getDate(), "yyyy-MM-dd") + "','" + JTKadarAir.getInt() + "." + JTKomaKadarAir.getText() + "','" + JTKadarNaCl.getInt() + "." + JTKomaKadarNaCl.getText() + "','" + JTWarna.getText() + "','" + JCPenguji.getSelectedItem() + "','" + JTAKeterangan.getText() + "')", "Pengujian Bahan Baku", this);
             if (berhasil) {
-                if (GlobalVar.Var.listPengujianBahanBaku != null) {
-                    GlobalVar.Var.listPengujianBahanBaku.load();
+                if (listPengujianBahanBaku != null) {
+                    listPengujianBahanBaku.load();
                 }
                 if (tutup) {
-                    GlobalVar.Var.tambahPengujianBahanBaku.dispose();
-                    GlobalVar.Var.tambahPengujianBahanBaku = null;
+                    tambahPengujianBahanBaku.dispose();
+                    tambahPengujianBahanBaku = null;
                 } else {
                     JTKadarAir.setText("0");
                     JTKomaKadarAir.setText("00");
@@ -561,8 +562,8 @@ public class PengujianBahanBaku extends javax.swing.JFrame {
             Update update = new Update();
             Boolean berhasil = false;
             berhasil = update.Ubah("UPDATE `snitbpengujianbahanbaku` SET `Tanggal`='" + FDateF.datetostr(JDTanggal.getDate(), "yyyy-MM-dd") + "',`KadarAir`='" + JTKadarAir.getInt() + "." + JTKomaKadarAir.getText() + "',`KadarNaCl`='" + JTKadarNaCl.getInt() + "." + JTKomaKadarNaCl.getText() + "',`Warna`='" + JTWarna.getText() + "',`Penguji`='" + JCPenguji.getSelectedItem() + "',`Keterangan`='" + JTAKeterangan.getText() + "' WHERE `IdPengujianBahanBaku` = " + IdEdit, "Pengujian Bahan Baku", this);
-            if (GlobalVar.Var.listPengujianBahanBaku != null) {
-                GlobalVar.Var.listPengujianBahanBaku.load();
+            if (listPengujianBahanBaku != null) {
+                listPengujianBahanBaku.load();
             }
             if (berhasil) {
                 dispose();

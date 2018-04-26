@@ -12,7 +12,8 @@ import LaporanProduksi.LaporanProduksi;
 import LaporanTeknik.LaporanTeknik;
 import List.*;
 import ProsesLab.*;
-import ProsesTeknik.Pemeliharaan;
+import ProsesPemasran.SurveyKepuasanPelanggan;
+import ProsesTeknik.*;
 
 /**
  *
@@ -25,15 +26,16 @@ public class Var {
     public static ResetPasswordUser resetPasswordUser;
     public static GantiPassword gantiPassword;
 
-    public static List listPengujianProdukJadi, listPengujianBahanBaku, listBarangTeknik, listPemeliharaan;
+    public static List listPengujianProdukJadi, listPengujianBahanBaku, listBarangTeknik, listPemeliharaan, listPengaduanPelanggan, listSurveyKepuasanPelanggan, listDataPenjualan;
     
     public static BarangTeknik tambahBarangTeknik, ubahBarangTeknik;
     public static Pemeliharaan tambahPemeliharaan, ubahPemeliharaan;
     
     public static PengujianProdukJadi tambahPengujianProdukJadi, ubahPengujianProdukJadi;
     public static PengujianBahanBaku tambahPengujianBahanBaku, ubahPengujianBahanBaku;
+    public static SurveyKepuasanPelanggan tambahSurveyKepuasanPelanggan, ubahSurveyKepuasanPelanggan;
     
     public static LaporanLab laporanPengujianProdukJadi, laporanPengujianBahanBaku;
-    public static LaporanTeknik laporanDaftarBarang, laporanPemeliharaan;
+    public static LaporanTeknik laporanDaftarPeralatan, laporanPemeliharaan;
     public static LaporanProduksi laporanPersediaanBarang, laporanIndentifikasiProdukJadi, laporanPenyerahanProdukJadi, laporanOrderPesanan, laporanDataProduksi;
 }
