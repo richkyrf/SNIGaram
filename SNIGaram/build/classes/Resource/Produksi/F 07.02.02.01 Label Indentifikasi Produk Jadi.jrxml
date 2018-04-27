@@ -13,7 +13,7 @@
 		<defaultValueExpression><![CDATA["2018-12-31"]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[SELECT `Tanggal`, REPLACE(REPLACE(REPLACE(IF(`NamaBarang` LIKE '%1/2 KG%' OR `NamaBarang` LIKE '%8 ONS%',REPLACE(REPLACE(`NamaBarang`,'G. HALUS','Garam Halus Duo Angso'),'G. KASAR','Garam Kasar Duo Angso'),REPLACE(REPLACE(`NamaBarang`,'G. HALUS','Garam Halus Tiga Bola'),'G. KASAR','Garam Kasar Tiga Bola')),'GRAM','Gram'),'ONS','Ons'),'KG','Kg') AS 'Jenis Produk', SUM(`JumlahHasil`) AS 'Jumlah', '' AS 'Kode Produksi', '' AS 'Keterangan' FROM `tbpacking` AS A JOIN `tbmbarang` AS B ON A.`IdBarangHasil`=B.`IdBarang` WHERE `NamaBarang` NOT LIKE '%@50 KG%' AND `IdPartai` IS NOT NULL AND `Tanggal` BETWEEN $P{Tanggal_Awal} AND $P{Tanggal_Akhir} GROUP BY `Tanggal`, `NamaBarang`]]>
+		<![CDATA[SELECT `Tanggal`, REPLACE(REPLACE(REPLACE(IF(`NamaBarang` LIKE '%1/2 KG%' OR `NamaBarang` LIKE '%8 ONS%',REPLACE(REPLACE(`NamaBarang`,'G. HALUS','Garam Halus Duo Angso'),'G. KASAR','Garam Kasar Duo Angso'),REPLACE(REPLACE(`NamaBarang`,'G. HALUS','Garam Halus Tiga Bola'),'G. KASAR','Garam Kasar Tiga Bola')),'GRAM','Gram'),'ONS','Ons'),'KG','Kg') AS 'Jenis Produk', SUM(`JumlahHasil`) AS 'Jumlah', '' AS 'Kode Produksi', '' AS 'Keterangan' FROM `tbpacking` AS A JOIN `tbmbarang` AS B ON A.`IdBarangHasil`=B.`IdBarang` WHERE `NamaBarang` NOT LIKE '%@50 KG%' AND `IdPartai` IS NOT NULL AND `Tanggal` BETWEEN $P{Tanggal_Awal} AND $P{Tanggal_Akhir} GROUP BY `Tanggal`, `Jenis Produk` ORDER BY `Tanggal`, `Jenis Produk`]]>
 	</queryString>
 	<field name="Tanggal" class="java.sql.Timestamp">
 		<fieldDescription><![CDATA[]]></fieldDescription>

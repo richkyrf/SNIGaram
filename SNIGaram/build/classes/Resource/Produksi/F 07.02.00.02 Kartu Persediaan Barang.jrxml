@@ -79,7 +79,7 @@ ON A.`Nama Barang`=B.`Nama Barang`
 	<columnHeader>
 		<band height="20" splitType="Stretch">
 			<staticText>
-				<reportElement x="40" y="0" width="145" height="20" uuid="021fcbc1-d3c6-4c61-acc2-3748765075bc"/>
+				<reportElement x="40" y="0" width="165" height="20" uuid="021fcbc1-d3c6-4c61-acc2-3748765075bc"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -93,7 +93,7 @@ ON A.`Nama Barang`=B.`Nama Barang`
 				<text><![CDATA[Nama Barang]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="185" y="0" width="70" height="20" uuid="d424eef6-a6f7-4175-a08e-530ae9fe22e3"/>
+				<reportElement x="205" y="0" width="70" height="20" uuid="d424eef6-a6f7-4175-a08e-530ae9fe22e3"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -107,7 +107,7 @@ ON A.`Nama Barang`=B.`Nama Barang`
 				<text><![CDATA[Tanggal]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="255" y="0" width="75" height="20" uuid="4fa26124-01dd-462c-af75-7c291cb7ecc5"/>
+				<reportElement x="275" y="0" width="70" height="20" uuid="4fa26124-01dd-462c-af75-7c291cb7ecc5"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -121,7 +121,7 @@ ON A.`Nama Barang`=B.`Nama Barang`
 				<text><![CDATA[Stok Awal]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="330" y="0" width="75" height="20" uuid="3aceb36b-4aaa-4e8a-aadc-12391f01c42b"/>
+				<reportElement x="345" y="0" width="70" height="20" uuid="3aceb36b-4aaa-4e8a-aadc-12391f01c42b"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -135,7 +135,7 @@ ON A.`Nama Barang`=B.`Nama Barang`
 				<text><![CDATA[Masuk]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="405" y="0" width="75" height="20" uuid="6cfdf105-2f61-4829-a106-9f04d3b105b4"/>
+				<reportElement x="415" y="0" width="70" height="20" uuid="6cfdf105-2f61-4829-a106-9f04d3b105b4"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -149,7 +149,7 @@ ON A.`Nama Barang`=B.`Nama Barang`
 				<text><![CDATA[Keluar]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="480" y="0" width="75" height="20" uuid="819a3d5a-a783-4fa3-aef3-00648a7abd60"/>
+				<reportElement x="485" y="0" width="70" height="20" uuid="819a3d5a-a783-4fa3-aef3-00648a7abd60"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -194,7 +194,7 @@ ON A.`Nama Barang`=B.`Nama Barang`
 				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement stretchType="RelativeToTallestObject" x="40" y="0" width="145" height="20" uuid="4e74b5d3-0481-4231-9f1e-502fc81ce9b7"/>
+				<reportElement stretchType="RelativeToTallestObject" x="40" y="0" width="165" height="20" uuid="4e74b5d3-0481-4231-9f1e-502fc81ce9b7"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -208,7 +208,7 @@ ON A.`Nama Barang`=B.`Nama Barang`
 				<textFieldExpression><![CDATA[$F{Nama Barang}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy">
-				<reportElement stretchType="RelativeToTallestObject" x="185" y="0" width="70" height="20" uuid="a3842333-45d4-4c8d-a9fb-40be291fd508"/>
+				<reportElement stretchType="RelativeToTallestObject" x="205" y="0" width="70" height="20" uuid="a3842333-45d4-4c8d-a9fb-40be291fd508"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -222,7 +222,7 @@ ON A.`Nama Barang`=B.`Nama Barang`
 				<textFieldExpression><![CDATA[$F{Tanggal}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="#,##0;-#,##0">
-				<reportElement stretchType="RelativeToTallestObject" x="255" y="0" width="53" height="20" uuid="b594c393-51c0-416b-90c1-5b0c56c50a15"/>
+				<reportElement stretchType="RelativeToTallestObject" x="275" y="0" width="48" height="20" uuid="b594c393-51c0-416b-90c1-5b0c56c50a15"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -236,7 +236,7 @@ ON A.`Nama Barang`=B.`Nama Barang`
 				<textFieldExpression><![CDATA[$F{Stok Awal}+($V{Masuk}-$F{Masuk})-($V{Keluar}-$F{Keluar})]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="#,##0;-#,##0">
-				<reportElement stretchType="RelativeToTallestObject" x="330" y="0" width="53" height="20" uuid="0ebfc51c-b64b-4c97-8515-44ff0dd6b594"/>
+				<reportElement stretchType="RelativeToTallestObject" x="345" y="0" width="48" height="20" uuid="0ebfc51c-b64b-4c97-8515-44ff0dd6b594"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -250,7 +250,7 @@ ON A.`Nama Barang`=B.`Nama Barang`
 				<textFieldExpression><![CDATA[$F{Masuk}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="#,##0;-#,##0">
-				<reportElement stretchType="RelativeToTallestObject" x="405" y="0" width="53" height="20" uuid="02b0012e-fbd4-44f9-9053-ffa5e9e6dbff"/>
+				<reportElement stretchType="RelativeToTallestObject" x="415" y="0" width="48" height="20" uuid="02b0012e-fbd4-44f9-9053-ffa5e9e6dbff"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -264,7 +264,7 @@ ON A.`Nama Barang`=B.`Nama Barang`
 				<textFieldExpression><![CDATA[$F{Keluar}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="#,##0;-#,##0">
-				<reportElement stretchType="RelativeToTallestObject" x="480" y="0" width="53" height="20" uuid="d953360d-97ef-45c8-8204-1b35e0973555"/>
+				<reportElement stretchType="RelativeToTallestObject" x="485" y="0" width="48" height="20" uuid="d953360d-97ef-45c8-8204-1b35e0973555"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -292,7 +292,7 @@ ON A.`Nama Barang`=B.`Nama Barang`
 				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement stretchType="RelativeToTallestObject" x="307" y="0" width="23" height="20" uuid="50c73ed5-57b7-4950-8ef7-60c6ac06a116"/>
+				<reportElement stretchType="RelativeToTallestObject" x="322" y="0" width="23" height="20" uuid="50c73ed5-57b7-4950-8ef7-60c6ac06a116"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -306,7 +306,7 @@ ON A.`Nama Barang`=B.`Nama Barang`
 				<textFieldExpression><![CDATA[$F{Satuan}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement stretchType="RelativeToTallestObject" x="457" y="0" width="23" height="20" uuid="366908bf-f9c9-451f-bb87-d158eec2784d"/>
+				<reportElement stretchType="RelativeToTallestObject" x="462" y="0" width="23" height="20" uuid="366908bf-f9c9-451f-bb87-d158eec2784d"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -320,7 +320,7 @@ ON A.`Nama Barang`=B.`Nama Barang`
 				<textFieldExpression><![CDATA[$F{Satuan}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement stretchType="RelativeToTallestObject" x="382" y="0" width="23" height="20" uuid="128c26c3-a508-4605-8437-d3ea281d8e07"/>
+				<reportElement stretchType="RelativeToTallestObject" x="392" y="0" width="23" height="20" uuid="128c26c3-a508-4605-8437-d3ea281d8e07"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
