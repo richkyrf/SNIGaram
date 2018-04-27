@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
+import static GlobalVar.Var.*;
 
 /**
  *
@@ -626,12 +627,12 @@ public class PengujianProdukJadi extends javax.swing.JFrame {
             Boolean berhasil = false;
             berhasil = insert.simpan("INSERT INTO `snitbpengujianprodukjadi`(`Tanggal`, `KadarKIO3`, `KadarAir`, `KadarNaCl`, `Warna`, `Penguji`, `Keterangan`) VALUES ('" + FDateF.datetostr(JDTanggal.getDate(), "yyyy-MM-dd") + "','" + JTKadarKIO3.getInt() + "." + JTKomaKadarKIO3.getText() + "','" + JTKadarAir.getInt() + "." + JTKomaKadarAir.getText() + "','" + JTKadarNaCl.getInt() + "." + JTKomaKadarNaCl.getText() + "','" + JTWarna.getText() + "','" + JCPenguji.getSelectedItem() + "','" + JTAKeterangan.getText() + "')", "Pengujian Produk Jadi", this);
             if (berhasil) {
-                if (GlobalVar.Var.listPengujianProdukJadi != null) {
-                    GlobalVar.Var.listPengujianProdukJadi.load();
+                if (listPengujianProdukJadi != null) {
+                    listPengujianProdukJadi.load();
                 }
                 if (tutup) {
-                    GlobalVar.Var.tambahPengujianProdukJadi.dispose();
-                    GlobalVar.Var.tambahPengujianProdukJadi = null;
+                    tambahPengujianProdukJadi.dispose();
+                    tambahPengujianProdukJadi = null;
                 } else {
                     JTKadarKIO3.setText("0");
                     JTKomaKadarKIO3.setText("00");
@@ -651,8 +652,8 @@ public class PengujianProdukJadi extends javax.swing.JFrame {
             Update update = new Update();
             Boolean berhasil = false;
             berhasil = update.Ubah("UPDATE `snitbpengujianprodukjadi` SET `Tanggal`='" + FDateF.datetostr(JDTanggal.getDate(), "yyyy-MM-dd") + "',`KadarKIO3`='" + JTKadarKIO3.getInt() + "." + JTKomaKadarKIO3.getText() + "',`KadarAir`='" + JTKadarAir.getInt() + "." + JTKomaKadarAir.getText() + "',`KadarNaCl`='" + JTKadarNaCl.getInt() + "." + JTKomaKadarNaCl.getText() + "',`Warna`='" + JTWarna.getText() + "',`Penguji`='" + JCPenguji.getSelectedItem() + "',`Keterangan`='" + JTAKeterangan.getText() + "' WHERE `IdPengujianProdukJadi` = " + IdEdit, "Pengujian Produk Jadi", this);
-            if (GlobalVar.Var.listPengujianProdukJadi != null) {
-                GlobalVar.Var.listPengujianProdukJadi.load();
+            if (listPengujianProdukJadi != null) {
+                listPengujianProdukJadi.load();
             }
             if (berhasil) {
                 dispose();

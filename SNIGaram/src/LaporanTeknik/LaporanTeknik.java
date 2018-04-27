@@ -24,18 +24,18 @@ public class LaporanTeknik extends javax.swing.JFrame {
      * Creates new form LaporanLab
      */
     public LaporanTeknik(String type) {
-        if (type.equals("Laporan Daftar Peralatan")) {
-            jlableF1.setVisible(false);
-            JDTanggal.setVisible(false);
-            jlableF2.setVisible(false);
-            JDTanggal1.setVisible(false);
-        }
         initComponents();
         setTitle(type);
         setVisible(true);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setResizable(false);
+        if (type.equals("Laporan Daftar Peralatan")) {
+            jlableF1.setVisible(false);
+            JDTanggal.setVisible(false);
+            jlableF2.setVisible(false);
+            JDTanggal1.setVisible(false);
+        }
     }
 
     /**
@@ -155,7 +155,7 @@ public class LaporanTeknik extends javax.swing.JFrame {
         hashs.put(JRParameter.REPORT_LOCALE, locale);
         FLaporan fLaporan = new FLaporan();
         fLaporan.sethashmap(hashs);
-        if (getTitle().equals("Laporan Daftar Barang")) {
+        if (getTitle().equals("Laporan Daftar Peralatan")) {
             fLaporan.setfilename("Citta/Teknik/F 07.04.00.01 Daftar Peralatan");
             History.simpanhistory(GlobalVar.VarL.username, "F 07.04.00.01 Daftar Peralatan");
         } else {
@@ -170,7 +170,7 @@ public class LaporanTeknik extends javax.swing.JFrame {
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         if (getTitle().equals("Laporan Daftar Barang")) {
-            GlobalVar.Var.laporanDaftarBarang = null;
+            GlobalVar.Var.laporanDaftarPeralatan = null;
         } else {
             GlobalVar.Var.laporanPemeliharaan = null;
         }

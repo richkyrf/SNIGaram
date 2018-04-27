@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
+import static GlobalVar.Var.*;
 
 /**
  *
@@ -312,9 +313,9 @@ public class Pemeliharaan extends javax.swing.JFrame {
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         if (IdEdit == null) {
-            GlobalVar.Var.tambahPemeliharaan = null;
+            tambahPemeliharaan = null;
         } else {
-            GlobalVar.Var.tambahPemeliharaan = null;
+            tambahPemeliharaan = null;
         }
     }//GEN-LAST:event_formWindowClosed
 
@@ -407,12 +408,12 @@ public class Pemeliharaan extends javax.swing.JFrame {
             Boolean berhasil = false;
             berhasil = insert.simpan("INSERT INTO `snitbpemeliharaan`(`Tanggal`, `IdBarangTeknik`, `Deskripsi`, `Keterangan`) VALUES ('" + FDateF.datetostr(JDTanggal.getDate(), "yyyy-MM-dd") + "',(SELECT `IdBarangTeknik` FROM `snitbmbarangteknik` WHERE `NamaBarang` = '" + JCNamaBarang.getSelectedItem() + "'),'" + JTDeskripsi.getText() + "','" + JTAKeterangan.getText() + "')", "Barang Teknik", this);
             if (berhasil) {
-                if (GlobalVar.Var.listPemeliharaan != null) {
-                    GlobalVar.Var.listPemeliharaan.load();
+                if (listPemeliharaan != null) {
+                    listPemeliharaan.load();
                 }
                 if (tutup) {
-                    GlobalVar.Var.tambahPemeliharaan.dispose();
-                    GlobalVar.Var.tambahPemeliharaan = null;
+                    tambahPemeliharaan.dispose();
+                    tambahPemeliharaan = null;
                 } else {
                     JTDeskripsi.setText("");
                     JTAKeterangan.setText("");
@@ -426,8 +427,8 @@ public class Pemeliharaan extends javax.swing.JFrame {
             Update update = new Update();
             Boolean berhasil = false;
             berhasil = update.Ubah("UPDATE `snitbpemeliharaan` SET `Tanggal`='" + FDateF.datetostr(JDTanggal.getDate(), "yyyy-MM-dd") + "',`IdBarangTeknik`=(SELECT `IdBarangTeknik` FROM `snitbmbarangteknik` WHERE `NamaBarang` = '" + JCNamaBarang.getSelectedItem() + "'),`Deskripsi`='" + JTDeskripsi.getText() + "',`Keterangan`='" + JTAKeterangan.getText() + "' WHERE `IdPemeliharaan` = " + IdEdit, "Pemeliharaan", this);
-            if (GlobalVar.Var.listPemeliharaan != null) {
-                GlobalVar.Var.listPemeliharaan.load();
+            if (listPemeliharaan != null) {
+                listPemeliharaan.load();
             }
             if (berhasil) {
                 dispose();

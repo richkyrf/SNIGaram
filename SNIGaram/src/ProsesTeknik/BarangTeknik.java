@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
+import static GlobalVar.Var.*;
 
 /**
  *
@@ -352,9 +353,9 @@ public class BarangTeknik extends javax.swing.JFrame {
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         if (IdEdit == null) {
-            GlobalVar.Var.tambahBarangTeknik = null;
+            tambahBarangTeknik = null;
         } else {
-            GlobalVar.Var.ubahBarangTeknik = null;
+            ubahBarangTeknik = null;
         }
     }//GEN-LAST:event_formWindowClosed
 
@@ -492,12 +493,12 @@ public class BarangTeknik extends javax.swing.JFrame {
             Boolean berhasil = false;
             berhasil = insert.simpan("INSERT INTO `snitbmbarangteknik`(`NamaBarang`, `Merk`, `Jumlah`, `WaktuKalibrasi`, `Keterangan`, `Status`) VALUES ('" + JTNamaBarang.getText() + "','" + JTMerk.getText() + "','" + JTJumlah.getInt() + "','" + FDateF.datetostr(JDTanggal.getDate(), "yyyy-MM-dd") + "','" + JTAKeterangan.getText() + "'," + JCBStatus.isSelected() + ")", "Barang Teknik", this);
             if (berhasil) {
-                if (GlobalVar.Var.listBarangTeknik != null) {
-                    GlobalVar.Var.listBarangTeknik.load();
+                if (listBarangTeknik != null) {
+                    listBarangTeknik.load();
                 }
                 if (tutup) {
-                    GlobalVar.Var.tambahBarangTeknik.dispose();
-                    GlobalVar.Var.tambahBarangTeknik = null;
+                    tambahBarangTeknik.dispose();
+                    tambahBarangTeknik = null;
                 } else {
                     JTNamaBarang.setText("");
                     JTMerk.setText("");
@@ -513,8 +514,8 @@ public class BarangTeknik extends javax.swing.JFrame {
             Update update = new Update();
             Boolean berhasil = false;
             berhasil = update.Ubah("UPDATE `snitbmbarangteknik` SET `NamaBarang`='" + JTNamaBarang.getText() + "',`Merk`='" + JTMerk.getText() + "',`Jumlah`='" + JTJumlah.getInt() + "',`WaktuKalibrasi`='" + FDateF.datetostr(JDTanggal.getDate(), "yyyy-MM-dd") + "',`Keterangan`='" + JTAKeterangan.getText() + "',`Status`=" + JCBStatus.isSelected() + " WHERE `IdBarangTeknik` = " + IdEdit, "Barang Teknik", this);
-            if (GlobalVar.Var.listBarangTeknik != null) {
-                GlobalVar.Var.listBarangTeknik.load();
+            if (listBarangTeknik != null) {
+                listBarangTeknik.load();
             }
             if (berhasil) {
                 dispose();

@@ -13,6 +13,7 @@ import java.util.Date;
 import static GlobalVar.Var.*;
 import ProsesTeknik.BarangTeknik;
 import ProsesLab.*;
+import ProsesPemasran.SurveyKepuasanPelanggan;
 import ProsesTeknik.Pemeliharaan;
 
 /**
@@ -170,6 +171,15 @@ public class List extends javax.swing.JFrame {
             case "List Pemeliharaan":
                 listPemeliharaan = null;
                 break;
+            case "List Pengaduan Pelanggan":
+                listPengaduanPelanggan = null;
+                break;
+            case "List Survey Kepuasan Pelanggan":
+                listSurveyKepuasanPelanggan = null;
+                break;
+            case "List Data Penjualan":
+                listDataPenjualan = null;
+                break;
             default:
                 throw new AssertionError();
         }
@@ -260,6 +270,30 @@ public class List extends javax.swing.JFrame {
                     tambahPemeliharaan.toFront();
                 }
                 break;
+            case "List Pengaduan Pelanggan":
+//                if (tambahPengaduanPelanggan == null) {
+//                    tambahPengaduanPelanggan = new PengaduanPelanggan();
+//                } else {
+//                    tambahPengaduanPelanggan.setState(NORMAL);
+//                    tambahPengaduanPelanggan.toFront();
+//                }
+                break;
+            case "List Survey Kepuasan Pelanggan":
+                if (tambahSurveyKepuasanPelanggan == null) {
+                    tambahSurveyKepuasanPelanggan = new SurveyKepuasanPelanggan();
+                } else {
+                    tambahSurveyKepuasanPelanggan.setState(NORMAL);
+                    tambahSurveyKepuasanPelanggan.toFront();
+                }
+                break;
+            case "List Data Penjualan":
+//                if (tambahDataPenjualan == null) {
+//                    tambahDataPenjualan = new DataPenjualan();
+//                } else {
+//                    tambahDataPenjualan.setState(NORMAL);
+//                    tambahDataPenjualan.toFront();
+//                }
+                break;
             default:
                 throw new AssertionError();
         }
@@ -284,6 +318,15 @@ public class List extends javax.swing.JFrame {
                     break;
                 case "List Pemeliharaan":
                     berhasil = delete.Hapus(jcomCari1.GetIDTable(), "DELETE FROM `snitbpemeliharaan` WHERE `IdPemeliharaan` = " + jcomCari1.GetIDTable(), getTitle(), this);
+                    break;
+                case "List Pengaduan Pelanggan":
+                    berhasil = delete.Hapus(jcomCari1.GetIDTable(), "DELETE FROM `snitbpengaduanpelanggan` WHERE `IdPengaduanPelanggan` = " + jcomCari1.GetIDTable(), getTitle(), this);
+                    break;
+                case "List Survey Kepuasan Pelanggan":
+                    berhasil = delete.Hapus(jcomCari1.GetIDTable(), "DELETE FROM `snitbsurveykepuasanpelanggan` WHERE `IdSurveyKepuasanPelanggan` = " + jcomCari1.GetIDTable(), getTitle(), this);
+                    break;
+                case "List Data Penjualan":
+                    berhasil = delete.Hapus(jcomCari1.GetIDTable(), "DELETE FROM `snitbdatapenjualan` WHERE `IdDataPenjualan` = " + jcomCari1.GetIDTable(), getTitle(), this);
                     break;
                 default:
                     throw new AssertionError();
@@ -331,6 +374,30 @@ public class List extends javax.swing.JFrame {
                         ubahPemeliharaan.toFront();
                     }
                     break;
+                case "List Pengaduan Pelanggan":
+//                    if (ubahPengaduanPelanggan == null) {
+//                        ubahPengaduanPelanggan = new PengaduanPelanggan(jcomCari1.GetIDTable());
+//                    } else {
+//                        ubahPengaduanPelanggan.setState(NORMAL);
+//                        ubahPengaduanPelanggan.toFront();
+//                    }
+                    break;
+                case "List Survey Kepuasan Pelanggan":
+                    if (ubahSurveyKepuasanPelanggan == null) {
+                        ubahSurveyKepuasanPelanggan = new SurveyKepuasanPelanggan(jcomCari1.GetIDTable());
+                    } else {
+                        ubahSurveyKepuasanPelanggan.setState(NORMAL);
+                        ubahSurveyKepuasanPelanggan.toFront();
+                    }
+                    break;
+                case "List Data Penjualan":
+//                    if (ubahDataPenjualan == null) {
+//                        ubahDataPenjualan = new DataPenjualan(jcomCari1.GetIDTable());
+//                    } else {
+//                        ubahDataPenjualan.setState(NORMAL);
+//                        ubahDataPenjualan.toFront();
+//                    }
+                    break;
                 default:
                     throw new AssertionError();
             }
@@ -355,6 +422,18 @@ public class List extends javax.swing.JFrame {
                 jcomCari1.setOrder(" ORDER BY `NamaBarang` ");
                 break;
             case "List Pemeliharaan":
+                jcomCari1.setQuery("SELECT `IdPemeliharaan` as 'ID', DATE_FORMAT(`Tanggal`,'%d-%m-%Y') as 'Tanggal', `NamaBarang` as 'Nama Barang', `Deskripsi`, a.`Keterangan` FROM `snitbpemeliharaan`a JOIN `snitbmbarangteknik`b ON a.`IdBarangTeknik`=b.`IdBarangTeknik` WHERE 1");
+                jcomCari1.setOrder(" ORDER BY `Tanggal` DESC ");
+                break;
+            case "List Pengaduan Pelanggan":
+                jcomCari1.setQuery("SELECT `IdPemeliharaan` as 'ID', DATE_FORMAT(`Tanggal`,'%d-%m-%Y') as 'Tanggal', `NamaBarang` as 'Nama Barang', `Deskripsi`, a.`Keterangan` FROM `snitbpemeliharaan`a JOIN `snitbmbarangteknik`b ON a.`IdBarangTeknik`=b.`IdBarangTeknik` WHERE 1");
+                jcomCari1.setOrder(" ORDER BY `Tanggal` DESC ");
+                break;
+            case "List Survey Kepuasan Pelanggan":
+                jcomCari1.setQuery("SELECT `IdSurveyKepuasanPelanggan` as 'ID', `NamaPerusahaan` as 'Nama Perusahaan', `Alamat`, DATE_FORMAT(`Tanggal`,'%d-%m-%Y') as 'Tanggal', `NamaPelanggan` as 'Nama Pelanggan', `Nilai`, `CatatanDariPelanggan` as 'Catatan Dari Pelanggan' FROM `snitbsurveykepuasanpelanggan` WHERE 1");
+                jcomCari1.setOrder(" ORDER BY `Tanggal` DESC ");
+                break;
+            case "List Data Penjualan":
                 jcomCari1.setQuery("SELECT `IdPemeliharaan` as 'ID', DATE_FORMAT(`Tanggal`,'%d-%m-%Y') as 'Tanggal', `NamaBarang` as 'Nama Barang', `Deskripsi`, a.`Keterangan` FROM `snitbpemeliharaan`a JOIN `snitbmbarangteknik`b ON a.`IdBarangTeknik`=b.`IdBarangTeknik` WHERE 1");
                 jcomCari1.setOrder(" ORDER BY `Tanggal` DESC ");
                 break;

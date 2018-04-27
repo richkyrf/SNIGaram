@@ -54,6 +54,10 @@ public class MenuUtama extends javax.swing.JFrame {
         JMProsesTeknik = new javax.swing.JMenu();
         JMIBarangTeknik = new javax.swing.JMenuItem();
         JMIPemeliharaan = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
         JMList = new javax.swing.JMenu();
         JMListLab = new javax.swing.JMenu();
         JMIListPengujianProdukJadi = new javax.swing.JMenuItem();
@@ -61,6 +65,10 @@ public class MenuUtama extends javax.swing.JFrame {
         JMListTeknik = new javax.swing.JMenu();
         JMIListBarangTeknik = new javax.swing.JMenuItem();
         JMIListPemeliharaan = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
         JMLaporan = new javax.swing.JMenu();
         JMLaporanProduksi = new javax.swing.JMenu();
         JMILaporanPersediaanBarang = new javax.swing.JMenuItem();
@@ -72,8 +80,12 @@ public class MenuUtama extends javax.swing.JFrame {
         JMILaporanPengujianProdukJadi = new javax.swing.JMenuItem();
         JMILaporanPengujianBahanBaku = new javax.swing.JMenuItem();
         JMLaporanTeknik = new javax.swing.JMenu();
-        JMILaporanDaftarBarang = new javax.swing.JMenuItem();
+        JMILaporanDaftarPeralatan = new javax.swing.JMenuItem();
         JMILaporanPemeliharaan = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        jMenuItem7 = new javax.swing.JMenuItem();
+        jMenuItem8 = new javax.swing.JMenuItem();
+        jMenuItem9 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -164,6 +176,19 @@ public class MenuUtama extends javax.swing.JFrame {
 
         JMProses.add(JMProsesTeknik);
 
+        jMenu1.setText("Proses Pemasaran");
+
+        jMenuItem1.setText("Pengaduan Pelanggan");
+        jMenu1.add(jMenuItem1);
+
+        jMenuItem2.setText("Survey Kepuasan Pelanggan");
+        jMenu1.add(jMenuItem2);
+
+        jMenuItem3.setText("Data Penjualan");
+        jMenu1.add(jMenuItem3);
+
+        JMProses.add(jMenu1);
+
         JMenuBar.add(JMProses);
 
         JMList.setText("List");
@@ -207,6 +232,19 @@ public class MenuUtama extends javax.swing.JFrame {
         JMListTeknik.add(JMIListPemeliharaan);
 
         JMList.add(JMListTeknik);
+
+        jMenu2.setText("List Pemasaran");
+
+        jMenuItem4.setText("List Pengaduan Pelanggan");
+        jMenu2.add(jMenuItem4);
+
+        jMenuItem5.setText("List Survey Kepuasan Pelanggan");
+        jMenu2.add(jMenuItem5);
+
+        jMenuItem6.setText("List Data Penjualan");
+        jMenu2.add(jMenuItem6);
+
+        JMList.add(jMenu2);
 
         JMenuBar.add(JMList);
 
@@ -278,13 +316,13 @@ public class MenuUtama extends javax.swing.JFrame {
 
         JMLaporanTeknik.setText("Laporan Teknik");
 
-        JMILaporanDaftarBarang.setText("Laporan Daftar Barang");
-        JMILaporanDaftarBarang.addActionListener(new java.awt.event.ActionListener() {
+        JMILaporanDaftarPeralatan.setText("Laporan Daftar Peralatan");
+        JMILaporanDaftarPeralatan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JMILaporanDaftarBarangActionPerformed(evt);
+                JMILaporanDaftarPeralatanActionPerformed(evt);
             }
         });
-        JMLaporanTeknik.add(JMILaporanDaftarBarang);
+        JMLaporanTeknik.add(JMILaporanDaftarPeralatan);
 
         JMILaporanPemeliharaan.setText("Laporan Pemeliharaan");
         JMILaporanPemeliharaan.addActionListener(new java.awt.event.ActionListener() {
@@ -295,6 +333,19 @@ public class MenuUtama extends javax.swing.JFrame {
         JMLaporanTeknik.add(JMILaporanPemeliharaan);
 
         JMLaporan.add(JMLaporanTeknik);
+
+        jMenu3.setText("Laporan Pemasaran");
+
+        jMenuItem7.setText("Laporan Pengaduan Pelanggan");
+        jMenu3.add(jMenuItem7);
+
+        jMenuItem8.setText("Laporan Survey Kepuasan Pelanggan");
+        jMenu3.add(jMenuItem8);
+
+        jMenuItem9.setText("Laporan Data Penjualan");
+        jMenu3.add(jMenuItem9);
+
+        JMLaporan.add(jMenu3);
 
         JMenuBar.add(JMLaporan);
 
@@ -435,14 +486,14 @@ public class MenuUtama extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_JMIListPemeliharaanActionPerformed
 
-    private void JMILaporanDaftarBarangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMILaporanDaftarBarangActionPerformed
-        if (laporanDaftarBarang == null) {
-            laporanDaftarBarang = new LaporanTeknik(JMILaporanDaftarBarang.getText());
+    private void JMILaporanDaftarPeralatanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMILaporanDaftarPeralatanActionPerformed
+        if (laporanDaftarPeralatan == null) {
+            laporanDaftarPeralatan = new LaporanTeknik(JMILaporanDaftarPeralatan.getText());
         } else {
-            laporanDaftarBarang.setState(NORMAL);
-            laporanDaftarBarang.toFront();
+            laporanDaftarPeralatan.setState(NORMAL);
+            laporanDaftarPeralatan.toFront();
         }
-    }//GEN-LAST:event_JMILaporanDaftarBarangActionPerformed
+    }//GEN-LAST:event_JMILaporanDaftarPeralatanActionPerformed
 
     private void JMILaporanPemeliharaanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMILaporanPemeliharaanActionPerformed
         if (laporanPemeliharaan == null) {
@@ -538,7 +589,7 @@ public class MenuUtama extends javax.swing.JFrame {
     private javax.swing.JMenuItem JMIBarangTeknik;
     private javax.swing.JMenuItem JMIExit;
     private javax.swing.JMenuItem JMIGantiPassword;
-    private javax.swing.JMenuItem JMILaporanDaftarBarang;
+    private javax.swing.JMenuItem JMILaporanDaftarPeralatan;
     private javax.swing.JMenuItem JMILaporanDataProduksi;
     private javax.swing.JMenuItem JMILaporanIdentifikasiProdukJadi;
     private javax.swing.JMenuItem JMILaporanOrderPesanan;
@@ -568,5 +619,17 @@ public class MenuUtama extends javax.swing.JFrame {
     private javax.swing.JMenu JMProsesTeknik;
     private javax.swing.JMenuBar JMenuBar;
     private javax.swing.JPopupMenu.Separator SFile;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItem9;
     // End of variables declaration//GEN-END:variables
 }
