@@ -169,7 +169,7 @@ public class LaporanTeknik extends javax.swing.JFrame {
     }//GEN-LAST:event_jbuttonF1ActionPerformed
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        if (getTitle().equals("Laporan Daftar Barang")) {
+        if (getTitle().equals("Laporan Daftar Peralatan")) {
             GlobalVar.Var.laporanDaftarPeralatan = null;
         } else {
             GlobalVar.Var.laporanPemeliharaan = null;

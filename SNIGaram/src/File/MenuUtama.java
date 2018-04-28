@@ -82,10 +82,18 @@ public class MenuUtama extends javax.swing.JFrame {
         JMLaporanTeknik = new javax.swing.JMenu();
         JMILaporanDaftarPeralatan = new javax.swing.JMenuItem();
         JMILaporanPemeliharaan = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
-        jMenuItem7 = new javax.swing.JMenuItem();
-        jMenuItem8 = new javax.swing.JMenuItem();
-        jMenuItem9 = new javax.swing.JMenuItem();
+        JMLaporanPemasaran = new javax.swing.JMenu();
+        JMILaporanPengaduanPelanggan = new javax.swing.JMenuItem();
+        JMILaporanSurveyKepuasanPelanggan = new javax.swing.JMenuItem();
+        JMILaporanDataPenjualan = new javax.swing.JMenuItem();
+        JMLaporanPersonalia = new javax.swing.JMenu();
+        JMILaporanKebutuhanKaryawan = new javax.swing.JMenuItem();
+        JMILaporanEvaluasiMasaPercobaanKaryawan = new javax.swing.JMenuItem();
+        JMILaporanDaftarRiwayatHidup = new javax.swing.JMenuItem();
+        JMILaporanUsulPelatihan = new javax.swing.JMenuItem();
+        JMILaporanProgramPelatihan = new javax.swing.JMenuItem();
+        JMILaporanCalonPesertaPelatihan = new javax.swing.JMenuItem();
+        JMILaproanEvaluasiPelatihan = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -294,7 +302,7 @@ public class MenuUtama extends javax.swing.JFrame {
 
         JMLaporan.add(JMLaporanProduksi);
 
-        JMLaporanLab.setText("Laporan Lab");
+        JMLaporanLab.setText("Laporan Laboratorium");
 
         JMILaporanPengujianProdukJadi.setText("Laporan Pengujian Produk Jadi");
         JMILaporanPengujianProdukJadi.addActionListener(new java.awt.event.ActionListener() {
@@ -334,18 +342,43 @@ public class MenuUtama extends javax.swing.JFrame {
 
         JMLaporan.add(JMLaporanTeknik);
 
-        jMenu3.setText("Laporan Pemasaran");
+        JMLaporanPemasaran.setText("Laporan Pemasaran");
 
-        jMenuItem7.setText("Laporan Pengaduan Pelanggan");
-        jMenu3.add(jMenuItem7);
+        JMILaporanPengaduanPelanggan.setText("Laporan Pengaduan Pelanggan");
+        JMLaporanPemasaran.add(JMILaporanPengaduanPelanggan);
 
-        jMenuItem8.setText("Laporan Survey Kepuasan Pelanggan");
-        jMenu3.add(jMenuItem8);
+        JMILaporanSurveyKepuasanPelanggan.setText("Laporan Survey Kepuasan Pelanggan");
+        JMLaporanPemasaran.add(JMILaporanSurveyKepuasanPelanggan);
 
-        jMenuItem9.setText("Laporan Data Penjualan");
-        jMenu3.add(jMenuItem9);
+        JMILaporanDataPenjualan.setText("Laporan Data Penjualan");
+        JMLaporanPemasaran.add(JMILaporanDataPenjualan);
 
-        JMLaporan.add(jMenu3);
+        JMLaporan.add(JMLaporanPemasaran);
+
+        JMLaporanPersonalia.setText("Laporan Personalia");
+
+        JMILaporanKebutuhanKaryawan.setText("Laporan Kebutuhan Karyawan");
+        JMLaporanPersonalia.add(JMILaporanKebutuhanKaryawan);
+
+        JMILaporanEvaluasiMasaPercobaanKaryawan.setText("Laporan Evaluasi Masa Percobaan Karyawan");
+        JMLaporanPersonalia.add(JMILaporanEvaluasiMasaPercobaanKaryawan);
+
+        JMILaporanDaftarRiwayatHidup.setText("Laporan Daftar Riwayat Hidup");
+        JMLaporanPersonalia.add(JMILaporanDaftarRiwayatHidup);
+
+        JMILaporanUsulPelatihan.setText("Laporan Usul Pelatihan");
+        JMLaporanPersonalia.add(JMILaporanUsulPelatihan);
+
+        JMILaporanProgramPelatihan.setText("Laporan Program Pelatihan");
+        JMLaporanPersonalia.add(JMILaporanProgramPelatihan);
+
+        JMILaporanCalonPesertaPelatihan.setText("Laporan Calon Peserta Pelatihan");
+        JMLaporanPersonalia.add(JMILaporanCalonPesertaPelatihan);
+
+        JMILaproanEvaluasiPelatihan.setText("Laporan Evaluasi Pelatihan");
+        JMLaporanPersonalia.add(JMILaproanEvaluasiPelatihan);
+
+        JMLaporan.add(JMLaporanPersonalia);
 
         JMenuBar.add(JMLaporan);
 
@@ -589,15 +622,25 @@ public class MenuUtama extends javax.swing.JFrame {
     private javax.swing.JMenuItem JMIBarangTeknik;
     private javax.swing.JMenuItem JMIExit;
     private javax.swing.JMenuItem JMIGantiPassword;
+    private javax.swing.JMenuItem JMILaporanCalonPesertaPelatihan;
     private javax.swing.JMenuItem JMILaporanDaftarPeralatan;
+    private javax.swing.JMenuItem JMILaporanDaftarRiwayatHidup;
+    private javax.swing.JMenuItem JMILaporanDataPenjualan;
     private javax.swing.JMenuItem JMILaporanDataProduksi;
+    private javax.swing.JMenuItem JMILaporanEvaluasiMasaPercobaanKaryawan;
     private javax.swing.JMenuItem JMILaporanIdentifikasiProdukJadi;
+    private javax.swing.JMenuItem JMILaporanKebutuhanKaryawan;
     private javax.swing.JMenuItem JMILaporanOrderPesanan;
     private javax.swing.JMenuItem JMILaporanPemeliharaan;
+    private javax.swing.JMenuItem JMILaporanPengaduanPelanggan;
     private javax.swing.JMenuItem JMILaporanPengujianBahanBaku;
     private javax.swing.JMenuItem JMILaporanPengujianProdukJadi;
     private javax.swing.JMenuItem JMILaporanPenyerahanProdukJadi;
     private javax.swing.JMenuItem JMILaporanPersediaanBarang;
+    private javax.swing.JMenuItem JMILaporanProgramPelatihan;
+    private javax.swing.JMenuItem JMILaporanSurveyKepuasanPelanggan;
+    private javax.swing.JMenuItem JMILaporanUsulPelatihan;
+    private javax.swing.JMenuItem JMILaproanEvaluasiPelatihan;
     private javax.swing.JMenuItem JMIListBarangTeknik;
     private javax.swing.JMenuItem JMIListPemeliharaan;
     private javax.swing.JMenuItem JMIListPengujianBahanBaku;
@@ -609,6 +652,8 @@ public class MenuUtama extends javax.swing.JFrame {
     private javax.swing.JMenuItem JMITambahUser;
     private javax.swing.JMenu JMLaporan;
     private javax.swing.JMenu JMLaporanLab;
+    private javax.swing.JMenu JMLaporanPemasaran;
+    private javax.swing.JMenu JMLaporanPersonalia;
     private javax.swing.JMenu JMLaporanProduksi;
     private javax.swing.JMenu JMLaporanTeknik;
     private javax.swing.JMenu JMList;
@@ -621,15 +666,11 @@ public class MenuUtama extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator SFile;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
-    private javax.swing.JMenuItem jMenuItem9;
     // End of variables declaration//GEN-END:variables
 }
