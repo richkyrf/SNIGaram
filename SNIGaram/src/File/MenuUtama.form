@@ -106,24 +106,36 @@
                 </MenuItem>
               </SubComponents>
             </Menu>
-            <Menu class="javax.swing.JMenu" name="jMenu1">
+            <Menu class="javax.swing.JMenu" name="JMProsesPemasaran">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Proses Pemasaran"/>
               </Properties>
               <SubComponents>
-                <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
+                <MenuItem class="javax.swing.JMenuItem" name="JMIPengaduanPelanggan">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Pengaduan Pelanggan"/>
                   </Properties>
                 </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="jMenuItem2">
+                <MenuItem class="javax.swing.JMenuItem" name="JMISurveyKepuasanPelanggan">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Survey Kepuasan Pelanggan"/>
                   </Properties>
                 </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="jMenuItem3">
+                <MenuItem class="javax.swing.JMenuItem" name="JMIDataPenjualan">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Data Penjualan"/>
+                  </Properties>
+                </MenuItem>
+              </SubComponents>
+            </Menu>
+            <Menu class="javax.swing.JMenu" name="JMProsesPersonalia">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Proses Personalia"/>
+              </Properties>
+              <SubComponents>
+                <MenuItem class="javax.swing.JMenuItem" name="JMIKebutuhanKaryawan">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Kebutuhan Karyawan"/>
                   </Properties>
                 </MenuItem>
               </SubComponents>
