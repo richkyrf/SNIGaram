@@ -13,7 +13,7 @@
 		<defaultValueExpression><![CDATA["2018-12-31"]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[SELECT `Tanggal`, `Bagian`, `Kualifikasi`, `Jumlah` FROM `snitbkebutuhankaryawan` WHERE `Tanggal` BETWEEN $P{Tanggal_Awal} AND $P{Tanggal_Akhir} GROUP BY `Tanggal`, `Bagian`]]>
+		<![CDATA[SELECT `Tanggal`, `Bagian`, `Kualifikasi`, `Jumlah` FROM `snitbkebutuhankaryawan` WHERE `Tanggal` BETWEEN $P{Tanggal_Awal} AND $P{Tanggal_Akhir} ORDER BY `Tanggal`, `Bagian`]]>
 	</queryString>
 	<field name="Tanggal" class="java.sql.Date">
 		<fieldDescription><![CDATA[]]></fieldDescription>
@@ -140,8 +140,8 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="110" y="0" width="150" height="20" uuid="884309b3-1fb2-4e2e-8260-1d70f32d09ef"/>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToTallestObject" x="110" y="0" width="150" height="20" uuid="884309b3-1fb2-4e2e-8260-1d70f32d09ef"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -154,8 +154,8 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Bagian}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="260" y="0" width="195" height="20" uuid="d44bfa03-b5f4-4082-853c-26f0bb78b05f"/>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToTallestObject" x="260" y="0" width="195" height="20" uuid="d44bfa03-b5f4-4082-853c-26f0bb78b05f"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -168,8 +168,8 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Kualifikasi}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="455" y="0" width="60" height="20" uuid="e059a90b-791a-42d7-91a8-a051441bab29"/>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToTallestObject" x="455" y="0" width="60" height="20" uuid="e059a90b-791a-42d7-91a8-a051441bab29"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -183,7 +183,7 @@
 				<textFieldExpression><![CDATA[$F{Jumlah}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="514" y="0" width="41" height="20" uuid="c6c1606c-7432-44f7-b7b4-4b8cad376f0d"/>
+				<reportElement stretchType="RelativeToTallestObject" x="514" y="0" width="41" height="20" uuid="c6c1606c-7432-44f7-b7b4-4b8cad376f0d"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -196,8 +196,8 @@
 				</textElement>
 				<text><![CDATA[Orang]]></text>
 			</staticText>
-			<textField pattern="dd/MM/yyyy">
-				<reportElement x="40" y="0" width="70" height="20" uuid="0891fc04-81f1-43af-8481-00671d97e022"/>
+			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy">
+				<reportElement stretchType="RelativeToTallestObject" x="40" y="0" width="70" height="20" uuid="0891fc04-81f1-43af-8481-00671d97e022"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -266,7 +266,7 @@
 				</textElement>
 				<text><![CDATA[Dibuat Oleh]]></text>
 			</staticText>
-			<textField>
+			<textField pattern="dd/MM/yyyy">
 				<reportElement x="455" y="14" width="100" height="20" uuid="d53298c2-c6e4-4079-96a5-972ef6aeb199"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Gadugi" size="12"/>

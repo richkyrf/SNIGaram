@@ -7,12 +7,15 @@ package File;
 
 import static GlobalVar.Var.*;
 import LaporanLab.LaporanLab;
+import LaporanPersonalia.LaporanPersonalia;
 import LaporanProduksi.LaporanProduksi;
 import LaporanTeknik.LaporanTeknik;
 import List.*;
 import ProsesTeknik.BarangTeknik;
 import ProsesLab.*;
+import ProsesPemasran.PengaduanPelanggan;
 import ProsesPemasran.SurveyKepuasanPelanggan;
+import ProsesPersonalia.KebutuhanKaryawan;
 import ProsesTeknik.Pemeliharaan;
 import static java.awt.Frame.NORMAL;
 
@@ -72,6 +75,8 @@ public class MenuUtama extends javax.swing.JFrame {
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
+        JMListPersonalia = new javax.swing.JMenu();
+        JMIListKebutuhanKaryawan = new javax.swing.JMenuItem();
         JMLaporan = new javax.swing.JMenu();
         JMLaporanProduksi = new javax.swing.JMenu();
         JMILaporanPersediaanBarang = new javax.swing.JMenuItem();
@@ -190,6 +195,11 @@ public class MenuUtama extends javax.swing.JFrame {
         JMProsesPemasaran.setText("Proses Pemasaran");
 
         JMIPengaduanPelanggan.setText("Pengaduan Pelanggan");
+        JMIPengaduanPelanggan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JMIPengaduanPelangganActionPerformed(evt);
+            }
+        });
         JMProsesPemasaran.add(JMIPengaduanPelanggan);
 
         JMISurveyKepuasanPelanggan.setText("Survey Kepuasan Pelanggan");
@@ -201,6 +211,11 @@ public class MenuUtama extends javax.swing.JFrame {
         JMProsesPemasaran.add(JMISurveyKepuasanPelanggan);
 
         JMIDataPenjualan.setText("Data Penjualan");
+        JMIDataPenjualan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JMIDataPenjualanActionPerformed(evt);
+            }
+        });
         JMProsesPemasaran.add(JMIDataPenjualan);
 
         JMProses.add(JMProsesPemasaran);
@@ -208,6 +223,11 @@ public class MenuUtama extends javax.swing.JFrame {
         JMProsesPersonalia.setText("Proses Personalia");
 
         JMIKebutuhanKaryawan.setText("Kebutuhan Karyawan");
+        JMIKebutuhanKaryawan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JMIKebutuhanKaryawanActionPerformed(evt);
+            }
+        });
         JMProsesPersonalia.add(JMIKebutuhanKaryawan);
 
         JMProses.add(JMProsesPersonalia);
@@ -259,6 +279,11 @@ public class MenuUtama extends javax.swing.JFrame {
         jMenu2.setText("List Pemasaran");
 
         jMenuItem4.setText("Pengaduan Pelanggan");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem4);
 
         jMenuItem5.setText("Survey Kepuasan Pelanggan");
@@ -273,6 +298,18 @@ public class MenuUtama extends javax.swing.JFrame {
         jMenu2.add(jMenuItem6);
 
         JMList.add(jMenu2);
+
+        JMListPersonalia.setText("List Personalia");
+
+        JMIListKebutuhanKaryawan.setText("Kebutuhan Karyawan");
+        JMIListKebutuhanKaryawan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JMIListKebutuhanKaryawanActionPerformed(evt);
+            }
+        });
+        JMListPersonalia.add(JMIListKebutuhanKaryawan);
+
+        JMList.add(JMListPersonalia);
 
         JMenuBar.add(JMList);
 
@@ -378,6 +415,11 @@ public class MenuUtama extends javax.swing.JFrame {
         JMLaporanPersonalia.setText("Laporan Personalia");
 
         JMILaporanKebutuhanKaryawan.setText("Laporan Kebutuhan Karyawan");
+        JMILaporanKebutuhanKaryawan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JMILaporanKebutuhanKaryawanActionPerformed(evt);
+            }
+        });
         JMLaporanPersonalia.add(JMILaporanKebutuhanKaryawan);
 
         JMILaporanEvaluasiMasaPercobaanKaryawan.setText("Laporan Evaluasi Masa Percobaan Karyawan");
@@ -620,6 +662,59 @@ public class MenuUtama extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
+    private void JMIPengaduanPelangganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMIPengaduanPelangganActionPerformed
+        if (tambahPengaduanPelanggan == null) {
+            tambahPengaduanPelanggan = new PengaduanPelanggan();
+        } else {
+            tambahPengaduanPelanggan.setState(NORMAL);
+            tambahPengaduanPelanggan.toFront();
+        }
+    }//GEN-LAST:event_JMIPengaduanPelangganActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        if (listPengaduanPelanggan == null) {
+            listPengaduanPelanggan = new List(jMenuItem4.getText());
+        } else {
+            listPengaduanPelanggan.setState(NORMAL);
+            listPengaduanPelanggan.toFront();
+        }
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+	
+    private void JMILaporanKebutuhanKaryawanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMILaporanKebutuhanKaryawanActionPerformed
+        if (laporanKebutuhanKaryawan == null) {
+            laporanKebutuhanKaryawan = new LaporanPersonalia(JMILaporanKebutuhanKaryawan.getText());
+        } else {
+            laporanKebutuhanKaryawan.setState(NORMAL);
+            laporanKebutuhanKaryawan.toFront();
+        }
+    }//GEN-LAST:event_JMILaporanKebutuhanKaryawanActionPerformed
+
+    private void JMIPengaduanPelangganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMIPengaduanPelangganActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JMIPengaduanPelangganActionPerformed
+
+    private void JMIDataPenjualanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMIDataPenjualanActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JMIDataPenjualanActionPerformed
+
+    private void JMIKebutuhanKaryawanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMIKebutuhanKaryawanActionPerformed
+        if (tambahKebutuhanKaryawan == null) {
+            tambahKebutuhanKaryawan = new KebutuhanKaryawan();
+        } else {
+            tambahKebutuhanKaryawan.setState(NORMAL);
+            tambahKebutuhanKaryawan.toFront();
+        }
+    }//GEN-LAST:event_JMIKebutuhanKaryawanActionPerformed
+
+    private void JMIListKebutuhanKaryawanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMIListKebutuhanKaryawanActionPerformed
+        if (listKebutuhanKaryawan == null) {
+            listKebutuhanKaryawan = new List(JMIListKebutuhanKaryawan.getText());
+        } else {
+            listKebutuhanKaryawan.setState(NORMAL);
+            listKebutuhanKaryawan.toFront();
+        }
+    }//GEN-LAST:event_JMIListKebutuhanKaryawanActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -682,6 +777,7 @@ public class MenuUtama extends javax.swing.JFrame {
     private javax.swing.JMenuItem JMILaporanUsulPelatihan;
     private javax.swing.JMenuItem JMILaproanEvaluasiPelatihan;
     private javax.swing.JMenuItem JMIListBarangTeknik;
+    private javax.swing.JMenuItem JMIListKebutuhanKaryawan;
     private javax.swing.JMenuItem JMIListPemeliharaan;
     private javax.swing.JMenuItem JMIListPengujianBahanBaku;
     private javax.swing.JMenuItem JMIListPengujianProdukJadi;
@@ -700,6 +796,7 @@ public class MenuUtama extends javax.swing.JFrame {
     private javax.swing.JMenu JMLaporanTeknik;
     private javax.swing.JMenu JMList;
     private javax.swing.JMenu JMListLab;
+    private javax.swing.JMenu JMListPersonalia;
     private javax.swing.JMenu JMListTeknik;
     private javax.swing.JMenu JMProses;
     private javax.swing.JMenu JMProsesLab;

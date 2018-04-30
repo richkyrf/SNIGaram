@@ -8,11 +8,14 @@ package GlobalVar;
 import ProsesTeknik.BarangTeknik;
 import LaporanLab.*;
 import File.*;
+import LaporanPersonalia.LaporanPersonalia;
 import LaporanProduksi.LaporanProduksi;
 import LaporanTeknik.LaporanTeknik;
 import List.*;
 import ProsesLab.*;
+import ProsesPemasran.*;
 import ProsesPemasran.SurveyKepuasanPelanggan;
+import ProsesPersonalia.KebutuhanKaryawan;
 import ProsesTeknik.*;
 
 /**
@@ -27,15 +30,22 @@ public class Var {
     public static GantiPassword gantiPassword;
 
     public static List listPengujianProdukJadi, listPengujianBahanBaku, listBarangTeknik, listPemeliharaan, listPengaduanPelanggan, listSurveyKepuasanPelanggan, listDataPenjualan;
+
+    public static List listPengujianProdukJadi, listPengujianBahanBaku, listBarangTeknik, listPemeliharaan, listPengaduanPelanggan, listSurveyKepuasanPelanggan, listDataPenjualan, listKebutuhanKaryawan;
     
     public static BarangTeknik tambahBarangTeknik, ubahBarangTeknik;
     public static Pemeliharaan tambahPemeliharaan, ubahPemeliharaan;
-    
+
     public static PengujianProdukJadi tambahPengujianProdukJadi, ubahPengujianProdukJadi;
     public static PengujianBahanBaku tambahPengujianBahanBaku, ubahPengujianBahanBaku;
     public static SurveyKepuasanPelanggan tambahSurveyKepuasanPelanggan, ubahSurveyKepuasanPelanggan;
+    public static PengaduanPelanggan tambahPengaduanPelanggan, ubahPengaduanPelanggan;
+
+    
+    public static KebutuhanKaryawan tambahKebutuhanKaryawan, ubahKebutuhanKaryawan;
     
     public static LaporanLab laporanPengujianProdukJadi, laporanPengujianBahanBaku;
     public static LaporanTeknik laporanDaftarPeralatan, laporanPemeliharaan;
     public static LaporanProduksi laporanPersediaanBarang, laporanIndentifikasiProdukJadi, laporanPenyerahanProdukJadi, laporanOrderPesanan, laporanDataProduksi;
+    public static LaporanPersonalia laporanKebutuhanKaryawan;
 }
