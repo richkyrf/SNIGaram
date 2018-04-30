@@ -192,13 +192,13 @@ public class MenuUtama extends javax.swing.JFrame {
         JMIPengaduanPelanggan.setText("Pengaduan Pelanggan");
         JMProsesPemasaran.add(JMIPengaduanPelanggan);
 
-        jMenuItem2.setText("Survey Kepuasan Pelanggan");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        JMISurveyKepuasanPelanggan.setText("Survey Kepuasan Pelanggan");
+        JMISurveyKepuasanPelanggan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                JMISurveyKepuasanPelangganActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem2);
+        JMProses.add(JMISurveyKepuasanPelanggan);
         JMISurveyKepuasanPelanggan.setText("Survey Kepuasan Pelanggan");
         JMProsesPemasaran.add(JMISurveyKepuasanPelanggan);
 
@@ -604,7 +604,7 @@ public class MenuUtama extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_JMILaporanPersediaanBarangActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void JMISurveyKepuasanPelangganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         if (tambahSurveyKepuasanPelanggan == null) {
             tambahSurveyKepuasanPelanggan = new SurveyKepuasanPelanggan();
         } else {
