@@ -49,7 +49,7 @@ public class KebutuhanKaryawan extends javax.swing.JFrame {
 
     void loadEditData() {
         DRunSelctOne dRunSelctOne = new DRunSelctOne();
-        dRunSelctOne.setQuery("SELECT `IdKebutuhanKaryawan` as 'ID', DATE_FORMAT(`WaktuKalibrasi`,'%d-%m-%Y') as 'Tanggal', `Bagian`, `Kualifikasi`, `Jumlah`, `Keterangan` FROM `snitbkebutuhankaryawan` WHERE `IdKebutuhanKaryawan` = " + IdEdit);
+        dRunSelctOne.setQuery("SELECT `IdKebutuhanKaryawan` as 'ID', DATE_FORMAT(`Tanggal`,'%d-%m-%Y') as 'Tanggal', `Bagian`, `Kualifikasi`, `Jumlah`, `Keterangan` FROM `snitbkebutuhankaryawan` WHERE `IdKebutuhanKaryawan` = " + IdEdit);
         ArrayList<String> list = dRunSelctOne.excute();
         JDTanggal.setDate(FDateF.strtodate(list.get(1), "dd-MM-yyyy"));
         JTBagian.setText(list.get(2));
@@ -61,15 +61,19 @@ public class KebutuhanKaryawan extends javax.swing.JFrame {
     Boolean checkInput() {
         if (JDTanggal.getDate() == null) {
             JOptionPane.showMessageDialog(null, "Tanggal Tidak Boleh Kosong");
+            JDTanggal.requestFocus();
             return false;
         } else if (JTBagian.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Bagian Tidak Boleh Kosong");
+            JTBagian.requestFocus();
             return false;
         } else if (JTAKualifikasi.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Kualifikasi Tidak Boleh Kosong");
+            JTAKualifikasi.requestFocus();
             return false;
         } else if (JTJumlah.getInt() == 0) {
             JOptionPane.showMessageDialog(null, "Jumlah Tidak Boleh Kosong");
+            JTJumlah.requestFocus();
             return false;
         } else {
             return true;
@@ -249,7 +253,7 @@ public class KebutuhanKaryawan extends javax.swing.JFrame {
                         .addComponent(JBTambahTutup, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(JBTambah, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                        .addGap(10, 10, 10))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -331,7 +335,13 @@ public class KebutuhanKaryawan extends javax.swing.JFrame {
     }//GEN-LAST:event_JTJumlahKeyPressed
 
     private void JTAKeteranganKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JTAKeteranganKeyPressed
-
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            if (IdEdit == null) {
+                tambahData(false);
+            } else {
+                ubahData();
+            }
+        }
     }//GEN-LAST:event_JTAKeteranganKeyPressed
 
     private void JTAKualifikasiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JTAKualifikasiKeyPressed
@@ -404,18 +414,19 @@ public class KebutuhanKaryawan extends javax.swing.JFrame {
         if (checkInput()) {
             Insert insert = new Insert();
             Boolean berhasil = false;
-            //berhasil = insert.simpan("INSERT INTO `snitbmbarangteknik`(`NamaBarang`, `Merk`, `Jumlah`, `WaktuKalibrasi`, `Keterangan`, `Status`) VALUES ('" + JTNamaBarang.getText() + "','" + JTMerk.getText() + "','" + JTJumlah.getInt() + "','" + FDateF.datetostr(JDTanggal.getDate(), "yyyy-MM-dd") + "','" + JTAKeterangan.getText() + "'," + JCBStatus.isSelected() + ")", "Barang Teknik", this);
+            berhasil = insert.simpan("INSERT INTO `snitbkebutuhankaryawan`(`Tanggal`, `Bagian`, `Kualifikasi`, `Jumlah`, `Keterangan`) VALUES('" + FDateF.datetostr(JDTanggal.getDate(), "yyyy-MM-dd") + "','" + JTBagian.getText() + "','" + JTAKualifikasi.getText() + "','" + JTJumlah.getInt() + "','" + JTAKeterangan.getText() + "')", "Kebutuhan Karyawan", this);
             if (berhasil) {
-                if (listBarangTeknik != null) {
-                    listBarangTeknik.load();
+                if (listKebutuhanKaryawan != null) {
+                    listKebutuhanKaryawan.load();
                 }
                 if (tutup) {
-                    tambahBarangTeknik.dispose();
-                    tambahBarangTeknik = null;
+                    tambahKebutuhanKaryawan.dispose();
+                    tambahKebutuhanKaryawan = null;
                 } else {
                     JTBagian.setText("");
+                    JTAKualifikasi.setText("");
                     JTJumlah.setText("0");
-                    //JTAKeterangan.setText("");
+                    JTAKeterangan.setText("");
                 }
             }
         }
@@ -425,9 +436,9 @@ public class KebutuhanKaryawan extends javax.swing.JFrame {
         if (checkInput()) {
             Update update = new Update();
             Boolean berhasil = false;
-            //berhasil = update.Ubah("UPDATE `snitbmbarangteknik` SET `NamaBarang`='" + JTNamaBarang.getText() + "',`Merk`='" + JTMerk.getText() + "',`Jumlah`='" + JTJumlah.getInt() + "',`WaktuKalibrasi`='" + FDateF.datetostr(JDTanggal.getDate(), "yyyy-MM-dd") + "',`Keterangan`='" + JTAKeterangan.getText() + "',`Status`=" + JCBStatus.isSelected() + " WHERE `IdBarangTeknik` = " + IdEdit, "Barang Teknik", this);
-            if (listBarangTeknik != null) {
-                listBarangTeknik.load();
+            berhasil = update.Ubah("UPDATE `snitbkebutuhankaryawan` SET `Tanggal`='" + FDateF.datetostr(JDTanggal.getDate(), "yyyy-MM-dd") + "',`Bagian`='" + JTBagian.getText() + "',`Kualifikasi`='" + JTAKualifikasi.getText() + "',`Jumlah`='" + JTJumlah.getInt() + "',`Keterangan`='" + JTAKeterangan.getText() + "' WHERE `IdKebutuhanKaryawan` = " + IdEdit, "Kebutuhan Karyawan", this);
+            if (listKebutuhanKaryawan != null) {
+                listKebutuhanKaryawan.load();
             }
             if (berhasil) {
                 dispose();
