@@ -662,14 +662,14 @@ public class MenuUtama extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
-    private void JMIPengaduanPelangganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMIPengaduanPelangganActionPerformed
+    private void JMIPengaduanPelangganActionPerformed(java.awt.event.ActionEvent evt) {                                                      
         if (tambahPengaduanPelanggan == null) {
             tambahPengaduanPelanggan = new PengaduanPelanggan();
         } else {
             tambahPengaduanPelanggan.setState(NORMAL);
             tambahPengaduanPelanggan.toFront();
         }
-    }//GEN-LAST:event_JMIPengaduanPelangganActionPerformed
+    }                                                     
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         if (listPengaduanPelanggan == null) {
@@ -688,10 +688,6 @@ public class MenuUtama extends javax.swing.JFrame {
             laporanKebutuhanKaryawan.toFront();
         }
     }//GEN-LAST:event_JMILaporanKebutuhanKaryawanActionPerformed
-
-    private void JMIPengaduanPelangganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMIPengaduanPelangganActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_JMIPengaduanPelangganActionPerformed
 
     private void JMIDataPenjualanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMIDataPenjualanActionPerformed
         // TODO add your handling code here:
