@@ -59,8 +59,8 @@ public class BarangTeknik extends javax.swing.JFrame {
         JTMerk.setText(list.get(2));
         JTJumlah.setText(list.get(3));
         JDTanggal.setDate(FDateF.strtodate(list.get(4), "dd-MM-yyyy"));
-        JTAKeterangan.setText(list.get(6));
-        JCBStatus.setSelected(list.get(7).equals("Aktif"));
+        JTAKeterangan.setText(list.get(5));
+        JCBStatus.setSelected(list.get(6).equals("Aktif"));
     }
 
     Boolean checkInput() {
