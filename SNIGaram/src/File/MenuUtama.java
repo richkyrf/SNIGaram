@@ -55,10 +55,12 @@ public class MenuUtama extends javax.swing.JFrame {
         JMProsesTeknik = new javax.swing.JMenu();
         JMIBarangTeknik = new javax.swing.JMenuItem();
         JMIPemeliharaan = new javax.swing.JMenuItem();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        JMProsesPemasaran = new javax.swing.JMenu();
+        JMIPengaduanPelanggan = new javax.swing.JMenuItem();
+        JMISurveyKepuasanPelanggan = new javax.swing.JMenuItem();
+        JMIDataPenjualan = new javax.swing.JMenuItem();
+        JMProsesPersonalia = new javax.swing.JMenu();
+        JMIKebutuhanKaryawan = new javax.swing.JMenuItem();
         JMList = new javax.swing.JMenu();
         JMListLab = new javax.swing.JMenu();
         JMIListPengujianProdukJadi = new javax.swing.JMenuItem();
@@ -185,10 +187,10 @@ public class MenuUtama extends javax.swing.JFrame {
 
         JMProses.add(JMProsesTeknik);
 
-        jMenu1.setText("Proses Pemasaran");
+        JMProsesPemasaran.setText("Proses Pemasaran");
 
-        jMenuItem1.setText("Pengaduan Pelanggan");
-        jMenu1.add(jMenuItem1);
+        JMIPengaduanPelanggan.setText("Pengaduan Pelanggan");
+        JMProsesPemasaran.add(JMIPengaduanPelanggan);
 
         jMenuItem2.setText("Survey Kepuasan Pelanggan");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
@@ -197,11 +199,20 @@ public class MenuUtama extends javax.swing.JFrame {
             }
         });
         jMenu1.add(jMenuItem2);
+        JMISurveyKepuasanPelanggan.setText("Survey Kepuasan Pelanggan");
+        JMProsesPemasaran.add(JMISurveyKepuasanPelanggan);
 
-        jMenuItem3.setText("Data Penjualan");
-        jMenu1.add(jMenuItem3);
+        JMIDataPenjualan.setText("Data Penjualan");
+        JMProsesPemasaran.add(JMIDataPenjualan);
 
-        JMProses.add(jMenu1);
+        JMProses.add(JMProsesPemasaran);
+
+        JMProsesPersonalia.setText("Proses Personalia");
+
+        JMIKebutuhanKaryawan.setText("Kebutuhan Karyawan");
+        JMProsesPersonalia.add(JMIKebutuhanKaryawan);
+
+        JMProses.add(JMProsesPersonalia);
 
         JMenuBar.add(JMProses);
 
@@ -649,8 +660,10 @@ public class MenuUtama extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu JMFile;
     private javax.swing.JMenuItem JMIBarangTeknik;
+    private javax.swing.JMenuItem JMIDataPenjualan;
     private javax.swing.JMenuItem JMIExit;
     private javax.swing.JMenuItem JMIGantiPassword;
+    private javax.swing.JMenuItem JMIKebutuhanKaryawan;
     private javax.swing.JMenuItem JMILaporanCalonPesertaPelatihan;
     private javax.swing.JMenuItem JMILaporanDaftarPeralatan;
     private javax.swing.JMenuItem JMILaporanDaftarRiwayatHidup;
@@ -675,9 +688,11 @@ public class MenuUtama extends javax.swing.JFrame {
     private javax.swing.JMenuItem JMIListPengujianBahanBaku;
     private javax.swing.JMenuItem JMIListPengujianProdukJadi;
     private javax.swing.JMenuItem JMIPemeliharaan;
+    private javax.swing.JMenuItem JMIPengaduanPelanggan;
     private javax.swing.JMenuItem JMIPengujianBahanBaku;
     private javax.swing.JMenuItem JMIPengujianProdukJadi;
     private javax.swing.JMenuItem JMIResetPasswordUser;
+    private javax.swing.JMenuItem JMISurveyKepuasanPelanggan;
     private javax.swing.JMenuItem JMITambahUser;
     private javax.swing.JMenu JMLaporan;
     private javax.swing.JMenu JMLaporanLab;
@@ -690,14 +705,12 @@ public class MenuUtama extends javax.swing.JFrame {
     private javax.swing.JMenu JMListTeknik;
     private javax.swing.JMenu JMProses;
     private javax.swing.JMenu JMProsesLab;
+    private javax.swing.JMenu JMProsesPemasaran;
+    private javax.swing.JMenu JMProsesPersonalia;
     private javax.swing.JMenu JMProsesTeknik;
     private javax.swing.JMenuBar JMenuBar;
     private javax.swing.JPopupMenu.Separator SFile;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
