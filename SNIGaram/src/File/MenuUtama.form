@@ -120,6 +120,9 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Survey Kepuasan Pelanggan"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem2ActionPerformed"/>
+                  </Events>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="jMenuItem3">
                   <Properties>
@@ -188,17 +191,20 @@
               <SubComponents>
                 <MenuItem class="javax.swing.JMenuItem" name="jMenuItem4">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="List Pengaduan Pelanggan"/>
+                    <Property name="text" type="java.lang.String" value="Pengaduan Pelanggan"/>
                   </Properties>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="jMenuItem5">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="List Survey Kepuasan Pelanggan"/>
+                    <Property name="text" type="java.lang.String" value="Survey Kepuasan Pelanggan"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem5ActionPerformed"/>
+                  </Events>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="jMenuItem6">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="List Data Penjualan"/>
+                    <Property name="text" type="java.lang.String" value="Data Penjualan"/>
                   </Properties>
                 </MenuItem>
               </SubComponents>

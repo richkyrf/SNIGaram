@@ -552,9 +552,9 @@ public class SurveyKepuasanPelanggan extends javax.swing.JFrame {
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         if (IdEdit == null) {
-            GlobalVar.Var.tambahPengujianBahanBaku = null;
+            GlobalVar.Var.tambahSurveyKepuasanPelanggan = null;
         } else {
-            GlobalVar.Var.ubahPengujianBahanBaku = null;
+            GlobalVar.Var.ubahSurveyKepuasanPelanggan = null;
         }
     }//GEN-LAST:event_formWindowClosed
 
@@ -589,7 +589,9 @@ public class SurveyKepuasanPelanggan extends javax.swing.JFrame {
     }//GEN-LAST:event_JTNamaPerusahaanKeyReleased
 
     private void JTAlamatKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JTAlamatKeyPressed
-        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            JTNamaPelanggan.requestFocus();
+        }
     }//GEN-LAST:event_JTAlamatKeyPressed
 
     private void JTAlamatKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JTAlamatKeyReleased
@@ -675,10 +677,6 @@ public class SurveyKepuasanPelanggan extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(SurveyKepuasanPelanggan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>

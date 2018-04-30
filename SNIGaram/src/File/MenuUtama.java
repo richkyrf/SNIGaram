@@ -12,6 +12,7 @@ import LaporanTeknik.LaporanTeknik;
 import List.*;
 import ProsesTeknik.BarangTeknik;
 import ProsesLab.*;
+import ProsesPemasran.SurveyKepuasanPelanggan;
 import ProsesTeknik.Pemeliharaan;
 import static java.awt.Frame.NORMAL;
 
@@ -182,6 +183,11 @@ public class MenuUtama extends javax.swing.JFrame {
         jMenu1.add(jMenuItem1);
 
         jMenuItem2.setText("Survey Kepuasan Pelanggan");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem2);
 
         jMenuItem3.setText("Data Penjualan");
@@ -235,13 +241,18 @@ public class MenuUtama extends javax.swing.JFrame {
 
         jMenu2.setText("List Pemasaran");
 
-        jMenuItem4.setText("List Pengaduan Pelanggan");
+        jMenuItem4.setText("Pengaduan Pelanggan");
         jMenu2.add(jMenuItem4);
 
-        jMenuItem5.setText("List Survey Kepuasan Pelanggan");
+        jMenuItem5.setText("Survey Kepuasan Pelanggan");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem5);
 
-        jMenuItem6.setText("List Data Penjualan");
+        jMenuItem6.setText("Data Penjualan");
         jMenu2.add(jMenuItem6);
 
         JMList.add(jMenu2);
@@ -548,6 +559,24 @@ public class MenuUtama extends javax.swing.JFrame {
             laporanPersediaanBarang.toFront();
         }
     }//GEN-LAST:event_JMILaporanPersediaanBarangActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        if (tambahSurveyKepuasanPelanggan == null) {
+            tambahSurveyKepuasanPelanggan = new SurveyKepuasanPelanggan();
+        } else {
+            tambahSurveyKepuasanPelanggan.setState(NORMAL);
+            tambahSurveyKepuasanPelanggan.toFront();
+        }
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        if (listSurveyKepuasanPelanggan == null) {
+            listSurveyKepuasanPelanggan = new List(jMenuItem5.getText());
+        } else {
+            listSurveyKepuasanPelanggan.setState(NORMAL);
+            listSurveyKepuasanPelanggan.toFront();
+        }
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     /**
      * @param args the command line arguments
