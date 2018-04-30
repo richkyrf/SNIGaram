@@ -44,6 +44,8 @@ public class Var {
     
     public static KebutuhanKaryawan tambahKebutuhanKaryawan, ubahKebutuhanKaryawan;
     
+    public static KebutuhanKaryawan tambahKebutuhanKaryawan, ubahKebutuhanKaryawan;
+    
     public static LaporanLab laporanPengujianProdukJadi, laporanPengujianBahanBaku;
     public static LaporanTeknik laporanDaftarPeralatan, laporanPemeliharaan;
     public static LaporanProduksi laporanPersediaanBarang, laporanIndentifikasiProdukJadi, laporanPenyerahanProdukJadi, laporanOrderPesanan, laporanDataProduksi;
