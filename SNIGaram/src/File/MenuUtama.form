@@ -265,7 +265,7 @@
             </Menu>
             <Menu class="javax.swing.JMenu" name="JMLaporanLab">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Laporan Lab"/>
+                <Property name="text" type="java.lang.String" value="Laporan Laboratorium"/>
               </Properties>
               <SubComponents>
                 <MenuItem class="javax.swing.JMenuItem" name="JMILaporanPengujianProdukJadi">
@@ -309,24 +309,66 @@
                 </MenuItem>
               </SubComponents>
             </Menu>
-            <Menu class="javax.swing.JMenu" name="jMenu3">
+            <Menu class="javax.swing.JMenu" name="JMLaporanPemasaran">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Laporan Pemasaran"/>
               </Properties>
               <SubComponents>
-                <MenuItem class="javax.swing.JMenuItem" name="jMenuItem7">
+                <MenuItem class="javax.swing.JMenuItem" name="JMILaporanPengaduanPelanggan">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Laporan Pengaduan Pelanggan"/>
                   </Properties>
                 </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="jMenuItem8">
+                <MenuItem class="javax.swing.JMenuItem" name="JMILaporanSurveyKepuasanPelanggan">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Laporan Survey Kepuasan Pelanggan"/>
                   </Properties>
                 </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="jMenuItem9">
+                <MenuItem class="javax.swing.JMenuItem" name="JMILaporanDataPenjualan">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Laporan Data Penjualan"/>
+                  </Properties>
+                </MenuItem>
+              </SubComponents>
+            </Menu>
+            <Menu class="javax.swing.JMenu" name="JMLaporanPersonalia">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Laporan Personalia"/>
+              </Properties>
+              <SubComponents>
+                <MenuItem class="javax.swing.JMenuItem" name="JMILaporanKebutuhanKaryawan">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Laporan Kebutuhan Karyawan"/>
+                  </Properties>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="JMILaporanEvaluasiMasaPercobaanKaryawan">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Laporan Evaluasi Masa Percobaan Karyawan"/>
+                  </Properties>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="JMILaporanDaftarRiwayatHidup">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Laporan Daftar Riwayat Hidup"/>
+                  </Properties>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="JMILaporanUsulPelatihan">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Laporan Usul Pelatihan"/>
+                  </Properties>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="JMILaporanProgramPelatihan">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Laporan Program Pelatihan"/>
+                  </Properties>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="JMILaporanCalonPesertaPelatihan">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Laporan Calon Peserta Pelatihan"/>
+                  </Properties>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="JMILaproanEvaluasiPelatihan">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Laporan Evaluasi Pelatihan"/>
                   </Properties>
                 </MenuItem>
               </SubComponents>
