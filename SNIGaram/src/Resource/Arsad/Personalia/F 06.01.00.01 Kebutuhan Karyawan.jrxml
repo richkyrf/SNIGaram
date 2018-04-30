@@ -140,8 +140,8 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="110" y="0" width="150" height="20" uuid="884309b3-1fb2-4e2e-8260-1d70f32d09ef"/>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToTallestObject" x="110" y="0" width="150" height="20" uuid="884309b3-1fb2-4e2e-8260-1d70f32d09ef"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -154,8 +154,8 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Bagian}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="260" y="0" width="195" height="20" uuid="d44bfa03-b5f4-4082-853c-26f0bb78b05f"/>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToTallestObject" x="260" y="0" width="195" height="20" uuid="d44bfa03-b5f4-4082-853c-26f0bb78b05f"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -168,8 +168,8 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Kualifikasi}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="455" y="0" width="60" height="20" uuid="e059a90b-791a-42d7-91a8-a051441bab29"/>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToTallestObject" x="455" y="0" width="60" height="20" uuid="e059a90b-791a-42d7-91a8-a051441bab29"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -196,8 +196,8 @@
 				</textElement>
 				<text><![CDATA[Orang]]></text>
 			</staticText>
-			<textField pattern="dd/MM/yyyy">
-				<reportElement x="40" y="0" width="70" height="20" uuid="0891fc04-81f1-43af-8481-00671d97e022"/>
+			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy">
+				<reportElement stretchType="RelativeToTallestObject" x="40" y="0" width="70" height="20" uuid="0891fc04-81f1-43af-8481-00671d97e022"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
