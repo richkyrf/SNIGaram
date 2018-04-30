@@ -7,13 +7,11 @@ package List;
 
 import LSubProces.Delete;
 import javax.swing.JOptionPane;
-import KomponenGUI.FDateF;
-import LSubProces.Insert;
-import java.util.Date;
 import static GlobalVar.Var.*;
 import ProsesTeknik.BarangTeknik;
 import ProsesLab.*;
 import ProsesPemasran.SurveyKepuasanPelanggan;
+import ProsesPersonalia.KebutuhanKaryawan;
 import ProsesTeknik.Pemeliharaan;
 
 /**
@@ -25,7 +23,6 @@ public class List extends javax.swing.JFrame {
     /**
      * Creates new form ListKaryawan
      */
-
     public List(String type) {
         initComponents();
         setVisible(true);
@@ -180,6 +177,9 @@ public class List extends javax.swing.JFrame {
             case "List Data Penjualan":
                 listDataPenjualan = null;
                 break;
+            case "List Kebutuhan Karyawan":
+                listKebutuhanKaryawan = null;
+                break;
             default:
                 throw new AssertionError();
         }
@@ -210,8 +210,6 @@ public class List extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(List.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
@@ -294,6 +292,14 @@ public class List extends javax.swing.JFrame {
 //                    tambahDataPenjualan.toFront();
 //                }
                 break;
+            case "List Kebutuhan Karyawan":
+                if (tambahKebutuhanKaryawan == null) {
+                    tambahKebutuhanKaryawan = new KebutuhanKaryawan();
+                } else {
+                    tambahKebutuhanKaryawan.setState(NORMAL);
+                    tambahKebutuhanKaryawan.toFront();
+                }
+                break;
             default:
                 throw new AssertionError();
         }
@@ -327,6 +333,9 @@ public class List extends javax.swing.JFrame {
                     break;
                 case "List Data Penjualan":
                     berhasil = delete.Hapus(jcomCari1.GetIDTable(), "DELETE FROM `snitbdatapenjualan` WHERE `IdDataPenjualan` = " + jcomCari1.GetIDTable(), getTitle(), this);
+                    break;
+                case "List Kebutuhan Karyawan":
+                    berhasil = delete.Hapus(jcomCari1.GetIDTable(), "DELETE FROM `snitbkebutuhankaryawan` WHERE `IdKebutuhanKaryawan` = " + jcomCari1.GetIDTable(), getTitle(), this);
                     break;
                 default:
                     throw new AssertionError();
@@ -398,6 +407,14 @@ public class List extends javax.swing.JFrame {
 //                        ubahDataPenjualan.toFront();
 //                    }
                     break;
+                case "List Kebutuhan Karyawan":
+                    if (ubahKebutuhanKaryawan == null) {
+                        ubahKebutuhanKaryawan = new KebutuhanKaryawan(jcomCari1.GetIDTable());
+                    } else {
+                        ubahKebutuhanKaryawan.setState(NORMAL);
+                        ubahKebutuhanKaryawan.toFront();
+                    }
+                    break;
                 default:
                     throw new AssertionError();
             }
@@ -437,10 +454,13 @@ public class List extends javax.swing.JFrame {
                 jcomCari1.setQuery("SELECT `IdPemeliharaan` as 'ID', DATE_FORMAT(`Tanggal`,'%d-%m-%Y') as 'Tanggal', `NamaBarang` as 'Nama Barang', `Deskripsi`, a.`Keterangan` FROM `snitbpemeliharaan`a JOIN `snitbmbarangteknik`b ON a.`IdBarangTeknik`=b.`IdBarangTeknik` WHERE 1");
                 jcomCari1.setOrder(" ORDER BY `Tanggal` DESC ");
                 break;
+            case "List Kebutuhan Karyawan":
+                jcomCari1.setQuery("SELECT `IdKebutuhanKaryawan` as 'ID', DATE_FORMAT(`Tanggal`,'%d-%m-%Y') as 'Tanggal', `Bagian`, `Kualifikasi`, `Jumlah`, `Keterangan` FROM `snitbkebutuhankaryawan` WHERE 1");
+                jcomCari1.setOrder(" ORDER BY `Tanggal` DESC, `Bagian` ");
+                break;
             default:
                 throw new AssertionError();
         }
         jcomCari1.tampilkan();
     }
-
 }

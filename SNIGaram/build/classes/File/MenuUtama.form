@@ -115,19 +115,25 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Pengaduan Pelanggan"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JMIPengaduanPelangganActionPerformed"/>
+                  </Events>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="JMISurveyKepuasanPelanggan">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Survey Kepuasan Pelanggan"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem2ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JMISurveyKepuasanPelangganActionPerformed"/>
                   </Events>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="JMIDataPenjualan">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Data Penjualan"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JMIDataPenjualanActionPerformed"/>
+                  </Events>
                 </MenuItem>
               </SubComponents>
             </Menu>
@@ -140,6 +146,9 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Kebutuhan Karyawan"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JMIKebutuhanKaryawanActionPerformed"/>
+                  </Events>
                 </MenuItem>
               </SubComponents>
             </Menu>
@@ -218,6 +227,21 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Data Penjualan"/>
                   </Properties>
+                </MenuItem>
+              </SubComponents>
+            </Menu>
+            <Menu class="javax.swing.JMenu" name="JMListPersonalia">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="List Personalia"/>
+              </Properties>
+              <SubComponents>
+                <MenuItem class="javax.swing.JMenuItem" name="JMIListKebutuhanKaryawan">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Kebutuhan Karyawan"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JMIListKebutuhanKaryawanActionPerformed"/>
+                  </Events>
                 </MenuItem>
               </SubComponents>
             </Menu>
@@ -352,6 +376,9 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Laporan Kebutuhan Karyawan"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JMILaporanKebutuhanKaryawanActionPerformed"/>
+                  </Events>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="JMILaporanEvaluasiMasaPercobaanKaryawan">
                   <Properties>
