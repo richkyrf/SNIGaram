@@ -198,8 +198,6 @@ public class MenuUtama extends javax.swing.JFrame {
                 JMISurveyKepuasanPelangganActionPerformed(evt);
             }
         });
-        JMProses.add(JMISurveyKepuasanPelanggan);
-        JMISurveyKepuasanPelanggan.setText("Survey Kepuasan Pelanggan");
         JMProsesPemasaran.add(JMISurveyKepuasanPelanggan);
 
         JMIDataPenjualan.setText("Data Penjualan");
