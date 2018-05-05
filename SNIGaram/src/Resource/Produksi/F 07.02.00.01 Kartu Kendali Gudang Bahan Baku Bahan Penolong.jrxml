@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="F 07.02.00.01 Kartu Kendali Gudang Bahan Baku Bahan Penolong" language="groovy" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="681fcae0-315d-47c3-91ca-fbcc5a2553a6">
-	<property name="ireport.zoom" value="1.2100000000000035"/>
+	<property name="ireport.zoom" value="1.1000000000000028"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="Tanggal" class="java.util.Date" isForPrompting="false">
@@ -13,7 +13,7 @@
 		<defaultValueExpression><![CDATA["2018-12-31"]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[SELECT `Tanggal`, IF(`NamaBarangLain` LIKE '%PLASTIK LUAR%',REPLACE(`NamaBarangLain`,`NamaBarangLain`,'Plastik Luar'),IF(`NamaBarangLain` LIKE '%PLASTIK DLM%',REPLACE(`NamaBarangLain`,`NamaBarangLain`,'Plastik Dalam'),IF(`NamaBarangLain` LIKE '%IODIUM%',REPLACE(`NamaBarangLain`,`NamaBarangLain`,'Iodium'),`NamaBarangLain`))) AS 'Nama Barang', IF(`JenisBarangLain`='PLASTIK LUAR' OR `JenisBarangLain`='PLASTIK DALAM','Plastik',IF(`JenisBarangLain`='IODIUM','Iodium','Lain-Lain')) AS 'Jenis Barang', SUM(`Netto`) AS 'Jumlah Barang', `Satuan`, IFNULL(`PemasokLain`,'TRONA') AS 'Supplier' FROM `tbpenerimaanlain` AS A JOIN `tbmbaranglain` AS B ON A.`IdBarangLain`=B.`IdBarangLain` JOIN `tbsmjenisbaranglain` AS C ON B.`IdJenisBarangLain`=C.`IdJenisBarangLain` LEFT JOIN `tbmpemasoklain` AS D ON A.`IdPemasokLain`=D.`IdPemasokLain` WHERE `Tanggal` BETWEEN $P{Tanggal_Awal} AND $P{Tanggal_Akhir} GROUP BY `Tanggal`, `Nama Barang` ORDER BY `Tanggal`, `Nama Barang`]]>
+		<![CDATA[SELECT `Tanggal`, IF(`NamaBarangLain` LIKE '%PLASTIK LUAR%',REPLACE(`NamaBarangLain`,`NamaBarangLain`,'Plastik Luar'),IF(`NamaBarangLain` LIKE '%PLASTIK DLM%',REPLACE(`NamaBarangLain`,`NamaBarangLain`,'Plastik Dalam'),IF(`NamaBarangLain` LIKE '%IODIUM%',REPLACE(`NamaBarangLain`,`NamaBarangLain`,'Iodium'),''))) AS 'Nama Barang', '' AS 'Jenis Barang', SUM(`Netto`) AS 'Jumlah Barang', 'Kg' AS 'Satuan', '' AS 'Supplier' FROM `tbpenerimaanlain` AS A JOIN `tbmbaranglain` AS B ON A.`IdBarangLain`=B.`IdBarangLain` WHERE (`IdJenisBarangLain`=1 OR `IdJenisBarangLain`=2 OR `IdJenisBarangLain`=4) AND `Tanggal` BETWEEN $P{Tanggal_Awal} AND $P{Tanggal_Akhir} GROUP BY `Tanggal`, `Nama Barang` ORDER BY `Tanggal`, `Nama Barang`]]>
 	</queryString>
 	<field name="Tanggal" class="java.sql.Date">
 		<fieldDescription><![CDATA[]]></fieldDescription>
@@ -76,7 +76,7 @@
 				<text><![CDATA[Tanggal]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="110" y="0" width="165" height="20" uuid="7b634c8e-a083-4d70-ac68-cea64ce5ce1f"/>
+				<reportElement x="110" y="0" width="171" height="20" uuid="7b634c8e-a083-4d70-ac68-cea64ce5ce1f"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -89,7 +89,7 @@
 				<text><![CDATA[Nama Barang]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="275" y="0" width="95" height="20" uuid="e6f839d3-c4b9-4ef9-b8a9-8a6104f2ad67"/>
+				<reportElement x="281" y="0" width="92" height="20" uuid="e6f839d3-c4b9-4ef9-b8a9-8a6104f2ad67"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -102,7 +102,7 @@
 				<text><![CDATA[Jenis Barang]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="370" y="0" width="95" height="20" uuid="9414c6dc-925a-4950-9f40-f236703a0e36"/>
+				<reportElement x="373" y="0" width="92" height="20" uuid="9414c6dc-925a-4950-9f40-f236703a0e36"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -145,8 +145,8 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy">
-				<reportElement stretchType="RelativeToTallestObject" x="40" y="0" width="70" height="20" uuid="906c144f-782f-4843-a282-e1103b1f6d58"/>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="40" y="0" width="70" height="20" uuid="906c144f-782f-4843-a282-e1103b1f6d58"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -158,8 +158,8 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Tanggal}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true">
-				<reportElement stretchType="RelativeToTallestObject" x="110" y="0" width="165" height="20" uuid="7be6ceac-64ae-4bf6-b92e-43ce111cb23b"/>
+			<textField>
+				<reportElement x="110" y="0" width="171" height="20" uuid="7be6ceac-64ae-4bf6-b92e-43ce111cb23b"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -171,8 +171,8 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Nama Barang}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true" pattern="">
-				<reportElement stretchType="RelativeToTallestObject" x="275" y="0" width="95" height="20" uuid="d6fb5999-7c48-4357-bbdf-d398aae04d1e"/>
+			<textField>
+				<reportElement x="281" y="0" width="92" height="20" uuid="d6fb5999-7c48-4357-bbdf-d398aae04d1e"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -184,34 +184,34 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Jenis Barang}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true">
-				<reportElement stretchType="RelativeToTallestObject" x="370" y="0" width="64" height="20" uuid="29aa769b-089b-4cb5-9415-eba53ac26256"/>
+			<textField>
+				<reportElement x="373" y="0" width="64" height="20" uuid="29aa769b-089b-4cb5-9415-eba53ac26256"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
 					<bottomPen lineWidth="0.5"/>
-					<rightPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.5"/>
 				</box>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
 					<font fontName="Gadugi" size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Jumlah Barang}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true">
-				<reportElement stretchType="RelativeToTallestObject" x="433" y="0" width="32" height="20" uuid="0efac1b4-a5ad-42fe-8175-572e0fef2c83"/>
+			<textField>
+				<reportElement x="437" y="0" width="28" height="20" uuid="0efac1b4-a5ad-42fe-8175-572e0fef2c83"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<topPen lineWidth="0.5"/>
-					<leftPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.5"/>
 					<bottomPen lineWidth="0.5"/>
 					<rightPen lineWidth="0.5"/>
 				</box>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
 					<font fontName="Gadugi" size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Satuan}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true" isBlankWhenNull="false">
-				<reportElement stretchType="RelativeToTallestObject" x="465" y="0" width="90" height="20" uuid="d5c2db34-c31b-49ed-9ac4-82786d98cac8"/>
+			<textField>
+				<reportElement x="465" y="0" width="90" height="20" uuid="d5c2db34-c31b-49ed-9ac4-82786d98cac8"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>

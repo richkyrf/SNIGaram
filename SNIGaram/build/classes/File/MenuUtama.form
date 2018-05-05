@@ -260,14 +260,6 @@
                 <Property name="text" type="java.lang.String" value="Laporan Produksi"/>
               </Properties>
               <SubComponents>
-                <MenuItem class="javax.swing.JMenuItem" name="JMILaporanBahanBakuBahanPenolong">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Laporan Bahan Baku / Bahan Penolong"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JMILaporanBahanBakuBahanPenolongActionPerformed"/>
-                  </Events>
-                </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="JMILaporanPersediaanBarang">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Laporan Persediaan Barang"/>

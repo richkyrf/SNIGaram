@@ -114,10 +114,7 @@ public class LaporanProduksi extends javax.swing.JFrame {
         hashs.put("Tanggal_Akhir", FDateF.datetostr(JDTanggal1.getDate(), "yyyy-MM-dd"));
         FLaporan fLaporan = new FLaporan();
         fLaporan.sethashmap(hashs);
-        if (getTitle().equals("Laporan Bahan Baku / Bahan Penolong")) {
-            fLaporan.setfilename("Produksi/F 07.02.00.01 Kartu Kendali Gudang Bahan Baku Bahan Penolong");
-            History.simpanhistory(GlobalVar.VarL.username, "F 07.02.00.01 Kartu Kendali Gudang Bahan Baku Bahan Penolong");
-        } else if (getTitle().equals("Laporan Persediaan Barang")) {
+        if (getTitle().equals("Laporan Persediaan Barang")) {
             fLaporan.setfilename("Produksi/F 07.02.00.02 Kartu Persediaan Barang");
             History.simpanhistory(GlobalVar.VarL.username, "F 07.02.00.02 Kartu Persediaan Barang");
         } else if (getTitle().equals("Laporan Indentifikasi Produk Jadi")) {
@@ -138,9 +135,7 @@ public class LaporanProduksi extends javax.swing.JFrame {
     }//GEN-LAST:event_jbuttonF1ActionPerformed
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        if (getTitle().equals("Laporan Bahan Baku / Bahan Penolong")) {
-            GlobalVar.Var.laporanBahanBakuBahanPenolong = null;
-        } else if (getTitle().equals("Laporan Persediaan Barang")) {
+        if (getTitle().equals("Laporan Persediaan Barang")) {
             GlobalVar.Var.laporanPersediaanBarang = null;
         } else if (getTitle().equals("Laporan Indentifikasi Produk Jadi")) {
             GlobalVar.Var.laporanIndentifikasiProdukJadi = null;
