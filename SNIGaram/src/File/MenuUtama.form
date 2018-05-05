@@ -362,6 +362,9 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Laporan Survey Kepuasan Pelanggan"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JMILaporanSurveyKepuasanPelangganActionPerformed"/>
+                  </Events>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="JMILaporanDataPenjualan">
                   <Properties>

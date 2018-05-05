@@ -7,6 +7,7 @@ package File;
 
 import static GlobalVar.Var.*;
 import LaporanLab.LaporanLab;
+import LaporanPemasaran.LaporanPemasaran;
 import LaporanPersonalia.LaporanPersonalia;
 import LaporanProduksi.LaporanProduksi;
 import LaporanTeknik.LaporanTeknik;
@@ -405,6 +406,11 @@ public class MenuUtama extends javax.swing.JFrame {
         JMLaporanPemasaran.add(JMILaporanPengaduanPelanggan);
 
         JMILaporanSurveyKepuasanPelanggan.setText("Laporan Survey Kepuasan Pelanggan");
+        JMILaporanSurveyKepuasanPelanggan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JMILaporanSurveyKepuasanPelangganActionPerformed(evt);
+            }
+        });
         JMLaporanPemasaran.add(JMILaporanSurveyKepuasanPelanggan);
 
         JMILaporanDataPenjualan.setText("Laporan Data Penjualan");
@@ -690,7 +696,7 @@ public class MenuUtama extends javax.swing.JFrame {
     }//GEN-LAST:event_JMILaporanKebutuhanKaryawanActionPerformed
 
     private void JMIDataPenjualanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMIDataPenjualanActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_JMIDataPenjualanActionPerformed
 
     private void JMIKebutuhanKaryawanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMIKebutuhanKaryawanActionPerformed
@@ -710,6 +716,12 @@ public class MenuUtama extends javax.swing.JFrame {
             listKebutuhanKaryawan.toFront();
         }
     }//GEN-LAST:event_JMIListKebutuhanKaryawanActionPerformed
+
+    private void JMILaporanSurveyKepuasanPelangganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMILaporanSurveyKepuasanPelangganActionPerformed
+        if (laporanSurveyKepuasanPelanggan == null) {
+            laporanSurveyKepuasanPelanggan = new LaporanPemasaran(JMILaporanSurveyKepuasanPelanggan.getText());
+        }
+    }//GEN-LAST:event_JMILaporanSurveyKepuasanPelangganActionPerformed
 
     /**
      * @param args the command line arguments
