@@ -119,6 +119,9 @@ public class LaporanPemasaran extends javax.swing.JFrame {
         if (getTitle().equals("Laporan Survey Kepuasan Pelanggan")) {
             fLaporan.setfilename("Monic/Pemasaran/F 08.01.00.02 Survey Kepuasan Pelanggan");
             History.simpanhistory(GlobalVar.VarL.username, "F 08.01.00.02 Survey Kepuasan Pelanggan");
+        } else if (getTitle().equals("Laporan Pengaduan Pelanggan")) {
+            fLaporan.setfilename("Monic/Pemasaran/F 08.01.00.01 Pengaduan Pelanggan Tindakan Pencegahan Tindakan Perbaikan");
+            History.simpanhistory(GlobalVar.VarL.username, "F 08.01.00.01 Pengaduan Pelanggan Tindakan Pencegahan Tindakan Perbaikan");
         } else {
             fLaporan.setfilename("");
             History.simpanhistory(GlobalVar.VarL.username, "");
@@ -128,10 +131,12 @@ public class LaporanPemasaran extends javax.swing.JFrame {
     }//GEN-LAST:event_jbuttonF1ActionPerformed
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        if (getTitle().equals("Laporan Survey Keputusan Pelanggan")) {
+        if (getTitle().equals("Laporan Survey Kepuasan Pelanggan")) {
             laporanSurveyKepuasanPelanggan = null;
+        } else if (getTitle().equals("Laporan Pengaduan Pelanggan")) {
+            laporanPengaduanPelanggan = null;
         } else {
-            
+
         }
     }//GEN-LAST:event_formWindowClosed
 

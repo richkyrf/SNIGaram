@@ -1,0 +1,487 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="F 08.01.00.01 Pengaduan Pelanggan Tindakan Pencegahan Tindakan Perbaikan" language="groovy" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="681fcae0-315d-47c3-91ca-fbcc5a2553a6">
+	<property name="ireport.zoom" value="1.2100000000000055"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="240"/>
+	<parameter name="Tanggal" class="java.util.Date" isForPrompting="false">
+		<defaultValueExpression><![CDATA[new Date()]]></defaultValueExpression>
+	</parameter>
+	<parameter name="Tanggal_Awal" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["2010-01-01"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="Tanggal_Akhir" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["2090-01-01"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT `IdPengaduan`, `Tanggal`, `AsalInstitusi`, `YangMenerima`, `JenisPengaduan`, `BagianYangMenangani`, `RincianPengaduan`, `TindakLanjutPengaduan`, `TindakanPencegahan`, `TargetTanggalPenyelesaian`, `VerifikasiPenyelesaian`, IF(`Selesai`=1,'Selesai','Belum Selesai') as 'Selesai' FROM `snitbpengaduanpelanggan` WHERE 1 AND `Tanggal` BETWEEN $P{Tanggal_Awal} AND $P{Tanggal_Akhir}]]>
+	</queryString>
+	<field name="IdPengaduan" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Tanggal" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="AsalInstitusi" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="YangMenerima" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="JenisPengaduan" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="BagianYangMenangani" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RincianPengaduan" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TindakLanjutPengaduan" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TindakanPencegahan" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TargetTanggalPenyelesaian" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="VerifikasiPenyelesaian" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Selesai" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<group name="group" isResetPageNumber="true" isReprintHeaderOnEachPage="true">
+		<groupExpression><![CDATA[$F{IdPengaduan}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="50">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="20" uuid="ff3628b7-a217-408b-9681-0765a91eaa16"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Gadugi" size="12" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[PENGADUAN PELANGGAN, TINDAKAN KOREKSI DAN TINDAKAN PENCEGAHAN
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="19" width="555" height="20" uuid="825c4732-ece4-4980-aef0-e76dff4f8278"/>
+				<textElement textAlignment="Center">
+					<font fontName="Gadugi" size="12"/>
+				</textElement>
+				<text><![CDATA[IGC-F 08.01.00.01]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="444" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="29" width="138" height="20" uuid="e390a589-a538-46f3-b55d-81c98bdfd697"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Gadugi" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Tgl Pengaduan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="48" width="138" height="20" uuid="b04108b9-df7e-4896-86c7-9a52c2d65f36"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Gadugi" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Asal/Institusi]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="67" width="138" height="20" uuid="1d1f6c83-21ae-4581-9007-80e1db74fac5"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Gadugi" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Yang Menerima]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="86" width="138" height="20" uuid="8406bcf4-e6f5-425b-ba47-1c101f01d8ab"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Gadugi" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Jenis Pengaduan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="136" y="29" width="10" height="20" uuid="69a6f897-0d96-4985-ba9d-7de074a6da17"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Gadugi" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="136" y="48" width="10" height="20" uuid="89c620f5-2fd0-4e0b-83a7-dfbe9e147944"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Gadugi" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="136" y="67" width="10" height="20" uuid="313429c3-a526-417a-8aa0-6870c0e71db6"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Gadugi" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="136" y="86" width="10" height="20" uuid="cef6a36d-ad5a-4d70-8f9e-b64484814d51"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Gadugi" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="136" y="105" width="10" height="20" uuid="c5ee5785-bef3-495c-bf5f-b4f12c242f55"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Gadugi" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="105" width="138" height="20" uuid="87ca5b63-00fd-4a21-8358-7a05c303507d"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Gadugi" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Bagian Yang Menangani]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="124" width="138" height="20" uuid="f5dab802-6adc-4a35-adbd-2e9a1a46c955"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Gadugi" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Rincian Pengaduan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="136" y="124" width="10" height="20" uuid="8d7836a0-8bf5-4af3-9d36-1562d74b9a47"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Gadugi" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="136" y="203" width="10" height="20" uuid="6bff45fb-b333-4dad-8e7d-31e39d1ed86d"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Gadugi" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="203" width="138" height="20" uuid="eaf1b620-226d-4285-b8bc-dc9c1f3054db"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Gadugi" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Tindak Lanjut Pengaduan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="282" width="138" height="20" uuid="1a77eca8-8d12-4f61-bbec-da429d07856f"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Gadugi" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Tindakan Pencegahan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="136" y="282" width="10" height="20" uuid="6fb4cacd-ecb7-46c3-a849-8f88970be2ba"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Gadugi" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="136" y="361" width="10" height="20" uuid="d87a0329-9a39-42b1-b9c4-f27693b7d5e8"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Gadugi" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="361" width="138" height="20" uuid="1107dcc8-c5f9-4c40-a915-3124edb34b21"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Gadugi" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Target Tgl Penyelesaian]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="381" width="138" height="20" uuid="a7d815cf-e8f8-4dc5-a258-504f34841927"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Gadugi" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Verifikasi Penyelesaian]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="136" y="381" width="10" height="20" uuid="8ad54dd6-9088-41d9-8242-f376e79d43d9"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Gadugi" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="146" y="29" width="409" height="20" uuid="5ec8adbf-5a5f-4bf9-9e7a-c75b00f2d6af"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Gadugi" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Tanggal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="146" y="48" width="409" height="20" uuid="ed50efe2-e18d-4195-a44e-48b517e2bdc1"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Gadugi" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{AsalInstitusi}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="146" y="67" width="409" height="20" uuid="a8cf7205-1cca-4d7c-81f6-fa9c01b5ce9d"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Gadugi" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{YangMenerima}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="146" y="86" width="409" height="20" uuid="a849dfd9-1fc1-4cf0-b4ac-36fe68b9a195"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Gadugi" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{JenisPengaduan}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="146" y="105" width="409" height="20" uuid="6d0ac6d3-54d4-43bb-b1c9-5e1ce0c4b891"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Gadugi" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{BagianYangMenangani}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="146" y="124" width="409" height="80" uuid="43a2983e-d91f-409e-8104-af491a76c01f"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Gadugi" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{RincianPengaduan}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="146" y="203" width="409" height="80" uuid="89f221eb-f177-49e2-9837-da2d080d8b91"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Gadugi" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TindakLanjutPengaduan}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="146" y="282" width="409" height="80" uuid="a5346cb3-2c07-4707-93ca-52414c80555e"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Gadugi" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TindakanPencegahan}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="146" y="361" width="409" height="20" uuid="ccfcc7fc-afce-440a-9cc4-6b69fc5caa13"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Gadugi" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TargetTanggalPenyelesaian}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="146" y="381" width="409" height="20" uuid="b3f2e285-be83-4b09-a563-c989a8289c60"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Gadugi" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{VerifikasiPenyelesaian}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<pageFooter>
+		<band height="154" splitType="Stretch">
+			<staticText>
+				<reportElement x="375" y="134" width="180" height="20" uuid="a66851d4-7b51-46d8-9c85-ab1c583ac759"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Gadugi"/>
+				</textElement>
+				<text><![CDATA[Rev. 0, Tanggal Terbit 20 Januari 2014]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="46" height="20" uuid="c9a8ebbf-1813-419d-8d18-c23db28c664f"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Gadugi" size="12"/>
+				</textElement>
+				<text><![CDATA[Selesai :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="375" y="0" width="180" height="20" uuid="1776a53e-4775-4f49-b36e-05719125899d"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Gadugi" size="12"/>
+				</textElement>
+				<text><![CDATA[Jambi,]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="375" y="20" width="180" height="20" uuid="1ba5bfad-fee8-4727-84a3-43be9780a79c"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Gadugi" size="12"/>
+				</textElement>
+				<text><![CDATA[Dibuat oleh :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="46" y="0" width="329" height="20" uuid="92568627-e846-4d5f-b515-00e1afef0a56"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Gadugi" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Selesai}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

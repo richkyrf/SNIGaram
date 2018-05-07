@@ -46,6 +46,6 @@ public class Var {
     public static LaporanTeknik laporanDaftarPeralatan, laporanPemeliharaan;
     public static LaporanProduksi laporanPersediaanBarang, laporanIndentifikasiProdukJadi, laporanPenyerahanProdukJadi, laporanOrderPesanan, laporanDataProduksi;
     public static LaporanPersonalia laporanKebutuhanKaryawan;
-    public static LaporanPemasaran laporanSurveyKepuasanPelanggan;
+    public static LaporanPemasaran laporanPengaduanPelanggan, laporanSurveyKepuasanPelanggan;
     
 }
