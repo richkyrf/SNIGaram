@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="F 07.02.00.01 Kartu Kendali Gudang Bahan Baku Bahan Penolong" language="groovy" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="681fcae0-315d-47c3-91ca-fbcc5a2553a6">
-	<property name="ireport.zoom" value="1.1000000000000028"/>
+	<property name="ireport.zoom" value="1.1000000000000032"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="Tanggal" class="java.util.Date" isForPrompting="false">
@@ -13,9 +13,11 @@
 		<defaultValueExpression><![CDATA["2018-12-31"]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[SELECT `Tanggal`, IF(`NamaBarangLain` LIKE '%PLASTIK LUAR%',REPLACE(`NamaBarangLain`,`NamaBarangLain`,'Plastik Luar'),IF(`NamaBarangLain` LIKE '%PLASTIK DLM%',REPLACE(`NamaBarangLain`,`NamaBarangLain`,'Plastik Dalam'),IF(`NamaBarangLain` LIKE '%IODIUM%',REPLACE(`NamaBarangLain`,`NamaBarangLain`,'Iodium'),''))) AS 'Nama Barang', '' AS 'Jenis Barang', SUM(`Netto`) AS 'Jumlah Barang', 'Kg' AS 'Satuan', '' AS 'Supplier' FROM `tbpenerimaanlain` AS A JOIN `tbmbaranglain` AS B ON A.`IdBarangLain`=B.`IdBarangLain` WHERE (`IdJenisBarangLain`=1 OR `IdJenisBarangLain`=2 OR `IdJenisBarangLain`=4) AND `Tanggal` BETWEEN $P{Tanggal_Awal} AND $P{Tanggal_Akhir} GROUP BY `Tanggal`, `Nama Barang` ORDER BY `Tanggal`, `Nama Barang`]]>
+		<![CDATA[SELECT A.`Tanggal`, IF(`NamaBarang` LIKE '%GRM KSR%',REPLACE(`NamaBarang`,`NamaBarang`,'Garam Kasar 50 Kg'),IF(`NamaBarang` LIKE '%GRM HLS%',REPLACE(`NamaBarang`,`NamaBarang`,'Garam Halus 50 Kg'),'')) AS 'Nama Barang', 'Garam' AS 'Jenis Barang', SUM(`KarungPelita`) AS 'Jumlah Barang', 'Sak' AS 'Satuan', IF(`NamaBarang` LIKE '%GARINDO%','PT. Garindo',IF(`NamaBarang` LIKE '%PERSERO%','PT. Persero',IF(`NamaBarang` LIKE '%GRM HLS%','PT. Garindo',''))) AS 'Supplier' FROM `tbpenerimaan` AS A JOIN `tbmpartai` AS B ON A.`IdPartai`=B.`IdPartai` JOIN `tbmbarang` AS C ON B.`IdBarang`=C.`IdBarang` WHERE A.`Tanggal` BETWEEN $P{Tanggal_Awal} AND $P{Tanggal_Akhir} GROUP BY A.`IdPartai`, `Nama Barang`
+UNION ALL
+SELECT `Tanggal`, IF(`NamaBarangLain` LIKE '%PLASTIK LUAR%',REPLACE(`NamaBarangLain`,`NamaBarangLain`,'Plastik Luar'),IF(`NamaBarangLain` LIKE '%PLASTIK DLM%',REPLACE(`NamaBarangLain`,`NamaBarangLain`,'Plastik Dalam'),IF(`NamaBarangLain` LIKE '%IODIUM%',REPLACE(`NamaBarangLain`,`NamaBarangLain`,'Iodium'),IF(`NamaBarangLain` LIKE '%LAKBAN%',REPLACE(`NamaBarangLain`,`NamaBarangLain`,'Lakban'),IF(`NamaBarangLain` LIKE '%ARTHESS%',REPLACE(`NamaBarangLain`,`NamaBarangLain`,'Arthess'),`NamaBarangLain`))))) AS 'Nama Barang', IF(`JenisBarangLain`='PLASTIK DALAM' OR `JenisBarangLain`='PLASTIK LUAR','Plastik',IF(`JenisBarangLain`='IODIUM','Iodium',IF(`NamaBarangLain` LIKE '%PLASTIK LUAR%',REPLACE(`NamaBarangLain`,`NamaBarangLain`,'Plastik Luar'),IF(`NamaBarangLain` LIKE '%PLASTIK DLM%',REPLACE(`NamaBarangLain`,`NamaBarangLain`,'Plastik Dalam'),IF(`NamaBarangLain` LIKE '%IODIUM%',REPLACE(`NamaBarangLain`,`NamaBarangLain`,'Iodium'),IF(`NamaBarangLain` LIKE '%LAKBAN%',REPLACE(`NamaBarangLain`,`NamaBarangLain`,'Lakban'),IF(`NamaBarangLain` LIKE '%ARTHESS%',REPLACE(`NamaBarangLain`,`NamaBarangLain`,'Arthess'),`NamaBarangLain`))))))) AS 'Jenis Barang', SUM(`Netto`) AS 'Jumlah Barang', IF(`Satuan`='KG','Kg',IF(`Satuan`='ROLL','Roll',IF(`Satuan`='GLN','Gln',`Satuan`))) AS 'Satuan', IFNULL(IF(`PemasokLain`='PT. GARINDO','PT. Garindo',IF(`PemasokLain`='PT. PERSERO','PT. Persero',IF(`PemasokLain`='WININDO JAYA','Winindo Jaya',`PemasokLain`))),'Trona JPM') AS 'Supplier' FROM `tbpenerimaanlain` AS A JOIN `tbmbaranglain` AS B ON A.`IdBarangLain`=B.`IdBarangLain` JOIN `tbsmjenisbaranglain` AS C ON B.`IdJenisBarangLain`=C.`IdJenisBarangLain` LEFT JOIN `tbmpemasoklain` AS D ON A.`IdPemasokLain`=D.`IdPemasokLain` WHERE `Tanggal` BETWEEN $P{Tanggal_Awal} AND $P{Tanggal_Akhir} GROUP BY `Tanggal`, `Nama Barang` ORDER BY `Tanggal`, `Nama Barang`]]>
 	</queryString>
-	<field name="Tanggal" class="java.sql.Date">
+	<field name="Tanggal" class="java.sql.Timestamp">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="Nama Barang" class="java.lang.String"/>
@@ -145,8 +147,8 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
 			</textField>
-			<textField pattern="dd/MM/yyyy">
-				<reportElement x="40" y="0" width="70" height="20" uuid="906c144f-782f-4843-a282-e1103b1f6d58"/>
+			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy">
+				<reportElement stretchType="RelativeToTallestObject" x="40" y="0" width="70" height="20" uuid="906c144f-782f-4843-a282-e1103b1f6d58"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -158,8 +160,8 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Tanggal}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="110" y="0" width="171" height="20" uuid="7be6ceac-64ae-4bf6-b92e-43ce111cb23b"/>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToTallestObject" x="110" y="0" width="171" height="20" uuid="7be6ceac-64ae-4bf6-b92e-43ce111cb23b"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -171,8 +173,8 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Nama Barang}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="281" y="0" width="92" height="20" uuid="d6fb5999-7c48-4357-bbdf-d398aae04d1e"/>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToTallestObject" x="281" y="0" width="92" height="20" uuid="d6fb5999-7c48-4357-bbdf-d398aae04d1e"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
@@ -184,34 +186,34 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Jenis Barang}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="373" y="0" width="64" height="20" uuid="29aa769b-089b-4cb5-9415-eba53ac26256"/>
+			<textField isStretchWithOverflow="true" pattern="#,##0">
+				<reportElement stretchType="RelativeToTallestObject" x="373" y="0" width="68" height="20" uuid="29aa769b-089b-4cb5-9415-eba53ac26256"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
 					<bottomPen lineWidth="0.5"/>
-					<rightPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.0"/>
 				</box>
-				<textElement textAlignment="Justified" verticalAlignment="Middle">
+				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Gadugi" size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Jumlah Barang}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="437" y="0" width="28" height="20" uuid="0efac1b4-a5ad-42fe-8175-572e0fef2c83"/>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToTallestObject" x="440" y="0" width="25" height="20" uuid="0efac1b4-a5ad-42fe-8175-572e0fef2c83"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<topPen lineWidth="0.5"/>
-					<leftPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.0"/>
 					<bottomPen lineWidth="0.5"/>
 					<rightPen lineWidth="0.5"/>
 				</box>
-				<textElement textAlignment="Justified" verticalAlignment="Middle">
+				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Gadugi" size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Satuan}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="465" y="0" width="90" height="20" uuid="d5c2db34-c31b-49ed-9ac4-82786d98cac8"/>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToTallestObject" x="465" y="0" width="90" height="20" uuid="d5c2db34-c31b-49ed-9ac4-82786d98cac8"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>

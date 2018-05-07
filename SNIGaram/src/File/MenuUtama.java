@@ -80,6 +80,7 @@ public class MenuUtama extends javax.swing.JFrame {
         JMIListKebutuhanKaryawan = new javax.swing.JMenuItem();
         JMLaporan = new javax.swing.JMenu();
         JMLaporanProduksi = new javax.swing.JMenu();
+        JMILaporanBahanBakuBahanPenolong = new javax.swing.JMenuItem();
         JMILaporanPersediaanBarang = new javax.swing.JMenuItem();
         JMILaporanIdentifikasiProdukJadi = new javax.swing.JMenuItem();
         JMILaporanPenyerahanProdukJadi = new javax.swing.JMenuItem();
@@ -317,6 +318,14 @@ public class MenuUtama extends javax.swing.JFrame {
         JMLaporan.setText("Laporan");
 
         JMLaporanProduksi.setText("Laporan Produksi");
+
+        JMILaporanBahanBakuBahanPenolong.setText("Laporan Bahan Baku / Bahan Penolong");
+        JMILaporanBahanBakuBahanPenolong.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JMILaporanBahanBakuBahanPenolongActionPerformed(evt);
+            }
+        });
+        JMLaporanProduksi.add(JMILaporanBahanBakuBahanPenolong);
 
         JMILaporanPersediaanBarang.setText("Laporan Persediaan Barang");
         JMILaporanPersediaanBarang.addActionListener(new java.awt.event.ActionListener() {
@@ -734,6 +743,16 @@ public class MenuUtama extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_JMILaporanPengaduanPelangganActionPerformed
 
+    private void JMILaporanBahanBakuBahanPenolongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMILaporanBahanBakuBahanPenolongActionPerformed
+        if (laporanBahanBakuBahanPenolong == null) {
+            laporanBahanBakuBahanPenolong = new LaporanProduksi(JMILaporanBahanBakuBahanPenolong.getText());
+        } else {
+            laporanBahanBakuBahanPenolong.setState(NORMAL);
+            laporanBahanBakuBahanPenolong.toFront();
+        }
+    }//GEN-LAST:event_JMILaporanBahanBakuBahanPenolongActionPerformed
+
+
     /**
      * @param args the command line arguments
      */
@@ -776,6 +795,7 @@ public class MenuUtama extends javax.swing.JFrame {
     private javax.swing.JMenuItem JMIExit;
     private javax.swing.JMenuItem JMIGantiPassword;
     private javax.swing.JMenuItem JMIKebutuhanKaryawan;
+    private javax.swing.JMenuItem JMILaporanBahanBakuBahanPenolong;
     private javax.swing.JMenuItem JMILaporanCalonPesertaPelatihan;
     private javax.swing.JMenuItem JMILaporanDaftarPeralatan;
     private javax.swing.JMenuItem JMILaporanDaftarRiwayatHidup;

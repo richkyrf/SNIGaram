@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="F 07.06.00.03 Buku Kendali Gudang Penyerahan Produk Jadi" language="groovy" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="681fcae0-315d-47c3-91ca-fbcc5a2553a6">
-	<property name="ireport.zoom" value="1.210000000000002"/>
+	<property name="ireport.zoom" value="1.2100000000000026"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="Tanggal" class="java.util.Date" isForPrompting="false">
@@ -13,26 +13,18 @@
 		<defaultValueExpression><![CDATA["2018-12-31"]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[SELECT A.`Nama Barang`, `Tanggal`, IFNULL(`Stok Awal`,0) AS `Stok Awal`, `Masuk`, `Keluar`, `Satuan` FROM(
-(SELECT `Nama Barang`, `Tanggal`, IFNULL(SUM(`Masuk`),0) AS 'Masuk', IFNULL(SUM(`Keluar`),0) AS 'Keluar', `Satuan` FROM((SELECT IF(`NamaBarang` LIKE '%GRM KSR%',REPLACE(`NamaBarang`,`NamaBarang`,'Garam Kasar 50 Kg'),IF(`NamaBarang` LIKE '%GRM HLS%',REPLACE(`NamaBarang`,`NamaBarang`,'Garam Halus 50 Kg'),'')) AS 'Nama Barang', A.`Tanggal`, SUM(`KarungPelita`) AS 'Masuk', NULL AS 'Keluar', 'Sak' AS 'Satuan' FROM `tbpenerimaan` AS A JOIN `tbmpartai` AS B ON A.`IdPartai`=B.`IdPartai` JOIN `tbmbarang` AS C ON B.`IdBarang`=C.`IdBarang` WHERE A.`Tanggal` BETWEEN $P{Tanggal_Awal} AND $P{Tanggal_Akhir} GROUP BY `Tanggal`, `Nama Barang`
+		<![CDATA[SELECT A.`Nama Barang`, `Tanggal`, IFNULL(`Stok Awal`,0) AS `Stok Awal`, `Masuk`, `Keluar` FROM(
+(SELECT `Nama Barang`, `Tanggal`, IFNULL(SUM(`Masuk`),0) AS 'Masuk', IFNULL(SUM(`Keluar`),0) AS 'Keluar' FROM((SELECT REPLACE(REPLACE(REPLACE(IF(`NamaBarang` LIKE '%1/2 KG%' OR `NamaBarang` LIKE '%8 ONS%',REPLACE(REPLACE(`NamaBarang`,'G. HALUS','Garam Halus Duo Angso'),'G. KASAR','Garam Kasar Duo Angso'),REPLACE(REPLACE(`NamaBarang`,'G. HALUS','Garam Halus Tiga Bola'),'G. KASAR','Garam Kasar Tiga Bola')),'GRAM','Gram'),'ONS','Ons'),'KG','Kg') AS 'Nama Barang', `Tanggal`, SUM(`JumlahHasil`) AS 'Masuk', NULL AS 'Keluar' FROM `tbpacking` AS A JOIN `tbmbarang` AS B ON A.`IdBarangHasil`=B.`IdBarang` WHERE `NamaBarang` NOT LIKE '%@50 KG%' AND `IdPartai` IS NOT NULL AND `Tanggal` BETWEEN $P{Tanggal_Awal} AND $P{Tanggal_Akhir} GROUP BY `Tanggal`, `Nama Barang`
 UNION ALL
-SELECT IF(`NamaBarang` LIKE '%GRM KSR%',REPLACE(`NamaBarang`,`NamaBarang`,'Garam Kasar 50 Kg'),IF(`NamaBarang` LIKE '%GRM HLS%',REPLACE(`NamaBarang`,`NamaBarang`,'Garam Halus 50 Kg'),'')) AS 'Nama Barang', A.`Tanggal`, NULL AS 'Masuk', SUM(`JumlahBahan`) AS 'Keluar', 'Sak' AS 'Satuan' FROM `tbpacking` AS A JOIN `tbmpartai` AS B ON A.`IdPartai`=B.`IdPartai` JOIN `tbmbarang` AS C ON B.`IdBarang`=C.`IdBarang` WHERE A.`Tanggal` BETWEEN $P{Tanggal_Awal} AND $P{Tanggal_Akhir} GROUP BY `Tanggal`, `Nama Barang`
+SELECT REPLACE(REPLACE(REPLACE(IF(`NamaBarang` LIKE '%1/2 KG%' OR `NamaBarang` LIKE '%8 ONS%',REPLACE(REPLACE(`NamaBarang`,'G. HALUS','Garam Halus Duo Angso'),'G. KASAR','Garam Kasar Duo Angso'),REPLACE(REPLACE(`NamaBarang`,'G. HALUS','Garam Halus Tiga Bola'),'G. KASAR','Garam Kasar Tiga Bola')),'GRAM','Gram'),'ONS','Ons'),'KG','Kg') AS 'Nama Barang', A.`Tanggal`, NULL AS 'Masuk', SUM(`Jumlah`) AS 'Keluar' FROM `tbpenjualan` AS A JOIN `tbpenjualandetail` AS B ON A.`NoTransaksi`=B.`NoTransaksi` JOIN `tbmbarang` AS C ON B.`IdBarang`=C.`IdBarang` WHERE `NamaBarang` NOT LIKE '%@50 KG%' AND `StatusRetur`=0 AND A.`Tanggal` BETWEEN $P{Tanggal_Awal} AND $P{Tanggal_Akhir} GROUP BY A.`Tanggal`, `Nama Barang`
 UNION ALL
-SELECT REPLACE(REPLACE(REPLACE(IF(`NamaBarang` LIKE '%1/2 KG%' OR `NamaBarang` LIKE '%8 ONS%',REPLACE(REPLACE(`NamaBarang`,'G. HALUS','Garam Halus Duo Angso'),'G. KASAR','Garam Kasar Duo Angso'),REPLACE(REPLACE(`NamaBarang`,'G. HALUS','Garam Halus Tiga Bola'),'G. KASAR','Garam Kasar Tiga Bola')),'GRAM','Gram'),'ONS','Ons'),'KG','Kg') AS 'Nama Barang', `Tanggal`, SUM(`JumlahHasil`) AS 'Masuk', NULL AS 'Keluar', 'Pak' AS 'Satuan' FROM `tbpacking` AS A JOIN `tbmbarang` AS B ON A.`IdBarangHasil`=B.`IdBarang` WHERE `NamaBarang` NOT LIKE '%@50 KG%' AND `IdPartai` IS NOT NULL AND `Tanggal` BETWEEN $P{Tanggal_Awal} AND $P{Tanggal_Akhir} GROUP BY `Tanggal`, `Nama Barang`
-UNION ALL
-SELECT REPLACE(REPLACE(REPLACE(IF(`NamaBarang` LIKE '%GRM KSR%',REPLACE(`NamaBarang`,`NamaBarang`,'Garam Kasar 50 Kg'),IF(`NamaBarang` LIKE '%GRM HLS%',REPLACE(`NamaBarang`,`NamaBarang`,'Garam Halus 50 Kg'),IF(`NamaBarang` LIKE '%1/2 KG%' OR `NamaBarang` LIKE '%8 ONS%',REPLACE(REPLACE(`NamaBarang`,'G. HALUS','Garam Halus Duo Angso'),'G. KASAR','Garam Kasar Duo Angso'),REPLACE(REPLACE(`NamaBarang`,'G. HALUS','Garam Halus Tiga Bola'),'G. KASAR','Garam Kasar Tiga Bola')))),'GRAM','Gram'),'ONS','Ons'),'KG','Kg') AS 'Nama Barang', A.`Tanggal`, NULL AS 'Masuk', SUM(`Jumlah`) AS 'Keluar', 'Pak' AS 'Satuan' FROM `tbpenjualan` AS A JOIN `tbpenjualandetail` AS B ON A.`NoTransaksi`=B.`NoTransaksi` LEFT JOIN `tbmpartai` AS C ON B.`IdPartai`=C.`IdPartai` JOIN `tbmbarang` AS D ON IF(B.`IdPartai` IS NULL,B.`IdBarang`,C.`IdBarang`)=D.`IdBarang` WHERE `NamaBarang` NOT LIKE '%@50 KG%' AND `StatusRetur`=0 AND A.`Tanggal` BETWEEN $P{Tanggal_Awal} AND $P{Tanggal_Akhir} GROUP BY A.`Tanggal`, `Nama Barang`
-UNION ALL
-SELECT REPLACE(REPLACE(REPLACE(IF(`NamaBarang` LIKE '%GRM KSR%',REPLACE(`NamaBarang`,`NamaBarang`,'Garam Kasar 50 Kg'),IF(`NamaBarang` LIKE '%GRM HLS%',REPLACE(`NamaBarang`,`NamaBarang`,'Garam Halus 50 Kg'),IF(`NamaBarang` LIKE '%1/2 KG%' OR `NamaBarang` LIKE '%8 ONS%',REPLACE(REPLACE(`NamaBarang`,'G. HALUS','Garam Halus Duo Angso'),'G. KASAR','Garam Kasar Duo Angso'),REPLACE(REPLACE(`NamaBarang`,'G. HALUS','Garam Halus Tiga Bola'),'G. KASAR','Garam Kasar Tiga Bola')))),'GRAM','Gram'),'ONS','Ons'),'KG','Kg') AS 'Nama Barang', A.`Tanggal`, IF(IFNULL(SUM(`Sak`),0)>=0,IFNULL(SUM(`Sak`),0),0) AS 'Masuk', IF(IFNULL(SUM(`Sak`),0)<0,IFNULL(SUM(`Sak`)*-1,0),0) AS 'Keluar', IF(A.`IdPartai` IS NOT NULL,'Sak','Pak') AS 'Satuan' FROM `tbpenyesuaian` AS A LEFT JOIN `tbmpartai` AS B ON A.`IdPartai`=B.`IdPartai` JOIN `tbmbarang` AS C ON IF(A.`IdPartai` IS NULL,A.`IdBarang`,B.`IdBarang`)=C.`IdBarang` WHERE `NamaBarang` NOT LIKE '%@50 KG%' AND A.`Tanggal` BETWEEN $P{Tanggal_Awal} AND $P{Tanggal_Akhir} GROUP BY A.`Tanggal`, `Nama Barang`)) AS A GROUP BY `Nama Barang`, `Tanggal`) AS A
+SELECT REPLACE(REPLACE(REPLACE(IF(`NamaBarang` LIKE '%1/2 KG%' OR `NamaBarang` LIKE '%8 ONS%',REPLACE(REPLACE(`NamaBarang`,'G. HALUS','Garam Halus Duo Angso'),'G. KASAR','Garam Kasar Duo Angso'),REPLACE(REPLACE(`NamaBarang`,'G. HALUS','Garam Halus Tiga Bola'),'G. KASAR','Garam Kasar Tiga Bola')),'GRAM','Gram'),'ONS','Ons'),'KG','Kg') AS 'Nama Barang', A.`Tanggal`, IF(IFNULL(SUM(`Sak`),0)>=0,IFNULL(SUM(`Sak`),0),0) AS 'Masuk', IF(IFNULL(SUM(`Sak`),0)<0,IFNULL(SUM(`Sak`)*-1,0),0) AS 'Keluar' FROM `tbpenyesuaian` AS A JOIN `tbmbarang` AS B ON A.`IdBarang`=B.`IdBarang` WHERE `NamaBarang` NOT LIKE '%@50 KG%' AND A.`Tanggal` BETWEEN $P{Tanggal_Awal} AND $P{Tanggal_Akhir} GROUP BY A.`Tanggal`, `Nama Barang`)) AS A GROUP BY `Nama Barang`, `Tanggal`) AS A
 LEFT JOIN
-(SELECT `Nama Barang`, IFNULL(SUM(`Stok Awal`),0) AS `Stok Awal` FROM((SELECT IF(`NamaBarang` LIKE '%GRM KSR%',REPLACE(`NamaBarang`,`NamaBarang`,'Garam Kasar 50 Kg'),IF(`NamaBarang` LIKE '%GRM HLS%',REPLACE(`NamaBarang`,`NamaBarang`,'Garam Halus 50 Kg'),'')) AS 'Nama Barang', SUM(`KarungPelita`) AS 'Stok Awal' FROM `tbpenerimaan` AS A JOIN `tbmpartai` AS B ON A.`IdPartai`=B.`IdPartai` JOIN `tbmbarang` AS C ON B.`IdBarang`=C.`IdBarang` WHERE A.`Tanggal` < $P{Tanggal_Awal} GROUP BY `Nama Barang`
+(SELECT `Nama Barang`, IFNULL(SUM(`Stok Awal`),0) AS `Stok Awal` FROM((SELECT REPLACE(REPLACE(REPLACE(IF(`NamaBarang` LIKE '%1/2 KG%' OR `NamaBarang` LIKE '%8 ONS%',REPLACE(REPLACE(`NamaBarang`,'G. HALUS','Garam Halus Duo Angso'),'G. KASAR','Garam Kasar Duo Angso'),REPLACE(REPLACE(`NamaBarang`,'G. HALUS','Garam Halus Tiga Bola'),'G. KASAR','Garam Kasar Tiga Bola')),'GRAM','Gram'),'ONS','Ons'),'KG','Kg') AS 'Nama Barang', SUM(`JumlahHasil`) AS 'Stok Awal' FROM `tbpacking` AS A JOIN `tbmbarang` AS B ON A.`IdBarangHasil`=B.`IdBarang` WHERE `NamaBarang` NOT LIKE '%@50 KG%' AND `IdPartai` IS NOT NULL AND `Tanggal` < $P{Tanggal_Awal} GROUP BY `Nama Barang`
 UNION ALL
-SELECT IF(`NamaBarang` LIKE '%GRM KSR%',REPLACE(`NamaBarang`,`NamaBarang`,'Garam Kasar 50 Kg'),IF(`NamaBarang` LIKE '%GRM HLS%',REPLACE(`NamaBarang`,`NamaBarang`,'Garam Halus 50 Kg'),'')) AS 'Nama Barang', SUM(`JumlahBahan`)*-1 AS 'Stok Awal' FROM `tbpacking` AS A JOIN `tbmpartai` AS B ON A.`IdPartai`=B.`IdPartai` JOIN `tbmbarang` AS C ON B.`IdBarang`=C.`IdBarang` WHERE A.`Tanggal` < $P{Tanggal_Awal} GROUP BY `Nama Barang`
+SELECT REPLACE(REPLACE(REPLACE(IF(`NamaBarang` LIKE '%1/2 KG%' OR `NamaBarang` LIKE '%8 ONS%',REPLACE(REPLACE(`NamaBarang`,'G. HALUS','Garam Halus Duo Angso'),'G. KASAR','Garam Kasar Duo Angso'),REPLACE(REPLACE(`NamaBarang`,'G. HALUS','Garam Halus Tiga Bola'),'G. KASAR','Garam Kasar Tiga Bola')),'GRAM','Gram'),'ONS','Ons'),'KG','Kg') AS 'Nama Barang', SUM(`Jumlah`)*-1 AS 'Stok Awal' FROM `tbpenjualan` AS A JOIN `tbpenjualandetail` AS B ON A.`NoTransaksi`=B.`NoTransaksi` JOIN `tbmbarang` AS C ON B.`IdBarang`=C.`IdBarang` WHERE `NamaBarang` NOT LIKE '%@50 KG%' AND `StatusRetur`=0 AND A.`Tanggal` < $P{Tanggal_Awal} GROUP BY `Nama Barang`
 UNION ALL
-SELECT REPLACE(REPLACE(REPLACE(IF(`NamaBarang` LIKE '%1/2 KG%' OR `NamaBarang` LIKE '%8 ONS%',REPLACE(REPLACE(`NamaBarang`,'G. HALUS','Garam Halus Duo Angso'),'G. KASAR','Garam Kasar Duo Angso'),REPLACE(REPLACE(`NamaBarang`,'G. HALUS','Garam Halus Tiga Bola'),'G. KASAR','Garam Kasar Tiga Bola')),'GRAM','Gram'),'ONS','Ons'),'KG','Kg') AS 'Nama Barang', SUM(`JumlahHasil`) AS 'Stok Awal' FROM `tbpacking` AS A JOIN `tbmbarang` AS B ON A.`IdBarangHasil`=B.`IdBarang` WHERE `NamaBarang` NOT LIKE '%@50 KG%' AND `IdPartai` IS NOT NULL AND `Tanggal` < $P{Tanggal_Awal} GROUP BY `Nama Barang`
-UNION ALL
-SELECT REPLACE(REPLACE(REPLACE(IF(`NamaBarang` LIKE '%GRM KSR%',REPLACE(`NamaBarang`,`NamaBarang`,'Garam Kasar 50 Kg'),IF(`NamaBarang` LIKE '%GRM HLS%',REPLACE(`NamaBarang`,`NamaBarang`,'Garam Halus 50 Kg'),IF(`NamaBarang` LIKE '%1/2 KG%' OR `NamaBarang` LIKE '%8 ONS%',REPLACE(REPLACE(`NamaBarang`,'G. HALUS','Garam Halus Duo Angso'),'G. KASAR','Garam Kasar Duo Angso'),REPLACE(REPLACE(`NamaBarang`,'G. HALUS','Garam Halus Tiga Bola'),'G. KASAR','Garam Kasar Tiga Bola')))),'GRAM','Gram'),'ONS','Ons'),'KG','Kg') AS 'Nama Barang', SUM(`Jumlah`)*-1 AS 'Stok Awal' FROM `tbpenjualan` AS A JOIN `tbpenjualandetail` AS B ON A.`NoTransaksi`=B.`NoTransaksi` LEFT JOIN `tbmpartai` AS C ON B.`IdPartai`=C.`IdPartai` JOIN `tbmbarang` AS D ON IF(B.`IdPartai` IS NULL,B.`IdBarang`,C.`IdBarang`)=D.`IdBarang` WHERE `NamaBarang` NOT LIKE '%@50 KG%' AND `StatusRetur`=0 AND A.`Tanggal` < $P{Tanggal_Awal} GROUP BY `Nama Barang`
-UNION ALL
-SELECT REPLACE(REPLACE(REPLACE(IF(`NamaBarang` LIKE '%GRM KSR%',REPLACE(`NamaBarang`,`NamaBarang`,'Garam Kasar 50 Kg'),IF(`NamaBarang` LIKE '%GRM HLS%',REPLACE(`NamaBarang`,`NamaBarang`,'Garam Halus 50 Kg'),IF(`NamaBarang` LIKE '%1/2 KG%' OR `NamaBarang` LIKE '%8 ONS%',REPLACE(REPLACE(`NamaBarang`,'G. HALUS','Garam Halus Duo Angso'),'G. KASAR','Garam Kasar Duo Angso'),REPLACE(REPLACE(`NamaBarang`,'G. HALUS','Garam Halus Tiga Bola'),'G. KASAR','Garam Kasar Tiga Bola')))),'GRAM','Gram'),'ONS','Ons'),'KG','Kg') AS 'Nama Barang', IFNULL(SUM(`Sak`),0) AS 'Stok Awal' FROM `tbpenyesuaian` AS A LEFT JOIN `tbmpartai` AS B ON A.`IdPartai`=B.`IdPartai` JOIN `tbmbarang` AS C ON IF(A.`IdPartai` IS NULL,A.`IdBarang`,B.`IdBarang`)=C.`IdBarang` WHERE `NamaBarang` NOT LIKE '%@50 KG%' AND A.`Tanggal` < $P{Tanggal_Awal} GROUP BY `Nama Barang`)) AS B GROUP BY `Nama Barang`) AS B
+SELECT REPLACE(REPLACE(REPLACE(IF(`NamaBarang` LIKE '%1/2 KG%' OR `NamaBarang` LIKE '%8 ONS%',REPLACE(REPLACE(`NamaBarang`,'G. HALUS','Garam Halus Duo Angso'),'G. KASAR','Garam Kasar Duo Angso'),REPLACE(REPLACE(`NamaBarang`,'G. HALUS','Garam Halus Tiga Bola'),'G. KASAR','Garam Kasar Tiga Bola')),'GRAM','Gram'),'ONS','Ons'),'KG','Kg') AS 'Nama Barang', IFNULL(SUM(`Sak`),0) AS 'Stok Awal' FROM `tbpenyesuaian` AS A JOIN `tbmbarang` AS B ON A.`IdBarang`=B.`IdBarang` WHERE `NamaBarang` NOT LIKE '%@50 KG%' AND A.`Tanggal` < $P{Tanggal_Awal} GROUP BY `Nama Barang`)) AS B GROUP BY `Nama Barang`) AS B
 ON A.`Nama Barang`=B.`Nama Barang`
 ) ORDER BY `Nama Barang`, `Tanggal`]]>
 	</queryString>
@@ -43,9 +35,6 @@ ON A.`Nama Barang`=B.`Nama Barang`
 	<field name="Stok Awal" class="java.math.BigDecimal"/>
 	<field name="Masuk" class="java.math.BigDecimal"/>
 	<field name="Keluar" class="java.math.BigDecimal"/>
-	<field name="Satuan" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
 	<variable name="Masuk" class="java.math.BigDecimal" resetType="Group" resetGroup="Category" calculation="Sum">
 		<variableExpression><![CDATA[$F{Masuk}]]></variableExpression>
 	</variable>
@@ -222,7 +211,7 @@ ON A.`Nama Barang`=B.`Nama Barang`
 				<textFieldExpression><![CDATA[$F{Tanggal}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="#,##0;-#,##0">
-				<reportElement stretchType="RelativeToTallestObject" x="275" y="0" width="48" height="20" uuid="b594c393-51c0-416b-90c1-5b0c56c50a15"/>
+				<reportElement stretchType="RelativeToTallestObject" x="275" y="0" width="46" height="20" uuid="b594c393-51c0-416b-90c1-5b0c56c50a15"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -236,7 +225,7 @@ ON A.`Nama Barang`=B.`Nama Barang`
 				<textFieldExpression><![CDATA[$F{Stok Awal}+($V{Masuk}-$F{Masuk})-($V{Keluar}-$F{Keluar})]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="#,##0;-#,##0">
-				<reportElement stretchType="RelativeToTallestObject" x="345" y="0" width="48" height="20" uuid="0ebfc51c-b64b-4c97-8515-44ff0dd6b594"/>
+				<reportElement stretchType="RelativeToTallestObject" x="345" y="0" width="46" height="20" uuid="0ebfc51c-b64b-4c97-8515-44ff0dd6b594"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -250,7 +239,7 @@ ON A.`Nama Barang`=B.`Nama Barang`
 				<textFieldExpression><![CDATA[$F{Masuk}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="#,##0;-#,##0">
-				<reportElement stretchType="RelativeToTallestObject" x="415" y="0" width="48" height="20" uuid="02b0012e-fbd4-44f9-9053-ffa5e9e6dbff"/>
+				<reportElement stretchType="RelativeToTallestObject" x="415" y="0" width="46" height="20" uuid="02b0012e-fbd4-44f9-9053-ffa5e9e6dbff"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -264,7 +253,7 @@ ON A.`Nama Barang`=B.`Nama Barang`
 				<textFieldExpression><![CDATA[$F{Keluar}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="#,##0;-#,##0">
-				<reportElement stretchType="RelativeToTallestObject" x="485" y="0" width="48" height="20" uuid="d953360d-97ef-45c8-8204-1b35e0973555"/>
+				<reportElement stretchType="RelativeToTallestObject" x="485" y="0" width="46" height="20" uuid="d953360d-97ef-45c8-8204-1b35e0973555"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -291,8 +280,8 @@ ON A.`Nama Barang`=B.`Nama Barang`
 				</textElement>
 				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true">
-				<reportElement stretchType="RelativeToTallestObject" x="322" y="0" width="23" height="20" uuid="50c73ed5-57b7-4950-8ef7-60c6ac06a116"/>
+			<staticText>
+				<reportElement stretchType="RelativeToTallestObject" x="320" y="0" width="25" height="20" uuid="2045cc78-317f-4974-94cc-b5eab2133bcc"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -303,10 +292,10 @@ ON A.`Nama Barang`=B.`Nama Barang`
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Gadugi" size="12"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{Satuan}]]></textFieldExpression>
-			</textField>
-			<textField isStretchWithOverflow="true">
-				<reportElement stretchType="RelativeToTallestObject" x="462" y="0" width="23" height="20" uuid="366908bf-f9c9-451f-bb87-d158eec2784d"/>
+				<text><![CDATA[Pak]]></text>
+			</staticText>
+			<staticText>
+				<reportElement stretchType="RelativeToTallestObject" x="390" y="0" width="25" height="20" uuid="240286a0-b9c8-4c70-818f-429b14943a76"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -317,10 +306,10 @@ ON A.`Nama Barang`=B.`Nama Barang`
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Gadugi" size="12"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{Satuan}]]></textFieldExpression>
-			</textField>
-			<textField isStretchWithOverflow="true">
-				<reportElement stretchType="RelativeToTallestObject" x="392" y="0" width="23" height="20" uuid="128c26c3-a508-4605-8437-d3ea281d8e07"/>
+				<text><![CDATA[Pak]]></text>
+			</staticText>
+			<staticText>
+				<reportElement stretchType="RelativeToTallestObject" x="460" y="0" width="25" height="20" uuid="519cc4b5-9358-4d65-b211-4fff8a36f828"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -331,10 +320,10 @@ ON A.`Nama Barang`=B.`Nama Barang`
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Gadugi" size="12"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{Satuan}]]></textFieldExpression>
-			</textField>
-			<textField isStretchWithOverflow="true">
-				<reportElement stretchType="RelativeToTallestObject" x="532" y="0" width="23" height="20" uuid="78c532b8-771c-4785-ada6-56d705c65ebe"/>
+				<text><![CDATA[Pak]]></text>
+			</staticText>
+			<staticText>
+				<reportElement stretchType="RelativeToTallestObject" x="530" y="0" width="25" height="20" uuid="c510e40f-17b4-4bf5-b2df-be5e4d0e6235"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -345,8 +334,8 @@ ON A.`Nama Barang`=B.`Nama Barang`
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Gadugi" size="12"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{Satuan}]]></textFieldExpression>
-			</textField>
+				<text><![CDATA[Pak]]></text>
+			</staticText>
 		</band>
 	</detail>
 	<pageFooter>
