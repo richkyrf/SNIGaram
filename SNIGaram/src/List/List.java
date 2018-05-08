@@ -456,8 +456,8 @@ public class List extends javax.swing.JFrame {
                 jcomCari1.setOrder(" ORDER BY `Tanggal` DESC ");
                 break;
             case "List Kebutuhan Karyawan":
-                jcomCari1.setQuery("SELECT `IdKebutuhanKaryawan` as 'ID', DATE_FORMAT(`Tanggal`,'%d-%m-%Y') as 'Tanggal', `Bagian`, `Kualifikasi`, `Jumlah`, `Keterangan` FROM `snitbkebutuhankaryawan` WHERE 1");
-                jcomCari1.setOrder(" ORDER BY `Tanggal` DESC, `Bagian` ");
+                jcomCari1.setQuery("SELECT `IdKebutuhanKaryawan` as 'ID', DATE_FORMAT(`Tanggal`,'%d-%m-%Y') as 'Tanggal', `Bagian`, `Kualifikasi`, `Jumlah`, `Keterangan` FROM `snitbkebutuhankaryawan`a WHERE 1");
+                jcomCari1.setOrder(" ORDER BY a.`Tanggal` DESC, `Bagian` ");
                 break;
             default:
                 throw new AssertionError();

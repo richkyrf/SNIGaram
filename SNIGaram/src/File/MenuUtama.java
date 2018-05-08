@@ -443,12 +443,22 @@ public class MenuUtama extends javax.swing.JFrame {
         JMLaporanPersonalia.add(JMILaporanKebutuhanKaryawan);
 
         JMILaporanEvaluasiMasaPercobaanKaryawan.setText("Laporan Evaluasi Masa Percobaan Karyawan");
+        JMILaporanEvaluasiMasaPercobaanKaryawan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JMILaporanEvaluasiMasaPercobaanKaryawanActionPerformed(evt);
+            }
+        });
         JMLaporanPersonalia.add(JMILaporanEvaluasiMasaPercobaanKaryawan);
 
         JMILaporanDaftarRiwayatHidup.setText("Laporan Daftar Riwayat Hidup");
         JMLaporanPersonalia.add(JMILaporanDaftarRiwayatHidup);
 
         JMILaporanUsulPelatihan.setText("Laporan Usul Pelatihan");
+        JMILaporanUsulPelatihan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JMILaporanUsulPelatihanActionPerformed(evt);
+            }
+        });
         JMLaporanPersonalia.add(JMILaporanUsulPelatihan);
 
         JMILaporanProgramPelatihan.setText("Laporan Program Pelatihan");
@@ -751,6 +761,24 @@ public class MenuUtama extends javax.swing.JFrame {
             laporanBahanBakuBahanPenolong.toFront();
         }
     }//GEN-LAST:event_JMILaporanBahanBakuBahanPenolongActionPerformed
+
+    private void JMILaporanEvaluasiMasaPercobaanKaryawanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMILaporanEvaluasiMasaPercobaanKaryawanActionPerformed
+        if (laporanEvaluasiMasaPercobaanKaryawan == null) {
+            laporanEvaluasiMasaPercobaanKaryawan = new LaporanPersonalia(JMILaporanEvaluasiMasaPercobaanKaryawan.getText());
+        } else {
+            laporanEvaluasiMasaPercobaanKaryawan.setState(NORMAL);
+            laporanEvaluasiMasaPercobaanKaryawan.toFront();
+        }
+    }//GEN-LAST:event_JMILaporanEvaluasiMasaPercobaanKaryawanActionPerformed
+
+    private void JMILaporanUsulPelatihanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMILaporanUsulPelatihanActionPerformed
+        if (laporanUsulPelatihan == null) {
+            laporanUsulPelatihan = new LaporanPersonalia(JMILaporanUsulPelatihan.getText());
+        } else {
+            laporanUsulPelatihan.setState(NORMAL);
+            laporanUsulPelatihan.toFront();
+        }
+    }//GEN-LAST:event_JMILaporanUsulPelatihanActionPerformed
 
 
     /**

@@ -401,6 +401,9 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Laporan Evaluasi Masa Percobaan Karyawan"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JMILaporanEvaluasiMasaPercobaanKaryawanActionPerformed"/>
+                  </Events>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="JMILaporanDaftarRiwayatHidup">
                   <Properties>
@@ -411,6 +414,9 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Laporan Usul Pelatihan"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JMILaporanUsulPelatihanActionPerformed"/>
+                  </Events>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="JMILaporanProgramPelatihan">
                   <Properties>
