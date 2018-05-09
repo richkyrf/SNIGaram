@@ -123,9 +123,15 @@ public class LaporanPersonalia extends javax.swing.JFrame {
         } else if (getTitle().equals("Laporan Usul Pelatihan")) {
             fLaporan.setfilename("Arsad/Personalia/F 06.02.00.01 Usul Pelatihan");
             History.simpanhistory(GlobalVar.VarL.username, "F 06.02.00.01 Usul Pelatihan");
+        } else if (getTitle().equals("Laporan Program Pelatihan")) {
+            fLaporan.setfilename("Arsad/Personalia/F 06.02.00.02 Program Pelatihan");
+            History.simpanhistory(GlobalVar.VarL.username, "F 06.02.00.02 Program Pelatihan");
+        } else if (getTitle().equals("Laporan Calon Peserta Pelatihan")) {
+            fLaporan.setfilename("Arsad/Personalia/F 06.02.00.03 Calon Peserta Pelatihan");
+            History.simpanhistory(GlobalVar.VarL.username, "F 06.02.00.03 Calon Peserta Pelatihan");
         } else {
-            fLaporan.setfilename("");
-            History.simpanhistory(GlobalVar.VarL.username, "");
+            fLaporan.setfilename("Arsad/Personalia/F 06.02.00.04 Evaluasi Pelatihan");
+            History.simpanhistory(GlobalVar.VarL.username, "F 06.02.00.04 Evaluasi Pelatihan");
         }
         fLaporan.setErorm("Gagal Menampilkan " + this.getTitle());
         fLaporan.excute();
@@ -138,8 +144,12 @@ public class LaporanPersonalia extends javax.swing.JFrame {
             GlobalVar.Var.laporanEvaluasiMasaPercobaanKaryawan = null;
         } else if (getTitle().equals("Laporan Usul Pelatihan")) {
             GlobalVar.Var.laporanUsulPelatihan = null;
+        } else if (getTitle().equals("Laporan Program Pelatihan")) {
+            GlobalVar.Var.laporanProgramPelatihan = null;
+        } else if (getTitle().equals("Laporan Calon Peserta Pelatihan")) {
+            GlobalVar.Var.laporanCalonPesertaPelatihan = null;
         } else {
-
+            GlobalVar.Var.laporanEvaluasiPelatihan = null;
         }
     }//GEN-LAST:event_formWindowClosed
 
