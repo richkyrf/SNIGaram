@@ -12,6 +12,7 @@ import ProsesTeknik.BarangTeknik;
 import ProsesLab.*;
 import ProsesPemasran.PengaduanPelanggan;
 import ProsesPemasran.SurveyKepuasanPelanggan;
+import ProsesPembelian.EvaluasiSupplier;
 import ProsesPersonalia.KebutuhanKaryawan;
 import ProsesTeknik.Pemeliharaan;
 
@@ -176,10 +177,16 @@ public class List extends javax.swing.JFrame {
                 listSurveyKepuasanPelanggan = null;
                 break;
             case "List Data Penjualan":
-                listDataPenjualan = null;
+//                listDataPenjualan = null;
                 break;
             case "List Kebutuhan Karyawan":
                 listKebutuhanKaryawan = null;
+                break;
+            case "List Daftar Supplier":
+                listEvaluasiSupplier = null;
+                break;
+            case "List Daftar Supplier Terpilih":
+//                listSupplierTerpilih = null;
                 break;
             default:
                 throw new AssertionError();
@@ -301,6 +308,22 @@ public class List extends javax.swing.JFrame {
                     tambahKebutuhanKaryawan.toFront();
                 }
                 break;
+            case "List Daftar Supplier":
+                if (tambahEvaluasiSupplier == null) {
+                    tambahEvaluasiSupplier = new EvaluasiSupplier();
+                } else {
+                    tambahEvaluasiSupplier.setState(NORMAL);
+                    tambahEvaluasiSupplier.toFront();
+                }
+                break;
+            case "List Daftar Supplier Terpilih":
+//                if (tambahSupplierTerpilih == null) {
+//                    tambahSupplierTerpilih = new SupplierTerpilih();
+//                } else {
+//                    tambahSupplierTerpilih.setState(NORMAL);
+//                    tambahSupplierTerpilih.toFront();
+//                }
+                break;
             default:
                 throw new AssertionError();
         }
@@ -333,10 +356,16 @@ public class List extends javax.swing.JFrame {
                     berhasil = delete.Hapus(jcomCari1.GetIDTable(), "DELETE FROM `snitbsurveykepuasanpelanggan` WHERE `IdSurveyKepuasanPelanggan` = " + jcomCari1.GetIDTable(), getTitle(), this);
                     break;
                 case "List Data Penjualan":
-                    berhasil = delete.Hapus(jcomCari1.GetIDTable(), "DELETE FROM `snitbdatapenjualan` WHERE `IdDataPenjualan` = " + jcomCari1.GetIDTable(), getTitle(), this);
+//                    berhasil = delete.Hapus(jcomCari1.GetIDTable(), "DELETE FROM `snitbdatapenjualan` WHERE `IdDataPenjualan` = " + jcomCari1.GetIDTable(), getTitle(), this);
                     break;
                 case "List Kebutuhan Karyawan":
                     berhasil = delete.Hapus(jcomCari1.GetIDTable(), "DELETE FROM `snitbkebutuhankaryawan` WHERE `IdKebutuhanKaryawan` = " + jcomCari1.GetIDTable(), getTitle(), this);
+                    break;
+                case "List Daftar Supplier":
+                    berhasil = delete.Hapus(jcomCari1.GetIDTable(), "DELETE FROM `snitbevaluasisupplier` WHERE `IdEvaluasi` = " + jcomCari1.GetIDTable(), getTitle(), this);
+                    break;
+                case "List Daftar Supplier Terpilih":
+//                    berhasil = delete.Hapus(jcomCari1.GetIDTable(), "DELETE FROM `snitbsupplierterpilih` WHERE `IdSupplierTerpilih` = " + jcomCari1.GetIDTable(), getTitle(), this);
                     break;
                 default:
                     throw new AssertionError();
@@ -416,6 +445,22 @@ public class List extends javax.swing.JFrame {
                         ubahKebutuhanKaryawan.toFront();
                     }
                     break;
+                case "List Daftar Supplier":
+                    if (ubahEvaluasiSupplier == null) {
+                        ubahEvaluasiSupplier = new EvaluasiSupplier(jcomCari1.GetIDTable());
+                    } else {
+                        ubahEvaluasiSupplier.setState(NORMAL);
+                        ubahEvaluasiSupplier.toFront();
+                    }
+                    break;
+                case "List Daftar Supplier Terpilih":
+//                    if (ubahSupplierTerpilih == null) {
+//                        ubahSupplierTerpilih = new SupplierTerpilih(jcomCari1.GetIDTable());
+//                    } else {
+//                        ubahSupplierTerpilih.setState(NORMAL);
+//                        ubahSupplierTerpilih.toFront();
+//                    }
+                    break;
                 default:
                     throw new AssertionError();
             }
@@ -458,6 +503,14 @@ public class List extends javax.swing.JFrame {
             case "List Kebutuhan Karyawan":
                 jcomCari1.setQuery("SELECT `IdKebutuhanKaryawan` as 'ID', DATE_FORMAT(`Tanggal`,'%d-%m-%Y') as 'Tanggal', `Bagian`, `Kualifikasi`, `Jumlah`, `Keterangan` FROM `snitbkebutuhankaryawan`a WHERE 1");
                 jcomCari1.setOrder(" ORDER BY a.`Tanggal` DESC, `Bagian` ");
+                break;
+            case "List Daftar Supplier":
+                jcomCari1.setQuery("SELECT `IdEvaluasi` as 'ID', `NamaPemasok` as 'Nama Pemasok', `HasilEvaluasi` as 'Hasil Evaluasi', `Keterangan` FROM `snitbevaluasisupplier` WHERE 1");
+                jcomCari1.setOrder(" ORDER BY `NamaPemasok` ");
+                break;
+            case "List Daftar Supplier Terpilih":
+                jcomCari1.setQuery("");
+                jcomCari1.setOrder(" ORDER BY `NamaPemasok` ");
                 break;
             default:
                 throw new AssertionError();

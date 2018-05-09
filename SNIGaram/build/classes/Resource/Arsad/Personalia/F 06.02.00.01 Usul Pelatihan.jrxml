@@ -116,8 +116,8 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="110" y="0" width="270" height="20" uuid="28d545a7-4e94-4ec7-9161-e09a6b2f03bb"/>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToTallestObject" x="110" y="0" width="270" height="20" uuid="28d545a7-4e94-4ec7-9161-e09a6b2f03bb"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -130,8 +130,8 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Jenis Pelatihan}]]></textFieldExpression>
 			</textField>
-			<textField pattern="dd/MM/yyyy">
-				<reportElement x="40" y="0" width="70" height="20" uuid="fb300934-5729-4b21-a73b-71c24aae8399"/>
+			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy">
+				<reportElement stretchType="RelativeToTallestObject" x="40" y="0" width="70" height="20" uuid="fb300934-5729-4b21-a73b-71c24aae8399"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -144,8 +144,8 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Tanggal}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="380" y="0" width="175" height="20" uuid="5ce5ea60-e8b6-4024-9cc1-788d351b60b5"/>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToTallestObject" x="380" y="0" width="175" height="20" uuid="5ce5ea60-e8b6-4024-9cc1-788d351b60b5"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>

@@ -18,6 +18,8 @@ import ProsesPemasran.*;
 import ProsesPemasran.SurveyKepuasanPelanggan;
 import ProsesPersonalia.KebutuhanKaryawan;
 import ProsesTeknik.*;
+import ProsesPembelian.*;
+import LaporanPembelian.*;
 
 /**
  *
@@ -30,7 +32,7 @@ public class Var {
     public static ResetPasswordUser resetPasswordUser;
     public static GantiPassword gantiPassword;
 
-    public static List listPengujianProdukJadi, listPengujianBahanBaku, listBarangTeknik, listPemeliharaan, listPengaduanPelanggan, listSurveyKepuasanPelanggan, listDataPenjualan, listKebutuhanKaryawan;
+    public static List listPengujianProdukJadi, listPengujianBahanBaku, listBarangTeknik, listPemeliharaan, listPengaduanPelanggan, listSurveyKepuasanPelanggan, listDataPenjualan, listKebutuhanKaryawan, listEvaluasiSupplier;
     
     public static BarangTeknik tambahBarangTeknik, ubahBarangTeknik;
     public static Pemeliharaan tambahPemeliharaan, ubahPemeliharaan;
@@ -39,6 +41,9 @@ public class Var {
     public static PengujianBahanBaku tambahPengujianBahanBaku, ubahPengujianBahanBaku;
     public static SurveyKepuasanPelanggan tambahSurveyKepuasanPelanggan, ubahSurveyKepuasanPelanggan;
     public static PengaduanPelanggan tambahPengaduanPelanggan, ubahPengaduanPelanggan;
+    
+    public static EvaluasiSupplier tambahEvaluasiSupplier, ubahEvaluasiSupplier;
+    
 
     public static KebutuhanKaryawan tambahKebutuhanKaryawan, ubahKebutuhanKaryawan;
     
@@ -47,5 +52,6 @@ public class Var {
     public static LaporanProduksi laporanBahanBakuBahanPenolong, laporanPersediaanBarang, laporanIndentifikasiProdukJadi, laporanPenyerahanProdukJadi, laporanOrderPesanan, laporanDataProduksi;
     public static LaporanPersonalia laporanKebutuhanKaryawan, laporanEvaluasiMasaPercobaanKaryawan, laporanDaftarRiwayatHidup, laporanUsulPelatihan, laporanProgramPelatihan, laporanCalonPesertaPelatihan, laporanEvaluasiPelatihan;
     public static LaporanPemasaran laporanPengaduanPelanggan, laporanSurveyKepuasanPelanggan;
+    public static LaporanPembelian laporanPermintaanBarang, laporanSuratPermintaanPenawaran, laporanPemesanan, laporanDaftarSupplier, laporanDaftarSupplierTerpilih, laporanPenerimaanBarang;
     
 }
