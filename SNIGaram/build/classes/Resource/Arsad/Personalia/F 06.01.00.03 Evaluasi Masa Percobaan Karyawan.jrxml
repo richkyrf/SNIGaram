@@ -151,8 +151,8 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Kemampuan Bekerja}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="0" y="0" width="40" height="20" uuid="065a9500-8274-4673-8f59-3e691fdd37e0"/>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToTallestObject" x="0" y="0" width="40" height="20" uuid="065a9500-8274-4673-8f59-3e691fdd37e0"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>

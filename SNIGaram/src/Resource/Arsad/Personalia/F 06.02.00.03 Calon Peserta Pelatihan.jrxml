@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="F 06.01.00.03 Evaluasi Masa Percobaan Karyawan" language="groovy" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="681fcae0-315d-47c3-91ca-fbcc5a2553a6">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="F 06.02.00.03 Calon Peserta Pelatihan" language="groovy" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="681fcae0-315d-47c3-91ca-fbcc5a2553a6">
 	<property name="ireport.zoom" value="1.210000000000005"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -13,19 +13,21 @@
 		<defaultValueExpression><![CDATA["2018-12-31"]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[SELECT `Tanggal`, `NamaKaryawan` AS 'Nama Karyawan', `PenguasaanMateri` AS 'Penguasaan Materi', `KemampuanBekerja` AS 'Kemampuan Bekerja', `Kesimpulan` FROM `snitbmasapercobaankaryawan` AS A JOIN `snitbmasapercobaankaryawandetail` AS B ON A.`IdMasaPercobaanKaryawan`=B.`IdMasaPercobaanKaryawan` JOIN `tbmkaryawan` AS C ON B.`IdKaryawan`=C.`IdKaryawan` WHERE `Tanggal` BETWEEN $P{Tanggal_Awal} AND $P{Tanggal_Akhir} GROUP BY `Tanggal`, `Nama Karyawan` ORDER BY `Tanggal`, `Nama Karyawan`]]>
+		<![CDATA[SELECT `Tanggal`, `NamaKaryawan` AS 'Nama Calon Peserta', IF(`IdJenisKaryawan`=1,'Bongkar dan Muat Garam',IF(`IdJenisKaryawan`=2,'Packing Garam','')) AS 'Bagian', '' AS 'Keterangan', CONCAT(`Tanggal`,`Waktu`) AS 'TanggalWaktu' FROM `snitbpelatihandetail` AS A JOIN `snitbpelatihan` AS B ON A.`IdPelatihan`=B.`IdPelatihan` JOIN `snitbusulpelatihan` AS C ON B.`IdUsulPelatihan`=C.`IdUsulPelatihan` JOIN `tbmkaryawan` AS D ON A.`IdKaryawan`=D.`IdKaryawan` WHERE `Tanggal` BETWEEN $P{Tanggal_Awal} AND $P{Tanggal_Akhir} GROUP BY `Tanggal`, `Waktu`, `Nama Calon Peserta` ORDER BY `Tanggal`, `Waktu`, `Nama Calon Peserta`]]>
 	</queryString>
 	<field name="Tanggal" class="java.sql.Date">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="Nama Karyawan" class="java.lang.String"/>
-	<field name="Penguasaan Materi" class="java.lang.Integer"/>
-	<field name="Kemampuan Bekerja" class="java.lang.Integer"/>
-	<field name="Kesimpulan" class="java.lang.String">
+	<field name="Nama Calon Peserta" class="java.lang.String"/>
+	<field name="Bagian" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
+	<field name="Keterangan" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TanggalWaktu" class="java.lang.String"/>
 	<group name="Group" isResetPageNumber="true">
-		<groupExpression><![CDATA[$F{Tanggal}]]></groupExpression>
+		<groupExpression><![CDATA[$F{TanggalWaktu}]]></groupExpression>
 	</group>
 	<background>
 		<band splitType="Stretch"/>
@@ -37,14 +39,14 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Gadugi" size="12" isBold="true" isUnderline="true"/>
 				</textElement>
-				<text><![CDATA[EVALUASI MASA PERCOBAAN KARYAWAN]]></text>
+				<text><![CDATA[CALON PESERTA PELATIHAN]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="0" y="32" width="555" height="20" uuid="825c4732-ece4-4980-aef0-e76dff4f8278"/>
 				<textElement textAlignment="Center">
 					<font fontName="Gadugi" size="12"/>
 				</textElement>
-				<text><![CDATA[IGC-F 06.01.00.03]]></text>
+				<text><![CDATA[IGC-F 06.02.00.03]]></text>
 			</staticText>
 		</band>
 	</pageHeader>
@@ -64,7 +66,7 @@
 				<text><![CDATA[No]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="40" y="0" width="265" height="20" uuid="670e7239-dab3-404b-bff1-e5ceadf17229"/>
+				<reportElement x="40" y="0" width="240" height="20" uuid="670e7239-dab3-404b-bff1-e5ceadf17229"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -75,10 +77,10 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Gadugi" size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Nama Karyawan]]></text>
+				<text><![CDATA[Nama Calon Peserta]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="305" y="0" width="125" height="20" uuid="5a8fcbbd-5f87-4381-9309-7fe5264348ab"/>
+				<reportElement x="280" y="0" width="150" height="20" uuid="5a8fcbbd-5f87-4381-9309-7fe5264348ab"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -89,7 +91,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Gadugi" size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Penguasaan Materi]]></text>
+				<text><![CDATA[Bagian]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="430" y="0" width="125" height="20" uuid="352eedd7-205a-46d6-9977-392c54c8a317"/>
@@ -103,14 +105,14 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Gadugi" size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Kemampuan Bekerja]]></text>
+				<text><![CDATA[Keterangan]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
 		<band height="20" splitType="Stretch">
 			<textField isStretchWithOverflow="true">
-				<reportElement stretchType="RelativeToTallestObject" x="40" y="0" width="265" height="20" uuid="9171dd27-76f5-4107-a018-6badcdb01241"/>
+				<reportElement stretchType="RelativeToTallestObject" x="40" y="0" width="240" height="20" uuid="9171dd27-76f5-4107-a018-6badcdb01241"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -121,10 +123,10 @@
 				<textElement textAlignment="Justified" verticalAlignment="Middle">
 					<font fontName="Gadugi" size="12"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{Nama Karyawan}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{Nama Calon Peserta}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement stretchType="RelativeToTallestObject" x="305" y="0" width="125" height="20" uuid="04187240-53a7-4685-9e6d-1376cce49d72"/>
+				<reportElement stretchType="RelativeToTallestObject" x="280" y="0" width="150" height="20" uuid="04187240-53a7-4685-9e6d-1376cce49d72"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -135,7 +137,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Gadugi" size="12"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{Penguasaan Materi}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{Bagian}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement stretchType="RelativeToTallestObject" x="430" y="0" width="125" height="20" uuid="676ce5dc-3804-448b-9a0d-07f7ba1c900b"/>
@@ -149,7 +151,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Gadugi" size="12"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{Kemampuan Bekerja}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{Keterangan}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement stretchType="RelativeToTallestObject" x="0" y="0" width="40" height="20" uuid="065a9500-8274-4673-8f59-3e691fdd37e0"/>
@@ -168,41 +170,30 @@
 		</band>
 	</detail>
 	<pageFooter>
-		<band height="309" splitType="Stretch">
+		<band height="153" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="83" width="138" height="86" uuid="c9a8ebbf-1813-419d-8d18-c23db28c664f"/>
-				<textElement textAlignment="Justified" verticalAlignment="Middle">
-					<font fontName="Gadugi" size="12"/>
-				</textElement>
-				<text><![CDATA[Keterangan :
-10 s/d 39    : Kurang
-40 s/d 54    : Cukup
-55 s/d 74    : Baik
-75 s/d 100  : Sangat Baik]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="416" y="169" width="40" height="20" uuid="1776a53e-4775-4f49-b36e-05719125899d"/>
+				<reportElement x="416" y="13" width="40" height="20" uuid="1776a53e-4775-4f49-b36e-05719125899d"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Gadugi" size="12"/>
 				</textElement>
 				<text><![CDATA[Jambi,]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="380" y="249" width="175" height="20" uuid="f5bc1bea-f014-40bb-a287-40b199a10a32"/>
+				<reportElement x="380" y="93" width="175" height="20" uuid="f5bc1bea-f014-40bb-a287-40b199a10a32"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Gadugi" size="12"/>
 				</textElement>
 				<text><![CDATA[Manajer HRD dan Personalia]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="375" y="289" width="180" height="20" uuid="9cf60145-d52d-4040-a25c-cf0a0c4f0bb1"/>
+				<reportElement x="375" y="133" width="180" height="20" uuid="9cf60145-d52d-4040-a25c-cf0a0c4f0bb1"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Gadugi"/>
 				</textElement>
 				<text><![CDATA[Rev. 0, Tanggal Terbit 20 Januari 2014]]></text>
 			</staticText>
 			<textField pattern="dd/MM/yyyy">
-				<reportElement x="455" y="169" width="100" height="20" uuid="383048c1-e5c6-41d9-ad45-5cea5a8f31d5"/>
+				<reportElement x="455" y="13" width="100" height="20" uuid="383048c1-e5c6-41d9-ad45-5cea5a8f31d5"/>
 				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
 					<pen lineWidth="0.0"/>
 					<topPen lineWidth="0.0"/>
@@ -215,19 +206,12 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Tanggal}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true">
-				<reportElement stretchType="RelativeToTallestObject" x="74" y="0" width="481" height="20" uuid="bfb46c24-6fca-412d-9f2d-c24c40cbb189"/>
-				<textElement textAlignment="Justified" verticalAlignment="Top">
-					<font fontName="Gadugi" size="12"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{Kesimpulan}]]></textFieldExpression>
-			</textField>
 			<staticText>
-				<reportElement stretchType="RelativeToTallestObject" x="0" y="0" width="75" height="20" uuid="d4be5702-d3ea-49c1-978d-9a5734d9ada9"/>
-				<textElement textAlignment="Justified" verticalAlignment="Top">
+				<reportElement x="380" y="33" width="175" height="20" uuid="649bc7a3-06d1-473f-ad73-f44a6a1c8e2a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Gadugi" size="12"/>
 				</textElement>
-				<text><![CDATA[Kesimpulan :]]></text>
+				<text><![CDATA[Dibuat Oleh]]></text>
 			</staticText>
 		</band>
 	</pageFooter>

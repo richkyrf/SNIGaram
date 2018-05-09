@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="F 06.01.00.03 Evaluasi Masa Percobaan Karyawan" language="groovy" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="681fcae0-315d-47c3-91ca-fbcc5a2553a6">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="F 06.02.00.04 Evaluasi Pelatihan" language="groovy" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="681fcae0-315d-47c3-91ca-fbcc5a2553a6">
 	<property name="ireport.zoom" value="1.210000000000005"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="34"/>
 	<parameter name="Tanggal" class="java.util.Date" isForPrompting="false">
 		<defaultValueExpression><![CDATA[new Date()]]></defaultValueExpression>
 	</parameter>
@@ -37,14 +37,14 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Gadugi" size="12" isBold="true" isUnderline="true"/>
 				</textElement>
-				<text><![CDATA[EVALUASI MASA PERCOBAAN KARYAWAN]]></text>
+				<text><![CDATA[EVALUASI PELATIHAN]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="0" y="32" width="555" height="20" uuid="825c4732-ece4-4980-aef0-e76dff4f8278"/>
 				<textElement textAlignment="Center">
 					<font fontName="Gadugi" size="12"/>
 				</textElement>
-				<text><![CDATA[IGC-F 06.01.00.03]]></text>
+				<text><![CDATA[IGC-F 06.02.00.04]]></text>
 			</staticText>
 		</band>
 	</pageHeader>
@@ -188,11 +188,11 @@
 				<text><![CDATA[Jambi,]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="380" y="249" width="175" height="20" uuid="f5bc1bea-f014-40bb-a287-40b199a10a32"/>
+				<reportElement x="380" y="189" width="175" height="20" uuid="f5bc1bea-f014-40bb-a287-40b199a10a32"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Gadugi" size="12"/>
 				</textElement>
-				<text><![CDATA[Manajer HRD dan Personalia]]></text>
+				<text><![CDATA[Kepala Bagian]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="375" y="289" width="180" height="20" uuid="9cf60145-d52d-4040-a25c-cf0a0c4f0bb1"/>

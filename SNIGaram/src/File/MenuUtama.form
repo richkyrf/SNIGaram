@@ -507,6 +507,9 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Laporan Daftar Riwayat Hidup"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JMILaporanDaftarRiwayatHidupActionPerformed"/>
+                  </Events>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="JMILaporanUsulPelatihan">
                   <Properties>
@@ -520,16 +523,25 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Laporan Program Pelatihan"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JMILaporanProgramPelatihanActionPerformed"/>
+                  </Events>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="JMILaporanCalonPesertaPelatihan">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Laporan Calon Peserta Pelatihan"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JMILaporanCalonPesertaPelatihanActionPerformed"/>
+                  </Events>
                 </MenuItem>
-                <MenuItem class="javax.swing.JMenuItem" name="JMILaproanEvaluasiPelatihan">
+                <MenuItem class="javax.swing.JMenuItem" name="JMILaporanEvaluasiPelatihan">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Laporan Evaluasi Pelatihan"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JMILaporanEvaluasiPelatihanActionPerformed"/>
+                  </Events>
                 </MenuItem>
               </SubComponents>
             </Menu>

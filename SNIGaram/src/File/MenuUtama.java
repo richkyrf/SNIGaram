@@ -118,7 +118,7 @@ public class MenuUtama extends javax.swing.JFrame {
         JMILaporanUsulPelatihan = new javax.swing.JMenuItem();
         JMILaporanProgramPelatihan = new javax.swing.JMenuItem();
         JMILaporanCalonPesertaPelatihan = new javax.swing.JMenuItem();
-        JMILaproanEvaluasiPelatihan = new javax.swing.JMenuItem();
+        JMILaporanEvaluasiPelatihan = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -553,6 +553,11 @@ public class MenuUtama extends javax.swing.JFrame {
         JMLaporanPersonalia.add(JMILaporanEvaluasiMasaPercobaanKaryawan);
 
         JMILaporanDaftarRiwayatHidup.setText("Laporan Daftar Riwayat Hidup");
+        JMILaporanDaftarRiwayatHidup.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JMILaporanDaftarRiwayatHidupActionPerformed(evt);
+            }
+        });
         JMLaporanPersonalia.add(JMILaporanDaftarRiwayatHidup);
 
         JMILaporanUsulPelatihan.setText("Laporan Usul Pelatihan");
@@ -564,13 +569,28 @@ public class MenuUtama extends javax.swing.JFrame {
         JMLaporanPersonalia.add(JMILaporanUsulPelatihan);
 
         JMILaporanProgramPelatihan.setText("Laporan Program Pelatihan");
+        JMILaporanProgramPelatihan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JMILaporanProgramPelatihanActionPerformed(evt);
+            }
+        });
         JMLaporanPersonalia.add(JMILaporanProgramPelatihan);
 
         JMILaporanCalonPesertaPelatihan.setText("Laporan Calon Peserta Pelatihan");
+        JMILaporanCalonPesertaPelatihan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JMILaporanCalonPesertaPelatihanActionPerformed(evt);
+            }
+        });
         JMLaporanPersonalia.add(JMILaporanCalonPesertaPelatihan);
 
-        JMILaproanEvaluasiPelatihan.setText("Laporan Evaluasi Pelatihan");
-        JMLaporanPersonalia.add(JMILaproanEvaluasiPelatihan);
+        JMILaporanEvaluasiPelatihan.setText("Laporan Evaluasi Pelatihan");
+        JMILaporanEvaluasiPelatihan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JMILaporanEvaluasiPelatihanActionPerformed(evt);
+            }
+        });
+        JMLaporanPersonalia.add(JMILaporanEvaluasiPelatihan);
 
         JMLaporan.add(JMLaporanPersonalia);
 
@@ -882,6 +902,7 @@ public class MenuUtama extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_JMILaporanUsulPelatihanActionPerformed
 
+
     private void JMIDaftarSupplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMIDaftarSupplierActionPerformed
         if (tambahEvaluasiSupplier == null) {
             tambahEvaluasiSupplier = new EvaluasiSupplier();
@@ -971,6 +992,38 @@ public class MenuUtama extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_JMILaporanPemasaranActionPerformed
 
+    private void JMILaporanDaftarRiwayatHidupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMILaporanDaftarRiwayatHidupActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JMILaporanDaftarRiwayatHidupActionPerformed
+
+    private void JMILaporanProgramPelatihanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMILaporanProgramPelatihanActionPerformed
+        if (laporanProgramPelatihan == null) {
+            laporanProgramPelatihan = new LaporanPersonalia(JMILaporanProgramPelatihan.getText());
+        } else {
+            laporanProgramPelatihan.setState(NORMAL);
+            laporanProgramPelatihan.toFront();
+        }
+    }//GEN-LAST:event_JMILaporanProgramPelatihanActionPerformed
+
+    private void JMILaporanCalonPesertaPelatihanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMILaporanCalonPesertaPelatihanActionPerformed
+        if (laporanCalonPesertaPelatihan == null) {
+            laporanCalonPesertaPelatihan = new LaporanPersonalia(JMILaporanCalonPesertaPelatihan.getText());
+        } else {
+            laporanCalonPesertaPelatihan.setState(NORMAL);
+            laporanCalonPesertaPelatihan.toFront();
+        }
+    }//GEN-LAST:event_JMILaporanCalonPesertaPelatihanActionPerformed
+
+    private void JMILaporanEvaluasiPelatihanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMILaporanEvaluasiPelatihanActionPerformed
+        if (laporanEvaluasiPelatihan == null) {
+            laporanEvaluasiPelatihan = new LaporanPersonalia(JMILaporanEvaluasiPelatihan.getText());
+        } else {
+            laporanEvaluasiPelatihan.setState(NORMAL);
+            laporanEvaluasiPelatihan.toFront();
+        }
+    }//GEN-LAST:event_JMILaporanEvaluasiPelatihanActionPerformed
+
+
 
     /**
      * @param args the command line arguments
@@ -1024,6 +1077,7 @@ public class MenuUtama extends javax.swing.JFrame {
     private javax.swing.JMenuItem JMILaporanDataPenjualan;
     private javax.swing.JMenuItem JMILaporanDataProduksi;
     private javax.swing.JMenuItem JMILaporanEvaluasiMasaPercobaanKaryawan;
+    private javax.swing.JMenuItem JMILaporanEvaluasiPelatihan;
     private javax.swing.JMenuItem JMILaporanIdentifikasiProdukJadi;
     private javax.swing.JMenuItem JMILaporanKebutuhanKaryawan;
     private javax.swing.JMenuItem JMILaporanOrderPesanan;
@@ -1040,7 +1094,6 @@ public class MenuUtama extends javax.swing.JFrame {
     private javax.swing.JMenuItem JMILaporanSuratPermintaanPenawaran;
     private javax.swing.JMenuItem JMILaporanSurveyKepuasanPelanggan;
     private javax.swing.JMenuItem JMILaporanUsulPelatihan;
-    private javax.swing.JMenuItem JMILaproanEvaluasiPelatihan;
     private javax.swing.JMenuItem JMIListBarangTeknik;
     private javax.swing.JMenuItem JMIListDaftarSupplier;
     private javax.swing.JMenuItem JMIListDaftarSupplierTerpilih;

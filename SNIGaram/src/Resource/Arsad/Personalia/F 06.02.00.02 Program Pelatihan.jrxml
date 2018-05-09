@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="F 06.02.00.02 Program Pelatihan" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="681fcae0-315d-47c3-91ca-fbcc5a2553a6">
-	<property name="ireport.zoom" value="1.2100000000000022"/>
-	<property name="ireport.x" value="267"/>
+	<property name="ireport.zoom" value="1.1000000000000025"/>
+	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="Tanggal" class="java.util.Date" isForPrompting="false">
 		<defaultValueExpression><![CDATA[new Date()]]></defaultValueExpression>
@@ -13,50 +13,12 @@
 		<defaultValueExpression><![CDATA["2090-01-01"]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[SELECT a.`IdBarangTeknik`, `NamaBarang`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`, `11`, `12`, '' as 'Keterangan' FROM `snitbmbarangteknik`a
-	LEFT JOIN (
-SELECT `IdBarangTeknik`, COUNT(*) as '1' FROM `snitbpemeliharaan` WHERE DATE_FORMAT(`Tanggal`,'%m') = '01' AND `Tanggal` BETWEEN $P{Tanggal_Awal} AND $P{Tanggal_Akhir} GROUP BY `IdBarangTeknik`) b
-ON a.`IdBarangTeknik`=b.`IdBarangTeknik`
-	LEFT JOIN (
-SELECT `IdBarangTeknik`, COUNT(*) as '2' FROM `snitbpemeliharaan` WHERE DATE_FORMAT(`Tanggal`,'%m') = '02' AND `Tanggal` BETWEEN $P{Tanggal_Awal} AND $P{Tanggal_Akhir} GROUP BY `IdBarangTeknik`) c
-ON a.`IdBarangTeknik`=c.`IdBarangTeknik`
-	LEFT JOIN (
-SELECT `IdBarangTeknik`, COUNT(*) as '3' FROM `snitbpemeliharaan` WHERE DATE_FORMAT(`Tanggal`,'%m') = '03' AND `Tanggal` BETWEEN $P{Tanggal_Awal} AND $P{Tanggal_Akhir} GROUP BY `IdBarangTeknik`) d
-ON a.`IdBarangTeknik`=d.`IdBarangTeknik`
-	LEFT JOIN (
-SELECT `IdBarangTeknik`, COUNT(*) as '4' FROM `snitbpemeliharaan` WHERE DATE_FORMAT(`Tanggal`,'%m') = '04' AND `Tanggal` BETWEEN $P{Tanggal_Awal} AND $P{Tanggal_Akhir} GROUP BY `IdBarangTeknik`) e
-ON a.`IdBarangTeknik`=e.`IdBarangTeknik`
-	LEFT JOIN (
-SELECT `IdBarangTeknik`, COUNT(*) as '5' FROM `snitbpemeliharaan` WHERE DATE_FORMAT(`Tanggal`,'%m') = '05' AND `Tanggal` BETWEEN $P{Tanggal_Awal} AND $P{Tanggal_Akhir} GROUP BY `IdBarangTeknik`) f
-ON a.`IdBarangTeknik`=f.`IdBarangTeknik`
-	LEFT JOIN (
-SELECT `IdBarangTeknik`, COUNT(*) as '6' FROM `snitbpemeliharaan` WHERE DATE_FORMAT(`Tanggal`,'%m') = '06' AND `Tanggal` BETWEEN $P{Tanggal_Awal} AND $P{Tanggal_Akhir} GROUP BY `IdBarangTeknik`) g
-ON a.`IdBarangTeknik`=g.`IdBarangTeknik`
-	LEFT JOIN (
-SELECT `IdBarangTeknik`, COUNT(*) as '7' FROM `snitbpemeliharaan` WHERE DATE_FORMAT(`Tanggal`,'%m') = '07' AND `Tanggal` BETWEEN $P{Tanggal_Awal} AND $P{Tanggal_Akhir} GROUP BY `IdBarangTeknik`) h
-ON a.`IdBarangTeknik`=h.`IdBarangTeknik`
-	LEFT JOIN (
-SELECT `IdBarangTeknik`, COUNT(*) as '8' FROM `snitbpemeliharaan` WHERE DATE_FORMAT(`Tanggal`,'%m') = '08' AND `Tanggal` BETWEEN $P{Tanggal_Awal} AND $P{Tanggal_Akhir} GROUP BY `IdBarangTeknik`) i
-ON a.`IdBarangTeknik`=i.`IdBarangTeknik`
-	LEFT JOIN (
-SELECT `IdBarangTeknik`, COUNT(*) as '9' FROM `snitbpemeliharaan` WHERE DATE_FORMAT(`Tanggal`,'%m') = '09' AND `Tanggal` BETWEEN $P{Tanggal_Awal} AND $P{Tanggal_Akhir} GROUP BY `IdBarangTeknik`) j
-ON a.`IdBarangTeknik`=j.`IdBarangTeknik`
-	LEFT JOIN (
-SELECT `IdBarangTeknik`, COUNT(*) as '10' FROM `snitbpemeliharaan` WHERE DATE_FORMAT(`Tanggal`,'%m') = '10' AND `Tanggal` BETWEEN $P{Tanggal_Awal} AND $P{Tanggal_Akhir} GROUP BY `IdBarangTeknik`) k
-ON a.`IdBarangTeknik`=k.`IdBarangTeknik`
-	LEFT JOIN (
-SELECT `IdBarangTeknik`, COUNT(*) as '11' FROM `snitbpemeliharaan` WHERE DATE_FORMAT(`Tanggal`,'%m') = '11' AND `Tanggal` BETWEEN $P{Tanggal_Awal} AND $P{Tanggal_Akhir} GROUP BY `IdBarangTeknik`) l
-ON a.`IdBarangTeknik`=l.`IdBarangTeknik`
-	LEFT JOIN (
-SELECT `IdBarangTeknik`, COUNT(*) as '12' FROM `snitbpemeliharaan` WHERE DATE_FORMAT(`Tanggal`,'%m') = '12' AND `Tanggal` BETWEEN $P{Tanggal_Awal} AND $P{Tanggal_Akhir} GROUP BY `IdBarangTeknik`) m
-ON a.`IdBarangTeknik`=m.`IdBarangTeknik`]]>
+		<![CDATA[SELECT A.`IdUsulPelatihan`, `JenisPelatihan` AS 'Jenis Pelatihan', `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`, `11`, `12`, '' AS 'Keterangan' FROM `snitbusulpelatihan` AS A LEFT JOIN (SELECT `IdUsulPelatihan`, COUNT(*) AS '1' FROM `snitbusulpelatihan` WHERE DATE_FORMAT(`Tanggal`,'%m')='01' AND `Tanggal` BETWEEN $P{Tanggal_Awal} AND $P{Tanggal_Akhir} GROUP BY `JenisPelatihan`) AS B ON A.`IdUsulPelatihan`=B.`IdUsulPelatihan` LEFT JOIN (SELECT `IdUsulPelatihan`, COUNT(*) AS '2' FROM `snitbusulpelatihan` WHERE DATE_FORMAT(`Tanggal`,'%m')='02' AND `Tanggal` BETWEEN $P{Tanggal_Awal} AND $P{Tanggal_Akhir} GROUP BY `JenisPelatihan`) AS C ON A.`IdUsulPelatihan`=C.`IdUsulPelatihan` LEFT JOIN (SELECT `IdUsulPelatihan`, COUNT(*) AS '3' FROM `snitbusulpelatihan` WHERE DATE_FORMAT(`Tanggal`,'%m')='03' AND `Tanggal` BETWEEN $P{Tanggal_Awal} AND $P{Tanggal_Akhir} GROUP BY `JenisPelatihan`) AS D ON A.`IdUsulPelatihan`=D.`IdUsulPelatihan` LEFT JOIN (SELECT `IdUsulPelatihan`, COUNT(*) AS '4' FROM `snitbusulpelatihan` WHERE DATE_FORMAT(`Tanggal`,'%m')='04' AND `Tanggal` BETWEEN $P{Tanggal_Awal} AND $P{Tanggal_Akhir} GROUP BY `JenisPelatihan`) AS E ON A.`IdUsulPelatihan`=E.`IdUsulPelatihan` LEFT JOIN (SELECT `IdUsulPelatihan`, COUNT(*) AS '5' FROM `snitbusulpelatihan` WHERE DATE_FORMAT(`Tanggal`,'%m')='05' AND `Tanggal` BETWEEN $P{Tanggal_Awal} AND $P{Tanggal_Akhir} GROUP BY `JenisPelatihan`) AS F ON A.`IdUsulPelatihan`=F.`IdUsulPelatihan` LEFT JOIN (SELECT `IdUsulPelatihan`, COUNT(*) AS '6' FROM `snitbusulpelatihan` WHERE DATE_FORMAT(`Tanggal`,'%m')='06' AND `Tanggal` BETWEEN $P{Tanggal_Awal} AND $P{Tanggal_Akhir} GROUP BY `JenisPelatihan`) AS G ON A.`IdUsulPelatihan`=G.`IdUsulPelatihan` LEFT JOIN (SELECT `IdUsulPelatihan`, COUNT(*) AS '7' FROM `snitbusulpelatihan` WHERE DATE_FORMAT(`Tanggal`,'%m')='07' AND `Tanggal` BETWEEN $P{Tanggal_Awal} AND $P{Tanggal_Akhir} GROUP BY `JenisPelatihan`) AS H ON A.`IdUsulPelatihan`=H.`IdUsulPelatihan` LEFT JOIN (SELECT `IdUsulPelatihan`, COUNT(*) AS '8' FROM `snitbusulpelatihan` WHERE DATE_FORMAT(`Tanggal`,'%m')='08' AND `Tanggal` BETWEEN $P{Tanggal_Awal} AND $P{Tanggal_Akhir} GROUP BY `JenisPelatihan`) AS I ON A.`IdUsulPelatihan`=I.`IdUsulPelatihan` LEFT JOIN (SELECT `IdUsulPelatihan`, COUNT(*) AS '9' FROM `snitbusulpelatihan` WHERE DATE_FORMAT(`Tanggal`,'%m')='09' AND `Tanggal` BETWEEN $P{Tanggal_Awal} AND $P{Tanggal_Akhir} GROUP BY `JenisPelatihan`) AS J ON A.`IdUsulPelatihan`=J.`IdUsulPelatihan` LEFT JOIN (SELECT `IdUsulPelatihan`, COUNT(*) AS '10' FROM `snitbusulpelatihan` WHERE DATE_FORMAT(`Tanggal`,'%m')='10' AND `Tanggal` BETWEEN $P{Tanggal_Awal} AND $P{Tanggal_Akhir} GROUP BY `JenisPelatihan`) AS K ON A.`IdUsulPelatihan`=K.`IdUsulPelatihan` LEFT JOIN (SELECT `IdUsulPelatihan`, COUNT(*) AS '11' FROM `snitbusulpelatihan` WHERE DATE_FORMAT(`Tanggal`,'%m')='11' AND `Tanggal` BETWEEN $P{Tanggal_Awal} AND $P{Tanggal_Akhir} GROUP BY `JenisPelatihan`) AS L ON A.`IdUsulPelatihan`=L.`IdUsulPelatihan` LEFT JOIN (SELECT `IdUsulPelatihan`, COUNT(*) AS '12' FROM `snitbusulpelatihan` WHERE DATE_FORMAT(`Tanggal`,'%m')='12' AND `Tanggal` BETWEEN $P{Tanggal_Awal} AND $P{Tanggal_Akhir} GROUP BY `JenisPelatihan`) AS M ON A.`IdUsulPelatihan`=M.`IdUsulPelatihan` WHERE `Tanggal` BETWEEN $P{Tanggal_Awal} AND $P{Tanggal_Akhir} GROUP BY DATE_FORMAT(`Tanggal`,'%Y'), DATE_FORMAT(`Tanggal`,'%m'), `JenisPelatihan` ORDER BY DATE_FORMAT(`Tanggal`,'%Y'), DATE_FORMAT(`Tanggal`,'%m'), `JenisPelatihan`]]>
 	</queryString>
-	<field name="IdBarangTeknik" class="java.lang.Integer">
+	<field name="IdUsulPelatihan" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="NamaBarang" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
+	<field name="Jenis Pelatihan" class="java.lang.String"/>
 	<field name="1" class="java.lang.Long"/>
 	<field name="2" class="java.lang.Long"/>
 	<field name="3" class="java.lang.Long"/>
@@ -94,9 +56,9 @@ ON a.`IdBarangTeknik`=m.`IdBarangTeknik`]]>
 		</band>
 	</title>
 	<columnHeader>
-		<band height="55" splitType="Stretch">
+		<band height="40" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="6" width="40" height="40" uuid="a94138c7-62e8-42eb-b038-e85c6aa9326d"/>
+				<reportElement x="0" y="0" width="40" height="40" uuid="a94138c7-62e8-42eb-b038-e85c6aa9326d"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -110,7 +72,7 @@ ON a.`IdBarangTeknik`=m.`IdBarangTeknik`]]>
 				<text><![CDATA[No]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="40" y="6" width="197" height="40" uuid="4d710da4-f388-4b12-9432-bdd755728e9c"/>
+				<reportElement x="40" y="0" width="197" height="40" uuid="4d710da4-f388-4b12-9432-bdd755728e9c"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -121,10 +83,10 @@ ON a.`IdBarangTeknik`=m.`IdBarangTeknik`]]>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Gadugi" size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[NamaBarang]]></text>
+				<text><![CDATA[Jenis Pelatihan]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="237" y="26" width="35" height="20" uuid="8b888929-05e8-4237-b72a-ba31b32347e2"/>
+				<reportElement x="237" y="20" width="35" height="20" uuid="8b888929-05e8-4237-b72a-ba31b32347e2"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -138,7 +100,7 @@ ON a.`IdBarangTeknik`=m.`IdBarangTeknik`]]>
 				<text><![CDATA[1]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="272" y="26" width="35" height="20" uuid="f23f62ff-6540-4c79-8612-6aa1419cc309"/>
+				<reportElement x="272" y="20" width="35" height="20" uuid="f23f62ff-6540-4c79-8612-6aa1419cc309"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -152,7 +114,7 @@ ON a.`IdBarangTeknik`=m.`IdBarangTeknik`]]>
 				<text><![CDATA[2]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="307" y="26" width="35" height="20" uuid="2f7635a9-4677-4901-8fa1-f170b6eb92c1"/>
+				<reportElement x="307" y="20" width="35" height="20" uuid="2f7635a9-4677-4901-8fa1-f170b6eb92c1"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -166,7 +128,7 @@ ON a.`IdBarangTeknik`=m.`IdBarangTeknik`]]>
 				<text><![CDATA[3]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="342" y="26" width="35" height="20" uuid="f2c33826-ad30-409d-a765-09091bf95e43"/>
+				<reportElement x="342" y="20" width="35" height="20" uuid="f2c33826-ad30-409d-a765-09091bf95e43"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -180,7 +142,7 @@ ON a.`IdBarangTeknik`=m.`IdBarangTeknik`]]>
 				<text><![CDATA[4]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="377" y="26" width="35" height="20" uuid="5f44c673-7676-4bf6-b561-73018f852765"/>
+				<reportElement x="377" y="20" width="35" height="20" uuid="5f44c673-7676-4bf6-b561-73018f852765"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -194,7 +156,7 @@ ON a.`IdBarangTeknik`=m.`IdBarangTeknik`]]>
 				<text><![CDATA[5]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="412" y="26" width="35" height="20" uuid="bdb3ce93-7799-4503-9aee-3910cba79700"/>
+				<reportElement x="412" y="20" width="35" height="20" uuid="bdb3ce93-7799-4503-9aee-3910cba79700"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -208,7 +170,7 @@ ON a.`IdBarangTeknik`=m.`IdBarangTeknik`]]>
 				<text><![CDATA[6]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="447" y="26" width="35" height="20" uuid="56278903-4b85-4c82-b7d1-11646452344f"/>
+				<reportElement x="447" y="20" width="35" height="20" uuid="56278903-4b85-4c82-b7d1-11646452344f"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -222,7 +184,7 @@ ON a.`IdBarangTeknik`=m.`IdBarangTeknik`]]>
 				<text><![CDATA[7]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="482" y="26" width="35" height="20" uuid="5cb0b95e-b563-424f-978c-51cf7fd55c11"/>
+				<reportElement x="482" y="20" width="35" height="20" uuid="5cb0b95e-b563-424f-978c-51cf7fd55c11"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -236,7 +198,7 @@ ON a.`IdBarangTeknik`=m.`IdBarangTeknik`]]>
 				<text><![CDATA[8]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="517" y="26" width="35" height="20" uuid="8f95056e-2414-4c14-8e48-959c1ab2f87a"/>
+				<reportElement x="517" y="20" width="35" height="20" uuid="8f95056e-2414-4c14-8e48-959c1ab2f87a"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -250,7 +212,7 @@ ON a.`IdBarangTeknik`=m.`IdBarangTeknik`]]>
 				<text><![CDATA[9]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="552" y="26" width="35" height="20" uuid="156f6def-ce10-4485-b977-002e02ffc502"/>
+				<reportElement x="552" y="20" width="35" height="20" uuid="156f6def-ce10-4485-b977-002e02ffc502"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -264,7 +226,7 @@ ON a.`IdBarangTeknik`=m.`IdBarangTeknik`]]>
 				<text><![CDATA[10]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="587" y="26" width="35" height="20" uuid="dd3c7d2f-c379-402d-b215-a0535c6b4c84"/>
+				<reportElement x="587" y="20" width="35" height="20" uuid="dd3c7d2f-c379-402d-b215-a0535c6b4c84"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -278,7 +240,7 @@ ON a.`IdBarangTeknik`=m.`IdBarangTeknik`]]>
 				<text><![CDATA[11]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="622" y="26" width="35" height="20" uuid="f63ba249-0427-45d8-9206-d5e27771418e"/>
+				<reportElement x="622" y="20" width="35" height="20" uuid="f63ba249-0427-45d8-9206-d5e27771418e"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -292,7 +254,7 @@ ON a.`IdBarangTeknik`=m.`IdBarangTeknik`]]>
 				<text><![CDATA[12]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="657" y="6" width="145" height="40" uuid="e3180c4f-e281-4d0b-8f49-c615eb65039f"/>
+				<reportElement x="657" y="0" width="145" height="40" uuid="e3180c4f-e281-4d0b-8f49-c615eb65039f"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -306,7 +268,7 @@ ON a.`IdBarangTeknik`=m.`IdBarangTeknik`]]>
 				<text><![CDATA[Keterangan]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="237" y="6" width="420" height="20" uuid="75bc56c9-2ce2-4a38-bfe9-c19e2126e96a"/>
+				<reportElement x="237" y="0" width="420" height="20" uuid="75bc56c9-2ce2-4a38-bfe9-c19e2126e96a"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -323,8 +285,8 @@ ON a.`IdBarangTeknik`=m.`IdBarangTeknik`]]>
 	</columnHeader>
 	<detail>
 		<band height="20" splitType="Stretch">
-			<textField>
-				<reportElement x="0" y="0" width="40" height="20" uuid="95bd1ac3-c013-48ae-b97f-3045d663bee9"/>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToTallestObject" x="0" y="0" width="40" height="20" uuid="95bd1ac3-c013-48ae-b97f-3045d663bee9"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -335,8 +297,8 @@ ON a.`IdBarangTeknik`=m.`IdBarangTeknik`]]>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="40" y="0" width="197" height="20" uuid="7af71604-8cfd-4a55-9b01-5cf94555283c"/>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToTallestObject" x="40" y="0" width="197" height="20" uuid="7af71604-8cfd-4a55-9b01-5cf94555283c"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -347,10 +309,10 @@ ON a.`IdBarangTeknik`=m.`IdBarangTeknik`]]>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Gadugi" size="12"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{NamaBarang}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{Jenis Pelatihan}]]></textFieldExpression>
 			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement x="237" y="0" width="35" height="20" uuid="1397b9db-52ac-4aca-b858-55da1d7f515a"/>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToTallestObject" x="237" y="0" width="35" height="20" uuid="1397b9db-52ac-4aca-b858-55da1d7f515a"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -363,8 +325,8 @@ ON a.`IdBarangTeknik`=m.`IdBarangTeknik`]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{1}]]></textFieldExpression>
 			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement x="272" y="0" width="35" height="20" uuid="376f4a46-007c-418a-8ab2-4811bb33d172"/>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToTallestObject" x="272" y="0" width="35" height="20" uuid="376f4a46-007c-418a-8ab2-4811bb33d172"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -377,8 +339,8 @@ ON a.`IdBarangTeknik`=m.`IdBarangTeknik`]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{2}]]></textFieldExpression>
 			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement x="307" y="0" width="35" height="20" uuid="8fba170e-400c-41be-9bf0-9fba2f1b4d88"/>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToTallestObject" x="307" y="0" width="35" height="20" uuid="8fba170e-400c-41be-9bf0-9fba2f1b4d88"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -391,8 +353,8 @@ ON a.`IdBarangTeknik`=m.`IdBarangTeknik`]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{3}]]></textFieldExpression>
 			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement x="342" y="0" width="35" height="20" uuid="56d11ef8-7e83-4898-9adf-d86622069bf1"/>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToTallestObject" x="342" y="0" width="35" height="20" uuid="56d11ef8-7e83-4898-9adf-d86622069bf1"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -405,8 +367,8 @@ ON a.`IdBarangTeknik`=m.`IdBarangTeknik`]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{4}]]></textFieldExpression>
 			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement x="377" y="0" width="35" height="20" uuid="9552157f-4490-48a1-a7df-3ed73a53e479"/>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToTallestObject" x="377" y="0" width="35" height="20" uuid="9552157f-4490-48a1-a7df-3ed73a53e479"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -419,8 +381,8 @@ ON a.`IdBarangTeknik`=m.`IdBarangTeknik`]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{5}]]></textFieldExpression>
 			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement x="412" y="0" width="35" height="20" uuid="3524f1c1-a431-4514-916f-ac964a57d3eb"/>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToTallestObject" x="412" y="0" width="35" height="20" uuid="3524f1c1-a431-4514-916f-ac964a57d3eb"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -433,8 +395,8 @@ ON a.`IdBarangTeknik`=m.`IdBarangTeknik`]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{6}]]></textFieldExpression>
 			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement x="447" y="0" width="35" height="20" uuid="207f997c-fd34-457c-95f2-e3b01a6d54af"/>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToTallestObject" x="447" y="0" width="35" height="20" uuid="207f997c-fd34-457c-95f2-e3b01a6d54af"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -447,8 +409,8 @@ ON a.`IdBarangTeknik`=m.`IdBarangTeknik`]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{7}]]></textFieldExpression>
 			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement x="482" y="0" width="35" height="20" uuid="d55ae6be-3a70-4b9d-91cb-5fc42c2feaec"/>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToTallestObject" x="482" y="0" width="35" height="20" uuid="d55ae6be-3a70-4b9d-91cb-5fc42c2feaec"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -461,8 +423,8 @@ ON a.`IdBarangTeknik`=m.`IdBarangTeknik`]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{8}]]></textFieldExpression>
 			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement x="517" y="0" width="35" height="20" uuid="ae82d8df-0896-4e0c-b65b-53d154614fde"/>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToTallestObject" x="517" y="0" width="35" height="20" uuid="ae82d8df-0896-4e0c-b65b-53d154614fde"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -475,8 +437,8 @@ ON a.`IdBarangTeknik`=m.`IdBarangTeknik`]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{9}]]></textFieldExpression>
 			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement x="552" y="0" width="35" height="20" uuid="1ad0e866-b3cd-4202-9e01-b4021f39fe01"/>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToTallestObject" x="552" y="0" width="35" height="20" uuid="1ad0e866-b3cd-4202-9e01-b4021f39fe01"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -489,8 +451,8 @@ ON a.`IdBarangTeknik`=m.`IdBarangTeknik`]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{10}]]></textFieldExpression>
 			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement x="587" y="0" width="35" height="20" uuid="804c7194-13dd-4140-ab76-19361be5fe62"/>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToTallestObject" x="587" y="0" width="35" height="20" uuid="804c7194-13dd-4140-ab76-19361be5fe62"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -503,8 +465,8 @@ ON a.`IdBarangTeknik`=m.`IdBarangTeknik`]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{11}]]></textFieldExpression>
 			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement x="622" y="0" width="35" height="20" uuid="6aed0228-3eb9-49e0-9a87-86ff9818fa0a"/>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToTallestObject" x="622" y="0" width="35" height="20" uuid="6aed0228-3eb9-49e0-9a87-86ff9818fa0a"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -517,8 +479,8 @@ ON a.`IdBarangTeknik`=m.`IdBarangTeknik`]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{12}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="657" y="0" width="145" height="20" uuid="fb745dac-8a57-48fa-b829-8aa145336028"/>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToTallestObject" x="657" y="0" width="145" height="20" uuid="fb745dac-8a57-48fa-b829-8aa145336028"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
