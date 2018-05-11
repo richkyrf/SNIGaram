@@ -993,7 +993,12 @@ public class MenuUtama extends javax.swing.JFrame {
     }//GEN-LAST:event_JMILaporanPemasaranActionPerformed
 
     private void JMILaporanDaftarRiwayatHidupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMILaporanDaftarRiwayatHidupActionPerformed
-        // TODO add your handling code here:
+        if (laporanDaftarRiwayatHidup == null) {
+            laporanDaftarRiwayatHidup = new LaporanPersonalia(JMILaporanDaftarRiwayatHidup.getText());
+        } else {
+            laporanDaftarRiwayatHidup.setState(NORMAL);
+            laporanDaftarRiwayatHidup.toFront();
+        }
     }//GEN-LAST:event_JMILaporanDaftarRiwayatHidupActionPerformed
 
     private void JMILaporanProgramPelatihanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMILaporanProgramPelatihanActionPerformed

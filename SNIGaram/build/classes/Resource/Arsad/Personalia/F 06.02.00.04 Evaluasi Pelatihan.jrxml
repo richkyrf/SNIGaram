@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="F 06.02.00.04 Evaluasi Pelatihan" language="groovy" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="681fcae0-315d-47c3-91ca-fbcc5a2553a6">
-	<property name="ireport.zoom" value="1.210000000000005"/>
+	<property name="ireport.zoom" value="1.1000000000000063"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="34"/>
+	<property name="ireport.y" value="11"/>
 	<parameter name="Tanggal" class="java.util.Date" isForPrompting="false">
 		<defaultValueExpression><![CDATA[new Date()]]></defaultValueExpression>
 	</parameter>
@@ -13,8 +13,11 @@
 		<defaultValueExpression><![CDATA["2018-12-31"]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[SELECT `Tanggal`, `NamaKaryawan` AS 'Nama Karyawan', `PenguasaanMateri` AS 'Penguasaan Materi', `KemampuanBekerja` AS 'Kemampuan Bekerja', `Kesimpulan` FROM `snitbmasapercobaankaryawan` AS A JOIN `snitbmasapercobaankaryawandetail` AS B ON A.`IdMasaPercobaanKaryawan`=B.`IdMasaPercobaanKaryawan` JOIN `tbmkaryawan` AS C ON B.`IdKaryawan`=C.`IdKaryawan` WHERE `Tanggal` BETWEEN $P{Tanggal_Awal} AND $P{Tanggal_Akhir} GROUP BY `Tanggal`, `Nama Karyawan` ORDER BY `Tanggal`, `Nama Karyawan`]]>
+		<![CDATA[SELECT `JenisPelatihan` AS 'Materi Pelatihan', `Instruktur` AS 'Instruktur Pelatihan', CONCAT(DATE_FORMAT(D.`Tanggal`,'%d/%m/%Y'),', Pukul : ',REPLACE(SUBSTRING(`Waktu`,1,5),':','.')) AS 'Tanggal/Waktu Pelatihan', A.`Tanggal`, `NamaKaryawan` AS 'Nama Karyawan', `PenguasaanMateri` AS 'Penguasaan Materi', `KemampuanBekerja` AS 'Kemampuan Bekerja', `Kesimpulan`, CONCAT(D.`Tanggal`,`Waktu`) AS 'TanggalWaktu' FROM `snitbevaluasipelatihan` AS A JOIN `snitbevaluasipelatihandetail` AS B ON A.`IdEvaluasiPelatihan`=B.`IdEvaluasiPelatihan` JOIN `snitbpelatihan` AS C ON A.`IdPelatihan`=C.`IdPelatihan` JOIN `snitbusulpelatihan` AS D ON C.`IdUsulPelatihan`=D.`IdUsulPelatihan` JOIN `snitbpelatihandetail` AS E ON B.`IdPelatihanDetail`=E.`IdPelatihanDetail` JOIN `tbmkaryawan` AS F ON E.`IdKaryawan`=F.`IdKaryawan` WHERE D.`Tanggal` BETWEEN $P{Tanggal_Awal} AND $P{Tanggal_Akhir} GROUP BY D.`Tanggal`, `Waktu`, `Nama Karyawan` ORDER BY A.`Tanggal`, D.`Tanggal`, `Waktu`, `Nama Karyawan`]]>
 	</queryString>
+	<field name="Materi Pelatihan" class="java.lang.String"/>
+	<field name="Instruktur Pelatihan" class="java.lang.String"/>
+	<field name="Tanggal/Waktu Pelatihan" class="java.lang.String"/>
 	<field name="Tanggal" class="java.sql.Date">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
@@ -24,14 +27,15 @@
 	<field name="Kesimpulan" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
+	<field name="TanggalWaktu" class="java.lang.String"/>
 	<group name="Group" isResetPageNumber="true">
-		<groupExpression><![CDATA[$F{Tanggal}]]></groupExpression>
+		<groupExpression><![CDATA[$F{TanggalWaktu}]]></groupExpression>
 	</group>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<pageHeader>
-		<band height="63">
+		<band height="123">
 			<staticText>
 				<reportElement x="0" y="13" width="555" height="20" uuid="ff3628b7-a217-408b-9681-0765a91eaa16"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -45,6 +49,78 @@
 					<font fontName="Gadugi" size="12"/>
 				</textElement>
 				<text><![CDATA[IGC-F 06.02.00.04]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="152" y="58" width="403" height="20" uuid="ac630468-ac19-4fc0-8d1f-ddd4cddb046d"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Gadugi" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Materi Pelatihan}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="58" width="145" height="20" uuid="abf298b5-f0fd-427d-ba73-0e20fe440a16"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Gadugi" size="12"/>
+				</textElement>
+				<text><![CDATA[Materi Pelatihan]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="152" y="77" width="403" height="20" uuid="6c25dee4-bbf7-43a0-a38c-db4669dc6272"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Gadugi" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Instruktur Pelatihan}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="77" width="145" height="20" uuid="16c97374-2244-4ec1-b8ed-1e97575d5577"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Gadugi" size="12"/>
+				</textElement>
+				<text><![CDATA[Instruktur Pelatihan]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="152" y="96" width="403" height="20" uuid="35839c93-e79c-48f7-a629-c05b959c4a7f"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Gadugi" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Tanggal/Waktu Pelatihan}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="96" width="145" height="20" uuid="14c5a67b-b580-4e33-bd44-0eade1519985"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Gadugi" size="12"/>
+				</textElement>
+				<text><![CDATA[Tanggal/Waktu Pelatihan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="144" y="58" width="5" height="20" uuid="6c4da19f-f942-47bf-959d-7b0912481cda"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Gadugi" size="12"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="144" y="77" width="5" height="20" uuid="5a84ccfb-42ee-4c9a-9f6e-d3aed127646b"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Gadugi" size="12"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="144" y="96" width="5" height="20" uuid="38dc6d27-6a35-4158-9c23-6e2545319920"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Gadugi" size="12"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
 			</staticText>
 		</band>
 	</pageHeader>
