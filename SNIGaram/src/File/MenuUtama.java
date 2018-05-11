@@ -18,6 +18,7 @@ import ProsesLab.*;
 import ProsesPemasran.PengaduanPelanggan;
 import ProsesPemasran.SurveyKepuasanPelanggan;
 import ProsesPembelian.EvaluasiSupplier;
+import ProsesPembelian.SupplierTerpilih;
 import ProsesPersonalia.KebutuhanKaryawan;
 import ProsesTeknik.Pemeliharaan;
 import static java.awt.Frame.NORMAL;
@@ -522,6 +523,11 @@ public class MenuUtama extends javax.swing.JFrame {
         JMLaporanPembelian.add(JMILaporanDaftarSupplier);
 
         JMILaporanDaftarSupplierTerpilih.setText("Laporan Daftar Supplier Terpilih");
+        JMILaporanDaftarSupplierTerpilih.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JMILaporanDaftarSupplierTerpilihActionPerformed(evt);
+            }
+        });
         JMLaporanPembelian.add(JMILaporanDaftarSupplierTerpilih);
 
         JMILaporanPenerimaanBarang.setText("Laporan Penerimaan Barang");
@@ -814,14 +820,14 @@ public class MenuUtama extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_JMIListSurveyKepuasanPelangganActionPerformed
 
-    private void JMIPengaduanPelangganActionPerformed(java.awt.event.ActionEvent evt) {                                                      
+    private void JMIPengaduanPelangganActionPerformed(java.awt.event.ActionEvent evt) {
         if (tambahPengaduanPelanggan == null) {
             tambahPengaduanPelanggan = new PengaduanPelanggan();
         } else {
             tambahPengaduanPelanggan.setState(NORMAL);
             tambahPengaduanPelanggan.toFront();
         }
-    }                                                     
+    }
 
     private void JMIListPengaduanPelangganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMIListPengaduanPelangganActionPerformed
         if (listPengaduanPelanggan == null) {
@@ -831,7 +837,7 @@ public class MenuUtama extends javax.swing.JFrame {
             listPengaduanPelanggan.toFront();
         }
     }//GEN-LAST:event_JMIListPengaduanPelangganActionPerformed
-	
+
     private void JMILaporanKebutuhanKaryawanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMILaporanKebutuhanKaryawanActionPerformed
         if (laporanKebutuhanKaryawan == null) {
             laporanKebutuhanKaryawan = new LaporanPersonalia(JMILaporanKebutuhanKaryawan.getText());
@@ -913,7 +919,12 @@ public class MenuUtama extends javax.swing.JFrame {
     }//GEN-LAST:event_JMIDaftarSupplierActionPerformed
 
     private void JMIDaftarSupplierTerpilihActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMIDaftarSupplierTerpilihActionPerformed
-        //TODO
+        if (tambahSupplierTerpilih == null) {
+            tambahSupplierTerpilih = new SupplierTerpilih();
+        } else {
+            tambahSupplierTerpilih.setState(NORMAL);
+            tambahSupplierTerpilih.toFront();
+        }
     }//GEN-LAST:event_JMIDaftarSupplierTerpilihActionPerformed
 
     private void JMIListDaftarSupplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMIListDaftarSupplierActionPerformed
@@ -926,7 +937,12 @@ public class MenuUtama extends javax.swing.JFrame {
     }//GEN-LAST:event_JMIListDaftarSupplierActionPerformed
 
     private void JMIListDaftarSupplierTerpilihActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMIListDaftarSupplierTerpilihActionPerformed
-        //TODO
+        if (listSupplierTerpilih == null) {
+            listSupplierTerpilih = new List(JMIListDaftarSupplierTerpilih.getText());
+        } else {
+            listSupplierTerpilih.setState(NORMAL);
+            listSupplierTerpilih.toFront();
+        }
     }//GEN-LAST:event_JMIListDaftarSupplierTerpilihActionPerformed
 
     private void JMIProsesPengaduanpelangganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMIProsesPengaduanpelangganActionPerformed
@@ -1023,7 +1039,14 @@ public class MenuUtama extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_JMILaporanEvaluasiPelatihanActionPerformed
 
-
+    private void JMILaporanDaftarSupplierTerpilihActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMILaporanDaftarSupplierTerpilihActionPerformed
+        if (laporanDaftarSupplierTerpilih == null) {
+            laporanDaftarSupplierTerpilih = new LaporanPembelian(JMILaporanDaftarSupplierTerpilih.getText());
+        } else {
+            laporanDaftarSupplierTerpilih.setState(NORMAL);
+            laporanDaftarSupplierTerpilih.toFront();
+        }
+    }//GEN-LAST:event_JMILaporanDaftarSupplierTerpilihActionPerformed
 
     /**
      * @param args the command line arguments

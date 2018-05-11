@@ -32,7 +32,7 @@ public class Var {
     public static ResetPasswordUser resetPasswordUser;
     public static GantiPassword gantiPassword;
 
-    public static List listPengujianProdukJadi, listPengujianBahanBaku, listBarangTeknik, listPemeliharaan, listPengaduanPelanggan, listSurveyKepuasanPelanggan, listDataPenjualan, listKebutuhanKaryawan, listEvaluasiSupplier;
+    public static List listPengujianProdukJadi, listPengujianBahanBaku, listBarangTeknik, listPemeliharaan, listPengaduanPelanggan, listSurveyKepuasanPelanggan, listDataPenjualan, listKebutuhanKaryawan, listEvaluasiSupplier, listSupplierTerpilih;
     
     public static BarangTeknik tambahBarangTeknik, ubahBarangTeknik;
     public static Pemeliharaan tambahPemeliharaan, ubahPemeliharaan;
@@ -43,6 +43,7 @@ public class Var {
     public static PengaduanPelanggan tambahPengaduanPelanggan, ubahPengaduanPelanggan;
     
     public static EvaluasiSupplier tambahEvaluasiSupplier, ubahEvaluasiSupplier;
+    public static SupplierTerpilih tambahSupplierTerpilih, ubahSupplierTerpilih;
     
 
     public static KebutuhanKaryawan tambahKebutuhanKaryawan, ubahKebutuhanKaryawan;

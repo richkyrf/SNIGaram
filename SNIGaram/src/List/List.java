@@ -13,6 +13,7 @@ import ProsesLab.*;
 import ProsesPemasran.PengaduanPelanggan;
 import ProsesPemasran.SurveyKepuasanPelanggan;
 import ProsesPembelian.EvaluasiSupplier;
+import ProsesPembelian.SupplierTerpilih;
 import ProsesPersonalia.KebutuhanKaryawan;
 import ProsesTeknik.Pemeliharaan;
 
@@ -186,7 +187,7 @@ public class List extends javax.swing.JFrame {
                 listEvaluasiSupplier = null;
                 break;
             case "List Daftar Supplier Terpilih":
-//                listSupplierTerpilih = null;
+                listSupplierTerpilih = null;
                 break;
             default:
                 throw new AssertionError();
@@ -317,12 +318,12 @@ public class List extends javax.swing.JFrame {
                 }
                 break;
             case "List Daftar Supplier Terpilih":
-//                if (tambahSupplierTerpilih == null) {
-//                    tambahSupplierTerpilih = new SupplierTerpilih();
-//                } else {
-//                    tambahSupplierTerpilih.setState(NORMAL);
-//                    tambahSupplierTerpilih.toFront();
-//                }
+                if (tambahSupplierTerpilih == null) {
+                    tambahSupplierTerpilih = new SupplierTerpilih();
+                } else {
+                    tambahSupplierTerpilih.setState(NORMAL);
+                    tambahSupplierTerpilih.toFront();
+                }
                 break;
             default:
                 throw new AssertionError();
@@ -365,7 +366,7 @@ public class List extends javax.swing.JFrame {
                     berhasil = delete.Hapus(jcomCari1.GetIDTable(), "DELETE FROM `snitbevaluasisupplier` WHERE `IdEvaluasi` = " + jcomCari1.GetIDTable(), getTitle(), this);
                     break;
                 case "List Daftar Supplier Terpilih":
-//                    berhasil = delete.Hapus(jcomCari1.GetIDTable(), "DELETE FROM `snitbsupplierterpilih` WHERE `IdSupplierTerpilih` = " + jcomCari1.GetIDTable(), getTitle(), this);
+                    berhasil = delete.Hapus(jcomCari1.GetIDTable(), "DELETE FROM `snitbsupplierterpilih` WHERE `IdSupplierTerpilih` = " + jcomCari1.GetIDTable(), getTitle(), this);
                     break;
                 default:
                     throw new AssertionError();
@@ -454,12 +455,12 @@ public class List extends javax.swing.JFrame {
                     }
                     break;
                 case "List Daftar Supplier Terpilih":
-//                    if (ubahSupplierTerpilih == null) {
-//                        ubahSupplierTerpilih = new SupplierTerpilih(jcomCari1.GetIDTable());
-//                    } else {
-//                        ubahSupplierTerpilih.setState(NORMAL);
-//                        ubahSupplierTerpilih.toFront();
-//                    }
+                    if (ubahSupplierTerpilih == null) {
+                        ubahSupplierTerpilih = new SupplierTerpilih(jcomCari1.GetIDTable());
+                    } else {
+                        ubahSupplierTerpilih.setState(NORMAL);
+                        ubahSupplierTerpilih.toFront();
+                    }
                     break;
                 default:
                     throw new AssertionError();
@@ -509,7 +510,7 @@ public class List extends javax.swing.JFrame {
                 jcomCari1.setOrder(" ORDER BY `NamaPemasok` ");
                 break;
             case "List Daftar Supplier Terpilih":
-                jcomCari1.setQuery("");
+                jcomCari1.setQuery("SELECT `IdSupplierTerpilih` as 'ID', `NamaPemasok` as 'Nama Pemasok', `Produk`, `Spesifikasi` FROM `snitbsupplierterplilih` WHERE 1");
                 jcomCari1.setOrder(" ORDER BY `NamaPemasok` ");
                 break;
             default:
