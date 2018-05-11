@@ -120,6 +120,9 @@ public class LaporanPersonalia extends javax.swing.JFrame {
         } else if (getTitle().equals("Laporan Evaluasi Masa Percobaan Karyawan")) {
             fLaporan.setfilename("Arsad/Personalia/F 06.01.00.03 Evaluasi Masa Percobaan Karyawan");
             History.simpanhistory(GlobalVar.VarL.username, "F 06.01.00.03 Evaluasi Masa Percobaan Karyawan");
+        } else if (getTitle().equals("Laporan Daftar Riwayat Hidup")) {
+            fLaporan.setfilename("Arsad/Personalia/F 06.02.00.01 Daftar Riwayat Hidup");
+            History.simpanhistory(GlobalVar.VarL.username, "F 06.02.00.01 Daftar Riwayat Hidup");
         } else if (getTitle().equals("Laporan Usul Pelatihan")) {
             fLaporan.setfilename("Arsad/Personalia/F 06.02.00.01 Usul Pelatihan");
             History.simpanhistory(GlobalVar.VarL.username, "F 06.02.00.01 Usul Pelatihan");
@@ -142,6 +145,8 @@ public class LaporanPersonalia extends javax.swing.JFrame {
             GlobalVar.Var.laporanKebutuhanKaryawan = null;
         } else if (getTitle().equals("Laporan Evaluasi Masa Percobaan Karyawan")) {
             GlobalVar.Var.laporanEvaluasiMasaPercobaanKaryawan = null;
+        } else if (getTitle().equals("Laporan Daftar Riwayat Hidup")) {
+            GlobalVar.Var.laporanDaftarRiwayatHidup = null;
         } else if (getTitle().equals("Laporan Usul Pelatihan")) {
             GlobalVar.Var.laporanUsulPelatihan = null;
         } else if (getTitle().equals("Laporan Program Pelatihan")) {
