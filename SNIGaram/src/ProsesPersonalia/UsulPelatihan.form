@@ -30,57 +30,66 @@
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="JLTanggal" min="-2" pref="95" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="JLTanggal2" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="JDTanggal" max="32767" attributes="0"/>
-                  </Group>
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="JLJumlah" alignment="0" max="32767" attributes="0"/>
-                          <Component id="JLBagian" alignment="0" max="32767" attributes="0"/>
-                          <Component id="JLKualifikasi" alignment="0" max="32767" attributes="0"/>
-                          <Component id="JLKeterangan" pref="95" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="JLKeterangan2" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="JSPKeterangan" max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="JLBagian2" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="JTBagian" max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="JLKualifikasi2" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="JSPKualifikasi" max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="JLJumlah2" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="JTJumlah" max="32767" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="JLJumlah3" min="-2" pref="48" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
                       <Component id="JBKembali" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="36" max="32767" attributes="0"/>
+                      <EmptySpace pref="136" max="32767" attributes="0"/>
                       <Component id="JBUbah" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="JBTambahTutup" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="JBTambah" min="-2" max="-2" attributes="0"/>
                   </Group>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="JLTanggal" max="32767" attributes="0"/>
+                          <Component id="JLJenisPelatihan" alignment="0" max="32767" attributes="0"/>
+                          <Component id="JLKeterangan" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="JLJenisPelatihan2" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="JTJenisPelatihan" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="JLTanggal2" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="JDTanggal" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="JLKeterangan2" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="JSPKeterangan" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="JLTempat" pref="116" max="32767" attributes="0"/>
+                          <Component id="JLWaktu" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="JLTempat2" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="JTTempat" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="JLWaktu2" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="JTWaktuJam" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                              <Component id="JLWaktu3" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                              <Component id="JTWaktuMenit" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
               </Group>
-              <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -97,24 +106,25 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="JLBagian" alignment="3" max="32767" attributes="0"/>
-                  <Component id="JLBagian2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="JTBagian" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="JLJenisPelatihan" alignment="3" max="32767" attributes="0"/>
+                  <Component id="JLJenisPelatihan2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="JTJenisPelatihan" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="JLKualifikasi" alignment="3" max="32767" attributes="0"/>
-                  <Component id="JLKualifikasi2" alignment="3" max="32767" attributes="0"/>
-                  <Component id="JSPKualifikasi" pref="150" max="32767" attributes="0"/>
+                  <Component id="JLTempat" alignment="3" max="32767" attributes="0"/>
+                  <Component id="JLTempat2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="JTTempat" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="JLJumlah" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="JLJumlah2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="JTJumlah" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="JLJumlah3" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="JLWaktu" alignment="3" max="32767" attributes="0"/>
+                  <Component id="JLWaktu2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="JTWaktuJam" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="JTWaktuMenit" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="JLWaktu3" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="JLKeterangan" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -122,14 +132,14 @@
                   </Group>
                   <Component id="JSPKeterangan" min="-2" pref="150" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="JBTambah" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="JBTambahTutup" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="JBUbah" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="JBKembali" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -156,71 +166,72 @@
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="10"/>
       </AuxValues>
     </Component>
-    <Component class="KomponenGUI.JlableF" name="JLBagian">
+    <Component class="KomponenGUI.JlableF" name="JLJenisPelatihan">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Bagian"/>
+        <Property name="text" type="java.lang.String" value="Jenis Pelatihan"/>
       </Properties>
     </Component>
-    <Component class="KomponenGUI.JlableF" name="JLBagian2">
+    <Component class="KomponenGUI.JlableF" name="JLJenisPelatihan2">
       <Properties>
         <Property name="text" type="java.lang.String" value=":"/>
       </Properties>
     </Component>
-    <Component class="KomponenGUI.JtextF" name="JTBagian">
+    <Component class="KomponenGUI.JtextF" name="JTJenisPelatihan">
       <Events>
-        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="JTBagianKeyPressed"/>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="JTJenisPelatihanKeyPressed"/>
       </Events>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_ListenersCodePost" type="java.lang.String" value="JTBagian.setMaxText(50);"/>
+        <AuxValue name="JavaCodeGenerator_ListenersCodePost" type="java.lang.String" value="JTJenisPelatihan.setMaxText(100);"/>
       </AuxValues>
     </Component>
-    <Component class="KomponenGUI.JlableF" name="JLKualifikasi">
+    <Component class="KomponenGUI.JlableF" name="JLTempat">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Kualifikasi"/>
+        <Property name="text" type="java.lang.String" value="Tempat"/>
       </Properties>
     </Component>
-    <Component class="KomponenGUI.JlableF" name="JLKualifikasi2">
+    <Component class="KomponenGUI.JlableF" name="JLTempat2">
       <Properties>
         <Property name="text" type="java.lang.String" value=":"/>
       </Properties>
     </Component>
-    <Container class="javax.swing.JScrollPane" name="JSPKualifikasi">
-      <AuxValues>
-        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-      </AuxValues>
-
-      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-      <SubComponents>
-        <Component class="KomponenGUI.JTextAreaF" name="JTAKualifikasi">
-          <Properties>
-            <Property name="columns" type="int" value="20"/>
-            <Property name="rows" type="int" value="5"/>
-          </Properties>
-          <Events>
-            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="JTAKualifikasiKeyPressed"/>
-          </Events>
-        </Component>
-      </SubComponents>
-    </Container>
-    <Component class="KomponenGUI.JlableF" name="JLJumlah">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Jumlah"/>
-      </Properties>
-    </Component>
-    <Component class="KomponenGUI.JlableF" name="JLJumlah2">
-      <Properties>
-        <Property name="text" type="java.lang.String" value=":"/>
-      </Properties>
-    </Component>
-    <Component class="KomponenGUI.JRibuanTextField" name="JTJumlah">
+    <Component class="KomponenGUI.JtextF" name="JTTempat">
       <Events>
-        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="JTJumlahKeyPressed"/>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="JTTempatKeyPressed"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_ListenersCodePost" type="java.lang.String" value="JTTempat.setMaxText(50);"/>
+      </AuxValues>
+    </Component>
+    <Component class="KomponenGUI.JlableF" name="JLWaktu">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Waktu"/>
+      </Properties>
+    </Component>
+    <Component class="KomponenGUI.JlableF" name="JLWaktu2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value=":"/>
+      </Properties>
+    </Component>
+    <Component class="KomponenGUI.JtKoma" name="JTWaktuJam">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="00"/>
+      </Properties>
+      <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="JTWaktuJamKeyPressed"/>
       </Events>
     </Component>
-    <Component class="KomponenGUI.JlableF" name="JLJumlah3">
+    <Component class="KomponenGUI.JlableF" name="JLWaktu3">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Orang"/>
+        <Property name="text" type="java.lang.String" value="."/>
       </Properties>
+    </Component>
+    <Component class="KomponenGUI.JtKoma" name="JTWaktuMenit">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="00"/>
+      </Properties>
+      <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="JTWaktuMenitKeyPressed"/>
+      </Events>
     </Component>
     <Component class="KomponenGUI.JlableF" name="JLKeterangan">
       <Properties>
