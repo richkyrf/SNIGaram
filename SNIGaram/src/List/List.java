@@ -183,6 +183,9 @@ public class List extends javax.swing.JFrame {
             case "List Kebutuhan Karyawan":
                 listKebutuhanKaryawan = null;
                 break;
+            case "List Daftar Riwayat Hidup":
+                listDaftarRiwayatHidup = null;
+                break;
             case "List Usul Pelatihan":
                 listUsulPelatihan = null;
                 break;
@@ -311,6 +314,16 @@ public class List extends javax.swing.JFrame {
                     tambahKebutuhanKaryawan.setState(NORMAL);
                     tambahKebutuhanKaryawan.toFront();
                 }
+                break;
+            case "List Daftar Riwayat Hidup":
+                /*
+                if (tambahKebutuhanKaryawan == null) {
+                    tambahKebutuhanKaryawan = new KebutuhanKaryawan();
+                } else {
+                    tambahKebutuhanKaryawan.setState(NORMAL);
+                    tambahKebutuhanKaryawan.toFront();
+                }
+*/
                 break;
             case "List Usul Pelatihan":
                 if (tambahUsulPelatihan == null) {

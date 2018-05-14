@@ -401,6 +401,11 @@ public class MenuUtama extends javax.swing.JFrame {
         JMListPersonalia.add(JMIListEvaluasiMasaPercobaanKaryawan);
 
         JMIListDaftarRiwayatHidup.setText("Daftar Riwayat Hidup");
+        JMIListDaftarRiwayatHidup.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JMIListDaftarRiwayatHidupActionPerformed(evt);
+            }
+        });
         JMListPersonalia.add(JMIListDaftarRiwayatHidup);
 
         JMIListUsulPelatihan.setText("Usul Pelatihan");
@@ -1120,6 +1125,15 @@ public class MenuUtama extends javax.swing.JFrame {
             tambahUsulPelatihan.toFront();
         }
     }//GEN-LAST:event_JMIUsulPelatihanActionPerformed
+
+    private void JMIListDaftarRiwayatHidupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMIListDaftarRiwayatHidupActionPerformed
+        if (listDaftarRiwayatHidup == null) {
+            listDaftarRiwayatHidup = new List(JMIListDaftarRiwayatHidup.getText());
+        } else {
+            listDaftarRiwayatHidup.setState(NORMAL);
+            listDaftarRiwayatHidup.toFront();
+        }
+    }//GEN-LAST:event_JMIListDaftarRiwayatHidupActionPerformed
 
     /**
      * @param args the command line arguments
