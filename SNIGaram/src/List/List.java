@@ -183,11 +183,20 @@ public class List extends javax.swing.JFrame {
             case "List Kebutuhan Karyawan":
                 listKebutuhanKaryawan = null;
                 break;
+            case "List Evaluasi Masa Percobaan Karyawan":
+                listEvaluasiMasaPercobaanKaryawan = null;
+                break;
             case "List Daftar Riwayat Hidup":
                 listDaftarRiwayatHidup = null;
                 break;
             case "List Usul Pelatihan":
                 listUsulPelatihan = null;
+                break;
+            case "List Calon Peserta Pelatihan":
+                listCalonPesertaPelatihan = null;
+                break;
+            case "List Evaluasi Pelatihan":
+                listEvaluasiPelatihan = null;
                 break;
             case "List Daftar Supplier":
                 listEvaluasiSupplier = null;
@@ -315,15 +324,21 @@ public class List extends javax.swing.JFrame {
                     tambahKebutuhanKaryawan.toFront();
                 }
                 break;
-            case "List Daftar Riwayat Hidup":
-                /*
-                if (tambahKebutuhanKaryawan == null) {
-                    tambahKebutuhanKaryawan = new KebutuhanKaryawan();
+            case "List Evaluasi Masa Percobaan Karyawan":
+                if (tambahEvaluasiMasaPercobaanKaryawan == null) {
+                    tambahEvaluasiMasaPercobaanKaryawan = new EvaluasiMasaPercobaanKaryawan();
                 } else {
-                    tambahKebutuhanKaryawan.setState(NORMAL);
-                    tambahKebutuhanKaryawan.toFront();
+                    tambahEvaluasiMasaPercobaanKaryawan.setState(NORMAL);
+                    tambahEvaluasiMasaPercobaanKaryawan.toFront();
                 }
-*/
+                break;
+            case "List Daftar Riwayat Hidup":
+                if (tambahDaftarRiwayatHidup == null) {
+                    tambahDaftarRiwayatHidup = new DaftarRiwayatHidup();
+                } else {
+                    tambahDaftarRiwayatHidup.setState(NORMAL);
+                    tambahDaftarRiwayatHidup.toFront();
+                }
                 break;
             case "List Usul Pelatihan":
                 if (tambahUsulPelatihan == null) {
@@ -331,6 +346,22 @@ public class List extends javax.swing.JFrame {
                 } else {
                     tambahUsulPelatihan.setState(NORMAL);
                     tambahUsulPelatihan.toFront();
+                }
+                break;
+            case "List Calon Peserta Pelatihan":
+                if (tambahCalonPesertaPelatihan == null) {
+                    tambahCalonPesertaPelatihan = new CalonPesertaPelatihan();
+                } else {
+                    tambahCalonPesertaPelatihan.setState(NORMAL);
+                    tambahCalonPesertaPelatihan.toFront();
+                }
+                break;
+            case "List Evaluasi Pelatihan":
+                if (tambahEvaluasiPelatihan == null) {
+                    tambahEvaluasiPelatihan = new EvaluasiPelatihan();
+                } else {
+                    tambahEvaluasiPelatihan.setState(NORMAL);
+                    tambahEvaluasiPelatihan.toFront();
                 }
                 break;
             case "List Daftar Supplier":
@@ -386,8 +417,20 @@ public class List extends javax.swing.JFrame {
                 case "List Kebutuhan Karyawan":
                     berhasil = delete.Hapus(jcomCari1.GetIDTable(), "DELETE FROM `snitbkebutuhankaryawan` WHERE `IdKebutuhanKaryawan` = " + jcomCari1.GetIDTable(), getTitle(), this);
                     break;
+                case "List Evaluasi Masa Percobaan Karyawan":
+                    berhasil = delete.Hapus(jcomCari1.GetIDTable(), "DELETE FROM `snitbmasapercobaankaryawan` WHERE `IdMasaPercobaanKaryawan` = " + jcomCari1.GetIDTable(), getTitle(), this);
+                    break;
+                case "List Daftar Riwayat Hidup":
+                    berhasil = delete.Hapus(jcomCari1.GetIDTable(), "DELETE FROM `snitbriwayathidup` WHERE `IdRiwayatHidup` = " + jcomCari1.GetIDTable(), getTitle(), this);
+                    break;
                 case "List Usul Pelatihan":
                     berhasil = delete.Hapus(jcomCari1.GetIDTable(), "DELETE FROM `snitbusulpelatihan` WHERE `IdUsulPelatihan` = " + jcomCari1.GetIDTable(), getTitle(), this);
+                    break;
+                case "List Calon Peserta Pelatihan":
+                    berhasil = delete.Hapus(jcomCari1.GetIDTable(), "DELETE FROM `snitbpelatihan` WHERE `IdPelatihan` = " + jcomCari1.GetIDTable(), getTitle(), this);
+                    break;
+                case "List Evaluasi Pelatihan":
+                    berhasil = delete.Hapus(jcomCari1.GetIDTable(), "DELETE FROM `snitbevaluasipelatihan` WHERE `IdEvaluasiPelatihan` = " + jcomCari1.GetIDTable(), getTitle(), this);
                     break;
                 case "List Daftar Supplier":
                     berhasil = delete.Hapus(jcomCari1.GetIDTable(), "DELETE FROM `snitbevaluasisupplier` WHERE `IdEvaluasi` = " + jcomCari1.GetIDTable(), getTitle(), this);
@@ -473,12 +516,44 @@ public class List extends javax.swing.JFrame {
                         ubahKebutuhanKaryawan.toFront();
                     }
                     break;
+                case "List Evaluasi Masa Percobaan Karyawan":
+                    if (ubahEvaluasiMasaPercobaanKaryawan == null) {
+                        ubahEvaluasiMasaPercobaanKaryawan = new EvaluasiMasaPercobaanKaryawan(jcomCari1.GetIDTable());
+                    } else {
+                        ubahEvaluasiMasaPercobaanKaryawan.setState(NORMAL);
+                        ubahEvaluasiMasaPercobaanKaryawan.toFront();
+                    }
+                    break;
+                case "List Daftar Riwayat Hidup":
+                    if (ubahDaftarRiwayatHidup == null) {
+                        ubahDaftarRiwayatHidup = new DaftarRiwayatHidup(jcomCari1.GetIDTable());
+                    } else {
+                        ubahDaftarRiwayatHidup.setState(NORMAL);
+                        ubahDaftarRiwayatHidup.toFront();
+                    }
+                    break;
                 case "List Usul Pelatihan":
                     if (ubahUsulPelatihan == null) {
                         ubahUsulPelatihan = new UsulPelatihan(jcomCari1.GetIDTable());
                     } else {
                         ubahUsulPelatihan.setState(NORMAL);
                         ubahUsulPelatihan.toFront();
+                    }
+                    break;
+                case "List Calon Peserta Pelatihan":
+                    if (ubahCalonPesertaPelatihan == null) {
+                        ubahCalonPesertaPelatihan = new CalonPesertaPelatihan(jcomCari1.GetIDTable());
+                    } else {
+                        ubahCalonPesertaPelatihan.setState(NORMAL);
+                        ubahCalonPesertaPelatihan.toFront();
+                    }
+                    break;
+                case "List Evaluasi Pelatihan":
+                    if (ubahEvaluasiPelatihan == null) {
+                        ubahEvaluasiPelatihan = new EvaluasiPelatihan(jcomCari1.GetIDTable());
+                    } else {
+                        ubahEvaluasiPelatihan.setState(NORMAL);
+                        ubahEvaluasiPelatihan.toFront();
                     }
                     break;
                 case "List Daftar Supplier":
@@ -540,10 +615,32 @@ public class List extends javax.swing.JFrame {
                 jcomCari1.setQuery("SELECT `IdKebutuhanKaryawan` as 'ID', DATE_FORMAT(`Tanggal`,'%d-%m-%Y') as 'Tanggal', `Bagian`, `Kualifikasi`, `Jumlah`, `Keterangan` FROM `snitbkebutuhankaryawan`a WHERE 1");
                 jcomCari1.setOrder(" ORDER BY a.`Tanggal` DESC, `Bagian` ");
                 break;
+            case "List Evaluasi Masa Percobaan Karyawan":
+                /*
+                jcomCari1.setQuery("SELECT `IdKebutuhanKaryawan` as 'ID', DATE_FORMAT(`Tanggal`,'%d-%m-%Y') as 'Tanggal', `Bagian`, `Kualifikasi`, `Jumlah`, `Keterangan` FROM `snitbkebutuhankaryawan`a WHERE 1");
+                jcomCari1.setOrder(" ORDER BY a.`Tanggal` DESC, `Bagian` ");
+                break;
+*/
+            case "List Daftar Riwayat Hidup":
+                jcomCari1.setQuery("SELECT `IdRiwayatHidup` as 'ID', DATE_FORMAT(`TanggalBergabung`,'%d-%m-%Y') as 'Tanggal', `NamaKaryawan` as 'Nama Karyawan', `PendidikanFormal` as 'Pendidikan Formal', a.`Status`, a.`Keterangan` FROM `snitbriwayathidup`a JOIN `tbmkaryawan`b ON a.`IdKaryawan`=b.`IdKaryawan` WHERE 1");
+                jcomCari1.setOrder(" ORDER BY a.`TanggalBergabung` DESC, `NamaKaryawan` ");
+                break;
             case "List Usul Pelatihan":
                 jcomCari1.setQuery("SELECT `IdUsulPelatihan` as 'ID', DATE_FORMAT(`Tanggal`,'%d-%m-%Y') as 'Tanggal', `JenisPelatihan` as 'Jenis Pelatihan', CONCAT(`Tempat`,' : ',REPLACE(SUBSTRING(`Waktu`,1,5),':','.')) as 'Tempat dan Waktu', `Keterangan` FROM `snitbusulpelatihan`a WHERE 1");
                 jcomCari1.setOrder(" ORDER BY a.`Tanggal` DESC, `Waktu` DESC ");
                 break;
+            case "List Calon Peserta Pelatihan":
+                /*
+                jcomCari1.setQuery("SELECT `IdKebutuhanKaryawan` as 'ID', DATE_FORMAT(`Tanggal`,'%d-%m-%Y') as 'Tanggal', `Bagian`, `Kualifikasi`, `Jumlah`, `Keterangan` FROM `snitbkebutuhankaryawan`a WHERE 1");
+                jcomCari1.setOrder(" ORDER BY a.`Tanggal` DESC, `Bagian` ");
+                break;
+*/
+            case "List Evaluasi Pelatihan":
+                /*
+                jcomCari1.setQuery("SELECT `IdKebutuhanKaryawan` as 'ID', DATE_FORMAT(`Tanggal`,'%d-%m-%Y') as 'Tanggal', `Bagian`, `Kualifikasi`, `Jumlah`, `Keterangan` FROM `snitbkebutuhankaryawan`a WHERE 1");
+                jcomCari1.setOrder(" ORDER BY a.`Tanggal` DESC, `Bagian` ");
+                break;
+*/
             case "List Daftar Supplier":
                 jcomCari1.setQuery("SELECT `IdEvaluasi` as 'ID', `NamaPemasok` as 'Nama Pemasok', `HasilEvaluasi` as 'Hasil Evaluasi', `Keterangan` FROM `snitbevaluasisupplier` WHERE 1");
                 jcomCari1.setOrder(" ORDER BY `NamaPemasok` ");
