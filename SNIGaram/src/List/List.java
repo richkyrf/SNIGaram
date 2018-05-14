@@ -14,7 +14,7 @@ import ProsesPemasran.PengaduanPelanggan;
 import ProsesPemasran.SurveyKepuasanPelanggan;
 import ProsesPembelian.EvaluasiSupplier;
 import ProsesPembelian.SupplierTerpilih;
-import ProsesPersonalia.KebutuhanKaryawan;
+import ProsesPersonalia.*;
 import ProsesTeknik.Pemeliharaan;
 
 /**
@@ -183,6 +183,12 @@ public class List extends javax.swing.JFrame {
             case "List Kebutuhan Karyawan":
                 listKebutuhanKaryawan = null;
                 break;
+            case "List Daftar Riwayat Hidup":
+                listDaftarRiwayatHidup = null;
+                break;
+            case "List Usul Pelatihan":
+                listUsulPelatihan = null;
+                break;
             case "List Daftar Supplier":
                 listEvaluasiSupplier = null;
                 break;
@@ -309,6 +315,24 @@ public class List extends javax.swing.JFrame {
                     tambahKebutuhanKaryawan.toFront();
                 }
                 break;
+            case "List Daftar Riwayat Hidup":
+                /*
+                if (tambahKebutuhanKaryawan == null) {
+                    tambahKebutuhanKaryawan = new KebutuhanKaryawan();
+                } else {
+                    tambahKebutuhanKaryawan.setState(NORMAL);
+                    tambahKebutuhanKaryawan.toFront();
+                }
+*/
+                break;
+            case "List Usul Pelatihan":
+                if (tambahUsulPelatihan == null) {
+                    tambahUsulPelatihan = new UsulPelatihan();
+                } else {
+                    tambahUsulPelatihan.setState(NORMAL);
+                    tambahUsulPelatihan.toFront();
+                }
+                break;
             case "List Daftar Supplier":
                 if (tambahEvaluasiSupplier == null) {
                     tambahEvaluasiSupplier = new EvaluasiSupplier();
@@ -361,6 +385,9 @@ public class List extends javax.swing.JFrame {
                     break;
                 case "List Kebutuhan Karyawan":
                     berhasil = delete.Hapus(jcomCari1.GetIDTable(), "DELETE FROM `snitbkebutuhankaryawan` WHERE `IdKebutuhanKaryawan` = " + jcomCari1.GetIDTable(), getTitle(), this);
+                    break;
+                case "List Usul Pelatihan":
+                    berhasil = delete.Hapus(jcomCari1.GetIDTable(), "DELETE FROM `snitbusulpelatihan` WHERE `IdUsulPelatihan` = " + jcomCari1.GetIDTable(), getTitle(), this);
                     break;
                 case "List Daftar Supplier":
                     berhasil = delete.Hapus(jcomCari1.GetIDTable(), "DELETE FROM `snitbevaluasisupplier` WHERE `IdEvaluasi` = " + jcomCari1.GetIDTable(), getTitle(), this);
@@ -446,6 +473,14 @@ public class List extends javax.swing.JFrame {
                         ubahKebutuhanKaryawan.toFront();
                     }
                     break;
+                case "List Usul Pelatihan":
+                    if (ubahUsulPelatihan == null) {
+                        ubahUsulPelatihan = new UsulPelatihan(jcomCari1.GetIDTable());
+                    } else {
+                        ubahUsulPelatihan.setState(NORMAL);
+                        ubahUsulPelatihan.toFront();
+                    }
+                    break;
                 case "List Daftar Supplier":
                     if (ubahEvaluasiSupplier == null) {
                         ubahEvaluasiSupplier = new EvaluasiSupplier(jcomCari1.GetIDTable());
@@ -504,6 +539,10 @@ public class List extends javax.swing.JFrame {
             case "List Kebutuhan Karyawan":
                 jcomCari1.setQuery("SELECT `IdKebutuhanKaryawan` as 'ID', DATE_FORMAT(`Tanggal`,'%d-%m-%Y') as 'Tanggal', `Bagian`, `Kualifikasi`, `Jumlah`, `Keterangan` FROM `snitbkebutuhankaryawan`a WHERE 1");
                 jcomCari1.setOrder(" ORDER BY a.`Tanggal` DESC, `Bagian` ");
+                break;
+            case "List Usul Pelatihan":
+                jcomCari1.setQuery("SELECT `IdUsulPelatihan` as 'ID', DATE_FORMAT(`Tanggal`,'%d-%m-%Y') as 'Tanggal', `JenisPelatihan` as 'Jenis Pelatihan', CONCAT(`Tempat`,' : ',REPLACE(SUBSTRING(`Waktu`,1,5),':','.')) as 'Tempat dan Waktu', `Keterangan` FROM `snitbusulpelatihan`a WHERE 1");
+                jcomCari1.setOrder(" ORDER BY a.`Tanggal` DESC, `Waktu` DESC ");
                 break;
             case "List Daftar Supplier":
                 jcomCari1.setQuery("SELECT `IdEvaluasi` as 'ID', `NamaPemasok` as 'Nama Pemasok', `HasilEvaluasi` as 'Hasil Evaluasi', `Keterangan` FROM `snitbevaluasisupplier` WHERE 1");

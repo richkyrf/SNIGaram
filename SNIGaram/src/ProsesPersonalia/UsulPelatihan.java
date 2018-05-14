@@ -19,27 +19,27 @@ import static GlobalVar.Var.*;
  *
  * @author Gudang Garam
  */
-public class KebutuhanKaryawan extends javax.swing.JFrame {
+public class UsulPelatihan extends javax.swing.JFrame {
 
     /**
      * Creates new form PengujianBahanBaku
      */
     String IdEdit;
 
-    public KebutuhanKaryawan() {
+    public UsulPelatihan() {
         initComponents();
         setVisible(true);
-        setTitle("Tambah Kebutuhan Karyawan");
+        setTitle("Tambah Usul Pelatihan");
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         JBUbah.setVisible(false);
     }
 
-    public KebutuhanKaryawan(Object idEdit) {
+    public UsulPelatihan(Object idEdit) {
         IdEdit = idEdit.toString();
         initComponents();
         setVisible(true);
-        setTitle("Ubah Kebutuhan Karyawan");
+        setTitle("Ubah Usul Pelatihan");
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         JBTambah.setVisible(false);
@@ -49,13 +49,14 @@ public class KebutuhanKaryawan extends javax.swing.JFrame {
 
     void loadEditData() {
         DRunSelctOne dRunSelctOne = new DRunSelctOne();
-        dRunSelctOne.setQuery("SELECT `IdKebutuhanKaryawan` as 'ID', DATE_FORMAT(`Tanggal`,'%d-%m-%Y') as 'Tanggal', `Bagian`, `Kualifikasi`, `Jumlah`, `Keterangan` FROM `snitbkebutuhankaryawan` WHERE `IdKebutuhanKaryawan` = " + IdEdit);
+        dRunSelctOne.setQuery("SELECT `IdUsulPelatihan`, DATE_FORMAT(`Tanggal`,'%d-%m-%Y'), `JenisPelatihan`, `Tempat`, SUBSTRING(`Waktu`,1,2), SUBSTRING(`Waktu`,4,2), `Keterangan` FROM `snitbusulpelatihan` WHERE `IdUsulPelatihan` = " + IdEdit);
         ArrayList<String> list = dRunSelctOne.excute();
         JDTanggal.setDate(FDateF.strtodate(list.get(1), "dd-MM-yyyy"));
-        JTBagian.setText(list.get(2));
-        JTAKualifikasi.setText(list.get(3));
-        JTJumlah.setText(list.get(4));
-        JTAKeterangan.setText(list.get(5));
+        JTJenisPelatihan.setText(list.get(2));
+        JTTempat.setText(list.get(3));
+        JTWaktuJam.setText(list.get(4));
+        JTWaktuMenit.setText(list.get(5));
+        JTAKeterangan.setText(list.get(6));
     }
 
     Boolean checkInput() {
@@ -63,17 +64,21 @@ public class KebutuhanKaryawan extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Tanggal Tidak Boleh Kosong");
             JDTanggal.requestFocus();
             return false;
-        } else if (JTBagian.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Bagian Tidak Boleh Kosong");
-            JTBagian.requestFocus();
+        } else if (JTJenisPelatihan.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Jenis Pelatihan Tidak Boleh Kosong");
+            JTJenisPelatihan.requestFocus();
             return false;
-        } else if (JTAKualifikasi.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Kualifikasi Tidak Boleh Kosong");
-            JTAKualifikasi.requestFocus();
+        } else if (JTTempat.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Tempat Tidak Boleh Kosong");
+            JTTempat.requestFocus();
             return false;
-        } else if (JTJumlah.getInt() == 0) {
-            JOptionPane.showMessageDialog(null, "Jumlah Tidak Boleh Kosong");
-            JTJumlah.requestFocus();
+        } else if (JTWaktuJam.getInt() > 23) {
+            JOptionPane.showMessageDialog(null, "Waktu (Jam) Salah");
+            JTWaktuJam.requestFocus();
+            return false;
+        } else if (JTWaktuMenit.getInt() > 59) {
+            JOptionPane.showMessageDialog(null, "Waktu (Menit) Salah");
+            JTWaktuMenit.requestFocus();
             return false;
         } else {
             return true;
@@ -92,17 +97,17 @@ public class KebutuhanKaryawan extends javax.swing.JFrame {
         JLTanggal = new KomponenGUI.JlableF();
         JLTanggal2 = new KomponenGUI.JlableF();
         JDTanggal = new KomponenGUI.JdateCF();
-        JLBagian = new KomponenGUI.JlableF();
-        JLBagian2 = new KomponenGUI.JlableF();
-        JTBagian = new KomponenGUI.JtextF();
-        JLKualifikasi = new KomponenGUI.JlableF();
-        JLKualifikasi2 = new KomponenGUI.JlableF();
-        JSPKualifikasi = new javax.swing.JScrollPane();
-        JTAKualifikasi = new KomponenGUI.JTextAreaF();
-        JLJumlah = new KomponenGUI.JlableF();
-        JLJumlah2 = new KomponenGUI.JlableF();
-        JTJumlah = new KomponenGUI.JRibuanTextField();
-        JLJumlah3 = new KomponenGUI.JlableF();
+        JLJenisPelatihan = new KomponenGUI.JlableF();
+        JLJenisPelatihan2 = new KomponenGUI.JlableF();
+        JTJenisPelatihan = new KomponenGUI.JtextF();
+        JLTempat = new KomponenGUI.JlableF();
+        JLTempat2 = new KomponenGUI.JlableF();
+        JTTempat = new KomponenGUI.JtextF();
+        JLWaktu = new KomponenGUI.JlableF();
+        JLWaktu2 = new KomponenGUI.JlableF();
+        JTWaktuJam = new KomponenGUI.JtKoma();
+        JLWaktu3 = new KomponenGUI.JlableF();
+        JTWaktuMenit = new KomponenGUI.JtKoma();
         JLKeterangan = new KomponenGUI.JlableF();
         JLKeterangan2 = new KomponenGUI.JlableF();
         JSPKeterangan = new javax.swing.JScrollPane();
@@ -127,41 +132,47 @@ public class KebutuhanKaryawan extends javax.swing.JFrame {
         JDTanggal.setDate(new Date());
         JDTanggal.setDateFormatString("dd-MM-yyyy");
 
-        JLBagian.setText("Bagian");
+        JLJenisPelatihan.setText("Jenis Pelatihan");
 
-        JLBagian2.setText(":");
+        JLJenisPelatihan2.setText(":");
 
-        JTBagian.addKeyListener(new java.awt.event.KeyAdapter() {
+        JTJenisPelatihan.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                JTBagianKeyPressed(evt);
+                JTJenisPelatihanKeyPressed(evt);
             }
         });
-        JTBagian.setMaxText(50);
+        JTJenisPelatihan.setMaxText(100);
 
-        JLKualifikasi.setText("Kualifikasi");
+        JLTempat.setText("Tempat");
 
-        JLKualifikasi2.setText(":");
+        JLTempat2.setText(":");
 
-        JTAKualifikasi.setColumns(20);
-        JTAKualifikasi.setRows(5);
-        JTAKualifikasi.addKeyListener(new java.awt.event.KeyAdapter() {
+        JTTempat.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                JTAKualifikasiKeyPressed(evt);
+                JTTempatKeyPressed(evt);
             }
         });
-        JSPKualifikasi.setViewportView(JTAKualifikasi);
+        JTTempat.setMaxText(50);
 
-        JLJumlah.setText("Jumlah");
+        JLWaktu.setText("Waktu");
 
-        JLJumlah2.setText(":");
+        JLWaktu2.setText(":");
 
-        JTJumlah.addKeyListener(new java.awt.event.KeyAdapter() {
+        JTWaktuJam.setText("00");
+        JTWaktuJam.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                JTJumlahKeyPressed(evt);
+                JTWaktuJamKeyPressed(evt);
             }
         });
 
-        JLJumlah3.setText("Orang");
+        JLWaktu3.setText(".");
+
+        JTWaktuMenit.setText("00");
+        JTWaktuMenit.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                JTWaktuMenitKeyPressed(evt);
+            }
+        });
 
         JLKeterangan.setText("Keterangan");
 
@@ -212,45 +223,51 @@ public class KebutuhanKaryawan extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(JLTanggal, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(JLTanggal2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(JDTanggal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(JLJumlah, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(JLBagian, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(JLKualifikasi, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(JLKeterangan, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(JLKeterangan2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(JSPKeterangan))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(JLBagian2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(JTBagian, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(JLKualifikasi2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(JSPKualifikasi))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(JLJumlah2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(JTJumlah, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(JLJumlah3, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(JBKembali, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 136, Short.MAX_VALUE)
                         .addComponent(JBUbah, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(JBTambahTutup, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(JBTambah, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(JBTambah, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(JLTanggal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(JLJenisPelatihan, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(JLKeterangan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(JLJenisPelatihan2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(JTJenisPelatihan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(JLTanggal2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(JDTanggal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(JLKeterangan2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(JSPKeterangan))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(JLTempat, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
+                            .addComponent(JLWaktu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(JLTempat2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(JTTempat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(JLWaktu2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(JTWaktuJam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(2, 2, 2)
+                                .addComponent(JLWaktu3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(2, 2, 2)
+                                .addComponent(JTWaktuMenit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addGap(10, 10, 10))
         );
         layout.setVerticalGroup(
@@ -264,27 +281,28 @@ public class KebutuhanKaryawan extends javax.swing.JFrame {
                     .addComponent(JDTanggal, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JLBagian, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(JLBagian2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JTBagian, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(JLJenisPelatihan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(JLJenisPelatihan2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JTJenisPelatihan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JLKualifikasi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(JLKualifikasi2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(JSPKualifikasi, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
+                    .addComponent(JLTempat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(JLTempat2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JTTempat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JLJumlah, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JLJumlah2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JTJumlah, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JLJumlah3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(JLWaktu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(JLWaktu2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JTWaktuJam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JTWaktuMenit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JLWaktu3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(JLKeterangan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(JLKeterangan2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(JSPKeterangan, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JBTambah, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(JBTambahTutup, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -314,23 +332,17 @@ public class KebutuhanKaryawan extends javax.swing.JFrame {
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         if (IdEdit == null) {
-            tambahKebutuhanKaryawan = null;
+            tambahUsulPelatihan = null;
         } else {
-            ubahKebutuhanKaryawan = null;
+            ubahUsulPelatihan = null;
         }
     }//GEN-LAST:event_formWindowClosed
 
-    private void JTBagianKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JTBagianKeyPressed
+    private void JTJenisPelatihanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JTJenisPelatihanKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            JTAKualifikasi.requestFocus();
+            JTTempat.requestFocus();
         }
-    }//GEN-LAST:event_JTBagianKeyPressed
-
-    private void JTJumlahKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JTJumlahKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            JTAKeterangan.requestFocus();
-        }
-    }//GEN-LAST:event_JTJumlahKeyPressed
+    }//GEN-LAST:event_JTJenisPelatihanKeyPressed
 
     private void JTAKeteranganKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JTAKeteranganKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -342,11 +354,23 @@ public class KebutuhanKaryawan extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_JTAKeteranganKeyPressed
 
-    private void JTAKualifikasiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JTAKualifikasiKeyPressed
+    private void JTTempatKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JTTempatKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            JTJumlah.requestFocus();
+            JTWaktuJam.requestFocus();
         }
-    }//GEN-LAST:event_JTAKualifikasiKeyPressed
+    }//GEN-LAST:event_JTTempatKeyPressed
+
+    private void JTWaktuJamKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JTWaktuJamKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            JTWaktuMenit.requestFocus();
+        }
+    }//GEN-LAST:event_JTWaktuJamKeyPressed
+
+    private void JTWaktuMenitKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JTWaktuMenitKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            JTAKeterangan.requestFocus();
+        }
+    }//GEN-LAST:event_JTWaktuMenitKeyPressed
 
     /**
      * @param args the command line arguments
@@ -365,20 +389,20 @@ public class KebutuhanKaryawan extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(KebutuhanKaryawan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UsulPelatihan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(KebutuhanKaryawan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UsulPelatihan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(KebutuhanKaryawan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UsulPelatihan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(KebutuhanKaryawan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UsulPelatihan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new KebutuhanKaryawan().setVisible(true);
+                new UsulPelatihan().setVisible(true);
             }
         });
     }
@@ -389,43 +413,44 @@ public class KebutuhanKaryawan extends javax.swing.JFrame {
     private KomponenGUI.JbuttonF JBTambahTutup;
     private KomponenGUI.JbuttonF JBUbah;
     private static KomponenGUI.JdateCF JDTanggal;
-    private KomponenGUI.JlableF JLBagian;
-    private KomponenGUI.JlableF JLBagian2;
-    private KomponenGUI.JlableF JLJumlah;
-    private KomponenGUI.JlableF JLJumlah2;
-    private KomponenGUI.JlableF JLJumlah3;
+    private KomponenGUI.JlableF JLJenisPelatihan;
+    private KomponenGUI.JlableF JLJenisPelatihan2;
     private KomponenGUI.JlableF JLKeterangan;
     private KomponenGUI.JlableF JLKeterangan2;
-    private KomponenGUI.JlableF JLKualifikasi;
-    private KomponenGUI.JlableF JLKualifikasi2;
     private KomponenGUI.JlableF JLTanggal;
     private KomponenGUI.JlableF JLTanggal2;
+    private KomponenGUI.JlableF JLTempat;
+    private KomponenGUI.JlableF JLTempat2;
+    private KomponenGUI.JlableF JLWaktu;
+    private KomponenGUI.JlableF JLWaktu2;
+    private KomponenGUI.JlableF JLWaktu3;
     private javax.swing.JScrollPane JSPKeterangan;
-    private javax.swing.JScrollPane JSPKualifikasi;
     private KomponenGUI.JTextAreaF JTAKeterangan;
-    private KomponenGUI.JTextAreaF JTAKualifikasi;
-    private KomponenGUI.JtextF JTBagian;
-    private KomponenGUI.JRibuanTextField JTJumlah;
+    private KomponenGUI.JtextF JTJenisPelatihan;
+    private KomponenGUI.JtextF JTTempat;
+    private KomponenGUI.JtKoma JTWaktuJam;
+    private KomponenGUI.JtKoma JTWaktuMenit;
     // End of variables declaration//GEN-END:variables
 
     void tambahData(Boolean tutup) {
         if (checkInput()) {
             Insert insert = new Insert();
             Boolean berhasil = false;
-            berhasil = insert.simpan("INSERT INTO `snitbkebutuhankaryawan`(`Tanggal`, `Bagian`, `Kualifikasi`, `Jumlah`, `Keterangan`) VALUES('" + FDateF.datetostr(JDTanggal.getDate(), "yyyy-MM-dd") + "','" + JTBagian.getText() + "','" + JTAKualifikasi.getText() + "','" + JTJumlah.getInt() + "','" + JTAKeterangan.getText() + "')", "Kebutuhan Karyawan", this);
+            berhasil = insert.simpan("INSERT INTO `snitbusulpelatihan`(`Tanggal`, `JenisPelatihan`, `Tempat`, `Waktu`, `Keterangan`) VALUES('" + FDateF.datetostr(JDTanggal.getDate(), "yyyy-MM-dd") + "','" + JTJenisPelatihan.getText() + "','" + JTTempat.getText() + "','" + JTWaktuJam.getInt() + ":" + JTWaktuMenit.getInt() + ":00" + "','" + JTAKeterangan.getText() + "')", "Usul Pelatihan", this);
             if (berhasil) {
-                if (listKebutuhanKaryawan != null) {
-                    listKebutuhanKaryawan.load();
+                if (listUsulPelatihan != null) {
+                    listUsulPelatihan.load();
                 }
                 if (tutup) {
-                    tambahKebutuhanKaryawan.dispose();
-                    tambahKebutuhanKaryawan = null;
+                    tambahUsulPelatihan.dispose();
+                    tambahUsulPelatihan = null;
                 } else {
-                    JTBagian.setText("");
-                    JTAKualifikasi.setText("");
-                    JTJumlah.setText("0");
+                    JTJenisPelatihan.setText("");
+                    JTTempat.setText("");
+                    JTWaktuJam.setText("00");
+                    JTWaktuMenit.setText("00");
                     JTAKeterangan.setText("");
-                    JTBagian.requestFocus();
+                    JTJenisPelatihan.requestFocus();
                 }
             }
         }
@@ -435,9 +460,9 @@ public class KebutuhanKaryawan extends javax.swing.JFrame {
         if (checkInput()) {
             Update update = new Update();
             Boolean berhasil = false;
-            berhasil = update.Ubah("UPDATE `snitbkebutuhankaryawan` SET `Tanggal`='" + FDateF.datetostr(JDTanggal.getDate(), "yyyy-MM-dd") + "',`Bagian`='" + JTBagian.getText() + "',`Kualifikasi`='" + JTAKualifikasi.getText() + "',`Jumlah`='" + JTJumlah.getInt() + "',`Keterangan`='" + JTAKeterangan.getText() + "' WHERE `IdKebutuhanKaryawan` = " + IdEdit, "Kebutuhan Karyawan", this);
-            if (listKebutuhanKaryawan != null) {
-                listKebutuhanKaryawan.load();
+            berhasil = update.Ubah("UPDATE `snitbusulpelatihan` SET `Tanggal`='" + FDateF.datetostr(JDTanggal.getDate(), "yyyy-MM-dd") + "',`JenisPelatihan`='" + JTJenisPelatihan.getText() + "',`Tempat`='" + JTTempat.getText() + "',`Waktu`='" + JTWaktuJam.getInt() + ":" + JTWaktuMenit.getInt() + ":00" + "',`Keterangan`='" + JTAKeterangan.getText() + "' WHERE `IdUsulPelatihan` = " + IdEdit, "Usul Pelatihan", this);
+            if (listUsulPelatihan != null) {
+                listUsulPelatihan.load();
             }
             if (berhasil) {
                 dispose();

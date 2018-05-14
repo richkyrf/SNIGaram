@@ -19,7 +19,7 @@ import ProsesPemasran.PengaduanPelanggan;
 import ProsesPemasran.SurveyKepuasanPelanggan;
 import ProsesPembelian.EvaluasiSupplier;
 import ProsesPembelian.SupplierTerpilih;
-import ProsesPersonalia.KebutuhanKaryawan;
+import ProsesPersonalia.*;
 import ProsesTeknik.Pemeliharaan;
 import static java.awt.Frame.NORMAL;
 
@@ -71,6 +71,11 @@ public class MenuUtama extends javax.swing.JFrame {
         JMIDaftarSupplierTerpilih = new javax.swing.JMenuItem();
         JMProsesPersonalia = new javax.swing.JMenu();
         JMIKebutuhanKaryawan = new javax.swing.JMenuItem();
+        JMIEvaluasiMasaPercobaanKaryawan = new javax.swing.JMenuItem();
+        JMIDaftarRiwayatHidup = new javax.swing.JMenuItem();
+        JMIUsulPelatihan = new javax.swing.JMenuItem();
+        JMICalonPesertaPelatihan = new javax.swing.JMenuItem();
+        JMIEvaluasiPelatihan = new javax.swing.JMenuItem();
         JMList = new javax.swing.JMenu();
         JMListLab = new javax.swing.JMenu();
         JMIListPengujianProdukJadi = new javax.swing.JMenuItem();
@@ -87,6 +92,11 @@ public class MenuUtama extends javax.swing.JFrame {
         JMIListDaftarSupplierTerpilih = new javax.swing.JMenuItem();
         JMListPersonalia = new javax.swing.JMenu();
         JMIListKebutuhanKaryawan = new javax.swing.JMenuItem();
+        JMIListEvaluasiMasaPercobaanKaryawan = new javax.swing.JMenuItem();
+        JMIListDaftarRiwayatHidup = new javax.swing.JMenuItem();
+        JMIListUsulPelatihan = new javax.swing.JMenuItem();
+        JMIListCalonPesertaPelatihan = new javax.swing.JMenuItem();
+        JMIListEvaluasiPelatihan = new javax.swing.JMenuItem();
         JMLaporan = new javax.swing.JMenu();
         JMLaporanProduksi = new javax.swing.JMenu();
         JMILaporanBahanBakuBahanPenolong = new javax.swing.JMenuItem();
@@ -268,6 +278,26 @@ public class MenuUtama extends javax.swing.JFrame {
         });
         JMProsesPersonalia.add(JMIKebutuhanKaryawan);
 
+        JMIEvaluasiMasaPercobaanKaryawan.setText("Evaluasi Masa Percobaan Karyawan");
+        JMProsesPersonalia.add(JMIEvaluasiMasaPercobaanKaryawan);
+
+        JMIDaftarRiwayatHidup.setText("Daftar Riwayat Hidup");
+        JMProsesPersonalia.add(JMIDaftarRiwayatHidup);
+
+        JMIUsulPelatihan.setText("Usul Pelatihan");
+        JMIUsulPelatihan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JMIUsulPelatihanActionPerformed(evt);
+            }
+        });
+        JMProsesPersonalia.add(JMIUsulPelatihan);
+
+        JMICalonPesertaPelatihan.setText("Calon Peserta Pelatihan");
+        JMProsesPersonalia.add(JMICalonPesertaPelatihan);
+
+        JMIEvaluasiPelatihan.setText("Evaluasi Pelatihan");
+        JMProsesPersonalia.add(JMIEvaluasiPelatihan);
+
         JMProses.add(JMProsesPersonalia);
 
         JMenuBar.add(JMProses);
@@ -366,6 +396,31 @@ public class MenuUtama extends javax.swing.JFrame {
             }
         });
         JMListPersonalia.add(JMIListKebutuhanKaryawan);
+
+        JMIListEvaluasiMasaPercobaanKaryawan.setText("Evaluasi Masa Percobaan Karyawan");
+        JMListPersonalia.add(JMIListEvaluasiMasaPercobaanKaryawan);
+
+        JMIListDaftarRiwayatHidup.setText("Daftar Riwayat Hidup");
+        JMIListDaftarRiwayatHidup.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JMIListDaftarRiwayatHidupActionPerformed(evt);
+            }
+        });
+        JMListPersonalia.add(JMIListDaftarRiwayatHidup);
+
+        JMIListUsulPelatihan.setText("Usul Pelatihan");
+        JMIListUsulPelatihan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JMIListUsulPelatihanActionPerformed(evt);
+            }
+        });
+        JMListPersonalia.add(JMIListUsulPelatihan);
+
+        JMIListCalonPesertaPelatihan.setText("Calon Peserta Pelatihan");
+        JMListPersonalia.add(JMIListCalonPesertaPelatihan);
+
+        JMIListEvaluasiPelatihan.setText("Evaluasi Pelatihan");
+        JMListPersonalia.add(JMIListEvaluasiPelatihan);
 
         JMList.add(JMListPersonalia);
 
@@ -1053,6 +1108,33 @@ public class MenuUtama extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_JMILaporanDaftarSupplierTerpilihActionPerformed
 
+    private void JMIListUsulPelatihanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMIListUsulPelatihanActionPerformed
+        if (listUsulPelatihan == null) {
+            listUsulPelatihan = new List(JMIListUsulPelatihan.getText());
+        } else {
+            listUsulPelatihan.setState(NORMAL);
+            listUsulPelatihan.toFront();
+        }
+    }//GEN-LAST:event_JMIListUsulPelatihanActionPerformed
+
+    private void JMIUsulPelatihanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMIUsulPelatihanActionPerformed
+        if (tambahUsulPelatihan == null) {
+            tambahUsulPelatihan = new UsulPelatihan();
+        } else {
+            tambahUsulPelatihan.setState(NORMAL);
+            tambahUsulPelatihan.toFront();
+        }
+    }//GEN-LAST:event_JMIUsulPelatihanActionPerformed
+
+    private void JMIListDaftarRiwayatHidupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMIListDaftarRiwayatHidupActionPerformed
+        if (listDaftarRiwayatHidup == null) {
+            listDaftarRiwayatHidup = new List(JMIListDaftarRiwayatHidup.getText());
+        } else {
+            listDaftarRiwayatHidup.setState(NORMAL);
+            listDaftarRiwayatHidup.toFront();
+        }
+    }//GEN-LAST:event_JMIListDaftarRiwayatHidupActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1091,8 +1173,12 @@ public class MenuUtama extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu JMFile;
     private javax.swing.JMenuItem JMIBarangTeknik;
+    private javax.swing.JMenuItem JMICalonPesertaPelatihan;
+    private javax.swing.JMenuItem JMIDaftarRiwayatHidup;
     private javax.swing.JMenuItem JMIDaftarSupplier;
     private javax.swing.JMenuItem JMIDaftarSupplierTerpilih;
+    private javax.swing.JMenuItem JMIEvaluasiMasaPercobaanKaryawan;
+    private javax.swing.JMenuItem JMIEvaluasiPelatihan;
     private javax.swing.JMenuItem JMIExit;
     private javax.swing.JMenuItem JMIGantiPassword;
     private javax.swing.JMenuItem JMIKebutuhanKaryawan;
@@ -1123,15 +1209,20 @@ public class MenuUtama extends javax.swing.JFrame {
     private javax.swing.JMenuItem JMILaporanSurveyKepuasanPelanggan;
     private javax.swing.JMenuItem JMILaporanUsulPelatihan;
     private javax.swing.JMenuItem JMIListBarangTeknik;
+    private javax.swing.JMenuItem JMIListCalonPesertaPelatihan;
+    private javax.swing.JMenuItem JMIListDaftarRiwayatHidup;
     private javax.swing.JMenuItem JMIListDaftarSupplier;
     private javax.swing.JMenuItem JMIListDaftarSupplierTerpilih;
     private javax.swing.JMenuItem JMIListDataPenjualan;
+    private javax.swing.JMenuItem JMIListEvaluasiMasaPercobaanKaryawan;
+    private javax.swing.JMenuItem JMIListEvaluasiPelatihan;
     private javax.swing.JMenuItem JMIListKebutuhanKaryawan;
     private javax.swing.JMenuItem JMIListPemeliharaan;
     private javax.swing.JMenuItem JMIListPengaduanPelanggan;
     private javax.swing.JMenuItem JMIListPengujianBahanBaku;
     private javax.swing.JMenuItem JMIListPengujianProdukJadi;
     private javax.swing.JMenuItem JMIListSurveyKepuasanPelanggan;
+    private javax.swing.JMenuItem JMIListUsulPelatihan;
     private javax.swing.JMenuItem JMIPemeliharaan;
     private javax.swing.JMenuItem JMIPengujianBahanBaku;
     private javax.swing.JMenuItem JMIPengujianProdukJadi;
@@ -1140,6 +1231,7 @@ public class MenuUtama extends javax.swing.JFrame {
     private javax.swing.JMenuItem JMIProsesSurveyKepuasanPelanggan;
     private javax.swing.JMenuItem JMIResetPasswordUser;
     private javax.swing.JMenuItem JMITambahUser;
+    private javax.swing.JMenuItem JMIUsulPelatihan;
     private javax.swing.JMenu JMLaporan;
     private javax.swing.JMenu JMLaporanLab;
     private javax.swing.JMenu JMLaporanPemasaran;
