@@ -616,11 +616,9 @@ public class List extends javax.swing.JFrame {
                 jcomCari1.setOrder(" ORDER BY a.`Tanggal` DESC, `Bagian` ");
                 break;
             case "List Evaluasi Masa Percobaan Karyawan":
-                /*
-                jcomCari1.setQuery("SELECT `IdKebutuhanKaryawan` as 'ID', DATE_FORMAT(`Tanggal`,'%d-%m-%Y') as 'Tanggal', `Bagian`, `Kualifikasi`, `Jumlah`, `Keterangan` FROM `snitbkebutuhankaryawan`a WHERE 1");
-                jcomCari1.setOrder(" ORDER BY a.`Tanggal` DESC, `Bagian` ");
+                jcomCari1.setQuery("SELECT `IdMasaPercobaanKaryawan` as 'ID', DATE_FORMAT(`Tanggal`,'%d-%m-%Y') as 'Tanggal', `Kesimpulan`, `Keterangan` FROM `snitbmasapercobaankaryawan`a WHERE 1");
+                jcomCari1.setOrder(" ORDER BY a.`Tanggal` DESC ");
                 break;
-*/
             case "List Daftar Riwayat Hidup":
                 jcomCari1.setQuery("SELECT `IdRiwayatHidup` as 'ID', DATE_FORMAT(`TanggalBergabung`,'%d-%m-%Y') as 'Tanggal', `NamaKaryawan` as 'Nama Karyawan', `PendidikanFormal` as 'Pendidikan Formal', a.`Status`, a.`Keterangan` FROM `snitbriwayathidup`a JOIN `tbmkaryawan`b ON a.`IdKaryawan`=b.`IdKaryawan` WHERE 1");
                 jcomCari1.setOrder(" ORDER BY a.`TanggalBergabung` DESC, `NamaKaryawan` ");
@@ -630,17 +628,13 @@ public class List extends javax.swing.JFrame {
                 jcomCari1.setOrder(" ORDER BY a.`Tanggal` DESC, `Waktu` DESC ");
                 break;
             case "List Calon Peserta Pelatihan":
-                /*
-                jcomCari1.setQuery("SELECT `IdKebutuhanKaryawan` as 'ID', DATE_FORMAT(`Tanggal`,'%d-%m-%Y') as 'Tanggal', `Bagian`, `Kualifikasi`, `Jumlah`, `Keterangan` FROM `snitbkebutuhankaryawan`a WHERE 1");
-                jcomCari1.setOrder(" ORDER BY a.`Tanggal` DESC, `Bagian` ");
+                jcomCari1.setQuery("SELECT `IdPelatihan` as 'ID', DATE_FORMAT(`Tanggal`,'%d-%m-%Y') as 'Tanggal', `JenisPelatihan` as 'Jenis Pelatihan', CONCAT(`Tempat`,' : ',REPLACE(SUBSTRING(`Waktu`,1,5),':','.')) as 'Tempat dan Waktu', a.`Keterangan` FROM `snitbpelatihan`a JOIN `snitbusulpelatihan`b ON a.`IdUsulPelatihan`=b.`IdUsulPelatihan` WHERE 1");
+                jcomCari1.setOrder(" ORDER BY b.`Tanggal` DESC, `Waktu` DESC ");
                 break;
-*/
             case "List Evaluasi Pelatihan":
-                /*
-                jcomCari1.setQuery("SELECT `IdKebutuhanKaryawan` as 'ID', DATE_FORMAT(`Tanggal`,'%d-%m-%Y') as 'Tanggal', `Bagian`, `Kualifikasi`, `Jumlah`, `Keterangan` FROM `snitbkebutuhankaryawan`a WHERE 1");
-                jcomCari1.setOrder(" ORDER BY a.`Tanggal` DESC, `Bagian` ");
+                jcomCari1.setQuery("SELECT `IdEvaluasiPelatihan` as 'ID', DATE_FORMAT(a.`Tanggal`,'%d-%m-%Y') as 'Tanggal', `JenisPelatihan` as 'Jenis Pelatihan', `Instruktur`, `Kesimpulan`, a.`Keterangan` FROM `snitbevaluasipelatihan`a JOIN `snitbpelatihan`b ON a.`IdPelatihan`=b.`IdPelatihan` JOIN `snitbusulpelatihan`c ON b.`IdUsulPelatihan`=c.`IdUsulPelatihan` WHERE 1");
+                jcomCari1.setOrder(" ORDER BY a.`Tanggal` DESC, `JenisPelatihan`, `Instruktur` ");
                 break;
-*/
             case "List Daftar Supplier":
                 jcomCari1.setQuery("SELECT `IdEvaluasi` as 'ID', `NamaPemasok` as 'Nama Pemasok', `HasilEvaluasi` as 'Hasil Evaluasi', `Keterangan` FROM `snitbevaluasisupplier` WHERE 1");
                 jcomCari1.setOrder(" ORDER BY `NamaPemasok` ");

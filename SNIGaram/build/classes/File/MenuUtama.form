@@ -177,11 +177,17 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Evaluasi Masa Percobaan Karyawan"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JMIEvaluasiMasaPercobaanKaryawanActionPerformed"/>
+                  </Events>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="JMIDaftarRiwayatHidup">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Daftar Riwayat Hidup"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JMIDaftarRiwayatHidupActionPerformed"/>
+                  </Events>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="JMIUsulPelatihan">
                   <Properties>
@@ -195,11 +201,17 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Calon Peserta Pelatihan"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JMICalonPesertaPelatihanActionPerformed"/>
+                  </Events>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="JMIEvaluasiPelatihan">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Evaluasi Pelatihan"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JMIEvaluasiPelatihanActionPerformed"/>
+                  </Events>
                 </MenuItem>
               </SubComponents>
             </Menu>
@@ -324,6 +336,9 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Evaluasi Masa Percobaan Karyawan"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JMIListEvaluasiMasaPercobaanKaryawanActionPerformed"/>
+                  </Events>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="JMIListDaftarRiwayatHidup">
                   <Properties>
@@ -345,11 +360,17 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Calon Peserta Pelatihan"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JMIListCalonPesertaPelatihanActionPerformed"/>
+                  </Events>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="JMIListEvaluasiPelatihan">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Evaluasi Pelatihan"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JMIListEvaluasiPelatihanActionPerformed"/>
+                  </Events>
                 </MenuItem>
               </SubComponents>
             </Menu>

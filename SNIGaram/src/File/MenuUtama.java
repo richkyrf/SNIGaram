@@ -279,9 +279,19 @@ public class MenuUtama extends javax.swing.JFrame {
         JMProsesPersonalia.add(JMIKebutuhanKaryawan);
 
         JMIEvaluasiMasaPercobaanKaryawan.setText("Evaluasi Masa Percobaan Karyawan");
+        JMIEvaluasiMasaPercobaanKaryawan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JMIEvaluasiMasaPercobaanKaryawanActionPerformed(evt);
+            }
+        });
         JMProsesPersonalia.add(JMIEvaluasiMasaPercobaanKaryawan);
 
         JMIDaftarRiwayatHidup.setText("Daftar Riwayat Hidup");
+        JMIDaftarRiwayatHidup.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JMIDaftarRiwayatHidupActionPerformed(evt);
+            }
+        });
         JMProsesPersonalia.add(JMIDaftarRiwayatHidup);
 
         JMIUsulPelatihan.setText("Usul Pelatihan");
@@ -293,9 +303,19 @@ public class MenuUtama extends javax.swing.JFrame {
         JMProsesPersonalia.add(JMIUsulPelatihan);
 
         JMICalonPesertaPelatihan.setText("Calon Peserta Pelatihan");
+        JMICalonPesertaPelatihan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JMICalonPesertaPelatihanActionPerformed(evt);
+            }
+        });
         JMProsesPersonalia.add(JMICalonPesertaPelatihan);
 
         JMIEvaluasiPelatihan.setText("Evaluasi Pelatihan");
+        JMIEvaluasiPelatihan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JMIEvaluasiPelatihanActionPerformed(evt);
+            }
+        });
         JMProsesPersonalia.add(JMIEvaluasiPelatihan);
 
         JMProses.add(JMProsesPersonalia);
@@ -398,6 +418,11 @@ public class MenuUtama extends javax.swing.JFrame {
         JMListPersonalia.add(JMIListKebutuhanKaryawan);
 
         JMIListEvaluasiMasaPercobaanKaryawan.setText("Evaluasi Masa Percobaan Karyawan");
+        JMIListEvaluasiMasaPercobaanKaryawan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JMIListEvaluasiMasaPercobaanKaryawanActionPerformed(evt);
+            }
+        });
         JMListPersonalia.add(JMIListEvaluasiMasaPercobaanKaryawan);
 
         JMIListDaftarRiwayatHidup.setText("Daftar Riwayat Hidup");
@@ -417,9 +442,19 @@ public class MenuUtama extends javax.swing.JFrame {
         JMListPersonalia.add(JMIListUsulPelatihan);
 
         JMIListCalonPesertaPelatihan.setText("Calon Peserta Pelatihan");
+        JMIListCalonPesertaPelatihan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JMIListCalonPesertaPelatihanActionPerformed(evt);
+            }
+        });
         JMListPersonalia.add(JMIListCalonPesertaPelatihan);
 
         JMIListEvaluasiPelatihan.setText("Evaluasi Pelatihan");
+        JMIListEvaluasiPelatihan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JMIListEvaluasiPelatihanActionPerformed(evt);
+            }
+        });
         JMListPersonalia.add(JMIListEvaluasiPelatihan);
 
         JMList.add(JMListPersonalia);
@@ -1134,6 +1169,73 @@ public class MenuUtama extends javax.swing.JFrame {
             listDaftarRiwayatHidup.toFront();
         }
     }//GEN-LAST:event_JMIListDaftarRiwayatHidupActionPerformed
+
+    private void JMIListEvaluasiMasaPercobaanKaryawanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMIListEvaluasiMasaPercobaanKaryawanActionPerformed
+        if (listEvaluasiMasaPercobaanKaryawan == null) {
+            listEvaluasiMasaPercobaanKaryawan = new List(JMIListEvaluasiMasaPercobaanKaryawan.getText());
+        } else {
+            listEvaluasiMasaPercobaanKaryawan.setState(NORMAL);
+            listEvaluasiMasaPercobaanKaryawan.toFront();
+        }
+    }//GEN-LAST:event_JMIListEvaluasiMasaPercobaanKaryawanActionPerformed
+
+    private void JMIListCalonPesertaPelatihanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMIListCalonPesertaPelatihanActionPerformed
+        if (listCalonPesertaPelatihan == null) {
+            listCalonPesertaPelatihan = new List(JMIListCalonPesertaPelatihan.getText());
+        } else {
+            listCalonPesertaPelatihan.setState(NORMAL);
+            listCalonPesertaPelatihan.toFront();
+        }
+    }//GEN-LAST:event_JMIListCalonPesertaPelatihanActionPerformed
+
+    private void JMIListEvaluasiPelatihanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMIListEvaluasiPelatihanActionPerformed
+        if (listEvaluasiPelatihan == null) {
+            listEvaluasiPelatihan = new List(JMIListEvaluasiPelatihan.getText());
+        } else {
+            listEvaluasiPelatihan.setState(NORMAL);
+            listEvaluasiPelatihan.toFront();
+        }
+    }//GEN-LAST:event_JMIListEvaluasiPelatihanActionPerformed
+
+    private void JMIEvaluasiMasaPercobaanKaryawanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMIEvaluasiMasaPercobaanKaryawanActionPerformed
+        if (tambahEvaluasiMasaPercobaanKaryawan == null) {
+            tambahEvaluasiMasaPercobaanKaryawan = new EvaluasiMasaPercobaanKaryawan();
+        } else {
+            tambahEvaluasiMasaPercobaanKaryawan.setState(NORMAL);
+            tambahEvaluasiMasaPercobaanKaryawan.toFront();
+        }
+    }//GEN-LAST:event_JMIEvaluasiMasaPercobaanKaryawanActionPerformed
+
+    private void JMIDaftarRiwayatHidupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMIDaftarRiwayatHidupActionPerformed
+        /*
+        if (tambahDaftarRiwayatHidup == null) {
+            tambahDaftarRiwayatHidup = new DaftarRiwayatHidup();
+        } else {
+            tambahDaftarRiwayatHidup.setState(NORMAL);
+            tambahDaftarRiwayatHidup.toFront();
+        }
+         */
+    }//GEN-LAST:event_JMIDaftarRiwayatHidupActionPerformed
+
+    private void JMICalonPesertaPelatihanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMICalonPesertaPelatihanActionPerformed
+        if (tambahCalonPesertaPelatihan == null) {
+            tambahCalonPesertaPelatihan = new CalonPesertaPelatihan();
+        } else {
+            tambahCalonPesertaPelatihan.setState(NORMAL);
+            tambahCalonPesertaPelatihan.toFront();
+        }
+    }//GEN-LAST:event_JMICalonPesertaPelatihanActionPerformed
+
+    private void JMIEvaluasiPelatihanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMIEvaluasiPelatihanActionPerformed
+        /*
+        if (tambahEvaluasiPelatihan == null) {
+            tambahEvaluasiPelatihan = new EvaluasiPelatihan();
+        } else {
+            tambahEvaluasiPelatihan.setState(NORMAL);
+            tambahEvaluasiPelatihan.toFront();
+        }
+         */
+    }//GEN-LAST:event_JMIEvaluasiPelatihanActionPerformed
 
     /**
      * @param args the command line arguments
