@@ -44,9 +44,8 @@
                               <Component id="JBTambah" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="JSPTable" alignment="0" min="-2" pref="677" max="-2" attributes="0"/>
-                                  <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
                                       <Component id="JDTanggalMasuk" min="-2" pref="128" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                                       <Component id="JLTanggalMasukKeluar" min="-2" max="-2" attributes="0"/>
@@ -55,14 +54,15 @@
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="JTBagian" min="-2" pref="222" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="JTKeterangan" max="32767" attributes="0"/>
+                                      <Component id="JTKeterangan" pref="355" max="32767" attributes="0"/>
                                   </Group>
+                                  <Component id="JSPTable" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="JBHapusTable" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="JBTambahUbahTable" min="-2" pref="96" max="-2" attributes="0"/>
                                   <Component id="JBRefreshTable" max="32767" attributes="0"/>
-                                  <Component id="JBHapusTable" max="32767" attributes="0"/>
-                                  <Component id="JBTambahUbahTable" alignment="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -85,8 +85,7 @@
                           <Group type="102" attributes="0">
                               <Component id="JLNamaKaryawan2" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="JCNamaKaryawan" min="-2" pref="580" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <Component id="JCNamaKaryawan" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="JLPendidikanFormal2" min="-2" max="-2" attributes="0"/>
@@ -257,6 +256,9 @@
           </StringArray>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="JCPendidikanFormalKeyPressed"/>
+      </Events>
     </Component>
     <Component class="KomponenGUI.JlableF" name="JLStatus">
       <Properties>
@@ -278,6 +280,9 @@
           </StringArray>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="JCStatusKeyPressed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JSeparator" name="JSeparator1">
     </Component>
@@ -313,6 +318,7 @@
         <Property name="placeHolder" type="java.lang.String" value="Bagian"/>
       </Properties>
       <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="JTBagianKeyPressed"/>
         <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="JTBagianKeyTyped"/>
       </Events>
     </Component>
@@ -321,6 +327,7 @@
         <Property name="placeHolder" type="java.lang.String" value="Keterangan"/>
       </Properties>
       <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="JTKeteranganKeyPressed"/>
         <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="JTKeteranganKeyTyped"/>
       </Events>
     </Component>
@@ -342,7 +349,7 @@
                 <Column editable="false" title="Keterangan" type="java.lang.Object"/>
               </Table>
             </Property>
-            <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor" postCode="JTable.setrender(new int[]{2,3,4}, new String[]{&quot;Number&quot;, &quot;Number&quot;, &quot;Number&quot;});">
+            <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0">
                 <Column maxWidth="50" minWidth="50" prefWidth="50" resizable="true">
                   <Title/>
@@ -364,7 +371,7 @@
                   <Editor/>
                   <Renderer/>
                 </Column>
-                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                <Column maxWidth="364" minWidth="364" prefWidth="364" resizable="true">
                   <Title/>
                   <Editor/>
                   <Renderer/>

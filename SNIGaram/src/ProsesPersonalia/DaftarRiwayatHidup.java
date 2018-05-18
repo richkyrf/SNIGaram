@@ -56,29 +56,30 @@ public class DaftarRiwayatHidup extends javax.swing.JFrame {
     }
 
     void loadeditdata() {
-        JCNamaKaryawan.load("SELECT '-- Pilih Nama Karyawan --' UNION ALL (SELECT `NamaKaryawan` FROM `tbmkaryawan` AS A LEFT JOIN `snitbriwayathidup` AS B ON A.`IdKaryawan`=B.`IdKaryawan` WHERE (A.`Status`=1 AND B.`IdKaryawan` IS NULL GROUP) OR B.`IdKaryawan`=" + IdEdit + " BY `NamaKaryawan` ORDER BY `NamaKaryawan` ASC)");
+        JCNamaKaryawan.load("SELECT '-- Pilih Nama Karyawan --' UNION ALL (SELECT `NamaKaryawan` FROM `tbmkaryawan` AS A LEFT JOIN `snitbriwayathidup` AS B ON A.`IdKaryawan`=B.`IdKaryawan` WHERE (A.`Status`=1 AND B.`IdKaryawan` IS NULL) OR `IdRiwayatHidup`=" + IdEdit + " GROUP BY `NamaKaryawan` ORDER BY `NamaKaryawan` ASC)");
         DRunSelctOne dRunSelctOne = new DRunSelctOne();
         dRunSelctOne.seterorm("Eror Gagal Menampilkan Data Daftar Riwayat Hidup");
-        dRunSelctOne.setQuery("SELECT `IdEvaluasiPelatihan`, CONCAT('(',A.`IdPelatihan`,') ',`JenisPelatihan`), DATE_FORMAT(A.`Tanggal`, '%d/%m/%Y'), `Instruktur`, `Kesimpulan`, A.`Keterangan` FROM `snitbevaluasipelatihan` AS A JOIN `snitbpelatihan` AS B ON A.`IdPelatihan`=B.`IdPelatihan` JOIN `snitbusulpelatihan` AS C ON B.`IdUsulPelatihan`=C.`IdUsulPelatihan` WHERE `IdEvaluasiPelatihan` = '" + IdEdit + "'");
+        dRunSelctOne.setQuery("SELECT `IdRiwayatHidup`, `NamaKaryawan`, DATE_FORMAT(`TanggalBergabung`, '%d-%m-%Y'), `PendidikanFormal`, A.`Status`, A.`Keterangan` FROM `snitbriwayathidup` AS A JOIN `tbmkaryawan` AS B ON A.`IdKaryawan`=B.`IdKaryawan` WHERE `IdRiwayatHidup` = '" + IdEdit + "'");
         ArrayList<String> list = dRunSelctOne.excute();
         JCNamaKaryawan.setSelectedItem(list.get(1));
         JDTanggalBergabung.setDate(FDateF.strtodate(list.get(2), "dd-MM-yyyy"));
-        JTInstruktur.setText(list.get(3));
-        JTAKesimpulan.setText(list.get(4));
+        JCPendidikanFormal.setSelectedItem(list.get(3));
+        JCStatus.setSelectedItem(list.get(4));
         JTAKeterangan.setText(list.get(5));
         DefaultTableModel model = (DefaultTableModel) JTable.getModel();
         model.getDataVector().removeAllElements();
         RunSelct runSelct = new RunSelct();
-        runSelct.setQuery("SELECT `IdEvaluasiPelatihanDetail`, `NamaKaryawan`, `PenguasaanMateri`, `KemampuanBekerja` FROM `snitbevaluasipelatihandetail` AS A JOIN `snitbevaluasipelatihan` AS B ON A.`IdEvaluasiPelatihan`=B.`IdEvaluasiPelatihan` JOIN `snitbpelatihandetail` AS C ON A.`IdPelatihanDetail`=C.`IdPelatihanDetail` JOIN `tbmkaryawan` AS D ON C.`IdKaryawan`=D.`IdKaryawan` WHERE A.`IdEvaluasiPelatihan` = '" + list.get(0) + "'");
+        runSelct.setQuery("SELECT `IdRiwayatHidupDetail`, DATE_FORMAT(`TanggalMulai`,'%d-%m-%Y'), DATE_FORMAT(`TanggalSelesai`,'%d-%m-%Y'), `Bagian`, A.`Keterangan` FROM `snitbriwayathidupdetail` AS A JOIN `snitbriwayathidup` AS B ON A.`IdRiwayatHidup`=B.`IdRiwayatHidup` WHERE A.`IdRiwayatHidup` = '" + list.get(0) + "'");
         try {
             ResultSet rs = runSelct.excute();
             int row = 0;
             while (rs.next()) {
-                model.addRow(new Object[]{"", "", "", ""});
+                model.addRow(new Object[]{"", "", "", "", ""});
                 JTable.setValueAt((row + 1), row, 0);
                 JTable.setValueAt(rs.getString(2), row, 1);
                 JTable.setValueAt(rs.getString(3), row, 2);
                 JTable.setValueAt(rs.getString(4), row, 3);
+                JTable.setValueAt(rs.getString(5), row, 4);
                 row++;
             }
             CountTable = JTable.getRowCount();
@@ -92,20 +93,20 @@ public class DaftarRiwayatHidup extends javax.swing.JFrame {
 
     Boolean checkInput(String action) {
         if (JCNamaKaryawan.getSelectedIndex() == 0) {
-            JOptionPane.showMessageDialog(this, "Silahkan Pilih Pelatihan");
+            JOptionPane.showMessageDialog(this, "Silahkan Pilih Nama Karyawan");
             JCNamaKaryawan.requestFocus();
             return false;
         } else if (JDTanggalBergabung.getDate() == null) {
-            JOptionPane.showMessageDialog(this, "Tanggal Evaluasi Tidak Boleh Kosong");
+            JOptionPane.showMessageDialog(this, "Tanggal Bergabung Tidak Boleh Kosong");
             JDTanggalBergabung.requestFocus();
             return false;
-        } else if (JTInstruktur.getText().replace(" ", "").isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Nama Instruktur Tidak Boleh Kosong");
-            JTInstruktur.requestFocus();
+        } else if (JCPendidikanFormal.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(this, "Silahkan Pilih Pendidikan Formal");
+            JCPendidikanFormal.requestFocus();
             return false;
-        } else if (action.equals("Tambah") && JTable.getRowCount() < 1) {
-            JOptionPane.showMessageDialog(this, "Detail Evaluasi Tidak Boleh Kosong");
-            JCNamaKaryawan.requestFocus();
+        } else if (JCStatus.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(this, "Silahkan Pilih Status");
+            JCStatus.requestFocus();
             return false;
         } else {
             return true;
@@ -113,29 +114,29 @@ public class DaftarRiwayatHidup extends javax.swing.JFrame {
     }
 
     boolean checkTable() {
-        if (JCNamaKaryawan.getSelectedIndex() == 0) {
-            JOptionPane.showMessageDialog(this, "Silahkan Pilih Nama Karyawan");
-            JCNamaKaryawan.requestFocus();
+        if (JDTanggalMasuk.getDate() == null) {
+            JOptionPane.showMessageDialog(this, "Tanggal Masuk Tidak Boleh Kosong");
+            JDTanggalMasuk.requestFocus();
             return false;
-        } else if (JTPenguasaanMateri.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Nilai Penguasaan Materi Tidak Boleh Kosong");
-            JTPenguasaanMateri.requestFocus();
+        } else if (JDTanggalKeluar.getDate() == null) {
+            JOptionPane.showMessageDialog(this, "Tanggal Keluar Tidak Boleh Kosong");
+            JDTanggalKeluar.requestFocus();
             return false;
-        } else if (JTKemampuanBekerja.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Nilai Kemampuan Bekerja Tidak Boleh Kosong");
-            JTKemampuanBekerja.requestFocus();
+        } else if (JTBagian.getText().replace(" ", "").isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Nama Bagian Tidak Boleh Kosong");
+            JTBagian.requestFocus();
             return false;
-        } else if (JTPenguasaanMateri.getInt() > 100) {
-            JOptionPane.showMessageDialog(this, "Nilai Penguasaan Materi Tidak Boleh Lebih Besar Dari 100");
-            JTPenguasaanMateri.requestFocus();
+        } else if (JTKeterangan.getText().replace(" ", "").isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Keterangan Tidak Boleh Kosong");
+            JTKeterangan.requestFocus();
             return false;
-        } else if (JTKemampuanBekerja.getInt() > 100) {
-            JOptionPane.showMessageDialog(this, "Nilai Kemampuan Bekerja Tidak Boleh Lebih Besar Dari 100");
-            JTKemampuanBekerja.requestFocus();
+        } else if (JDTanggalKeluar.getDate().compareTo(JDTanggalMasuk.getDate()) < 0) {
+            JOptionPane.showMessageDialog(this, "Tanggal Masuk Tidak Boleh Lebih Besar Dari Tanggal Keluar");
+            JDTanggalMasuk.requestFocus();
             return false;
-        } else if (cekdoubleitem(JCNamaKaryawan.getSelectedItem().toString())) {
-            JOptionPane.showMessageDialog(this, "Tidak Bisa Input Karyawan Yang Sama");
-            JCNamaKaryawan.requestFocus();
+        } else if (cekdoubleitem(FDateF.datetostr(JDTanggalMasuk.getDate(), "dd-MM-yyyy"), FDateF.datetostr(JDTanggalKeluar.getDate(), "dd-MM-yyyy"), JTBagian.getText(), JTKeterangan.getText())) {
+            JOptionPane.showMessageDialog(this, "Tidak Bisa Input Data Yang Sama");
+            JTBagian.requestFocus();
             return false;
         } else {
             return true;
@@ -143,34 +144,34 @@ public class DaftarRiwayatHidup extends javax.swing.JFrame {
     }
 
     boolean checkTableUbah() {
-        if (JCNamaKaryawan.getSelectedIndex() == 0) {
-            JOptionPane.showMessageDialog(this, "Silahkan Pilih Nama Karyawan");
-            JCNamaKaryawan.requestFocus();
+        if (JDTanggalMasuk.getDate() == null) {
+            JOptionPane.showMessageDialog(this, "Tanggal Masuk Tidak Boleh Kosong");
+            JDTanggalMasuk.requestFocus();
             return false;
-        } else if (JTPenguasaanMateri.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Nilai Penguasaan Materi Tidak Boleh Kosong");
-            JTPenguasaanMateri.requestFocus();
+        } else if (JDTanggalKeluar.getDate() == null) {
+            JOptionPane.showMessageDialog(this, "Tanggal Keluar Tidak Boleh Kosong");
+            JDTanggalKeluar.requestFocus();
             return false;
-        } else if (JTKemampuanBekerja.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Nilai Kemampuan Bekerja Tidak Boleh Kosong");
-            JTKemampuanBekerja.requestFocus();
+        } else if (JTBagian.getText().replace(" ", "").isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Nama Bagian Tidak Boleh Kosong");
+            JTBagian.requestFocus();
             return false;
-        } else if (JTPenguasaanMateri.getInt() > 100) {
-            JOptionPane.showMessageDialog(this, "Nilai Penguasaan Materi Tidak Boleh Lebih Besar Dari 100");
-            JTPenguasaanMateri.requestFocus();
+        } else if (JTKeterangan.getText().replace(" ", "").isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Keterangan Tidak Boleh Kosong");
+            JTKeterangan.requestFocus();
             return false;
-        } else if (JTKemampuanBekerja.getInt() > 100) {
-            JOptionPane.showMessageDialog(this, "Nilai Kemampuan Bekerja Tidak Boleh Lebih Besar Dari 100");
-            JTKemampuanBekerja.requestFocus();
+        } else if (JDTanggalKeluar.getDate().compareTo(JDTanggalMasuk.getDate()) < 0) {
+            JOptionPane.showMessageDialog(this, "Tanggal Masuk Tidak Boleh Lebih Besar Dari Tanggal Keluar");
+            JDTanggalMasuk.requestFocus();
             return false;
         } else {
             return true;
         }
     }
 
-    boolean cekdoubleitem(String item) {
+    boolean cekdoubleitem(String item1, String item2, String item3, String item4) {
         for (int i = 0; i < JTable.getRowCount(); i++) {
-            if (item.equals(JTable.getValueAt(i, 1))) {
+            if (item1.equals(JTable.getValueAt(i, 1)) && item2.equals(JTable.getValueAt(i, 2)) && item3.equals(JTable.getValueAt(i, 3)) && item4.equals(JTable.getValueAt(i, 4))) {
                 return true;
             }
         }
@@ -178,13 +179,13 @@ public class DaftarRiwayatHidup extends javax.swing.JFrame {
     }
 
     void RefreshTbl() {
-        JCNamaKaryawan.load("SELECT '-- Pilih Nama Karyawan --' UNION ALL (SELECT `NamaKaryawan` FROM `snitbpelatihandetail` AS A JOIN `tbmkaryawan` AS B ON A.`IdKaryawan`=B.`IdKaryawan` WHERE `IdPelatihan`=" + JCNamaKaryawan.getSelectedItem().toString().split("\\(")[1].split("\\)")[0] + " GROUP BY `NamaKaryawan` ORDER BY `NamaKaryawan` ASC)");
-        JCNamaKaryawan.setSelectedIndex(0);
-        JTPenguasaanMateri.setText("");
-        JTKemampuanBekerja.setText("");
+        JDTanggalMasuk.setDate(new Date());
+        JDTanggalKeluar.setDate(new Date());
+        JTBagian.setText("");
+        JTKeterangan.setText("");
         JTable.clearSelection();
         JBTambahUbahTable.setText("Tambah");
-        JCNamaKaryawan.requestFocus();
+        JTBagian.requestFocus();
     }
 
     /**
@@ -266,12 +267,22 @@ public class DaftarRiwayatHidup extends javax.swing.JFrame {
         JLPendidikanFormal2.setText(":");
 
         JCPendidikanFormal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-- Pilih Pendidikan Formal --", "-", "SD", "SMP", "SMA", "D1", "D2", "D3", "D4", "S1", "S2", "S3" }));
+        JCPendidikanFormal.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                JCPendidikanFormalKeyPressed(evt);
+            }
+        });
 
         JLStatus.setText("Status");
 
         JLStatus2.setText(":");
 
         JCStatus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-- Pilih Status --", "Belum Kawin", "Kawin" }));
+        JCStatus.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                JCStatusKeyPressed(evt);
+            }
+        });
 
         JDTanggalMasuk.setDate(new Date());
         JDTanggalMasuk.setDateFormatString("dd-MM-yyyy");
@@ -293,6 +304,9 @@ public class DaftarRiwayatHidup extends javax.swing.JFrame {
 
         JTBagian.setPlaceHolder("Bagian");
         JTBagian.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                JTBagianKeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 JTBagianKeyTyped(evt);
             }
@@ -300,6 +314,9 @@ public class DaftarRiwayatHidup extends javax.swing.JFrame {
 
         JTKeterangan.setPlaceHolder("Keterangan");
         JTKeterangan.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                JTKeteranganKeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 JTKeteranganKeyTyped(evt);
             }
@@ -340,8 +357,10 @@ public class DaftarRiwayatHidup extends javax.swing.JFrame {
             JTable.getColumnModel().getColumn(3).setMinWidth(250);
             JTable.getColumnModel().getColumn(3).setPreferredWidth(250);
             JTable.getColumnModel().getColumn(3).setMaxWidth(250);
+            JTable.getColumnModel().getColumn(4).setMinWidth(364);
+            JTable.getColumnModel().getColumn(4).setPreferredWidth(364);
+            JTable.getColumnModel().getColumn(4).setMaxWidth(364);
         }
-        JTable.setrender(new int[]{2,3,4}, new String[]{"Number", "Number", "Number"});
 
         JBTambahUbahTable.setText("Tambah");
         JBTambahUbahTable.addActionListener(new java.awt.event.ActionListener() {
@@ -433,8 +452,7 @@ public class DaftarRiwayatHidup extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(JBTambah, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(JSPTable, javax.swing.GroupLayout.PREFERRED_SIZE, 677, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(JDTanggalMasuk, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(4, 4, 4)
@@ -444,12 +462,13 @@ public class DaftarRiwayatHidup extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(JTBagian, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(JTKeterangan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                        .addComponent(JTKeterangan, javax.swing.GroupLayout.DEFAULT_SIZE, 355, Short.MAX_VALUE))
+                                    .addComponent(JSPTable))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(JBRefreshTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(JBHapusTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(JBTambahUbahTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(JBHapusTable, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(JBTambahUbahTable, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(JBRefreshTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addGap(10, 10, 10))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -466,8 +485,7 @@ public class DaftarRiwayatHidup extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(JLNamaKaryawan2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(JCNamaKaryawan, javax.swing.GroupLayout.PREFERRED_SIZE, 580, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
+                                .addComponent(JCNamaKaryawan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(JLPendidikanFormal2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -568,7 +586,7 @@ public class DaftarRiwayatHidup extends javax.swing.JFrame {
 
     private void JDTanggalBergabungKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JDTanggalBergabungKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            JTInstruktur.requestFocus();
+            JCPendidikanFormal.requestFocus();
         }
     }//GEN-LAST:event_JDTanggalBergabungKeyPressed
 
@@ -585,7 +603,7 @@ public class DaftarRiwayatHidup extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Berhasil Hapus Data");
             RefreshTbl();
         }
-        JCNamaKaryawan.requestFocus();
+        JTBagian.requestFocus();
     }//GEN-LAST:event_JBHapusTableActionPerformed
 
     private void JBRefreshTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBRefreshTableActionPerformed
@@ -594,18 +612,19 @@ public class DaftarRiwayatHidup extends javax.swing.JFrame {
 
     private void JTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JTableMouseClicked
         if (JTable.getSelectedRow() != -1) {
-            JCNamaKaryawan.setSelectedItem(JTable.getValueAt(JTable.getSelectedRow(), 1).toString());
-            JTPenguasaanMateri.setText(JTable.getValueAt(JTable.getSelectedRow(), 2).toString());
-            JTKemampuanBekerja.setText(JTable.getValueAt(JTable.getSelectedRow(), 3).toString());
+            JDTanggalMasuk.setDate(FDateF.strtodate(JTable.getValueAt(JTable.getSelectedRow(), 1).toString(), "dd-MM-yyyy"));
+            JDTanggalKeluar.setDate(FDateF.strtodate(JTable.getValueAt(JTable.getSelectedRow(), 2).toString(), "dd-MM-yyyy"));
+            JTBagian.setText(JTable.getValueAt(JTable.getSelectedRow(), 3).toString());
+            JTKeterangan.setText(JTable.getValueAt(JTable.getSelectedRow(), 4).toString());
             JBTambahUbahTable.setText("Ubah");
         }
     }//GEN-LAST:event_JTableMouseClicked
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         if (IdEdit == null) {
-            tambahEvaluasiPelatihan = null;
+            tambahDaftarRiwayatHidup = null;
         } else {
-            ubahEvaluasiPelatihan = null;
+            ubahDaftarRiwayatHidup = null;
         }
     }//GEN-LAST:event_formWindowClosed
 
@@ -621,16 +640,20 @@ public class DaftarRiwayatHidup extends javax.swing.JFrame {
 
     private void JCNamaKaryawanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JCNamaKaryawanKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            JTInstruktur.requestFocus();
+            JCPendidikanFormal.requestFocus();
         }
     }//GEN-LAST:event_JCNamaKaryawanKeyPressed
 
     private void JDTanggalMasukKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JDTanggalMasukKeyPressed
-        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            JDTanggalKeluar.requestFocus();
+        }
     }//GEN-LAST:event_JDTanggalMasukKeyPressed
 
     private void JDTanggalKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JDTanggalKeluarKeyPressed
-        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            JTBagian.requestFocus();
+        }
     }//GEN-LAST:event_JDTanggalKeluarKeyPressed
 
     private void JTBagianKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JTBagianKeyTyped
@@ -646,6 +669,30 @@ public class DaftarRiwayatHidup extends javax.swing.JFrame {
             evt.consume();
         }
     }//GEN-LAST:event_JTKeteranganKeyTyped
+
+    private void JCPendidikanFormalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JCPendidikanFormalKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            JCStatus.requestFocus();
+        }
+    }//GEN-LAST:event_JCPendidikanFormalKeyPressed
+
+    private void JCStatusKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JCStatusKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            JTBagian.requestFocus();
+        }
+    }//GEN-LAST:event_JCStatusKeyPressed
+
+    private void JTBagianKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JTBagianKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            JTKeterangan.requestFocus();
+        }
+    }//GEN-LAST:event_JTBagianKeyPressed
+
+    private void JTKeteranganKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JTKeteranganKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            TambahUbahTabel();
+        }
+    }//GEN-LAST:event_JTKeteranganKeyPressed
 
     /**
      * @param args the command line arguments
@@ -722,15 +769,16 @@ public class DaftarRiwayatHidup extends javax.swing.JFrame {
         if (JBTambahUbahTable.getText().equals("Tambah")) {
             if (checkTable()) {
                 DefaultTableModel model = (DefaultTableModel) JTable.getModel();
-                model.addRow(new Object[]{JTable.getRowCount() + 1, JCNamaKaryawan.getSelectedItem(), JTPenguasaanMateri.getInt(), JTKemampuanBekerja.getInt()});
+                model.addRow(new Object[]{JTable.getRowCount() + 1, FDateF.datetostr(JDTanggalMasuk.getDate(), "dd-MM-yyyy"), FDateF.datetostr(JDTanggalKeluar.getDate(), "dd-MM-yyyy"), JTBagian.getText(), JTKeterangan.getText()});
                 JOptionPane.showMessageDialog(this, "Berhasil Tambah Data");
                 RefreshTbl();
             }
         } else {
             if (checkTableUbah()) {
-                JTable.setValueAt(JCNamaKaryawan.getSelectedItem(), JTable.getSelectedRow(), 1);
-                JTable.setValueAt(JTPenguasaanMateri.getInt(), JTable.getSelectedRow(), 2);
-                JTable.setValueAt(JTKemampuanBekerja.getInt(), JTable.getSelectedRow(), 3);
+                JTable.setValueAt(FDateF.datetostr(JDTanggalMasuk.getDate(), "dd-MM-yyyy"), JTable.getSelectedRow(), 1);
+                JTable.setValueAt(FDateF.datetostr(JDTanggalKeluar.getDate(), "dd-MM-yyyy"), JTable.getSelectedRow(), 2);
+                JTable.setValueAt(JTBagian.getText(), JTable.getSelectedRow(), 3);
+                JTable.setValueAt(JTKeterangan.getText(), JTable.getSelectedRow(), 4);
                 JOptionPane.showMessageDialog(this, "Berhasil Ubah Data");
                 RefreshTbl();
             }
@@ -745,10 +793,10 @@ public class DaftarRiwayatHidup extends javax.swing.JFrame {
             if (Berhasil) {
                 Berhasil = multiInsert.setautocomit(false);
                 if (Berhasil) {
-                    Berhasil = multiInsert.Excute("INSERT INTO `snitbevaluasipelatihan`(`IdPelatihan`, `Tanggal`, `Instruktur`, `Kesimpulan`, `Keterangan`) VALUES ('" + JCNamaKaryawan.getSelectedItem().toString().split("\\(")[1].split("\\)")[0] + "','" + FDateF.datetostr(JDTanggalBergabung.getDate(), "yyyy-MM-dd") + "','" + JTInstruktur.getText() + "','" + JTAKesimpulan.getText() + "','" + JTAKeterangan.getText() + "')", null);
+                    Berhasil = multiInsert.Excute("INSERT INTO `snitbriwayathidup`(`IdKaryawan`, `TanggalBergabung`, `PendidikanFormal`, `Status`, `Keterangan`) VALUES ((SELECT `IdKaryawan` FROM `tbmkaryawan` WHERE `NamaKaryawan` = '" + JCNamaKaryawan.getSelectedItem() + "'),'" + FDateF.datetostr(JDTanggalBergabung.getDate(), "yyyy-MM-dd") + "','" + JCPendidikanFormal.getSelectedItem() + "','" + JCStatus.getSelectedItem() + "','" + JTAKeterangan.getText() + "')", null);
                     if (Berhasil) {
                         for (int i = 0; i < JTable.getRowCount(); i++) {
-                            Berhasil = multiInsert.Excute("INSERT INTO `snitbevaluasipelatihandetail`(`IdEvaluasiPelatihan`, `IdPelatihanDetail`, `PenguasaanMateri`, `KemampuanBekerja`) VALUES ((SELECT `IdEvaluasiPelatihan` FROM `snitbevaluasipelatihan` ORDER BY `IdEvaluasiPelatihan` DESC LIMIT 1),(SELECT `IdPelatihanDetail` FROM `snitbpelatihandetail` AS A JOIN `tbmkaryawan` AS B ON A.`IdKaryawan`=B.`IdKaryawan` WHERE `IdPelatihan` = '" + JCNamaKaryawan.getSelectedItem().toString().split("\\(")[1].split("\\)")[0] + "' AND `NamaKaryawan` = '" + JTable.getValueAt(i, 1) + "'),'" + JTable.getValueAt(i, 2) + "','" + JTable.getValueAt(i, 3) + "')", null);
+                            Berhasil = multiInsert.Excute("INSERT INTO `snitbriwayathidupdetail`(`IdRiwayatHidup`, `TanggalMulai`, `TanggalSelesai`, `Bagian`, `Keterangan`) VALUES ((SELECT `IdRiwayatHidup` FROM `snitbriwayathidup` ORDER BY `IdRiwayatHidup` DESC LIMIT 1),'" + FDateF.datetostr(FDateF.strtodate(JTable.getValueAt(i, 1).toString(), "dd-MM-yyyy"), "yyyy-MM-dd") + "','" + FDateF.datetostr(FDateF.strtodate(JTable.getValueAt(i, 2).toString(), "dd-MM-yyyy"), "yyyy-MM-dd") + "','" + JTable.getValueAt(i, 3) + "','" + JTable.getValueAt(i, 4) + "')", null);
                         }
                     }
                 }
@@ -756,10 +804,10 @@ public class DaftarRiwayatHidup extends javax.swing.JFrame {
             if (Berhasil == false) {
                 multiInsert.rollback();
                 multiInsert.closecon();
-                JOptionPane.showMessageDialog(this, "Gagal Tambah Data Evaluasi Pelatihan");
+                JOptionPane.showMessageDialog(this, "Gagal Tambah Data Daftar Riwayat Hidup");
             }
             if (Berhasil == true) {
-                JOptionPane.showMessageDialog(this, "Berhasil Tambah Data Evaluasi Pelatihan");
+                JOptionPane.showMessageDialog(this, "Berhasil Tambah Data Daftar Riwayat Hidup");
                 multiInsert.Commit();
                 multiInsert.closecon();
                 if (tutup) {
@@ -768,26 +816,24 @@ public class DaftarRiwayatHidup extends javax.swing.JFrame {
                     JTable.setModel(new javax.swing.table.DefaultTableModel(
                             new Object[][]{},
                             new String[]{
-                                "No", "Nama Karyawan", "Penguasaan Materi", "Kemampuan Bekerja"
+                                "No", "Tanggal Masuk", "Tanggal Keluar", "Bagian", "Keterangan"
                             }
                     ));
                     RefreshTbl();
                     JTable.getColumnModel().getColumn(0).setPreferredWidth(50);
-                    JTable.getColumnModel().getColumn(1).setPreferredWidth(278);
-                    JTable.getColumnModel().getColumn(2).setPreferredWidth(176);
-                    JTable.getColumnModel().getColumn(3).setPreferredWidth(171);
-                    JCNamaKaryawan.load("SELECT '-- Pilih Pelatihan --' UNION ALL (SELECT CONCAT('(',A.`IdPelatihan`,') ',`JenisPelatihan`) FROM `snitbpelatihan` AS A LEFT JOIN `snitbevaluasipelatihan` AS B ON A.`IdPelatihan`=B.`IdPelatihan` JOIN `snitbusulpelatihan` AS C ON A.`IdUsulPelatihan`=C.`IdUsulPelatihan` WHERE B.`IdPelatihan` IS NULL GROUP BY `JenisPelatihan`, C.`Tanggal`, `Tempat`, `Waktu` ORDER BY `JenisPelatihan` ASC)");
-                    JTJenisPelatihan.setText("");
-                    JTTanggalPelatihan.setText("");
-                    JTTempatWaktuPelatihan.setText("");
-                    JTInstruktur.setText("");
-                    JCNamaKaryawan.load("SELECT '-- Pilih Nama Karyawan --'");
-                    JTAKesimpulan.setText("");
+                    JTable.getColumnModel().getColumn(1).setPreferredWidth(110);
+                    JTable.getColumnModel().getColumn(2).setPreferredWidth(110);
+                    JTable.getColumnModel().getColumn(3).setPreferredWidth(250);
+                    JTable.getColumnModel().getColumn(4).setPreferredWidth(364);
+                    JCNamaKaryawan.load("SELECT '-- Pilih Nama Karyawan --' UNION ALL (SELECT `NamaKaryawan` FROM `tbmkaryawan` AS A LEFT JOIN `snitbriwayathidup` AS B ON A.`IdKaryawan`=B.`IdKaryawan` WHERE A.`Status`=1 AND B.`IdKaryawan` IS NULL GROUP BY `NamaKaryawan` ORDER BY `NamaKaryawan` ASC)");
+                    JDTanggalBergabung.setDate(new Date());
+                    JCPendidikanFormal.setSelectedIndex(0);
+                    JCStatus.setSelectedIndex(0);
                     JTAKeterangan.setText("");
                     JCNamaKaryawan.requestFocus();
                 }
-                if (GlobalVar.Var.listEvaluasiPelatihan != null) {
-                    GlobalVar.Var.listEvaluasiPelatihan.load();
+                if (GlobalVar.Var.listDaftarRiwayatHidup != null) {
+                    GlobalVar.Var.listDaftarRiwayatHidup.load();
                 }
             }
         }
@@ -801,14 +847,14 @@ public class DaftarRiwayatHidup extends javax.swing.JFrame {
             if (Berhasil) {
                 Berhasil = multiInsert.setautocomit(false);
                 if (Berhasil) {
-                    Berhasil = multiInsert.Excute("UPDATE `snitbevaluasipelatihan` SET `IdPelatihan`='" + JCNamaKaryawan.getSelectedItem().toString().split("\\(")[1].split("\\)")[0] + "',`Tanggal`='" + FDateF.datetostr(JDTanggalBergabung.getDate(), "yyyy-MM-dd") + "',`Instruktur`='" + JTInstruktur.getText() + "',`Kesimpulan`='" + JTAKesimpulan.getText() + "',`Keterangan`='" + JTAKeterangan.getText() + "' WHERE `IdEvaluasiPelatihan` = '" + IdEdit + "'", null);
+                    Berhasil = multiInsert.Excute("UPDATE `snitbriwayathidup` SET `IdKaryawan`=(SELECT `IdKaryawan` FROM `tbmkaryawan` WHERE `NamaKaryawan` = '" + JCNamaKaryawan.getSelectedItem() + "'),`TanggalBergabung`='" + FDateF.datetostr(JDTanggalBergabung.getDate(), "yyyy-MM-dd") + "',`PendidikanFormal`='" + JCPendidikanFormal.getSelectedItem() + "',`Status`='" + JCStatus.getSelectedItem() + "',`Keterangan`='" + JTAKeterangan.getText() + "' WHERE `IdRiwayatHidup` = '" + IdEdit + "'", null);
                     if (Berhasil) {
                         if (CountTable != 0) {
-                            Berhasil = multiInsert.Excute("DELETE FROM `snitbevaluasipelatihandetail` WHERE `IdEvaluasiPelatihan` = '" + IdEdit + "'", null);
+                            Berhasil = multiInsert.Excute("DELETE FROM `snitbriwayathidupdetail` WHERE `IdRiwayatHidup` = '" + IdEdit + "'", null);
                         }
                         if (Berhasil) {
                             for (int i = 0; i < JTable.getRowCount(); i++) {
-                                Berhasil = multiInsert.Excute("INSERT INTO `snitbevaluasipelatihandetail`(`IdEvaluasiPelatihan`, `IdPelatihanDetail`, `PenguasaanMateri`, `KemampuanBekerja`) VALUES (" + IdEdit + ",(SELECT `IdPelatihanDetail` FROM `snitbpelatihandetail` AS A JOIN `tbmkaryawan` AS B ON A.`IdKaryawan`=B.`IdKaryawan` WHERE `IdPelatihan` = '" + JCNamaKaryawan.getSelectedItem().toString().split("\\(")[1].split("\\)")[0] + "' AND `NamaKaryawan` = '" + JTable.getValueAt(i, 1) + "'),'" + JTable.getValueAt(i, 2) + "','" + JTable.getValueAt(i, 3) + "')", null);
+                                Berhasil = multiInsert.Excute("INSERT INTO `snitbriwayathidupdetail`(`IdRiwayatHidup`, `TanggalMulai`, `TanggalSelesai`, `Bagian`, `Keterangan`) VALUES (" + IdEdit + ",'" + FDateF.datetostr(FDateF.strtodate(JTable.getValueAt(i, 1).toString(), "dd-MM-yyyy"), "yyyy-MM-dd") + "','" + FDateF.datetostr(FDateF.strtodate(JTable.getValueAt(i, 2).toString(), "dd-MM-yyyy"), "yyyy-MM-dd") + "','" + JTable.getValueAt(i, 3) + "','" + JTable.getValueAt(i, 4) + "')", null);
                             }
                         }
                     }
@@ -816,15 +862,15 @@ public class DaftarRiwayatHidup extends javax.swing.JFrame {
                 if (Berhasil == false) {
                     multiInsert.rollback();
                     multiInsert.closecon();
-                    JOptionPane.showMessageDialog(this, "Gagal Ubah Data Evaluasi Pelatihan");
+                    JOptionPane.showMessageDialog(this, "Gagal Ubah Data Daftar Riwayat Hidup");
                 }
                 if (Berhasil == true) {
-                    JOptionPane.showMessageDialog(this, "Berhasil Ubah Data Evaluasi Pelatihan");
+                    JOptionPane.showMessageDialog(this, "Berhasil Ubah Data Daftar Riwayat Hidup");
                     multiInsert.Commit();
                     multiInsert.closecon();
                     dispose();
-                    if (GlobalVar.Var.listEvaluasiPelatihan != null) {
-                        GlobalVar.Var.listEvaluasiPelatihan.load();
+                    if (GlobalVar.Var.listDaftarRiwayatHidup != null) {
+                        GlobalVar.Var.listDaftarRiwayatHidup.load();
                     }
                 }
             }
