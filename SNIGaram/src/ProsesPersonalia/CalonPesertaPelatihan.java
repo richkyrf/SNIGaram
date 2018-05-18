@@ -466,7 +466,7 @@ public class CalonPesertaPelatihan extends javax.swing.JFrame {
 
     private void JCNamaKaryawanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JCNamaKaryawanKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            TambahUbahTabel();
+            JBTambahUbahTable.requestFocus();
         }
     }//GEN-LAST:event_JCNamaKaryawanKeyPressed
 

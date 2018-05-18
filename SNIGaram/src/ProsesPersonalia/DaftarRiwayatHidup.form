@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <Properties>
+    <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="resizable" type="boolean" value="false"/>
+  </Properties>
+  <SyntheticProperties>
+    <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+  </SyntheticProperties>
+  <Events>
+    <EventHandler event="windowClosed" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="formWindowClosed"/>
+  </Events>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="JSeparator2" max="32767" attributes="0"/>
+                          <Component id="JSeparator1" alignment="0" max="32767" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="JBKembali" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="JBUbah" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="JBTambahTutup" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="JBTambah" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="JSPTable" alignment="0" min="-2" pref="677" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="JDTanggalMasuk" min="-2" pref="128" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
+                                      <Component id="JLTanggalMasukKeluar" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
+                                      <Component id="JDTanggalKeluar" min="-2" pref="128" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="JTBagian" min="-2" pref="222" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="JTKeterangan" max="32767" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="JBRefreshTable" max="32767" attributes="0"/>
+                                  <Component id="JBHapusTable" max="32767" attributes="0"/>
+                                  <Component id="JBTambahUbahTable" alignment="0" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="JLNamaKaryawan" max="32767" attributes="0"/>
+                          <Component id="JLTanggalBergabung" alignment="0" max="32767" attributes="0"/>
+                          <Component id="JLPendidikanFormal" alignment="0" max="32767" attributes="0"/>
+                          <Component id="JLStatus" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="JLTanggalBergabung2" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="JDTanggalBergabung" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="JLNamaKaryawan2" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="JCNamaKaryawan" min="-2" pref="580" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="JLPendidikanFormal2" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="JCPendidikanFormal" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="JLStatus2" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="JCStatus" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="JLKeterangan" min="-2" pref="95" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="JLKeterangan2" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="JSPKeterangan" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="JLNamaKaryawan" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="JLNamaKaryawan2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="JCNamaKaryawan" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="JLTanggalBergabung" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="JLTanggalBergabung2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="JDTanggalBergabung" min="-2" pref="28" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="JLPendidikanFormal" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="JLPendidikanFormal2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="JCPendidikanFormal" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="JLStatus2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="JCStatus" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="JLStatus" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="JSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="JBTambahUbahTable" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="JTBagian" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="JTKeterangan" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                      <Component id="JLTanggalMasukKeluar" min="-2" max="-2" attributes="0"/>
+                      <Component id="JDTanggalMasuk" min="-2" pref="28" max="-2" attributes="0"/>
+                      <Component id="JDTanggalKeluar" alignment="0" min="-2" pref="28" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Component id="JBHapusTable" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="JBRefreshTable" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="JSPTable" min="-2" pref="200" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="JSeparator2" min="-2" pref="10" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="JLKeterangan" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="JLKeterangan2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="JSPKeterangan" min="-2" pref="100" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="JBTambah" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="JBTambahTutup" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="JBUbah" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="JBKembali" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Component class="KomponenGUI.JlableF" name="JLNamaKaryawan">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Nama Karyawan"/>
+      </Properties>
+    </Component>
+    <Component class="KomponenGUI.JlableF" name="JLNamaKaryawan2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value=":"/>
+      </Properties>
+    </Component>
+    <Component class="KomponenGUI.JcomboboxF" name="JCNamaKaryawan">
+      <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="JCNamaKaryawanKeyPressed"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="JCNamaKaryawan.load(&quot;SELECT &apos;-- Pilih Nama Karyawan --&apos; UNION ALL (SELECT `NamaKaryawan` FROM `tbmkaryawan` AS A LEFT JOIN `snitbriwayathidup` AS B ON A.`IdKaryawan`=B.`IdKaryawan` WHERE A.`Status`=1 AND B.`IdKaryawan` IS NULL GROUP BY `NamaKaryawan` ORDER BY `NamaKaryawan` ASC)&quot;);"/>
+      </AuxValues>
+    </Component>
+    <Component class="KomponenGUI.JlableF" name="JLTanggalBergabung">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Tanggal Bergabung"/>
+      </Properties>
+    </Component>
+    <Component class="KomponenGUI.JlableF" name="JLTanggalBergabung2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value=":"/>
+      </Properties>
+    </Component>
+    <Component class="KomponenGUI.JdateCF" name="JDTanggalBergabung">
+      <Properties>
+        <Property name="date" type="java.util.Date" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="new Date()" type="code"/>
+        </Property>
+        <Property name="dateFormatString" type="java.lang.String" value="dd-MM-yyyy"/>
+      </Properties>
+      <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="JDTanggalBergabungKeyPressed"/>
+      </Events>
+    </Component>
+    <Component class="KomponenGUI.JlableF" name="JLPendidikanFormal">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Pendidikan Formal"/>
+      </Properties>
+    </Component>
+    <Component class="KomponenGUI.JlableF" name="JLPendidikanFormal2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value=":"/>
+      </Properties>
+    </Component>
+    <Component class="KomponenGUI.JcomboboxF" name="JCPendidikanFormal">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="12">
+            <StringItem index="0" value="-- Pilih Pendidikan Formal --"/>
+            <StringItem index="1" value="-"/>
+            <StringItem index="2" value="SD"/>
+            <StringItem index="3" value="SMP"/>
+            <StringItem index="4" value="SMA"/>
+            <StringItem index="5" value="D1"/>
+            <StringItem index="6" value="D2"/>
+            <StringItem index="7" value="D3"/>
+            <StringItem index="8" value="D4"/>
+            <StringItem index="9" value="S1"/>
+            <StringItem index="10" value="S2"/>
+            <StringItem index="11" value="S3"/>
+          </StringArray>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="KomponenGUI.JlableF" name="JLStatus">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Status"/>
+      </Properties>
+    </Component>
+    <Component class="KomponenGUI.JlableF" name="JLStatus2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value=":"/>
+      </Properties>
+    </Component>
+    <Component class="KomponenGUI.JcomboboxF" name="JCStatus">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="3">
+            <StringItem index="0" value="-- Pilih Status --"/>
+            <StringItem index="1" value="Belum Kawin"/>
+            <StringItem index="2" value="Kawin"/>
+          </StringArray>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JSeparator" name="JSeparator1">
+    </Component>
+    <Component class="KomponenGUI.JdateCF" name="JDTanggalMasuk">
+      <Properties>
+        <Property name="date" type="java.util.Date" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="new Date()" type="code"/>
+        </Property>
+        <Property name="dateFormatString" type="java.lang.String" value="dd-MM-yyyy"/>
+      </Properties>
+      <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="JDTanggalMasukKeyPressed"/>
+      </Events>
+    </Component>
+    <Component class="KomponenGUI.JlableF" name="JLTanggalMasukKeluar">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="s/d"/>
+      </Properties>
+    </Component>
+    <Component class="KomponenGUI.JdateCF" name="JDTanggalKeluar">
+      <Properties>
+        <Property name="date" type="java.util.Date" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="new Date()" type="code"/>
+        </Property>
+        <Property name="dateFormatString" type="java.lang.String" value="dd-MM-yyyy"/>
+      </Properties>
+      <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="JDTanggalKeluarKeyPressed"/>
+      </Events>
+    </Component>
+    <Component class="KomponenGUI.JPlaceHolder" name="JTBagian">
+      <Properties>
+        <Property name="placeHolder" type="java.lang.String" value="Bagian"/>
+      </Properties>
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="JTBagianKeyTyped"/>
+      </Events>
+    </Component>
+    <Component class="KomponenGUI.JPlaceHolder" name="JTKeterangan">
+      <Properties>
+        <Property name="placeHolder" type="java.lang.String" value="Keterangan"/>
+      </Properties>
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="JTKeteranganKeyTyped"/>
+      </Events>
+    </Component>
+    <Container class="javax.swing.JScrollPane" name="JSPTable">
+      <AuxValues>
+        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+      </AuxValues>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Component class="KomponenGUI.JtableF" name="JTable">
+          <Properties>
+            <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+              <Table columnCount="5" rowCount="0">
+                <Column editable="false" title="No" type="java.lang.Object"/>
+                <Column editable="false" title="Tanggal Masuk" type="java.lang.Object"/>
+                <Column editable="false" title="Tanggal Keluar" type="java.lang.Object"/>
+                <Column editable="false" title="Bagian" type="java.lang.Object"/>
+                <Column editable="false" title="Keterangan" type="java.lang.Object"/>
+              </Table>
+            </Property>
+            <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor" postCode="JTable.setrender(new int[]{2,3,4}, new String[]{&quot;Number&quot;, &quot;Number&quot;, &quot;Number&quot;});">
+              <TableColumnModel selectionModel="0">
+                <Column maxWidth="50" minWidth="50" prefWidth="50" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="110" minWidth="110" prefWidth="110" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="110" minWidth="110" prefWidth="110" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="250" minWidth="250" prefWidth="250" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+              </TableColumnModel>
+            </Property>
+            <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+              <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="JTableMouseClicked"/>
+          </Events>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Component class="KomponenGUI.JbuttonF" name="JBTambahUbahTable">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Tambah"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JBTambahUbahTableActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="KomponenGUI.JbuttonF" name="JBHapusTable">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Hapus"/>
+      </Properties>
+      <BindingProperties>
+        <BindingProperty name="enabled" source="JTable" sourcePath="${selectedElement != null}" target="JBHapusTable" targetPath="enabled" updateStrategy="0" immediately="false"/>
+      </BindingProperties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JBHapusTableActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="KomponenGUI.JbuttonF" name="JBRefreshTable">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Refresh"/>
+      </Properties>
+      <BindingProperties>
+        <BindingProperty name="enabled" source="JTable" sourcePath="${selectedElement != null}" target="JBRefreshTable" targetPath="enabled" updateStrategy="0" immediately="false"/>
+      </BindingProperties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JBRefreshTableActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JSeparator" name="JSeparator2">
+    </Component>
+    <Component class="KomponenGUI.JlableF" name="JLKeterangan">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Keterangan"/>
+      </Properties>
+    </Component>
+    <Component class="KomponenGUI.JlableF" name="JLKeterangan2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value=":"/>
+      </Properties>
+    </Component>
+    <Container class="javax.swing.JScrollPane" name="JSPKeterangan">
+      <AuxValues>
+        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+      </AuxValues>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Component class="KomponenGUI.JTextAreaF" name="JTAKeterangan">
+          <Properties>
+            <Property name="columns" type="int" value="20"/>
+            <Property name="rows" type="int" value="4"/>
+          </Properties>
+          <Events>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="JTAKeteranganKeyPressed"/>
+          </Events>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Component class="KomponenGUI.JbuttonF" name="JBKembali">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Kembali"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JBKembaliActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="KomponenGUI.JbuttonF" name="JBUbah">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Ubah"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JBUbahActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="KomponenGUI.JbuttonF" name="JBTambahTutup">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Tambah &amp; Tutup"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JBTambahTutupActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="KomponenGUI.JbuttonF" name="JBTambah">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Tambah"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JBTambahActionPerformed"/>
+      </Events>
+    </Component>
+  </SubComponents>
+</Form>

@@ -19,12 +19,14 @@ import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.showMessageDialog;
 import javax.swing.table.DefaultTableModel;
 import static GlobalVar.Var.*;
+import java.awt.Color;
+import javax.swing.UIManager;
 
 /**
  *
  * @author richky
  */
-public class EvaluasiMasaPercobaanKaryawan extends javax.swing.JFrame {
+public class EvaluasiPelatihan extends javax.swing.JFrame {
 
     /**
      * Creates new form MasterPenjualan
@@ -32,41 +34,46 @@ public class EvaluasiMasaPercobaanKaryawan extends javax.swing.JFrame {
     String IdEdit;
     int CountTable;
 
-    public EvaluasiMasaPercobaanKaryawan() {
+    public EvaluasiPelatihan() {
         initComponents();
         setVisible(true);
-        setTitle("Tambah Evaluasi Masa Percobaan Karyawan");
+        setTitle("Tambah Evaluasi Pelatihan");
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         JBUbah.setVisible(false);
-        JCNamaKaryawan.requestFocus();
+        JCPelatihan.requestFocus();
     }
 
-    public EvaluasiMasaPercobaanKaryawan(Object idEdit) {
+    public EvaluasiPelatihan(Object idEdit) {
         IdEdit = idEdit.toString();
         initComponents();
         setVisible(true);
-        setTitle("Ubah Evaluasi Masa Percobaan Karyawan");
+        setTitle("Ubah Evaluasi Pelatihan");
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         JBTambah.setVisible(false);
         JBTambahTutup.setVisible(false);
         loadeditdata();
+        JCPelatihan.setEnabled(false);
+        UIManager.put("ComboBox.disabledForeground", Color.blue);
         JCNamaKaryawan.requestFocus();
     }
 
     void loadeditdata() {
+        JCPelatihan.load("SELECT '-- Pilih Pelatihan --' UNION ALL (SELECT CONCAT('(',A.`IdPelatihan`,') ',`JenisPelatihan`) FROM `snitbpelatihan` AS A LEFT JOIN `snitbevaluasipelatihan` AS B ON A.`IdPelatihan`=B.`IdPelatihan` JOIN `snitbusulpelatihan` AS C ON A.`IdUsulPelatihan`=C.`IdUsulPelatihan` WHERE B.`IdPelatihan` IS NULL OR `IdEvaluasiPelatihan`=" + IdEdit + " GROUP BY `JenisPelatihan`, C.`Tanggal`, `Tempat`, `Waktu` ORDER BY `JenisPelatihan` ASC)");
         DRunSelctOne dRunSelctOne = new DRunSelctOne();
-        dRunSelctOne.seterorm("Eror Gagal Menampilkan Data Evaluasi Masa Percobaan Karyawan");
-        dRunSelctOne.setQuery("SELECT `IdMasaPercobaanKaryawan` as 'ID', DATE_FORMAT(`Tanggal`, '%d-%m-%Y'), `Kesimpulan`, `Keterangan` FROM `snitbmasapercobaankaryawan` WHERE `IdMasaPercobaanKaryawan` = '" + IdEdit + "'");
+        dRunSelctOne.seterorm("Eror Gagal Menampilkan Data Evaluasi Pelatihan");
+        dRunSelctOne.setQuery("SELECT `IdEvaluasiPelatihan`, CONCAT('(',A.`IdPelatihan`,') ',`JenisPelatihan`), DATE_FORMAT(A.`Tanggal`, '%d/%m/%Y'), `Instruktur`, `Kesimpulan`, A.`Keterangan` FROM `snitbevaluasipelatihan` AS A JOIN `snitbpelatihan` AS B ON A.`IdPelatihan`=B.`IdPelatihan` JOIN `snitbusulpelatihan` AS C ON B.`IdUsulPelatihan`=C.`IdUsulPelatihan` WHERE `IdEvaluasiPelatihan` = '" + IdEdit + "'");
         ArrayList<String> list = dRunSelctOne.excute();
-        JDTanggalEvaluasi.setDate(FDateF.strtodate(list.get(1), "dd-MM-yyyy"));
-        JTAKesimpulan.setText(list.get(2));
-        JTAKeterangan.setText(list.get(3));
+        JCPelatihan.setSelectedItem(list.get(1));
+        JDTanggalEvaluasi.setDate(FDateF.strtodate(list.get(2), "dd/MM/yyyy"));
+        JTInstruktur.setText(list.get(3));
+        JTAKesimpulan.setText(list.get(4));
+        JTAKeterangan.setText(list.get(5));
         DefaultTableModel model = (DefaultTableModel) JTable.getModel();
         model.getDataVector().removeAllElements();
         RunSelct runSelct = new RunSelct();
-        runSelct.setQuery("SELECT `IdMasaPercobaanKaryawanDetail`, `NamaKaryawan`, `PenguasaanMateri`, `KemampuanBekerja` FROM `snitbmasapercobaankaryawandetail`a JOIN `tbmkaryawan`b ON a.`IdKaryawan`=b.`IdKaryawan` WHERE `IdMasaPercobaanKaryawan` = '" + list.get(0) + "'");
+        runSelct.setQuery("SELECT `IdEvaluasiPelatihanDetail`, `NamaKaryawan`, `PenguasaanMateri`, `KemampuanBekerja` FROM `snitbevaluasipelatihandetail` AS A JOIN `snitbevaluasipelatihan` AS B ON A.`IdEvaluasiPelatihan`=B.`IdEvaluasiPelatihan` JOIN `snitbpelatihandetail` AS C ON A.`IdPelatihanDetail`=C.`IdPelatihanDetail` JOIN `tbmkaryawan` AS D ON C.`IdKaryawan`=D.`IdKaryawan` WHERE A.`IdEvaluasiPelatihan` = '" + list.get(0) + "'");
         try {
             ResultSet rs = runSelct.excute();
             int row = 0;
@@ -81,16 +88,24 @@ public class EvaluasiMasaPercobaanKaryawan extends javax.swing.JFrame {
             CountTable = JTable.getRowCount();
         } catch (SQLException e) {
             out.println("E6" + e);
-            showMessageDialog(null, "Gagal Panggil Data Detail Evaluasi Masa Percobaan Karyawan");
+            showMessageDialog(null, "Gagal Panggil Data Detail Evaluasi Pelatihan");
         } finally {
             runSelct.closecon();
         }
     }
 
     Boolean checkInput(String action) {
-        if (JDTanggalEvaluasi.getDate() == null) {
+        if (JCPelatihan.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(this, "Silahkan Pilih Pelatihan");
+            JCPelatihan.requestFocus();
+            return false;
+        } else if (JDTanggalEvaluasi.getDate() == null) {
             JOptionPane.showMessageDialog(this, "Tanggal Evaluasi Tidak Boleh Kosong");
             JDTanggalEvaluasi.requestFocus();
+            return false;
+        } else if (JTInstruktur.getText().replace(" ", "").isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Nama Instruktur Tidak Boleh Kosong");
+            JTInstruktur.requestFocus();
             return false;
         } else if (action.equals("Tambah") && JTable.getRowCount() < 1) {
             JOptionPane.showMessageDialog(this, "Detail Evaluasi Tidak Boleh Kosong");
@@ -167,7 +182,7 @@ public class EvaluasiMasaPercobaanKaryawan extends javax.swing.JFrame {
     }
 
     void RefreshTbl() {
-        JCNamaKaryawan.load("SELECT '-- Pilih Nama Karyawan --' UNION ALL (SELECT `NamaKaryawan` FROM `tbmkaryawan` WHERE `Status`=1 GROUP BY `NamaKaryawan` ORDER BY `NamaKaryawan` ASC)");
+        JCNamaKaryawan.load("SELECT '-- Pilih Nama Karyawan --' UNION ALL (SELECT `NamaKaryawan` FROM `snitbpelatihandetail` AS A JOIN `tbmkaryawan` AS B ON A.`IdKaryawan`=B.`IdKaryawan` WHERE `IdPelatihan`=" + JCPelatihan.getSelectedItem().toString().split("\\(")[1].split("\\)")[0] + " GROUP BY `NamaKaryawan` ORDER BY `NamaKaryawan` ASC)");
         JCNamaKaryawan.setSelectedIndex(0);
         JTPenguasaanMateri.setText("");
         JTKemampuanBekerja.setText("");
@@ -186,9 +201,24 @@ public class EvaluasiMasaPercobaanKaryawan extends javax.swing.JFrame {
     private void initComponents() {
         bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
+        JLPelatihan = new KomponenGUI.JlableF();
+        JLPelatihan2 = new KomponenGUI.JlableF();
+        JCPelatihan = new KomponenGUI.JcomboboxF();
+        JLJenisPelatihan = new KomponenGUI.JlableF();
+        JLJenisPelatihan2 = new KomponenGUI.JlableF();
+        JTJenisPelatihan = new KomponenGUI.JtextF();
+        JLTanggalPelatihan = new KomponenGUI.JlableF();
+        JLTanggalPelatihan2 = new KomponenGUI.JlableF();
+        JTTanggalPelatihan = new KomponenGUI.JtextF();
+        JLTempatWaktuPelatihan = new KomponenGUI.JlableF();
+        JLTempatWaktuPelatihan2 = new KomponenGUI.JlableF();
+        JTTempatWaktuPelatihan = new KomponenGUI.JtextF();
         JLTanggalEvaluasi = new KomponenGUI.JlableF();
         JLTanggalEvaluasi2 = new KomponenGUI.JlableF();
         JDTanggalEvaluasi = new KomponenGUI.JdateCF();
+        JLInstruktur = new KomponenGUI.JlableF();
+        JLInstruktur2 = new KomponenGUI.JlableF();
+        JTInstruktur = new KomponenGUI.JtextF();
         JSeparator1 = new javax.swing.JSeparator();
         JCNamaKaryawan = new KomponenGUI.JcomboboxF();
         JTPenguasaanMateri = new KomponenGUI.JPlaceHolderRibuan();
@@ -220,19 +250,63 @@ public class EvaluasiMasaPercobaanKaryawan extends javax.swing.JFrame {
             }
         });
 
+        JLPelatihan.setText("Pelatihan");
+
+        JLPelatihan2.setText(":");
+
+        JCPelatihan.load("SELECT '-- Pilih Pelatihan --' UNION ALL (SELECT CONCAT('(',A.`IdPelatihan`,') ',`JenisPelatihan`) FROM `snitbpelatihan` AS A LEFT JOIN `snitbevaluasipelatihan` AS B ON A.`IdPelatihan`=B.`IdPelatihan` JOIN `snitbusulpelatihan` AS C ON A.`IdUsulPelatihan`=C.`IdUsulPelatihan` WHERE B.`IdPelatihan` IS NULL GROUP BY `JenisPelatihan`, C.`Tanggal`, `Tempat`, `Waktu` ORDER BY `JenisPelatihan` ASC)");
+        JCPelatihan.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                JCPelatihanItemStateChanged(evt);
+            }
+        });
+        JCPelatihan.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                JCPelatihanKeyPressed(evt);
+            }
+        });
+
+        JLJenisPelatihan.setText("Jenis Pelatihan");
+
+        JLJenisPelatihan2.setText(":");
+
+        JTJenisPelatihan.setEnabled(false);
+
+        JLTanggalPelatihan.setText("Tanggal Pelatihan");
+
+        JLTanggalPelatihan2.setText(":");
+
+        JTTanggalPelatihan.setEnabled(false);
+
+        JLTempatWaktuPelatihan.setText("Tempat dan Waktu Pelatihan");
+
+        JLTempatWaktuPelatihan2.setText(":");
+
+        JTTempatWaktuPelatihan.setEnabled(false);
+
         JLTanggalEvaluasi.setText("Tanggal Evaluasi");
 
         JLTanggalEvaluasi2.setText(":");
 
         JDTanggalEvaluasi.setDate(new Date());
-        JDTanggalEvaluasi.setDateFormatString("dd-MM-yyyy");
         JDTanggalEvaluasi.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 JDTanggalEvaluasiKeyPressed(evt);
             }
         });
 
-        JCNamaKaryawan.load("SELECT '-- Pilih Nama Karyawan --' UNION ALL (SELECT `NamaKaryawan` FROM `tbmkaryawan` WHERE `Status`=1 GROUP BY `NamaKaryawan` ORDER BY `NamaKaryawan` ASC)");
+        JLInstruktur.setText("Nama Instruktur");
+
+        JLInstruktur2.setText(":");
+
+        JTInstruktur.setMaxText(50);
+        JTInstruktur.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                JTInstrukturKeyPressed(evt);
+            }
+        });
+
+        JCNamaKaryawan.load("SELECT '-- Pilih Nama Karyawan --'");
         JCNamaKaryawan.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 JCNamaKaryawanKeyPressed(evt);
@@ -325,7 +399,7 @@ public class EvaluasiMasaPercobaanKaryawan extends javax.swing.JFrame {
         JLKesimpulan2.setText(":");
 
         JTAKesimpulan.setColumns(20);
-        JTAKesimpulan.setRows(4);
+        JTAKesimpulan.setRows(3);
         JTAKesimpulan.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 JTAKesimpulanKeyPressed(evt);
@@ -338,7 +412,7 @@ public class EvaluasiMasaPercobaanKaryawan extends javax.swing.JFrame {
         JLKeterangan2.setText(":");
 
         JTAKeterangan.setColumns(20);
-        JTAKeterangan.setRows(4);
+        JTAKeterangan.setRows(3);
         JTAKeterangan.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 JTAKeteranganKeyPressed(evt);
@@ -381,60 +455,122 @@ public class EvaluasiMasaPercobaanKaryawan extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(JSeparator2)
-                    .addComponent(JSeparator1)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(JLKesimpulan, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(JLKesimpulan2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(JSPKesimpulan))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(JLKeterangan, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(JLKeterangan2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(JSPKeterangan))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(JBKembali, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(JBUbah, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(JBTambahTutup, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(JBTambah, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(JLTanggalEvaluasi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(JLTanggalEvaluasi2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(JDTanggalEvaluasi, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(JSeparator2)
+                            .addComponent(JSeparator1)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(JCNamaKaryawan, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(JLKesimpulan, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(JTPenguasaanMateri, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(JLKesimpulan2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(JTKemampuanBekerja, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(JSPTable))
+                                .addComponent(JSPKesimpulan))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(JLKeterangan, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(JLKeterangan2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(JSPKeterangan))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(JBKembali, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(JBUbah, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(JBTambahTutup, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(JBTambah, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(JCNamaKaryawan, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(JTPenguasaanMateri, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(JTKemampuanBekerja, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(JSPTable))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(JBRefreshTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(JBHapusTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(JBTambahUbahTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(10, 10, 10))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(JLPelatihan, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(JLPelatihan2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(JCPelatihan, javax.swing.GroupLayout.PREFERRED_SIZE, 528, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(JLJenisPelatihan, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(JLJenisPelatihan2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(JTJenisPelatihan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(JLTanggalPelatihan, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(JLTanggalPelatihan2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(JTTanggalPelatihan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(JLInstruktur, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(JLTanggalEvaluasi, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(JLTempatWaktuPelatihan, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(JBRefreshTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(JBHapusTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(JBTambahUbahTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addGap(10, 10, 10))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(JLTempatWaktuPelatihan2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(JTTempatWaktuPelatihan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(JLTanggalEvaluasi2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(JDTanggalEvaluasi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(JLInstruktur2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(JTInstruktur, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(JLPelatihan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JLPelatihan2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JCPelatihan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(JLJenisPelatihan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JLJenisPelatihan2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JTJenisPelatihan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(JLTanggalPelatihan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JLTanggalPelatihan2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JTTanggalPelatihan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(JLTempatWaktuPelatihan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JLTempatWaktuPelatihan2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JTTempatWaktuPelatihan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(JLTanggalEvaluasi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(JLTanggalEvaluasi2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(JDTanggalEvaluasi, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(JLInstruktur, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JLInstruktur2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JTInstruktur, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(JSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
@@ -449,20 +585,20 @@ public class EvaluasiMasaPercobaanKaryawan extends javax.swing.JFrame {
                         .addComponent(JBHapusTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(JBRefreshTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(JSPTable, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(JSPTable, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(JSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(JLKesimpulan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(JLKesimpulan2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(JSPKesimpulan, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(JSPKesimpulan, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(JLKeterangan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(JLKeterangan2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(JSPKeterangan, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(JSPKeterangan, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JBTambah, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -495,7 +631,7 @@ public class EvaluasiMasaPercobaanKaryawan extends javax.swing.JFrame {
 
     private void JDTanggalEvaluasiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JDTanggalEvaluasiKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            JCNamaKaryawan.requestFocus();
+            JTInstruktur.requestFocus();
         }
     }//GEN-LAST:event_JDTanggalEvaluasiKeyPressed
 
@@ -527,7 +663,6 @@ public class EvaluasiMasaPercobaanKaryawan extends javax.swing.JFrame {
 
     private void JTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JTableMouseClicked
         if (JTable.getSelectedRow() != -1) {
-            JCNamaKaryawan.load("SELECT '-- Pilih Nama Karyawan --' UNION ALL (SELECT `NamaKaryawan` FROM `tbmkaryawan` WHERE `Status`=1 OR `NamaKaryawan`='" + JTable.getValueAt(JTable.getSelectedRow(), 1).toString() + "' GROUP BY `NamaKaryawan` ORDER BY `NamaKaryawan` ASC)");
             JCNamaKaryawan.setSelectedItem(JTable.getValueAt(JTable.getSelectedRow(), 1).toString());
             JTPenguasaanMateri.setText(JTable.getValueAt(JTable.getSelectedRow(), 2).toString());
             JTKemampuanBekerja.setText(JTable.getValueAt(JTable.getSelectedRow(), 3).toString());
@@ -537,9 +672,9 @@ public class EvaluasiMasaPercobaanKaryawan extends javax.swing.JFrame {
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         if (IdEdit == null) {
-            tambahEvaluasiMasaPercobaanKaryawan = null;
+            tambahEvaluasiPelatihan = null;
         } else {
-            ubahEvaluasiMasaPercobaanKaryawan = null;
+            ubahEvaluasiPelatihan = null;
         }
     }//GEN-LAST:event_formWindowClosed
 
@@ -571,6 +706,36 @@ public class EvaluasiMasaPercobaanKaryawan extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_JTAKeteranganKeyPressed
 
+    private void JCPelatihanItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_JCPelatihanItemStateChanged
+        if (JCPelatihan.getSelectedIndex() != 0) {
+            DRunSelctOne dRunSelctOne = new DRunSelctOne();
+            dRunSelctOne.seterorm("Gagal Load Data Pelatihan");
+            dRunSelctOne.setQuery("SELECT `JenisPelatihan`, DATE_FORMAT(`Tanggal`, '%d/%m/%Y'), CONCAT(`Tempat`,' : ',REPLACE(SUBSTRING(`Waktu`,1,5),':','.')) FROM `snitbpelatihan` AS A JOIN `snitbusulpelatihan` AS B ON A.`IdUsulPelatihan`=B.`IdUsulPelatihan` WHERE `IdPelatihan`= '" + JCPelatihan.getSelectedItem().toString().split("\\(")[1].split("\\)")[0] + "'");
+            ArrayList<String> list = dRunSelctOne.excute();
+            JTJenisPelatihan.setText(list.get(0));
+            JTTanggalPelatihan.setText(list.get(1));
+            JTTempatWaktuPelatihan.setText(list.get(2));
+            JCNamaKaryawan.load("SELECT '-- Pilih Nama Karyawan --' UNION ALL (SELECT `NamaKaryawan` FROM `snitbpelatihandetail` AS A JOIN `tbmkaryawan` AS B ON A.`IdKaryawan`=B.`IdKaryawan` WHERE `IdPelatihan`=" + JCPelatihan.getSelectedItem().toString().split("\\(")[1].split("\\)")[0] + " GROUP BY `NamaKaryawan` ORDER BY `NamaKaryawan` ASC)");
+        } else {
+            JTJenisPelatihan.setText("");
+            JTTanggalPelatihan.setText("");
+            JTTempatWaktuPelatihan.setText("");
+            JCNamaKaryawan.load("SELECT '-- Pilih Nama Karyawan --'");
+        }
+    }//GEN-LAST:event_JCPelatihanItemStateChanged
+
+    private void JCPelatihanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JCPelatihanKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            JTInstruktur.requestFocus();
+        }
+    }//GEN-LAST:event_JCPelatihanKeyPressed
+
+    private void JTInstrukturKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JTInstrukturKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            JCNamaKaryawan.requestFocus();
+        }
+    }//GEN-LAST:event_JTInstrukturKeyPressed
+
     /**
      * @param args the command line arguments
      */
@@ -588,20 +753,20 @@ public class EvaluasiMasaPercobaanKaryawan extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(EvaluasiMasaPercobaanKaryawan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EvaluasiPelatihan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(EvaluasiMasaPercobaanKaryawan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EvaluasiPelatihan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(EvaluasiMasaPercobaanKaryawan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EvaluasiPelatihan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(EvaluasiMasaPercobaanKaryawan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EvaluasiPelatihan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EvaluasiMasaPercobaanKaryawan().setVisible(true);
+                new EvaluasiPelatihan().setVisible(true);
             }
         });
     }
@@ -615,13 +780,24 @@ public class EvaluasiMasaPercobaanKaryawan extends javax.swing.JFrame {
     private KomponenGUI.JbuttonF JBTambahUbahTable;
     private KomponenGUI.JbuttonF JBUbah;
     private KomponenGUI.JcomboboxF JCNamaKaryawan;
+    private KomponenGUI.JcomboboxF JCPelatihan;
     private KomponenGUI.JdateCF JDTanggalEvaluasi;
+    private KomponenGUI.JlableF JLInstruktur;
+    private KomponenGUI.JlableF JLInstruktur2;
+    private KomponenGUI.JlableF JLJenisPelatihan;
+    private KomponenGUI.JlableF JLJenisPelatihan2;
     private KomponenGUI.JlableF JLKesimpulan;
     private KomponenGUI.JlableF JLKesimpulan2;
     private KomponenGUI.JlableF JLKeterangan;
     private KomponenGUI.JlableF JLKeterangan2;
+    private KomponenGUI.JlableF JLPelatihan;
+    private KomponenGUI.JlableF JLPelatihan2;
     private KomponenGUI.JlableF JLTanggalEvaluasi;
     private KomponenGUI.JlableF JLTanggalEvaluasi2;
+    private KomponenGUI.JlableF JLTanggalPelatihan;
+    private KomponenGUI.JlableF JLTanggalPelatihan2;
+    private KomponenGUI.JlableF JLTempatWaktuPelatihan;
+    private KomponenGUI.JlableF JLTempatWaktuPelatihan2;
     private javax.swing.JScrollPane JSPKesimpulan;
     private javax.swing.JScrollPane JSPKeterangan;
     private javax.swing.JScrollPane JSPTable;
@@ -629,8 +805,12 @@ public class EvaluasiMasaPercobaanKaryawan extends javax.swing.JFrame {
     private javax.swing.JSeparator JSeparator2;
     private KomponenGUI.JTextAreaF JTAKesimpulan;
     private KomponenGUI.JTextAreaF JTAKeterangan;
+    private KomponenGUI.JtextF JTInstruktur;
+    private KomponenGUI.JtextF JTJenisPelatihan;
     private KomponenGUI.JPlaceHolderRibuan JTKemampuanBekerja;
     private KomponenGUI.JPlaceHolderRibuan JTPenguasaanMateri;
+    private KomponenGUI.JtextF JTTanggalPelatihan;
+    private KomponenGUI.JtextF JTTempatWaktuPelatihan;
     private KomponenGUI.JtableF JTable;
     private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
@@ -650,7 +830,6 @@ public class EvaluasiMasaPercobaanKaryawan extends javax.swing.JFrame {
                 JTable.setValueAt(JTKemampuanBekerja.getInt(), JTable.getSelectedRow(), 3);
                 JOptionPane.showMessageDialog(this, "Berhasil Ubah Data");
                 RefreshTbl();
-                JCNamaKaryawan.requestFocus();
             }
         }
     }
@@ -663,10 +842,10 @@ public class EvaluasiMasaPercobaanKaryawan extends javax.swing.JFrame {
             if (Berhasil) {
                 Berhasil = multiInsert.setautocomit(false);
                 if (Berhasil) {
-                    Berhasil = multiInsert.Excute("INSERT INTO `snitbmasapercobaankaryawan`(`Tanggal`, `Kesimpulan`, `Keterangan`) VALUES ('" + FDateF.datetostr(JDTanggalEvaluasi.getDate(), "yyyy-MM-dd") + "','" + JTAKesimpulan.getText() + "','" + JTAKeterangan.getText() + "')", null);
+                    Berhasil = multiInsert.Excute("INSERT INTO `snitbevaluasipelatihan`(`IdPelatihan`, `Tanggal`, `Instruktur`, `Kesimpulan`, `Keterangan`) VALUES ('" + JCPelatihan.getSelectedItem().toString().split("\\(")[1].split("\\)")[0] + "','" + FDateF.datetostr(JDTanggalEvaluasi.getDate(), "yyyy-MM-dd") + "','" + JTInstruktur.getText() + "','" + JTAKesimpulan.getText() + "','" + JTAKeterangan.getText() + "')", null);
                     if (Berhasil) {
                         for (int i = 0; i < JTable.getRowCount(); i++) {
-                            Berhasil = multiInsert.Excute("INSERT INTO `snitbmasapercobaankaryawandetail`(`IdMasaPercobaanKaryawan`, `IdKaryawan`, `PenguasaanMateri`, `KemampuanBekerja`) VALUES ((SELECT `IdMasaPercobaanKaryawan` FROM `snitbmasapercobaankaryawan` ORDER BY `IdMasaPercobaanKaryawan` DESC LIMIT 1),(SELECT `IdKaryawan` FROM `tbmkaryawan` WHERE `NamaKaryawan` = '" + JTable.getValueAt(i, 1) + "'),'" + JTable.getValueAt(i, 2) + "','" + JTable.getValueAt(i, 3) + "')", null);
+                            Berhasil = multiInsert.Excute("INSERT INTO `snitbevaluasipelatihandetail`(`IdEvaluasiPelatihan`, `IdPelatihanDetail`, `PenguasaanMateri`, `KemampuanBekerja`) VALUES ((SELECT `IdEvaluasiPelatihan` FROM `snitbevaluasipelatihan` ORDER BY `IdEvaluasiPelatihan` DESC LIMIT 1),(SELECT `IdPelatihanDetail` FROM `snitbpelatihandetail` AS A JOIN `tbmkaryawan` AS B ON A.`IdKaryawan`=B.`IdKaryawan` WHERE `IdPelatihan` = '" + JCPelatihan.getSelectedItem().toString().split("\\(")[1].split("\\)")[0] + "' AND `NamaKaryawan` = '" + JTable.getValueAt(i, 1) + "'),'" + JTable.getValueAt(i, 2) + "','" + JTable.getValueAt(i, 3) + "')", null);
                         }
                     }
                 }
@@ -674,17 +853,15 @@ public class EvaluasiMasaPercobaanKaryawan extends javax.swing.JFrame {
             if (Berhasil == false) {
                 multiInsert.rollback();
                 multiInsert.closecon();
-                JOptionPane.showMessageDialog(this, "Gagal Tambah Data Evaluasi Masa Percobaan Karyawan");
+                JOptionPane.showMessageDialog(this, "Gagal Tambah Data Evaluasi Pelatihan");
             }
             if (Berhasil == true) {
-                JOptionPane.showMessageDialog(this, "Berhasil Tambah Data Evaluasi Masa Percobaan Karyawan");
+                JOptionPane.showMessageDialog(this, "Berhasil Tambah Data Evaluasi Pelatihan");
                 multiInsert.Commit();
                 multiInsert.closecon();
                 if (tutup) {
                     dispose();
                 } else {
-                    JTAKesimpulan.setText("");
-                    JTAKeterangan.setText("");
                     JTable.setModel(new javax.swing.table.DefaultTableModel(
                             new Object[][]{},
                             new String[]{
@@ -696,9 +873,18 @@ public class EvaluasiMasaPercobaanKaryawan extends javax.swing.JFrame {
                     JTable.getColumnModel().getColumn(1).setPreferredWidth(278);
                     JTable.getColumnModel().getColumn(2).setPreferredWidth(176);
                     JTable.getColumnModel().getColumn(3).setPreferredWidth(171);
+                    JCPelatihan.load("SELECT '-- Pilih Pelatihan --' UNION ALL (SELECT CONCAT('(',A.`IdPelatihan`,') ',`JenisPelatihan`) FROM `snitbpelatihan` AS A LEFT JOIN `snitbevaluasipelatihan` AS B ON A.`IdPelatihan`=B.`IdPelatihan` JOIN `snitbusulpelatihan` AS C ON A.`IdUsulPelatihan`=C.`IdUsulPelatihan` WHERE B.`IdPelatihan` IS NULL GROUP BY `JenisPelatihan`, C.`Tanggal`, `Tempat`, `Waktu` ORDER BY `JenisPelatihan` ASC)");
+                    JTJenisPelatihan.setText("");
+                    JTTanggalPelatihan.setText("");
+                    JTTempatWaktuPelatihan.setText("");
+                    JTInstruktur.setText("");
+                    JCNamaKaryawan.load("SELECT '-- Pilih Nama Karyawan --'");
+                    JTAKesimpulan.setText("");
+                    JTAKeterangan.setText("");
+                    JCPelatihan.requestFocus();
                 }
-                if (GlobalVar.Var.listEvaluasiMasaPercobaanKaryawan != null) {
-                    GlobalVar.Var.listEvaluasiMasaPercobaanKaryawan.load();
+                if (GlobalVar.Var.listEvaluasiPelatihan != null) {
+                    GlobalVar.Var.listEvaluasiPelatihan.load();
                 }
             }
         }
@@ -712,14 +898,14 @@ public class EvaluasiMasaPercobaanKaryawan extends javax.swing.JFrame {
             if (Berhasil) {
                 Berhasil = multiInsert.setautocomit(false);
                 if (Berhasil) {
-                    Berhasil = multiInsert.Excute("UPDATE `snitbmasapercobaankaryawan` SET `Tanggal`='" + FDateF.datetostr(JDTanggalEvaluasi.getDate(), "yyyy-MM-dd") + "',`Kesimpulan`='" + JTAKesimpulan.getText() + "',`Keterangan`='" + JTAKeterangan.getText() + "' WHERE `IdMasaPercobaanKaryawan` = '" + IdEdit + "'", null);
+                    Berhasil = multiInsert.Excute("UPDATE `snitbevaluasipelatihan` SET `IdPelatihan`='" + JCPelatihan.getSelectedItem().toString().split("\\(")[1].split("\\)")[0] + "',`Tanggal`='" + FDateF.datetostr(JDTanggalEvaluasi.getDate(), "yyyy-MM-dd") + "',`Instruktur`='" + JTInstruktur.getText() + "',`Kesimpulan`='" + JTAKesimpulan.getText() + "',`Keterangan`='" + JTAKeterangan.getText() + "' WHERE `IdEvaluasiPelatihan` = '" + IdEdit + "'", null);
                     if (Berhasil) {
                         if (CountTable != 0) {
-                            Berhasil = multiInsert.Excute("DELETE FROM `snitbmasapercobaankaryawandetail` WHERE `IdMasaPercobaanKaryawan` = '" + IdEdit + "'", null);
+                            Berhasil = multiInsert.Excute("DELETE FROM `snitbevaluasipelatihandetail` WHERE `IdEvaluasiPelatihan` = '" + IdEdit + "'", null);
                         }
                         if (Berhasil) {
                             for (int i = 0; i < JTable.getRowCount(); i++) {
-                                Berhasil = multiInsert.Excute("INSERT INTO `snitbmasapercobaankaryawandetail`(`IdMasaPercobaanKaryawan`, `IdKaryawan`, `PenguasaanMateri`, `KemampuanBekerja`) VALUES (" + IdEdit + ",(SELECT `IdKaryawan` FROM `tbmkaryawan` WHERE `NamaKaryawan` = '" + JTable.getValueAt(i, 1) + "'),'" + JTable.getValueAt(i, 2) + "','" + JTable.getValueAt(i, 3) + "')", null);
+                                Berhasil = multiInsert.Excute("INSERT INTO `snitbevaluasipelatihandetail`(`IdEvaluasiPelatihan`, `IdPelatihanDetail`, `PenguasaanMateri`, `KemampuanBekerja`) VALUES (" + IdEdit + ",(SELECT `IdPelatihanDetail` FROM `snitbpelatihandetail` AS A JOIN `tbmkaryawan` AS B ON A.`IdKaryawan`=B.`IdKaryawan` WHERE `IdPelatihan` = '" + JCPelatihan.getSelectedItem().toString().split("\\(")[1].split("\\)")[0] + "' AND `NamaKaryawan` = '" + JTable.getValueAt(i, 1) + "'),'" + JTable.getValueAt(i, 2) + "','" + JTable.getValueAt(i, 3) + "')", null);
                             }
                         }
                     }
@@ -727,15 +913,15 @@ public class EvaluasiMasaPercobaanKaryawan extends javax.swing.JFrame {
                 if (Berhasil == false) {
                     multiInsert.rollback();
                     multiInsert.closecon();
-                    JOptionPane.showMessageDialog(this, "Gagal Ubah Data Evaluasi Masa Percobaan Karyawan");
+                    JOptionPane.showMessageDialog(this, "Gagal Ubah Data Evaluasi Pelatihan");
                 }
                 if (Berhasil == true) {
-                    JOptionPane.showMessageDialog(this, "Berhasil Ubah Data Evaluasi Masa Percobaan Karyawan");
+                    JOptionPane.showMessageDialog(this, "Berhasil Ubah Data Evaluasi Pelatihan");
                     multiInsert.Commit();
                     multiInsert.closecon();
                     dispose();
-                    if (GlobalVar.Var.listEvaluasiMasaPercobaanKaryawan != null) {
-                        GlobalVar.Var.listEvaluasiMasaPercobaanKaryawan.load();
+                    if (GlobalVar.Var.listEvaluasiPelatihan != null) {
+                        GlobalVar.Var.listEvaluasiPelatihan.load();
                     }
                 }
             }

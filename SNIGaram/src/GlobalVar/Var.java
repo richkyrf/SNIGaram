@@ -48,10 +48,10 @@ public class Var {
 
     public static KebutuhanKaryawan tambahKebutuhanKaryawan, ubahKebutuhanKaryawan;
     public static EvaluasiMasaPercobaanKaryawan tambahEvaluasiMasaPercobaanKaryawan, ubahEvaluasiMasaPercobaanKaryawan;
-    //public static DaftarRiwayatHidup tambahDaftarRiwayatHidup, ubahDaftarRiwayatHidup;
+    public static DaftarRiwayatHidup tambahDaftarRiwayatHidup, ubahDaftarRiwayatHidup;
     public static UsulPelatihan tambahUsulPelatihan, ubahUsulPelatihan;
     public static CalonPesertaPelatihan tambahCalonPesertaPelatihan, ubahCalonPesertaPelatihan;
-    //public static EvaluasiPelatihan tambahEvaluasiPelatihan, ubahEvaluasiPelatihan;
+    public static EvaluasiPelatihan tambahEvaluasiPelatihan, ubahEvaluasiPelatihan;
     
     public static LaporanLab laporanPengujianProdukJadi, laporanPengujianBahanBaku;
     public static LaporanTeknik laporanDaftarPeralatan, laporanPemeliharaan;

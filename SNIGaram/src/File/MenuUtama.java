@@ -1207,14 +1207,12 @@ public class MenuUtama extends javax.swing.JFrame {
     }//GEN-LAST:event_JMIEvaluasiMasaPercobaanKaryawanActionPerformed
 
     private void JMIDaftarRiwayatHidupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMIDaftarRiwayatHidupActionPerformed
-        /*
         if (tambahDaftarRiwayatHidup == null) {
             tambahDaftarRiwayatHidup = new DaftarRiwayatHidup();
         } else {
             tambahDaftarRiwayatHidup.setState(NORMAL);
             tambahDaftarRiwayatHidup.toFront();
         }
-         */
     }//GEN-LAST:event_JMIDaftarRiwayatHidupActionPerformed
 
     private void JMICalonPesertaPelatihanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMICalonPesertaPelatihanActionPerformed
@@ -1227,14 +1225,12 @@ public class MenuUtama extends javax.swing.JFrame {
     }//GEN-LAST:event_JMICalonPesertaPelatihanActionPerformed
 
     private void JMIEvaluasiPelatihanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMIEvaluasiPelatihanActionPerformed
-        /*
         if (tambahEvaluasiPelatihan == null) {
             tambahEvaluasiPelatihan = new EvaluasiPelatihan();
         } else {
             tambahEvaluasiPelatihan.setState(NORMAL);
             tambahEvaluasiPelatihan.toFront();
         }
-         */
     }//GEN-LAST:event_JMIEvaluasiPelatihanActionPerformed
 
     /**
