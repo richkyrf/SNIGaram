@@ -111,19 +111,9 @@ public class CalonPesertaPelatihan extends javax.swing.JFrame {
         }
     }
 
-    boolean checkTableUbah() {
-        if (JCNamaKaryawan.getSelectedIndex() == 0) {
-            JOptionPane.showMessageDialog(this, "Silahkan Pilih Nama Karyawan");
-            JCNamaKaryawan.requestFocus();
-            return false;
-        } else {
-            return true;
-        }
-    }
-
     boolean cekdoubleitem(String item) {
         for (int i = 0; i < JTable.getRowCount(); i++) {
-            if (item.equals(JTable.getValueAt(i, 1))) {
+            if (item.equals(JTable.getValueAt(i, 1)) && i != JTable.getSelectedRow()) {
                 return true;
             }
         }
@@ -370,7 +360,7 @@ public class CalonPesertaPelatihan extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(JLTempatWaktuPelatihan2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(JTTempatWaktuPelatihan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(JTTempatWaktuPelatihan, javax.swing.GroupLayout.PREFERRED_SIZE, 528, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(JLPelatihan2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -381,13 +371,13 @@ public class CalonPesertaPelatihan extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(JLTanggalPelatihan2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(JTTanggalPelatihan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(JTTanggalPelatihan, javax.swing.GroupLayout.PREFERRED_SIZE, 528, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(JLJenisPelatihan, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(JLJenisPelatihan2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(JTJenisPelatihan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(JTJenisPelatihan, javax.swing.GroupLayout.PREFERRED_SIZE, 528, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(10, 10, 10))
         );
         layout.setVerticalGroup(
@@ -466,7 +456,7 @@ public class CalonPesertaPelatihan extends javax.swing.JFrame {
 
     private void JCNamaKaryawanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JCNamaKaryawanKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            JBTambahUbahTable.requestFocus();
+            TambahUbahTabel();
         }
     }//GEN-LAST:event_JCNamaKaryawanKeyPressed
 
@@ -495,6 +485,7 @@ public class CalonPesertaPelatihan extends javax.swing.JFrame {
             JCNamaKaryawan.load("SELECT '-- Pilih Nama Karyawan --' UNION ALL (SELECT `NamaKaryawan` FROM `tbmkaryawan` WHERE `Status`=1 OR `NamaKaryawan`='" + JTable.getValueAt(JTable.getSelectedRow(), 1).toString() + "' GROUP BY `NamaKaryawan` ORDER BY `NamaKaryawan` ASC)");
             JCNamaKaryawan.setSelectedItem(JTable.getValueAt(JTable.getSelectedRow(), 1).toString());
             JBTambahUbahTable.setText("Ubah");
+            JCNamaKaryawan.requestFocus();
         }
     }//GEN-LAST:event_JTableMouseClicked
 
@@ -606,15 +597,14 @@ public class CalonPesertaPelatihan extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     void TambahUbahTabel() {
-        if (JBTambahUbahTable.getText().equals("Tambah")) {
-            if (checkTable()) {
+        JCNamaKaryawan.hidePopup();
+        if (checkTable()) {
+            if (JBTambahUbahTable.getText().equals("Tambah")) {
                 DefaultTableModel model = (DefaultTableModel) JTable.getModel();
                 model.addRow(new Object[]{JTable.getRowCount() + 1, JCNamaKaryawan.getSelectedItem()});
                 JOptionPane.showMessageDialog(this, "Berhasil Tambah Data");
                 RefreshTbl();
-            }
-        } else {
-            if (checkTableUbah()) {
+            } else {
                 JTable.setValueAt(JCNamaKaryawan.getSelectedItem(), JTable.getSelectedRow(), 1);
                 JOptionPane.showMessageDialog(this, "Berhasil Ubah Data");
                 RefreshTbl();

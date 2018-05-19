@@ -92,41 +92,39 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="JLJenisPelatihan2" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="JTJenisPelatihan" max="32767" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="JLTanggalPelatihan" min="-2" pref="228" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="JLTanggalPelatihan2" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="JTTanggalPelatihan" max="32767" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="JLInstruktur" alignment="0" max="32767" attributes="0"/>
-                          <Component id="JLTanggalEvaluasi" alignment="0" max="32767" attributes="0"/>
-                          <Component id="JLTempatWaktuPelatihan" alignment="0" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="JLTempatWaktuPelatihan2" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="JTTempatWaktuPelatihan" max="32767" attributes="0"/>
+                              <Component id="JTJenisPelatihan" min="-2" pref="528" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="JLTanggalEvaluasi2" min="-2" max="-2" attributes="0"/>
+                              <Component id="JLTanggalPelatihan" min="-2" pref="228" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="JDTanggalEvaluasi" max="32767" attributes="0"/>
+                              <Component id="JLTanggalPelatihan2" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="JTTanggalPelatihan" min="-2" pref="528" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" attributes="0">
-                              <Component id="JLInstruktur2" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="JLInstruktur" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="JLTanggalEvaluasi" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="JLTempatWaktuPelatihan" alignment="0" max="32767" attributes="0"/>
+                              </Group>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="JTInstruktur" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Component id="JLTempatWaktuPelatihan2" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="JTTempatWaktuPelatihan" min="-2" pref="528" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="JLTanggalEvaluasi2" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="JDTanggalEvaluasi" min="-2" pref="528" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <Component id="JLInstruktur2" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="JTInstruktur" min="-2" pref="528" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>

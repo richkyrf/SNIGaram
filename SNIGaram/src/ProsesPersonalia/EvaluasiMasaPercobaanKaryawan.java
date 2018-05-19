@@ -131,35 +131,9 @@ public class EvaluasiMasaPercobaanKaryawan extends javax.swing.JFrame {
         }
     }
 
-    boolean checkTableUbah() {
-        if (JCNamaKaryawan.getSelectedIndex() == 0) {
-            JOptionPane.showMessageDialog(this, "Silahkan Pilih Nama Karyawan");
-            JCNamaKaryawan.requestFocus();
-            return false;
-        } else if (JTPenguasaanMateri.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Nilai Penguasaan Materi Tidak Boleh Kosong");
-            JTPenguasaanMateri.requestFocus();
-            return false;
-        } else if (JTKemampuanBekerja.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Nilai Kemampuan Bekerja Tidak Boleh Kosong");
-            JTKemampuanBekerja.requestFocus();
-            return false;
-        } else if (JTPenguasaanMateri.getInt() > 100) {
-            JOptionPane.showMessageDialog(this, "Nilai Penguasaan Materi Tidak Boleh Lebih Besar Dari 100");
-            JTPenguasaanMateri.requestFocus();
-            return false;
-        } else if (JTKemampuanBekerja.getInt() > 100) {
-            JOptionPane.showMessageDialog(this, "Nilai Kemampuan Bekerja Tidak Boleh Lebih Besar Dari 100");
-            JTKemampuanBekerja.requestFocus();
-            return false;
-        } else {
-            return true;
-        }
-    }
-
     boolean cekdoubleitem(String item) {
         for (int i = 0; i < JTable.getRowCount(); i++) {
-            if (item.equals(JTable.getValueAt(i, 1))) {
+            if (item.equals(JTable.getValueAt(i, 1)) && i != JTable.getSelectedRow()) {
                 return true;
             }
         }
@@ -532,6 +506,7 @@ public class EvaluasiMasaPercobaanKaryawan extends javax.swing.JFrame {
             JTPenguasaanMateri.setText(JTable.getValueAt(JTable.getSelectedRow(), 2).toString());
             JTKemampuanBekerja.setText(JTable.getValueAt(JTable.getSelectedRow(), 3).toString());
             JBTambahUbahTable.setText("Ubah");
+            JCNamaKaryawan.requestFocus();
         }
     }//GEN-LAST:event_JTableMouseClicked
 
@@ -636,15 +611,13 @@ public class EvaluasiMasaPercobaanKaryawan extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     void TambahUbahTabel() {
-        if (JBTambahUbahTable.getText().equals("Tambah")) {
-            if (checkTable()) {
+        if (checkTable()) {
+            if (JBTambahUbahTable.getText().equals("Tambah")) {
                 DefaultTableModel model = (DefaultTableModel) JTable.getModel();
                 model.addRow(new Object[]{JTable.getRowCount() + 1, JCNamaKaryawan.getSelectedItem(), JTPenguasaanMateri.getInt(), JTKemampuanBekerja.getInt()});
                 JOptionPane.showMessageDialog(this, "Berhasil Tambah Data");
                 RefreshTbl();
-            }
-        } else {
-            if (checkTableUbah()) {
+            } else {
                 JTable.setValueAt(JCNamaKaryawan.getSelectedItem(), JTable.getSelectedRow(), 1);
                 JTable.setValueAt(JTPenguasaanMateri.getInt(), JTable.getSelectedRow(), 2);
                 JTable.setValueAt(JTKemampuanBekerja.getInt(), JTable.getSelectedRow(), 3);

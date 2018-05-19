@@ -49,14 +49,13 @@ public class UsulPelatihan extends javax.swing.JFrame {
 
     void loadEditData() {
         DRunSelctOne dRunSelctOne = new DRunSelctOne();
-        dRunSelctOne.setQuery("SELECT `IdUsulPelatihan`, DATE_FORMAT(`Tanggal`,'%d-%m-%Y'), `JenisPelatihan`, `Tempat`, SUBSTRING(`Waktu`,1,2), SUBSTRING(`Waktu`,4,2), `Keterangan` FROM `snitbusulpelatihan` WHERE `IdUsulPelatihan` = " + IdEdit);
+        dRunSelctOne.setQuery("SELECT `IdUsulPelatihan`, DATE_FORMAT(`Tanggal`,'%d-%m-%Y'), `JenisPelatihan`, `Tempat`, SUBSTRING(`Waktu`,1,5), `Keterangan` FROM `snitbusulpelatihan` WHERE `IdUsulPelatihan` = " + IdEdit);
         ArrayList<String> list = dRunSelctOne.excute();
         JDTanggal.setDate(FDateF.strtodate(list.get(1), "dd-MM-yyyy"));
         JTJenisPelatihan.setText(list.get(2));
         JTTempat.setText(list.get(3));
-        JTWaktuJam.setText(list.get(4));
-        JTWaktuMenit.setText(list.get(5));
-        JTAKeterangan.setText(list.get(6));
+        JTWaktu.setText(list.get(4));
+        JTAKeterangan.setText(list.get(5));
     }
 
     Boolean checkInput() {
@@ -71,14 +70,6 @@ public class UsulPelatihan extends javax.swing.JFrame {
         } else if (JTTempat.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Tempat Tidak Boleh Kosong");
             JTTempat.requestFocus();
-            return false;
-        } else if (JTWaktuJam.getInt() > 23) {
-            JOptionPane.showMessageDialog(null, "Waktu (Jam) Salah");
-            JTWaktuJam.requestFocus();
-            return false;
-        } else if (JTWaktuMenit.getInt() > 59) {
-            JOptionPane.showMessageDialog(null, "Waktu (Menit) Salah");
-            JTWaktuMenit.requestFocus();
             return false;
         } else {
             return true;
@@ -105,9 +96,7 @@ public class UsulPelatihan extends javax.swing.JFrame {
         JTTempat = new KomponenGUI.JtextF();
         JLWaktu = new KomponenGUI.JlableF();
         JLWaktu2 = new KomponenGUI.JlableF();
-        JTWaktuJam = new KomponenGUI.JtKoma();
-        JLWaktu3 = new KomponenGUI.JlableF();
-        JTWaktuMenit = new KomponenGUI.JtKoma();
+        JTWaktu = new javax.swing.JFormattedTextField();
         JLKeterangan = new KomponenGUI.JlableF();
         JLKeterangan2 = new KomponenGUI.JlableF();
         JSPKeterangan = new javax.swing.JScrollPane();
@@ -158,19 +147,12 @@ public class UsulPelatihan extends javax.swing.JFrame {
 
         JLWaktu2.setText(":");
 
-        JTWaktuJam.setText("00");
-        JTWaktuJam.addKeyListener(new java.awt.event.KeyAdapter() {
+        JTWaktu.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("HH:mm"))));
+        JTWaktu.setText("00:00");
+        JTWaktu.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        JTWaktu.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                JTWaktuJamKeyPressed(evt);
-            }
-        });
-
-        JLWaktu3.setText(".");
-
-        JTWaktuMenit.setText("00");
-        JTWaktuMenit.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                JTWaktuMenitKeyPressed(evt);
+                JTWaktuKeyPressed(evt);
             }
         });
 
@@ -262,12 +244,7 @@ public class UsulPelatihan extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(JLWaktu2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(JTWaktuJam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(2, 2, 2)
-                                .addComponent(JLWaktu3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(2, 2, 2)
-                                .addComponent(JTWaktuMenit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                .addComponent(JTWaktu)))))
                 .addGap(10, 10, 10))
         );
         layout.setVerticalGroup(
@@ -293,9 +270,7 @@ public class UsulPelatihan extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(JLWaktu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(JLWaktu2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JTWaktuJam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JTWaktuMenit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JLWaktu3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(JTWaktu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -356,21 +331,15 @@ public class UsulPelatihan extends javax.swing.JFrame {
 
     private void JTTempatKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JTTempatKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            JTWaktuJam.requestFocus();
+            JTWaktu.requestFocus();
         }
     }//GEN-LAST:event_JTTempatKeyPressed
 
-    private void JTWaktuJamKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JTWaktuJamKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            JTWaktuMenit.requestFocus();
-        }
-    }//GEN-LAST:event_JTWaktuJamKeyPressed
-
-    private void JTWaktuMenitKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JTWaktuMenitKeyPressed
+    private void JTWaktuKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JTWaktuKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             JTAKeterangan.requestFocus();
         }
-    }//GEN-LAST:event_JTWaktuMenitKeyPressed
+    }//GEN-LAST:event_JTWaktuKeyPressed
 
     /**
      * @param args the command line arguments
@@ -423,20 +392,18 @@ public class UsulPelatihan extends javax.swing.JFrame {
     private KomponenGUI.JlableF JLTempat2;
     private KomponenGUI.JlableF JLWaktu;
     private KomponenGUI.JlableF JLWaktu2;
-    private KomponenGUI.JlableF JLWaktu3;
     private javax.swing.JScrollPane JSPKeterangan;
     private KomponenGUI.JTextAreaF JTAKeterangan;
     private KomponenGUI.JtextF JTJenisPelatihan;
     private KomponenGUI.JtextF JTTempat;
-    private KomponenGUI.JtKoma JTWaktuJam;
-    private KomponenGUI.JtKoma JTWaktuMenit;
+    private javax.swing.JFormattedTextField JTWaktu;
     // End of variables declaration//GEN-END:variables
 
     void tambahData(Boolean tutup) {
         if (checkInput()) {
             Insert insert = new Insert();
             Boolean berhasil = false;
-            berhasil = insert.simpan("INSERT INTO `snitbusulpelatihan`(`Tanggal`, `JenisPelatihan`, `Tempat`, `Waktu`, `Keterangan`) VALUES('" + FDateF.datetostr(JDTanggal.getDate(), "yyyy-MM-dd") + "','" + JTJenisPelatihan.getText() + "','" + JTTempat.getText() + "','" + JTWaktuJam.getInt() + ":" + JTWaktuMenit.getInt() + ":00" + "','" + JTAKeterangan.getText() + "')", "Usul Pelatihan", this);
+            berhasil = insert.simpan("INSERT INTO `snitbusulpelatihan`(`Tanggal`, `JenisPelatihan`, `Tempat`, `Waktu`, `Keterangan`) VALUES('" + FDateF.datetostr(JDTanggal.getDate(), "yyyy-MM-dd") + "','" + JTJenisPelatihan.getText() + "','" + JTTempat.getText() + "','" + JTWaktu.getText() + "','" + JTAKeterangan.getText() + "')", "Usul Pelatihan", this);
             if (berhasil) {
                 if (listUsulPelatihan != null) {
                     listUsulPelatihan.load();
@@ -447,8 +414,7 @@ public class UsulPelatihan extends javax.swing.JFrame {
                 } else {
                     JTJenisPelatihan.setText("");
                     JTTempat.setText("");
-                    JTWaktuJam.setText("00");
-                    JTWaktuMenit.setText("00");
+                    JTWaktu.setText("00:00");
                     JTAKeterangan.setText("");
                     JTJenisPelatihan.requestFocus();
                 }
@@ -460,7 +426,7 @@ public class UsulPelatihan extends javax.swing.JFrame {
         if (checkInput()) {
             Update update = new Update();
             Boolean berhasil = false;
-            berhasil = update.Ubah("UPDATE `snitbusulpelatihan` SET `Tanggal`='" + FDateF.datetostr(JDTanggal.getDate(), "yyyy-MM-dd") + "',`JenisPelatihan`='" + JTJenisPelatihan.getText() + "',`Tempat`='" + JTTempat.getText() + "',`Waktu`='" + JTWaktuJam.getInt() + ":" + JTWaktuMenit.getInt() + ":00" + "',`Keterangan`='" + JTAKeterangan.getText() + "' WHERE `IdUsulPelatihan` = " + IdEdit, "Usul Pelatihan", this);
+            berhasil = update.Ubah("UPDATE `snitbusulpelatihan` SET `Tanggal`='" + FDateF.datetostr(JDTanggal.getDate(), "yyyy-MM-dd") + "',`JenisPelatihan`='" + JTJenisPelatihan.getText() + "',`Tempat`='" + JTTempat.getText() + "',`Waktu`='" + JTWaktu.getText() + "',`Keterangan`='" + JTAKeterangan.getText() + "' WHERE `IdUsulPelatihan` = " + IdEdit, "Usul Pelatihan", this);
             if (listUsulPelatihan != null) {
                 listUsulPelatihan.load();
             }

@@ -143,35 +143,9 @@ public class DaftarRiwayatHidup extends javax.swing.JFrame {
         }
     }
 
-    boolean checkTableUbah() {
-        if (JDTanggalMasuk.getDate() == null) {
-            JOptionPane.showMessageDialog(this, "Tanggal Masuk Tidak Boleh Kosong");
-            JDTanggalMasuk.requestFocus();
-            return false;
-        } else if (JDTanggalKeluar.getDate() == null) {
-            JOptionPane.showMessageDialog(this, "Tanggal Keluar Tidak Boleh Kosong");
-            JDTanggalKeluar.requestFocus();
-            return false;
-        } else if (JTBagian.getText().replace(" ", "").isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Nama Bagian Tidak Boleh Kosong");
-            JTBagian.requestFocus();
-            return false;
-        } else if (JTKeterangan.getText().replace(" ", "").isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Keterangan Tidak Boleh Kosong");
-            JTKeterangan.requestFocus();
-            return false;
-        } else if (JDTanggalKeluar.getDate().compareTo(JDTanggalMasuk.getDate()) < 0) {
-            JOptionPane.showMessageDialog(this, "Tanggal Masuk Tidak Boleh Lebih Besar Dari Tanggal Keluar");
-            JDTanggalMasuk.requestFocus();
-            return false;
-        } else {
-            return true;
-        }
-    }
-
     boolean cekdoubleitem(String item1, String item2, String item3, String item4) {
         for (int i = 0; i < JTable.getRowCount(); i++) {
-            if (item1.equals(JTable.getValueAt(i, 1)) && item2.equals(JTable.getValueAt(i, 2)) && item3.equals(JTable.getValueAt(i, 3)) && item4.equals(JTable.getValueAt(i, 4))) {
+            if (item1.equals(JTable.getValueAt(i, 1)) && item2.equals(JTable.getValueAt(i, 2)) && item3.equals(JTable.getValueAt(i, 3)) && item4.equals(JTable.getValueAt(i, 4)) && i != JTable.getSelectedRow()) {
                 return true;
             }
         }
@@ -617,6 +591,7 @@ public class DaftarRiwayatHidup extends javax.swing.JFrame {
             JTBagian.setText(JTable.getValueAt(JTable.getSelectedRow(), 3).toString());
             JTKeterangan.setText(JTable.getValueAt(JTable.getSelectedRow(), 4).toString());
             JBTambahUbahTable.setText("Ubah");
+            JTBagian.requestFocus();
         }
     }//GEN-LAST:event_JTableMouseClicked
 
@@ -766,15 +741,14 @@ public class DaftarRiwayatHidup extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     void TambahUbahTabel() {
-        if (JBTambahUbahTable.getText().equals("Tambah")) {
-            if (checkTable()) {
+        if (checkTable()) {
+            if (JBTambahUbahTable.getText().equals("Tambah")) {
+
                 DefaultTableModel model = (DefaultTableModel) JTable.getModel();
                 model.addRow(new Object[]{JTable.getRowCount() + 1, FDateF.datetostr(JDTanggalMasuk.getDate(), "dd-MM-yyyy"), FDateF.datetostr(JDTanggalKeluar.getDate(), "dd-MM-yyyy"), JTBagian.getText(), JTKeterangan.getText()});
                 JOptionPane.showMessageDialog(this, "Berhasil Tambah Data");
                 RefreshTbl();
-            }
-        } else {
-            if (checkTableUbah()) {
+            } else {
                 JTable.setValueAt(FDateF.datetostr(JDTanggalMasuk.getDate(), "dd-MM-yyyy"), JTable.getSelectedRow(), 1);
                 JTable.setValueAt(FDateF.datetostr(JDTanggalKeluar.getDate(), "dd-MM-yyyy"), JTable.getSelectedRow(), 2);
                 JTable.setValueAt(JTBagian.getText(), JTable.getSelectedRow(), 3);
