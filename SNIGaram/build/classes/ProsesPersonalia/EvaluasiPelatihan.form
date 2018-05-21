@@ -129,6 +129,10 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="JLDetailEvaluasiPelatihan" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
               </Group>
           </Group>
       </Group>
@@ -174,9 +178,11 @@
                   <Component id="JLInstruktur2" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="JTInstruktur" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="JSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
               <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+              <Component id="JLDetailEvaluasiPelatihan" min="-2" pref="22" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="JBTambahUbahTable" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="JCNamaKaryawan" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -190,7 +196,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="JBRefreshTable" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="JSPTable" min="-2" pref="200" max="-2" attributes="0"/>
+                  <Component id="JSPTable" min="-2" pref="180" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="JSeparator2" min="-2" pref="10" max="-2" attributes="0"/>
@@ -325,6 +331,12 @@
       </AuxValues>
     </Component>
     <Component class="javax.swing.JSeparator" name="JSeparator1">
+    </Component>
+    <Component class="KomponenGUI.JlableF" name="JLDetailEvaluasiPelatihan">
+      <Properties>
+        <Property name="horizontalAlignment" type="int" value="0"/>
+        <Property name="text" type="java.lang.String" value="-- Detail Evaluasi Pelatihan --"/>
+      </Properties>
     </Component>
     <Component class="KomponenGUI.JcomboboxF" name="JCNamaKaryawan">
       <Events>

@@ -185,6 +185,7 @@ public class DaftarRiwayatHidup extends javax.swing.JFrame {
         JLStatus2 = new KomponenGUI.JlableF();
         JCStatus = new KomponenGUI.JcomboboxF();
         JSeparator1 = new javax.swing.JSeparator();
+        JLDetailDaftarRiwayatHidup = new KomponenGUI.JlableF();
         JDTanggalMasuk = new KomponenGUI.JdateCF();
         JLTanggalMasukKeluar = new KomponenGUI.JlableF();
         JDTanggalKeluar = new KomponenGUI.JdateCF();
@@ -257,6 +258,9 @@ public class DaftarRiwayatHidup extends javax.swing.JFrame {
                 JCStatusKeyPressed(evt);
             }
         });
+
+        JLDetailDaftarRiwayatHidup.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        JLDetailDaftarRiwayatHidup.setText("-- Detail Daftar Riwayat Hidup --");
 
         JDTanggalMasuk.setDate(new Date());
         JDTanggalMasuk.setDateFormatString("dd-MM-yyyy");
@@ -475,6 +479,9 @@ public class DaftarRiwayatHidup extends javax.swing.JFrame {
                         .addComponent(JLKeterangan2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(JSPKeterangan)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(JLDetailDaftarRiwayatHidup, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())))
         );
         layout.setVerticalGroup(
@@ -504,6 +511,8 @@ public class DaftarRiwayatHidup extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(JSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
+                .addComponent(JLDetailDaftarRiwayatHidup, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(JBTambahUbahTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -718,6 +727,7 @@ public class DaftarRiwayatHidup extends javax.swing.JFrame {
     private KomponenGUI.JdateCF JDTanggalBergabung;
     private KomponenGUI.JdateCF JDTanggalKeluar;
     private KomponenGUI.JdateCF JDTanggalMasuk;
+    private KomponenGUI.JlableF JLDetailDaftarRiwayatHidup;
     private KomponenGUI.JlableF JLKeterangan;
     private KomponenGUI.JlableF JLKeterangan2;
     private KomponenGUI.JlableF JLNamaKaryawan;
