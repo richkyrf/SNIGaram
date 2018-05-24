@@ -138,10 +138,21 @@ public class SupplierTerpilih extends javax.swing.JFrame {
         jlableF35.setText(":");
 
         JCNamaPemasok.load("SELECT '-- Silahkan Pilih Pemasok --' as 'Pemasok' UNION SELECT `Pemasok` FROM `tbmpemasok` UNION SELECT `PemasokLain` FROM `tbmpemasoklain`");
+        JCNamaPemasok.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                JCNamaPemasokKeyPressed(evt);
+            }
+        });
 
         jlableF10.setText("Produk");
 
         jlableF36.setText(":");
+
+        JTProduk.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                JTProdukKeyPressed(evt);
+            }
+        });
 
         jlableF11.setText("Spesifikasi");
 
@@ -149,6 +160,11 @@ public class SupplierTerpilih extends javax.swing.JFrame {
 
         JTASpesifikasi.setColumns(20);
         JTASpesifikasi.setRows(5);
+        JTASpesifikasi.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                JTASpesifikasiKeyPressed(evt);
+            }
+        });
         jScrollPane1.setViewportView(JTASpesifikasi);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -247,6 +263,28 @@ public class SupplierTerpilih extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_formWindowClosed
 
+    private void JTProdukKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JTProdukKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            JTASpesifikasi.requestFocus();
+        }
+    }//GEN-LAST:event_JTProdukKeyPressed
+
+    private void JTASpesifikasiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JTASpesifikasiKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            if (IdEdit == null) {
+                tambahData(false);
+            } else {
+                ubahData();
+            }
+        }
+    }//GEN-LAST:event_JTASpesifikasiKeyPressed
+
+    private void JCNamaPemasokKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_JCNamaPemasokKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            JTProduk.requestFocus();
+        }
+    }//GEN-LAST:event_JCNamaPemasokKeyPressed
+
     /**
      * @param args the command line arguments
      */
@@ -306,7 +344,7 @@ public class SupplierTerpilih extends javax.swing.JFrame {
         if (checkInput()) {
             Insert insert = new Insert();
             Boolean berhasil;
-            berhasil = insert.simpan("INSERT INTO `snitbsupplierterplilih`(`NamaPemasok`, `Produk`, `Spesifikasi`) VALUES (" + JCNamaPemasok.getSelectedItem() + "','" + JTProduk.getText() + "','" + JTASpesifikasi.getText() + "')", "Evaluasi Supplier", this);
+            berhasil = insert.simpan("INSERT INTO `snitbsupplierterplilih`(`NamaPemasok`, `Produk`, `Spesifikasi`) VALUES ('" + JCNamaPemasok.getSelectedItem() + "','" + JTProduk.getText() + "','" + JTASpesifikasi.getText() + "')", "Evaluasi Supplier", this);
             if (berhasil) {
                 if (listEvaluasiSupplier != null) {
                     listEvaluasiSupplier.load();

@@ -601,11 +601,11 @@ public class List extends javax.swing.JFrame {
                 break;
             case "List Pengaduan Pelanggan":
                 jcomCari1.setQuery("SELECT `IdPengaduan` as 'ID', DATE_FORMAT(`Tanggal`,'%d-%m-%Y') as 'Tanggal', `AsalInstitusi` as 'Asal/Institusi', `YangMenerima` as 'Yang Menerima', `JenisPengaduan` as 'Jenis Pengaduan', `BagianYangMenangani` as 'Bagian Yang Menangani', `RincianPengaduan` as 'Rincian Pengaduan', `TindakLanjutPengaduan` as 'Tindak Lanjut Pengaduan', `TindakanPencegahan` as 'Tindakan Pencegahan', DATE_FORMAT(`TargetTanggalPenyelesaian`,'%d-%m-%Y') as 'Target Tanggal Penyesuaian', `VerifikasiPenyelesaian` as 'Verifikasi Penyelesaian', IF(`Selesai`=1,'Selesai','Belum Selesai') as 'Status' FROM `snitbpengaduanpelanggan` WHERE 1");
-                jcomCari1.setOrder(" ORDER BY `Tanggal` DESC ");
+                jcomCari1.setOrder(" ORDER BY `snitbpengaduanpelanggan`.`Tanggal` DESC ");
                 break;
             case "List Survey Kepuasan Pelanggan":
                 jcomCari1.setQuery("SELECT `IdSurveyKepuasanPelanggan` as 'ID', `NamaPerusahaan` as 'Nama Perusahaan', `Alamat`, DATE_FORMAT(`Tanggal`,'%d-%m-%Y') as 'Tanggal', `NamaPelanggan` as 'Nama Pelanggan', `Nilai`, `CatatanDariPelanggan` as 'Catatan Dari Pelanggan' FROM `snitbsurveykepuasanpelanggan` WHERE 1");
-                jcomCari1.setOrder(" ORDER BY `Tanggal` DESC ");
+                jcomCari1.setOrder(" ORDER BY `snitbsurveykepuasanpelanggan`.`Tanggal` DESC ");
                 break;
             case "List Data Penjualan":
                 jcomCari1.setQuery("SELECT `IdPemeliharaan` as 'ID', DATE_FORMAT(`Tanggal`,'%d-%m-%Y') as 'Tanggal', `NamaBarang` as 'Nama Barang', `Deskripsi`, a.`Keterangan` FROM `snitbpemeliharaan`a JOIN `snitbmbarangteknik`b ON a.`IdBarangTeknik`=b.`IdBarangTeknik` WHERE 1");
