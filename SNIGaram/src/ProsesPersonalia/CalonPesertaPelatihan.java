@@ -64,7 +64,7 @@ public class CalonPesertaPelatihan extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) JTable.getModel();
         model.getDataVector().removeAllElements();
         RunSelct runSelct = new RunSelct();
-        runSelct.setQuery("SELECT `IdPelatihanDetail`, `NamaKaryawan` FROM `snitbpelatihandetail` AS A JOIN `snitbpelatihan` AS B ON A.`IdPelatihan`=B.`IdPelatihan` JOIN `tbmkaryawan` AS C ON A.`IdKaryawan`=C.`IdKaryawan` WHERE A.`IdPelatihan` = '" + list.get(0) + "'");
+        runSelct.setQuery("SELECT `IdPelatihanDetail`, UCWORDS(`NamaKaryawan`) FROM `snitbpelatihandetail` AS A JOIN `snitbpelatihan` AS B ON A.`IdPelatihan`=B.`IdPelatihan` JOIN `tbmkaryawan` AS C ON A.`IdKaryawan`=C.`IdKaryawan` WHERE A.`IdPelatihan` = '" + list.get(0) + "'");
         try {
             ResultSet rs = runSelct.excute();
             int row = 0;
@@ -121,7 +121,7 @@ public class CalonPesertaPelatihan extends javax.swing.JFrame {
     }
 
     void RefreshTbl() {
-        JCNamaKaryawan.load("SELECT '-- Pilih Nama Karyawan --' UNION ALL (SELECT `NamaKaryawan` FROM `tbmkaryawan` WHERE `Status`=1 GROUP BY `NamaKaryawan` ORDER BY `NamaKaryawan` ASC)");
+        JCNamaKaryawan.load("SELECT '-- Pilih Nama Karyawan --' UNION ALL (SELECT UCWORDS(`NamaKaryawan`) FROM `tbmkaryawan` WHERE `Status`=1 GROUP BY `NamaKaryawan` ORDER BY `NamaKaryawan` ASC)");
         JCNamaKaryawan.setSelectedIndex(0);
         JTable.clearSelection();
         JBTambahUbahTable.setText("Tambah");
@@ -213,7 +213,7 @@ public class CalonPesertaPelatihan extends javax.swing.JFrame {
         JLDetailCalonPesertaPelatihan.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         JLDetailCalonPesertaPelatihan.setText("-- Detail Calon Peserta Pelatihan --");
 
-        JCNamaKaryawan.load("SELECT '-- Pilih Nama Karyawan --' UNION ALL (SELECT `NamaKaryawan` FROM `tbmkaryawan` WHERE `Status`=1 GROUP BY `NamaKaryawan` ORDER BY `NamaKaryawan` ASC)");
+        JCNamaKaryawan.load("SELECT '-- Pilih Nama Karyawan --' UNION ALL (SELECT UCWORDS(`NamaKaryawan`) FROM `tbmkaryawan` WHERE `Status`=1 GROUP BY `NamaKaryawan` ORDER BY `NamaKaryawan` ASC)");
         JCNamaKaryawan.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 JCNamaKaryawanKeyPressed(evt);
@@ -494,7 +494,7 @@ public class CalonPesertaPelatihan extends javax.swing.JFrame {
 
     private void JTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JTableMouseClicked
         if (JTable.getSelectedRow() != -1) {
-            JCNamaKaryawan.load("SELECT '-- Pilih Nama Karyawan --' UNION ALL (SELECT `NamaKaryawan` FROM `tbmkaryawan` WHERE `Status`=1 OR `NamaKaryawan`='" + JTable.getValueAt(JTable.getSelectedRow(), 1).toString() + "' GROUP BY `NamaKaryawan` ORDER BY `NamaKaryawan` ASC)");
+            JCNamaKaryawan.load("SELECT '-- Pilih Nama Karyawan --' UNION ALL (SELECT UCWORDS(`NamaKaryawan`) FROM `tbmkaryawan` WHERE `Status`=1 OR `NamaKaryawan`='" + JTable.getValueAt(JTable.getSelectedRow(), 1).toString() + "' GROUP BY `NamaKaryawan` ORDER BY `NamaKaryawan` ASC)");
             JCNamaKaryawan.setSelectedItem(JTable.getValueAt(JTable.getSelectedRow(), 1).toString());
             JBTambahUbahTable.setText("Ubah");
             JCNamaKaryawan.requestFocus();

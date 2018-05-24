@@ -56,10 +56,10 @@ public class DaftarRiwayatHidup extends javax.swing.JFrame {
     }
 
     void loadeditdata() {
-        JCNamaKaryawan.load("SELECT '-- Pilih Nama Karyawan --' UNION ALL (SELECT `NamaKaryawan` FROM `tbmkaryawan` AS A LEFT JOIN `snitbriwayathidup` AS B ON A.`IdKaryawan`=B.`IdKaryawan` WHERE (A.`Status`=1 AND B.`IdKaryawan` IS NULL) OR `IdRiwayatHidup`=" + IdEdit + " GROUP BY `NamaKaryawan` ORDER BY `NamaKaryawan` ASC)");
+        JCNamaKaryawan.load("SELECT '-- Pilih Nama Karyawan --' UNION ALL (SELECT UCWORDS(`NamaKaryawan`) FROM `tbmkaryawan` AS A LEFT JOIN `snitbriwayathidup` AS B ON A.`IdKaryawan`=B.`IdKaryawan` WHERE (A.`Status`=1 AND B.`IdKaryawan` IS NULL) OR `IdRiwayatHidup`=" + IdEdit + " GROUP BY `NamaKaryawan` ORDER BY `NamaKaryawan` ASC)");
         DRunSelctOne dRunSelctOne = new DRunSelctOne();
         dRunSelctOne.seterorm("Eror Gagal Menampilkan Data Daftar Riwayat Hidup");
-        dRunSelctOne.setQuery("SELECT `IdRiwayatHidup`, `NamaKaryawan`, DATE_FORMAT(`TanggalBergabung`, '%d-%m-%Y'), `PendidikanFormal`, A.`Status`, A.`Keterangan` FROM `snitbriwayathidup` AS A JOIN `tbmkaryawan` AS B ON A.`IdKaryawan`=B.`IdKaryawan` WHERE `IdRiwayatHidup` = '" + IdEdit + "'");
+        dRunSelctOne.setQuery("SELECT `IdRiwayatHidup`, UCWORDS(`NamaKaryawan`), DATE_FORMAT(`TanggalBergabung`, '%d-%m-%Y'), `PendidikanFormal`, A.`Status`, A.`Keterangan` FROM `snitbriwayathidup` AS A JOIN `tbmkaryawan` AS B ON A.`IdKaryawan`=B.`IdKaryawan` WHERE `IdRiwayatHidup` = '" + IdEdit + "'");
         ArrayList<String> list = dRunSelctOne.excute();
         JCNamaKaryawan.setSelectedItem(list.get(1));
         JDTanggalBergabung.setDate(FDateF.strtodate(list.get(2), "dd-MM-yyyy"));
@@ -218,7 +218,7 @@ public class DaftarRiwayatHidup extends javax.swing.JFrame {
 
         JLNamaKaryawan2.setText(":");
 
-        JCNamaKaryawan.load("SELECT '-- Pilih Nama Karyawan --' UNION ALL (SELECT `NamaKaryawan` FROM `tbmkaryawan` AS A LEFT JOIN `snitbriwayathidup` AS B ON A.`IdKaryawan`=B.`IdKaryawan` WHERE A.`Status`=1 AND B.`IdKaryawan` IS NULL GROUP BY `NamaKaryawan` ORDER BY `NamaKaryawan` ASC)");
+        JCNamaKaryawan.load("SELECT '-- Pilih Nama Karyawan --' UNION ALL (SELECT UCWORDS(`NamaKaryawan`) FROM `tbmkaryawan` AS A LEFT JOIN `snitbriwayathidup` AS B ON A.`IdKaryawan`=B.`IdKaryawan` WHERE A.`Status`=1 AND B.`IdKaryawan` IS NULL GROUP BY `NamaKaryawan` ORDER BY `NamaKaryawan` ASC)");
         JCNamaKaryawan.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 JCNamaKaryawanKeyPressed(evt);
@@ -809,7 +809,7 @@ public class DaftarRiwayatHidup extends javax.swing.JFrame {
                     JTable.getColumnModel().getColumn(2).setPreferredWidth(110);
                     JTable.getColumnModel().getColumn(3).setPreferredWidth(250);
                     JTable.getColumnModel().getColumn(4).setPreferredWidth(364);
-                    JCNamaKaryawan.load("SELECT '-- Pilih Nama Karyawan --' UNION ALL (SELECT `NamaKaryawan` FROM `tbmkaryawan` AS A LEFT JOIN `snitbriwayathidup` AS B ON A.`IdKaryawan`=B.`IdKaryawan` WHERE A.`Status`=1 AND B.`IdKaryawan` IS NULL GROUP BY `NamaKaryawan` ORDER BY `NamaKaryawan` ASC)");
+                    JCNamaKaryawan.load("SELECT '-- Pilih Nama Karyawan --' UNION ALL (SELECT UCWORDS(`NamaKaryawan`) FROM `tbmkaryawan` AS A LEFT JOIN `snitbriwayathidup` AS B ON A.`IdKaryawan`=B.`IdKaryawan` WHERE A.`Status`=1 AND B.`IdKaryawan` IS NULL GROUP BY `NamaKaryawan` ORDER BY `NamaKaryawan` ASC)");
                     JDTanggalBergabung.setDate(new Date());
                     JCPendidikanFormal.setSelectedIndex(0);
                     JCStatus.setSelectedIndex(0);

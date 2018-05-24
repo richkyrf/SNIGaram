@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="F 06.02.00.01 Daftar Riwayat Hidup" language="groovy" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="681fcae0-315d-47c3-91ca-fbcc5a2553a6">
-	<property name="ireport.zoom" value="1.2100000000000095"/>
+	<property name="ireport.zoom" value="1.210000000000012"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="107"/>
+	<property name="ireport.y" value="44"/>
 	<parameter name="Tanggal" class="java.util.Date" isForPrompting="false">
 		<defaultValueExpression><![CDATA[new Date()]]></defaultValueExpression>
 	</parameter>
@@ -13,7 +13,7 @@
 		<defaultValueExpression><![CDATA["2018-12-31"]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[SELECT `NamaKaryawan` AS 'Nama', `TanggalBergabung` AS 'Tanggal Bergabung', `PendidikanFormal` AS 'Pendidikan Formal', A.`Status`, `TanggalMulai` AS 'Tanggal Mulai', `TanggalSelesai` AS 'Tanggal Selesai', `Bagian`, B.`Keterangan` FROM `snitbriwayathidup` AS A JOIN `snitbriwayathidupdetail` AS B ON A.`IdRiwayatHidup`=B.`IdRiwayatHidup` JOIN `tbmkaryawan` AS C ON A.`IdKaryawan`=C.`IdKaryawan` WHERE `TanggalBergabung` BETWEEN $P{Tanggal_Awal} AND $P{Tanggal_Akhir} ORDER BY `TanggalBergabung`, `Nama`, `TanggalMulai`]]>
+		<![CDATA[SELECT UCWORDS(`NamaKaryawan`) AS 'Nama', `TanggalBergabung` AS 'Tanggal Bergabung', `PendidikanFormal` AS 'Pendidikan Formal', A.`Status`, `TanggalMulai` AS 'Tanggal Mulai', `TanggalSelesai` AS 'Tanggal Selesai', `Bagian`, B.`Keterangan` FROM `snitbriwayathidup` AS A LEFT JOIN `snitbriwayathidupdetail` AS B ON A.`IdRiwayatHidup`=B.`IdRiwayatHidup` JOIN `tbmkaryawan` AS C ON A.`IdKaryawan`=C.`IdKaryawan` WHERE `TanggalBergabung` BETWEEN $P{Tanggal_Awal} AND $P{Tanggal_Akhir} ORDER BY `TanggalBergabung`, `Nama`, `TanggalMulai`]]>
 	</queryString>
 	<field name="Nama" class="java.lang.String"/>
 	<field name="Tanggal Bergabung" class="java.sql.Date"/>
@@ -226,7 +226,7 @@
 	</columnHeader>
 	<detail>
 		<band height="20" splitType="Stretch">
-			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy">
+			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy" isBlankWhenNull="true">
 				<reportElement stretchType="RelativeToTallestObject" x="40" y="0" width="70" height="20" uuid="9171dd27-76f5-4107-a018-6badcdb01241"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
@@ -240,7 +240,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Tanggal Mulai}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement stretchType="RelativeToTallestObject" x="195" y="0" width="210" height="20" uuid="04187240-53a7-4685-9e6d-1376cce49d72"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
@@ -254,7 +254,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Bagian}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement stretchType="RelativeToTallestObject" x="405" y="0" width="150" height="20" uuid="676ce5dc-3804-448b-9a0d-07f7ba1c900b"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
@@ -282,7 +282,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$V{PAGE_COUNT}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy">
+			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy" isBlankWhenNull="true">
 				<reportElement stretchType="RelativeToTallestObject" x="125" y="0" width="70" height="20" uuid="b2ec1d22-5ef8-47f1-a315-a52a81ab7586"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
@@ -296,16 +296,16 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Tanggal Selesai}]]></textFieldExpression>
 			</textField>
-			<staticText>
-				<reportElement x="105" y="0" width="25" height="20" uuid="44810b6f-9208-4bf2-a5d4-f6ec0c993863"/>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="107" y="0" width="21" height="20" uuid="2df3987a-aeab-440f-a035-a4c3059d827e"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<bottomPen lineWidth="0.5"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Gadugi" size="12"/>
 				</textElement>
-				<text><![CDATA[s.d]]></text>
-			</staticText>
+				<textFieldExpression><![CDATA[$F{Tanggal Mulai}==null?"":"s.d"]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
 	<pageFooter>

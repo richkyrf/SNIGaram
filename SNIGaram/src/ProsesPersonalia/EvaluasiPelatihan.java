@@ -73,7 +73,7 @@ public class EvaluasiPelatihan extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) JTable.getModel();
         model.getDataVector().removeAllElements();
         RunSelct runSelct = new RunSelct();
-        runSelct.setQuery("SELECT `IdEvaluasiPelatihanDetail`, `NamaKaryawan`, `PenguasaanMateri`, `KemampuanBekerja` FROM `snitbevaluasipelatihandetail` AS A JOIN `snitbevaluasipelatihan` AS B ON A.`IdEvaluasiPelatihan`=B.`IdEvaluasiPelatihan` JOIN `snitbpelatihandetail` AS C ON A.`IdPelatihanDetail`=C.`IdPelatihanDetail` JOIN `tbmkaryawan` AS D ON C.`IdKaryawan`=D.`IdKaryawan` WHERE A.`IdEvaluasiPelatihan` = '" + list.get(0) + "'");
+        runSelct.setQuery("SELECT `IdEvaluasiPelatihanDetail`, UCWORDS(`NamaKaryawan`), `PenguasaanMateri`, `KemampuanBekerja` FROM `snitbevaluasipelatihandetail` AS A JOIN `snitbevaluasipelatihan` AS B ON A.`IdEvaluasiPelatihan`=B.`IdEvaluasiPelatihan` JOIN `snitbpelatihandetail` AS C ON A.`IdPelatihanDetail`=C.`IdPelatihanDetail` JOIN `tbmkaryawan` AS D ON C.`IdKaryawan`=D.`IdKaryawan` WHERE A.`IdEvaluasiPelatihan` = '" + list.get(0) + "'");
         try {
             ResultSet rs = runSelct.excute();
             int row = 0;
@@ -156,7 +156,7 @@ public class EvaluasiPelatihan extends javax.swing.JFrame {
     }
 
     void RefreshTbl() {
-        JCNamaKaryawan.load("SELECT '-- Pilih Nama Karyawan --' UNION ALL (SELECT `NamaKaryawan` FROM `snitbpelatihandetail` AS A JOIN `tbmkaryawan` AS B ON A.`IdKaryawan`=B.`IdKaryawan` WHERE `IdPelatihan`=" + JCPelatihan.getSelectedItem().toString().split("\\(")[1].split("\\)")[0] + " GROUP BY `NamaKaryawan` ORDER BY `NamaKaryawan` ASC)");
+        JCNamaKaryawan.load("SELECT '-- Pilih Nama Karyawan --' UNION ALL (SELECT UCWORDS(`NamaKaryawan`) FROM `snitbpelatihandetail` AS A JOIN `tbmkaryawan` AS B ON A.`IdKaryawan`=B.`IdKaryawan` WHERE `IdPelatihan`=" + JCPelatihan.getSelectedItem().toString().split("\\(")[1].split("\\)")[0] + " GROUP BY `NamaKaryawan` ORDER BY `NamaKaryawan` ASC)");
         JCNamaKaryawan.setSelectedIndex(0);
         JTPenguasaanMateri.setText("");
         JTKemampuanBekerja.setText("");
@@ -697,7 +697,7 @@ public class EvaluasiPelatihan extends javax.swing.JFrame {
             JTJenisPelatihan.setText(list.get(0));
             JTTanggalPelatihan.setText(list.get(1));
             JTTempatWaktuPelatihan.setText(list.get(2));
-            JCNamaKaryawan.load("SELECT '-- Pilih Nama Karyawan --' UNION ALL (SELECT `NamaKaryawan` FROM `snitbpelatihandetail` AS A JOIN `tbmkaryawan` AS B ON A.`IdKaryawan`=B.`IdKaryawan` WHERE `IdPelatihan`=" + JCPelatihan.getSelectedItem().toString().split("\\(")[1].split("\\)")[0] + " GROUP BY `NamaKaryawan` ORDER BY `NamaKaryawan` ASC)");
+            JCNamaKaryawan.load("SELECT '-- Pilih Nama Karyawan --' UNION ALL (SELECT UCWORDS(`NamaKaryawan`) FROM `snitbpelatihandetail` AS A JOIN `tbmkaryawan` AS B ON A.`IdKaryawan`=B.`IdKaryawan` WHERE `IdPelatihan`=" + JCPelatihan.getSelectedItem().toString().split("\\(")[1].split("\\)")[0] + " GROUP BY `NamaKaryawan` ORDER BY `NamaKaryawan` ASC)");
         } else {
             JTJenisPelatihan.setText("");
             JTTanggalPelatihan.setText("");

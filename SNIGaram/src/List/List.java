@@ -620,7 +620,7 @@ public class List extends javax.swing.JFrame {
                 jcomCari1.setOrder(" ORDER BY a.`Tanggal` DESC ");
                 break;
             case "List Daftar Riwayat Hidup":
-                jcomCari1.setQuery("SELECT `IdRiwayatHidup` as 'ID', DATE_FORMAT(`TanggalBergabung`,'%d-%m-%Y') as 'Tanggal', `NamaKaryawan` as 'Nama Karyawan', `PendidikanFormal` as 'Pendidikan Formal', a.`Status`, a.`Keterangan` FROM `snitbriwayathidup`a JOIN `tbmkaryawan`b ON a.`IdKaryawan`=b.`IdKaryawan` WHERE 1");
+                jcomCari1.setQuery("SELECT `IdRiwayatHidup` as 'ID', DATE_FORMAT(`TanggalBergabung`,'%d-%m-%Y') as 'Tanggal', UCWORDS(`NamaKaryawan`) as 'Nama Karyawan', `PendidikanFormal` as 'Pendidikan Formal', a.`Status`, a.`Keterangan` FROM `snitbriwayathidup`a JOIN `tbmkaryawan`b ON a.`IdKaryawan`=b.`IdKaryawan` WHERE 1");
                 jcomCari1.setOrder(" ORDER BY a.`TanggalBergabung` DESC, `NamaKaryawan` ");
                 break;
             case "List Usul Pelatihan":

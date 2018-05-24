@@ -13,7 +13,7 @@
 		<defaultValueExpression><![CDATA["2018-12-31"]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[SELECT `Tanggal`, `NamaKaryawan` AS 'Nama Karyawan', `PenguasaanMateri` AS 'Penguasaan Materi', `KemampuanBekerja` AS 'Kemampuan Bekerja', `Kesimpulan` FROM `snitbmasapercobaankaryawan` AS A JOIN `snitbmasapercobaankaryawandetail` AS B ON A.`IdMasaPercobaanKaryawan`=B.`IdMasaPercobaanKaryawan` JOIN `tbmkaryawan` AS C ON B.`IdKaryawan`=C.`IdKaryawan` WHERE `Tanggal` BETWEEN $P{Tanggal_Awal} AND $P{Tanggal_Akhir} GROUP BY `Tanggal`, `Nama Karyawan` ORDER BY `Tanggal`, `Nama Karyawan`]]>
+		<![CDATA[SELECT `Tanggal`, UCWORDS(`NamaKaryawan`) AS 'Nama Karyawan', `PenguasaanMateri` AS 'Penguasaan Materi', `KemampuanBekerja` AS 'Kemampuan Bekerja', `Kesimpulan` FROM `snitbmasapercobaankaryawan` AS A JOIN `snitbmasapercobaankaryawandetail` AS B ON A.`IdMasaPercobaanKaryawan`=B.`IdMasaPercobaanKaryawan` JOIN `tbmkaryawan` AS C ON B.`IdKaryawan`=C.`IdKaryawan` WHERE `Tanggal` BETWEEN $P{Tanggal_Awal} AND $P{Tanggal_Akhir} GROUP BY `Tanggal`, `Nama Karyawan` ORDER BY `Tanggal`, `Nama Karyawan`]]>
 	</queryString>
 	<field name="Tanggal" class="java.sql.Date">
 		<fieldDescription><![CDATA[]]></fieldDescription>

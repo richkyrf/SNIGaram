@@ -13,7 +13,7 @@
 		<defaultValueExpression><![CDATA["2018-12-31"]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[SELECT `Tanggal`, `NamaKaryawan` AS 'Nama Calon Peserta', IF(`IdJenisKaryawan`=1,'Bongkar dan Muat Garam',IF(`IdJenisKaryawan`=2,'Packing Garam','')) AS 'Bagian', '' AS 'Keterangan', CONCAT(`Tanggal`,`Waktu`) AS 'TanggalWaktu' FROM `snitbpelatihandetail` AS A JOIN `snitbpelatihan` AS B ON A.`IdPelatihan`=B.`IdPelatihan` JOIN `snitbusulpelatihan` AS C ON B.`IdUsulPelatihan`=C.`IdUsulPelatihan` JOIN `tbmkaryawan` AS D ON A.`IdKaryawan`=D.`IdKaryawan` WHERE `Tanggal` BETWEEN $P{Tanggal_Awal} AND $P{Tanggal_Akhir} GROUP BY `Tanggal`, `Waktu`, `Nama Calon Peserta` ORDER BY `Tanggal`, `Waktu`, `Nama Calon Peserta`]]>
+		<![CDATA[SELECT `Tanggal`, UCWORDS(`NamaKaryawan`) AS 'Nama Calon Peserta', IF(`IdJenisKaryawan`=1,'Bongkar dan Muat Garam',IF(`IdJenisKaryawan`=2,'Packing Garam','')) AS 'Bagian', '' AS 'Keterangan', CONCAT(`Tanggal`,`Waktu`) AS 'TanggalWaktu' FROM `snitbpelatihandetail` AS A JOIN `snitbpelatihan` AS B ON A.`IdPelatihan`=B.`IdPelatihan` JOIN `snitbusulpelatihan` AS C ON B.`IdUsulPelatihan`=C.`IdUsulPelatihan` JOIN `tbmkaryawan` AS D ON A.`IdKaryawan`=D.`IdKaryawan` WHERE `Tanggal` BETWEEN $P{Tanggal_Awal} AND $P{Tanggal_Akhir} GROUP BY `Tanggal`, `Waktu`, `Nama Calon Peserta` ORDER BY `Tanggal`, `Waktu`, `Nama Calon Peserta`]]>
 	</queryString>
 	<field name="Tanggal" class="java.sql.Date">
 		<fieldDescription><![CDATA[]]></fieldDescription>

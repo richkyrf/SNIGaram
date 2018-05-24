@@ -209,7 +209,7 @@
         <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="JCNamaKaryawanKeyPressed"/>
       </Events>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="JCNamaKaryawan.load(&quot;SELECT &apos;-- Pilih Nama Karyawan --&apos; UNION ALL (SELECT `NamaKaryawan` FROM `tbmkaryawan` AS A LEFT JOIN `snitbriwayathidup` AS B ON A.`IdKaryawan`=B.`IdKaryawan` WHERE A.`Status`=1 AND B.`IdKaryawan` IS NULL GROUP BY `NamaKaryawan` ORDER BY `NamaKaryawan` ASC)&quot;);"/>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="JCNamaKaryawan.load(&quot;SELECT &apos;-- Pilih Nama Karyawan --&apos; UNION ALL (SELECT UCWORDS(`NamaKaryawan`) FROM `tbmkaryawan` AS A LEFT JOIN `snitbriwayathidup` AS B ON A.`IdKaryawan`=B.`IdKaryawan` WHERE A.`Status`=1 AND B.`IdKaryawan` IS NULL GROUP BY `NamaKaryawan` ORDER BY `NamaKaryawan` ASC)&quot;);"/>
       </AuxValues>
     </Component>
     <Component class="KomponenGUI.JlableF" name="JLTanggalBergabung">

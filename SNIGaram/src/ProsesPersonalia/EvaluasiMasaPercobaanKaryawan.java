@@ -66,7 +66,7 @@ public class EvaluasiMasaPercobaanKaryawan extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) JTable.getModel();
         model.getDataVector().removeAllElements();
         RunSelct runSelct = new RunSelct();
-        runSelct.setQuery("SELECT `IdMasaPercobaanKaryawanDetail`, `NamaKaryawan`, `PenguasaanMateri`, `KemampuanBekerja` FROM `snitbmasapercobaankaryawandetail`a JOIN `tbmkaryawan`b ON a.`IdKaryawan`=b.`IdKaryawan` WHERE `IdMasaPercobaanKaryawan` = '" + list.get(0) + "'");
+        runSelct.setQuery("SELECT `IdMasaPercobaanKaryawanDetail`, UCWORDS(`NamaKaryawan`), `PenguasaanMateri`, `KemampuanBekerja` FROM `snitbmasapercobaankaryawandetail`a JOIN `tbmkaryawan`b ON a.`IdKaryawan`=b.`IdKaryawan` WHERE `IdMasaPercobaanKaryawan` = '" + list.get(0) + "'");
         try {
             ResultSet rs = runSelct.excute();
             int row = 0;
@@ -141,7 +141,7 @@ public class EvaluasiMasaPercobaanKaryawan extends javax.swing.JFrame {
     }
 
     void RefreshTbl() {
-        JCNamaKaryawan.load("SELECT '-- Pilih Nama Karyawan --' UNION ALL (SELECT `NamaKaryawan` FROM `tbmkaryawan` WHERE `Status`=1 GROUP BY `NamaKaryawan` ORDER BY `NamaKaryawan` ASC)");
+        JCNamaKaryawan.load("SELECT '-- Pilih Nama Karyawan --' UNION ALL (SELECT UCWORDS(`NamaKaryawan`) FROM `tbmkaryawan` WHERE `Status`=1 GROUP BY `NamaKaryawan` ORDER BY `NamaKaryawan` ASC)");
         JCNamaKaryawan.setSelectedIndex(0);
         JTPenguasaanMateri.setText("");
         JTKemampuanBekerja.setText("");
@@ -210,7 +210,7 @@ public class EvaluasiMasaPercobaanKaryawan extends javax.swing.JFrame {
         JLDetailEvaluasiMasaPercobaanKaryawan.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         JLDetailEvaluasiMasaPercobaanKaryawan.setText("-- Detail Evaluasi Masa Percobaan Karyawan --");
 
-        JCNamaKaryawan.load("SELECT '-- Pilih Nama Karyawan --' UNION ALL (SELECT `NamaKaryawan` FROM `tbmkaryawan` WHERE `Status`=1 GROUP BY `NamaKaryawan` ORDER BY `NamaKaryawan` ASC)");
+        JCNamaKaryawan.load("SELECT '-- Pilih Nama Karyawan --' UNION ALL (SELECT UCWORDS(`NamaKaryawan`) FROM `tbmkaryawan` WHERE `Status`=1 GROUP BY `NamaKaryawan` ORDER BY `NamaKaryawan` ASC)");
         JCNamaKaryawan.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 JCNamaKaryawanKeyPressed(evt);
@@ -512,7 +512,7 @@ public class EvaluasiMasaPercobaanKaryawan extends javax.swing.JFrame {
 
     private void JTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JTableMouseClicked
         if (JTable.getSelectedRow() != -1) {
-            JCNamaKaryawan.load("SELECT '-- Pilih Nama Karyawan --' UNION ALL (SELECT `NamaKaryawan` FROM `tbmkaryawan` WHERE `Status`=1 OR `NamaKaryawan`='" + JTable.getValueAt(JTable.getSelectedRow(), 1).toString() + "' GROUP BY `NamaKaryawan` ORDER BY `NamaKaryawan` ASC)");
+            JCNamaKaryawan.load("SELECT '-- Pilih Nama Karyawan --' UNION ALL (SELECT UCWORDS(`NamaKaryawan`) FROM `tbmkaryawan` WHERE `Status`=1 OR `NamaKaryawan`='" + JTable.getValueAt(JTable.getSelectedRow(), 1).toString() + "' GROUP BY `NamaKaryawan` ORDER BY `NamaKaryawan` ASC)");
             JCNamaKaryawan.setSelectedItem(JTable.getValueAt(JTable.getSelectedRow(), 1).toString());
             JTPenguasaanMateri.setText(JTable.getValueAt(JTable.getSelectedRow(), 2).toString());
             JTKemampuanBekerja.setText(JTable.getValueAt(JTable.getSelectedRow(), 3).toString());

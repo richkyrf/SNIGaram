@@ -189,7 +189,7 @@
         <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="JCNamaKaryawanKeyPressed"/>
       </Events>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="JCNamaKaryawan.load(&quot;SELECT &apos;-- Pilih Nama Karyawan --&apos; UNION ALL (SELECT `NamaKaryawan` FROM `tbmkaryawan` WHERE `Status`=1 GROUP BY `NamaKaryawan` ORDER BY `NamaKaryawan` ASC)&quot;);"/>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="JCNamaKaryawan.load(&quot;SELECT &apos;-- Pilih Nama Karyawan --&apos; UNION ALL (SELECT UCWORDS(`NamaKaryawan`) FROM `tbmkaryawan` WHERE `Status`=1 GROUP BY `NamaKaryawan` ORDER BY `NamaKaryawan` ASC)&quot;);"/>
       </AuxValues>
     </Component>
     <Component class="KomponenGUI.JPlaceHolderRibuan" name="JTPenguasaanMateri">
