@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="F 08.06.00.01 Data Produksi" language="groovy" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="681fcae0-315d-47c3-91ca-fbcc5a2553a6">
-	<property name="ireport.zoom" value="1.1000000000000028"/>
+	<property name="ireport.zoom" value="1.1000000000000032"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="Tanggal" class="java.util.Date" isForPrompting="false">
@@ -16,7 +16,7 @@
 		<![CDATA[SELECT * FROM (
 SELECT B.`Tanggal`, SUM(`KarungPelita`) AS 'Jumlah Produk', 'Sak' AS 'Satuan', IF(`NamaBarang` LIKE '%GRM KSR%',REPLACE(`NamaBarang`,`NamaBarang`,'Garam Kasar'),IF(`NamaBarang` LIKE '%GRM HLS%',REPLACE(`NamaBarang`,`NamaBarang`,'Garam Halus'),'')) AS 'Jenis Produk', '1 Bulan' AS 'Jangka Waktu', '' AS 'Keterangan' FROM `tbpenerimaan` AS A JOIN `tbmpartai` AS B ON A.`IdPartai`=B.`IdPartai` JOIN `tbmbarang` AS C ON B.`IdBarang`=C.`IdBarang` WHERE `IdPeminta`=1 AND B.`Tanggal` BETWEEN $P{Tanggal_Awal} AND $P{Tanggal_Akhir} GROUP BY `Tanggal`, `Jenis Produk`
 UNION ALL
-SELECT `Tanggal`, SUM(`Netto`) AS 'Jumlah Produk', 'Kg' AS 'Satuan', IF(`NamaBarangLain` LIKE '%PLASTIK LUAR%',REPLACE(`NamaBarangLain`,`NamaBarangLain`,'Plastik Luar'),IF(`NamaBarangLain` LIKE '%PLASTIK DLM%',REPLACE(`NamaBarangLain`,`NamaBarangLain`,'Plastik Dalam'),IF(`NamaBarangLain` LIKE '%IODIUM%',REPLACE(`NamaBarangLain`,`NamaBarangLain`,'Iodium'),''))) AS 'Jenis Produk', '1 Bulan' AS 'Jangka Waktu', '' AS 'Keterangan' FROM `tbpenerimaanlain` AS A JOIN `tbmbaranglain` AS B ON A.`IdBarangLain`=B.`IdBarangLain` WHERE (`IdJenisBarangLain`=1 OR `IdJenisBarangLain`=2 OR `IdJenisBarangLain`=4) AND `Tanggal` BETWEEN $P{Tanggal_Awal} AND $P{Tanggal_Akhir} GROUP BY `Tanggal`, `Jenis Produk`
+SELECT `Tanggal`, SUM(`Netto`) AS 'Jumlah Produk', UCWORDS(`Satuan`), REPLACE(REPLACE(UCWORDS(`NamaBarangLain`),'Dlm','Dalam'),'Grm','Garam') AS 'Jenis Produk', '1 Bulan' AS 'Jangka Waktu', '' AS 'Keterangan' FROM `tbpenerimaanlain` AS A JOIN `tbmbaranglain` AS B ON A.`IdBarangLain`=B.`IdBarangLain` WHERE `Tanggal` BETWEEN $P{Tanggal_Awal} AND $P{Tanggal_Akhir} GROUP BY `Tanggal`, `Jenis Produk`
 ) AS `tborderpesanan` ORDER BY `Tanggal`, `Jenis Produk`]]>
 	</queryString>
 	<field name="Tanggal" class="java.sql.Date">
@@ -157,7 +157,7 @@ SELECT `Tanggal`, SUM(`Netto`) AS 'Jumlah Produk', 'Kg' AS 'Satuan', IF(`NamaBar
 				<textFieldExpression><![CDATA[$F{Tanggal}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="#,##0">
-				<reportElement stretchType="RelativeToTallestObject" x="110" y="0" width="78" height="20" uuid="d1a32121-f7f9-4137-9388-a094faf4f756"/>
+				<reportElement stretchType="RelativeToTallestObject" x="110" y="0" width="76" height="20" uuid="d1a32121-f7f9-4137-9388-a094faf4f756"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -171,7 +171,7 @@ SELECT `Tanggal`, SUM(`Netto`) AS 'Jumlah Produk', 'Kg' AS 'Satuan', IF(`NamaBar
 				<textFieldExpression><![CDATA[$F{Jumlah Produk}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement stretchType="RelativeToTallestObject" x="187" y="0" width="23" height="20" uuid="c6459d8f-4a4b-49df-9ec4-074ca8e8a746"/>
+				<reportElement stretchType="RelativeToTallestObject" x="185" y="0" width="25" height="20" uuid="c6459d8f-4a4b-49df-9ec4-074ca8e8a746"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -193,7 +193,7 @@ SELECT `Tanggal`, SUM(`Netto`) AS 'Jumlah Produk', 'Kg' AS 'Satuan', IF(`NamaBar
 					<bottomPen lineWidth="0.5"/>
 					<rightPen lineWidth="0.5"/>
 				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
 					<font fontName="Gadugi" size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Jenis Produk}]]></textFieldExpression>
