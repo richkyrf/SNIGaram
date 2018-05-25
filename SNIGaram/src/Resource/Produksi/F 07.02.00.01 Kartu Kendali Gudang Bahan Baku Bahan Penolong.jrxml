@@ -15,10 +15,7 @@
 	<queryString>
 		<![CDATA[SELECT A.`Tanggal`, IF(`NamaBarang` LIKE '%GRM KSR%',REPLACE(`NamaBarang`,`NamaBarang`,'Garam Kasar 50Kg'),IF(`NamaBarang` LIKE '%GRM HLS%',REPLACE(`NamaBarang`,`NamaBarang`,'Garam Halus 50Kg'),'')) AS 'Nama Barang', 'Garam' AS 'Jenis Barang', SUM(`KarungPelita`) AS 'Jumlah Barang', 'Sak' AS 'Satuan', REPLACE(UCWORDS(`Pemasok`),'Pt.','PT.') AS 'Supplier' FROM `tbpenerimaan` AS A JOIN `tbmpartai` AS B ON A.`IdPartai`=B.`IdPartai` JOIN `tbmbarang` AS C ON B.`IdBarang`=C.`IdBarang` JOIN `tbmpemasok` AS D ON C.`IdPemasok`=D.`IdPemasok` WHERE A.`Tanggal` BETWEEN $P{Tanggal_Awal} AND $P{Tanggal_Akhir} AND `IdPeminta`=1 GROUP BY A.`IdPartai`, `Nama Barang`
 UNION ALL
-
-
-
-SELECT `Tanggal`, IF(`NamaBarangLain` LIKE '%PLASTIK LUAR%',REPLACE(`NamaBarangLain`,`NamaBarangLain`,'Plastik Luar'),IF(`NamaBarangLain` LIKE '%PLASTIK DLM%',REPLACE(`NamaBarangLain`,`NamaBarangLain`,'Plastik Dalam'),IF(`NamaBarangLain` LIKE '%IODIUM%',REPLACE(`NamaBarangLain`,`NamaBarangLain`,'Iodium'),IF(`NamaBarangLain` LIKE '%LAKBAN%',REPLACE(`NamaBarangLain`,`NamaBarangLain`,'Lakban'),IF(`NamaBarangLain` LIKE '%ARTHESS%',REPLACE(`NamaBarangLain`,`NamaBarangLain`,'Arthess'),`NamaBarangLain`))))) AS 'Nama Barang', IF(`JenisBarangLain`='PLASTIK DALAM' OR `JenisBarangLain`='PLASTIK LUAR','Plastik',IF(`JenisBarangLain`='IODIUM','Iodium',IF(`NamaBarangLain` LIKE '%LAKBAN%',REPLACE(`NamaBarangLain`,`NamaBarangLain`,'Lakban'),IF(`NamaBarangLain` LIKE '%ARTHESS%',REPLACE(`NamaBarangLain`,`NamaBarangLain`,'Arthess'),`NamaBarangLain`)))) AS 'Jenis Barang', SUM(`Netto`) AS 'Jumlah Barang', IF(`Satuan`='KG','Kg',IF(`Satuan`='ROLL','Roll',IF(`Satuan`='GLN','Gln',`Satuan`))) AS 'Satuan', IFNULL(IF(`PemasokLain`='PT. GARINDO','PT. Garindo',IF(`PemasokLain`='PT. PERSERO','PT. Persero',IF(`PemasokLain`='WININDO JAYA','Winindo Jaya',`PemasokLain`))),'Trona JPM') AS 'Supplier' FROM `tbpenerimaanlain` AS A JOIN `tbmbaranglain` AS B ON A.`IdBarangLain`=B.`IdBarangLain` JOIN `tbsmjenisbaranglain` AS C ON B.`IdJenisBarangLain`=C.`IdJenisBarangLain` LEFT JOIN `tbmpemasoklain` AS D ON A.`IdPemasokLain`=D.`IdPemasokLain` WHERE `Tanggal` BETWEEN $P{Tanggal_Awal} AND $P{Tanggal_Akhir} GROUP BY `Tanggal`, `Nama Barang` ORDER BY `Tanggal`, `Nama Barang`]]>
+SELECT `Tanggal`, REPLACE(REPLACE(UCWORDS(`NamaBarangLain`),'Dlm','Dalam'),'Grm','Garam') AS 'Nama Barang', IF(`JenisBarangLain`='PLASTIK DALAM' OR `JenisBarangLain`='PLASTIK LUAR','Plastik',IF(`JenisBarangLain`='IODIUM','Iodium',UCWORDS(IF(`NamaBarangLain` LIKE '%TIMBANGAN%','TIMBANGAN',`NamaBarangLain`)))) AS 'Jenis Barang', SUM(`Netto`) AS 'Jumlah Barang', UCWORDS(`Satuan`) AS 'Satuan', IFNULL(REPLACE(UCWORDS(`PemasokLain`),'Pt.','PT.'),'Trona JPM') AS 'Supplier' FROM `tbpenerimaanlain` AS A JOIN `tbmbaranglain` AS B ON A.`IdBarangLain`=B.`IdBarangLain` JOIN `tbsmjenisbaranglain` AS C ON B.`IdJenisBarangLain`=C.`IdJenisBarangLain` LEFT JOIN `tbmpemasoklain` AS D ON A.`IdPemasokLain`=D.`IdPemasokLain` WHERE `Tanggal` BETWEEN $P{Tanggal_Awal} AND $P{Tanggal_Akhir} GROUP BY `Tanggal`, `Nama Barang` ORDER BY `Tanggal`, `Nama Barang`]]>
 	</queryString>
 	<field name="Tanggal" class="java.sql.Timestamp">
 		<fieldDescription><![CDATA[]]></fieldDescription>
@@ -145,7 +142,7 @@ SELECT `Tanggal`, IF(`NamaBarangLain` LIKE '%PLASTIK LUAR%',REPLACE(`NamaBarangL
 					<bottomPen lineWidth="0.5"/>
 					<rightPen lineWidth="0.5"/>
 				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
+				<textElement textAlignment="Center" verticalAlignment="Top">
 					<font fontName="Gadugi" size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
@@ -158,7 +155,7 @@ SELECT `Tanggal`, IF(`NamaBarangLain` LIKE '%PLASTIK LUAR%',REPLACE(`NamaBarangL
 					<bottomPen lineWidth="0.5"/>
 					<rightPen lineWidth="0.5"/>
 				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
+				<textElement textAlignment="Center" verticalAlignment="Top">
 					<font fontName="Gadugi" size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Tanggal}]]></textFieldExpression>
@@ -171,7 +168,7 @@ SELECT `Tanggal`, IF(`NamaBarangLain` LIKE '%PLASTIK LUAR%',REPLACE(`NamaBarangL
 					<bottomPen lineWidth="0.5"/>
 					<rightPen lineWidth="0.5"/>
 				</box>
-				<textElement textAlignment="Justified" verticalAlignment="Middle">
+				<textElement textAlignment="Justified" verticalAlignment="Top">
 					<font fontName="Gadugi" size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Nama Barang}]]></textFieldExpression>
@@ -184,7 +181,7 @@ SELECT `Tanggal`, IF(`NamaBarangLain` LIKE '%PLASTIK LUAR%',REPLACE(`NamaBarangL
 					<bottomPen lineWidth="0.5"/>
 					<rightPen lineWidth="0.5"/>
 				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
+				<textElement textAlignment="Center" verticalAlignment="Top">
 					<font fontName="Gadugi" size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Jenis Barang}]]></textFieldExpression>
@@ -197,7 +194,7 @@ SELECT `Tanggal`, IF(`NamaBarangLain` LIKE '%PLASTIK LUAR%',REPLACE(`NamaBarangL
 					<bottomPen lineWidth="0.5"/>
 					<rightPen lineWidth="0.0"/>
 				</box>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
+				<textElement textAlignment="Right" verticalAlignment="Top">
 					<font fontName="Gadugi" size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Jumlah Barang}]]></textFieldExpression>
@@ -210,7 +207,7 @@ SELECT `Tanggal`, IF(`NamaBarangLain` LIKE '%PLASTIK LUAR%',REPLACE(`NamaBarangL
 					<bottomPen lineWidth="0.5"/>
 					<rightPen lineWidth="0.5"/>
 				</box>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
+				<textElement textAlignment="Right" verticalAlignment="Top">
 					<font fontName="Gadugi" size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Satuan}]]></textFieldExpression>
@@ -223,7 +220,7 @@ SELECT `Tanggal`, IF(`NamaBarangLain` LIKE '%PLASTIK LUAR%',REPLACE(`NamaBarangL
 					<bottomPen lineWidth="0.5"/>
 					<rightPen lineWidth="0.5"/>
 				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
+				<textElement textAlignment="Center" verticalAlignment="Top">
 					<font fontName="Gadugi" size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Supplier}]]></textFieldExpression>
