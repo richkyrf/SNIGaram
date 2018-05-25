@@ -132,7 +132,7 @@ SELECT `Tanggal`, REPLACE(REPLACE(UCWORDS(`NamaBarangLain`),'Dlm','Dalam'),'Grm'
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="20" splitType="Stretch">
+		<band height="20" splitType="Prevent">
 			<textField isStretchWithOverflow="true">
 				<reportElement stretchType="RelativeToTallestObject" x="0" y="0" width="40" height="20" uuid="2b00f87a-4901-4a76-9f3e-bd23042f4d42"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">

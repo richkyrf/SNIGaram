@@ -141,7 +141,7 @@ SELECT `Tanggal`, SUM(`Netto`) AS 'Jumlah Produk', UCWORDS(`Satuan`), REPLACE(RE
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="20" splitType="Stretch">
+		<band height="20" splitType="Prevent">
 			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy">
 				<reportElement stretchType="RelativeToTallestObject" x="40" y="0" width="70" height="20" uuid="e5fe0c6f-3048-4a5f-8bb4-d488fd7722c8"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">

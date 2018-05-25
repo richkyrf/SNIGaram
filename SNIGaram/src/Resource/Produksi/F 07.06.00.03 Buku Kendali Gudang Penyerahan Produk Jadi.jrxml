@@ -112,7 +112,7 @@
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="20" splitType="Stretch">
+		<band height="20" splitType="Prevent">
 			<textField isStretchWithOverflow="true" pattern="#,##0">
 				<reportElement stretchType="RelativeToTallestObject" x="110" y="0" width="56" height="20" uuid="acc4f516-d8ff-43e7-9e5a-d52b8ec22748"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">

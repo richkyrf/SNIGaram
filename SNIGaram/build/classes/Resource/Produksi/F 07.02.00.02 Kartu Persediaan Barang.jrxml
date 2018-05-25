@@ -167,7 +167,7 @@ ON A.`Nama Barang`=B.`Nama Barang`
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="20" splitType="Stretch">
+		<band height="20" splitType="Prevent">
 			<textField isStretchWithOverflow="true">
 				<reportElement stretchType="RelativeToTallestObject" x="-174" y="-10" width="40" height="20" uuid="345c497a-eb48-4661-9ed4-eb3c27c0d11d"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
@@ -193,6 +193,7 @@ ON A.`Nama Barang`=B.`Nama Barang`
 				</box>
 				<textElement textAlignment="Justified" verticalAlignment="Top">
 					<font fontName="Gadugi" size="12"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Nama Barang}]]></textFieldExpression>
 			</textField>
@@ -207,6 +208,7 @@ ON A.`Nama Barang`=B.`Nama Barang`
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Top">
 					<font fontName="Gadugi" size="12"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Tanggal}]]></textFieldExpression>
 			</textField>
@@ -221,6 +223,7 @@ ON A.`Nama Barang`=B.`Nama Barang`
 				</box>
 				<textElement textAlignment="Right" verticalAlignment="Top">
 					<font fontName="Gadugi" size="12"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Stok Awal}+($V{Masuk}-$F{Masuk})-($V{Keluar}-$F{Keluar})]]></textFieldExpression>
 			</textField>
@@ -235,6 +238,7 @@ ON A.`Nama Barang`=B.`Nama Barang`
 				</box>
 				<textElement textAlignment="Right" verticalAlignment="Top">
 					<font fontName="Gadugi" size="12"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Masuk}]]></textFieldExpression>
 			</textField>
@@ -249,6 +253,7 @@ ON A.`Nama Barang`=B.`Nama Barang`
 				</box>
 				<textElement textAlignment="Right" verticalAlignment="Top">
 					<font fontName="Gadugi" size="12"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Keluar}]]></textFieldExpression>
 			</textField>
@@ -263,6 +268,7 @@ ON A.`Nama Barang`=B.`Nama Barang`
 				</box>
 				<textElement textAlignment="Right" verticalAlignment="Top">
 					<font fontName="Gadugi" size="12"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Stok Awal}+$V{Masuk}-$V{Keluar}]]></textFieldExpression>
 			</textField>
@@ -277,6 +283,7 @@ ON A.`Nama Barang`=B.`Nama Barang`
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Top">
 					<font fontName="Gadugi" size="12"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
 			</textField>
@@ -291,6 +298,7 @@ ON A.`Nama Barang`=B.`Nama Barang`
 				</box>
 				<textElement textAlignment="Right" verticalAlignment="Top">
 					<font fontName="Gadugi" size="12"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Pak]]></text>
 			</staticText>
@@ -305,6 +313,7 @@ ON A.`Nama Barang`=B.`Nama Barang`
 				</box>
 				<textElement textAlignment="Right" verticalAlignment="Top">
 					<font fontName="Gadugi" size="12"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Pak]]></text>
 			</staticText>
@@ -319,6 +328,7 @@ ON A.`Nama Barang`=B.`Nama Barang`
 				</box>
 				<textElement textAlignment="Right" verticalAlignment="Top">
 					<font fontName="Gadugi" size="12"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Pak]]></text>
 			</staticText>
@@ -333,6 +343,7 @@ ON A.`Nama Barang`=B.`Nama Barang`
 				</box>
 				<textElement textAlignment="Right" verticalAlignment="Top">
 					<font fontName="Gadugi" size="12"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Pak]]></text>
 			</staticText>
