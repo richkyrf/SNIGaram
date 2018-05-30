@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 public class Koneksi {
 
     private Connection Con = null;
-    //String url = "jdbc:mysql://192.168.1.20:1358/";
+    //String url = "jdbc:mysql://118.97.150.178:33333/";
     //String user = "databasedo";
     //String pass = "Win32&serVer";
     String url = "jdbc:mysql://localhost/";
