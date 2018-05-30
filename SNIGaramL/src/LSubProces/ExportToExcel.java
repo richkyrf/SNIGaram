@@ -73,11 +73,11 @@ public class ExportToExcel {
             showMessageDialog(null, "Gagal EXport Data !!!" + e);
         } finally {
             if (connection != null) {
-                try {
-                    connection.close();
-                } catch (SQLException ex) {
-                    LogEror.SaveEror(ex);
-                }
+//404                try {
+//404                    connection.close();
+//404                } catch (SQLException ex) {
+//404                    LogEror.SaveEror(ex);
+//404                }
             }
         }
     }

@@ -83,7 +83,7 @@ public class EvaluasiMasaPercobaanKaryawan extends javax.swing.JFrame {
             out.println("E6" + e);
             showMessageDialog(null, "Gagal Panggil Data Detail Evaluasi Masa Percobaan Karyawan");
         } finally {
-            runSelct.closecon();
+//404            runSelct.closecon();
         }
     }
 
@@ -658,13 +658,13 @@ public class EvaluasiMasaPercobaanKaryawan extends javax.swing.JFrame {
             }
             if (Berhasil == false) {
                 multiInsert.rollback();
-                multiInsert.closecon();
+//404                multiInsert.closecon();
                 JOptionPane.showMessageDialog(this, "Gagal Tambah Data Evaluasi Masa Percobaan Karyawan");
             }
             if (Berhasil == true) {
                 JOptionPane.showMessageDialog(this, "Berhasil Tambah Data Evaluasi Masa Percobaan Karyawan");
                 multiInsert.Commit();
-                multiInsert.closecon();
+//404                multiInsert.closecon();
                 if (tutup) {
                     dispose();
                 } else {
@@ -711,13 +711,13 @@ public class EvaluasiMasaPercobaanKaryawan extends javax.swing.JFrame {
                 }
                 if (Berhasil == false) {
                     multiInsert.rollback();
-                    multiInsert.closecon();
+//404                    multiInsert.closecon();
                     JOptionPane.showMessageDialog(this, "Gagal Ubah Data Evaluasi Masa Percobaan Karyawan");
                 }
                 if (Berhasil == true) {
                     JOptionPane.showMessageDialog(this, "Berhasil Ubah Data Evaluasi Masa Percobaan Karyawan");
                     multiInsert.Commit();
-                    multiInsert.closecon();
+//404                    multiInsert.closecon();
                     dispose();
                     if (GlobalVar.Var.listEvaluasiMasaPercobaanKaryawan != null) {
                         GlobalVar.Var.listEvaluasiMasaPercobaanKaryawan.load();

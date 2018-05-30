@@ -90,7 +90,7 @@ public class EvaluasiPelatihan extends javax.swing.JFrame {
             out.println("E6" + e);
             showMessageDialog(null, "Gagal Panggil Data Detail Evaluasi Pelatihan");
         } finally {
-            runSelct.closecon();
+//404            runSelct.closecon();
         }
     }
 
@@ -833,13 +833,13 @@ public class EvaluasiPelatihan extends javax.swing.JFrame {
             }
             if (Berhasil == false) {
                 multiInsert.rollback();
-                multiInsert.closecon();
+//404                multiInsert.closecon();
                 JOptionPane.showMessageDialog(this, "Gagal Tambah Data Evaluasi Pelatihan");
             }
             if (Berhasil == true) {
                 JOptionPane.showMessageDialog(this, "Berhasil Tambah Data Evaluasi Pelatihan");
                 multiInsert.Commit();
-                multiInsert.closecon();
+//404                multiInsert.closecon();
                 if (tutup) {
                     dispose();
                 } else {
@@ -893,13 +893,13 @@ public class EvaluasiPelatihan extends javax.swing.JFrame {
                 }
                 if (Berhasil == false) {
                     multiInsert.rollback();
-                    multiInsert.closecon();
+//404                    multiInsert.closecon();
                     JOptionPane.showMessageDialog(this, "Gagal Ubah Data Evaluasi Pelatihan");
                 }
                 if (Berhasil == true) {
                     JOptionPane.showMessageDialog(this, "Berhasil Ubah Data Evaluasi Pelatihan");
                     multiInsert.Commit();
-                    multiInsert.closecon();
+//404                    multiInsert.closecon();
                     dispose();
                     if (GlobalVar.Var.listEvaluasiPelatihan != null) {
                         GlobalVar.Var.listEvaluasiPelatihan.load();

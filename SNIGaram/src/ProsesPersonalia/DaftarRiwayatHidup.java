@@ -87,7 +87,7 @@ public class DaftarRiwayatHidup extends javax.swing.JFrame {
             out.println("E6" + e);
             showMessageDialog(null, "Gagal Panggil Data Detail Daftar Riwayat Hidup");
         } finally {
-            runSelct.closecon();
+//404            runSelct.closecon();
         }
     }
 
@@ -787,13 +787,13 @@ public class DaftarRiwayatHidup extends javax.swing.JFrame {
             }
             if (Berhasil == false) {
                 multiInsert.rollback();
-                multiInsert.closecon();
+//404                multiInsert.closecon();
                 JOptionPane.showMessageDialog(this, "Gagal Tambah Data Daftar Riwayat Hidup");
             }
             if (Berhasil == true) {
                 JOptionPane.showMessageDialog(this, "Berhasil Tambah Data Daftar Riwayat Hidup");
                 multiInsert.Commit();
-                multiInsert.closecon();
+//404                multiInsert.closecon();
                 if (tutup) {
                     dispose();
                 } else {
@@ -845,13 +845,13 @@ public class DaftarRiwayatHidup extends javax.swing.JFrame {
                 }
                 if (Berhasil == false) {
                     multiInsert.rollback();
-                    multiInsert.closecon();
+//404                    multiInsert.closecon();
                     JOptionPane.showMessageDialog(this, "Gagal Ubah Data Daftar Riwayat Hidup");
                 }
                 if (Berhasil == true) {
                     JOptionPane.showMessageDialog(this, "Berhasil Ubah Data Daftar Riwayat Hidup");
                     multiInsert.Commit();
-                    multiInsert.closecon();
+//404                    multiInsert.closecon();
                     dispose();
                     if (GlobalVar.Var.listDaftarRiwayatHidup != null) {
                         GlobalVar.Var.listDaftarRiwayatHidup.load();

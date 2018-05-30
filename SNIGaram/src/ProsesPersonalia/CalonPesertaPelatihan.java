@@ -79,7 +79,7 @@ public class CalonPesertaPelatihan extends javax.swing.JFrame {
             out.println("E6" + e);
             showMessageDialog(null, "Gagal Panggil Data Detail Calon Peserta Pelatihan");
         } finally {
-            runSelct.closecon();
+//404            runSelct.closecon();
         }
     }
 
@@ -643,13 +643,13 @@ public class CalonPesertaPelatihan extends javax.swing.JFrame {
             }
             if (Berhasil == false) {
                 multiInsert.rollback();
-                multiInsert.closecon();
+//404                multiInsert.closecon();
                 JOptionPane.showMessageDialog(this, "Gagal Tambah Data Calon Peserta Pelatihan");
             }
             if (Berhasil == true) {
                 JOptionPane.showMessageDialog(this, "Berhasil Tambah Data Calon Peserta Pelatihan");
                 multiInsert.Commit();
-                multiInsert.closecon();
+//404                multiInsert.closecon();
                 if (tutup) {
                     dispose();
                 } else {
@@ -698,13 +698,13 @@ public class CalonPesertaPelatihan extends javax.swing.JFrame {
                 }
                 if (Berhasil == false) {
                     multiInsert.rollback();
-                    multiInsert.closecon();
+//404                    multiInsert.closecon();
                     JOptionPane.showMessageDialog(this, "Gagal Ubah Data Calon Peserta Pelatihan");
                 }
                 if (Berhasil == true) {
                     JOptionPane.showMessageDialog(this, "Berhasil Ubah Data Calon Peserta Pelatihan");
                     multiInsert.Commit();
-                    multiInsert.closecon();
+//404                    multiInsert.closecon();
                     dispose();
                     if (GlobalVar.Var.listCalonPesertaPelatihan != null) {
                         GlobalVar.Var.listCalonPesertaPelatihan.load();
