@@ -139,7 +139,7 @@ public class LaporanPembelian extends javax.swing.JFrame {
             fLaporan.setfilename("Monic/Pembelian/F 07.01.00.05 Daftar Supplier Terpilih");
             History.simpanhistory(GlobalVar.VarL.username, "F 07.01.00.05 Daftar Supplier Terpilih");
         } else if (getTitle().equals("Laporan Penerimaan Barang")) {
-            fLaporan.setfilename("F 07.01.00.06 Laporan Penerimaan Barang");
+            fLaporan.setfilename("Monic/Pembelian/F 07.01.00.06 Laporan Penerimaan Barang");
             History.simpanhistory(GlobalVar.VarL.username, "F 07.01.00.06 Laporan Penerimaan Barang");
         } else {
             System.out.println("Parameter Salah.");
