@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="F 06.03.00.02 Jadwal Pemeliharaan Perbaikan Mesin dan Peralatan" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="681fcae0-315d-47c3-91ca-fbcc5a2553a6">
 	<property name="ireport.zoom" value="1.2100000000000022"/>
-	<property name="ireport.x" value="0"/>
+	<property name="ireport.x" value="249"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="Tanggal" class="java.util.Date" isForPrompting="false">
 		<defaultValueExpression><![CDATA[new Date()]]></defaultValueExpression>
@@ -104,7 +104,7 @@ ON a.`IdBarangTeknik`=m.`IdBarangTeknik`]]>
 					<bottomPen lineWidth="0.5"/>
 					<rightPen lineWidth="0.5"/>
 				</box>
-				<textElement verticalAlignment="Middle">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Gadugi" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[No]]></text>
@@ -121,7 +121,7 @@ ON a.`IdBarangTeknik`=m.`IdBarangTeknik`]]>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Gadugi" size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[NamaBarang]]></text>
+				<text><![CDATA[Nama Barang]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="237" y="0" width="35" height="20" uuid="8b888929-05e8-4237-b72a-ba31b32347e2"/>
@@ -318,7 +318,7 @@ ON a.`IdBarangTeknik`=m.`IdBarangTeknik`]]>
 					<bottomPen lineWidth="0.5"/>
 					<rightPen lineWidth="0.5"/>
 				</box>
-				<textElement verticalAlignment="Middle"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
 			</textField>
 			<textField>
@@ -531,7 +531,7 @@ ON a.`IdBarangTeknik`=m.`IdBarangTeknik`]]>
 		</band>
 	</pageFooter>
 	<lastPageFooter>
-		<band height="111">
+		<band height="149">
 			<staticText>
 				<reportElement x="0" y="30" width="140" height="20" uuid="c9a8ebbf-1813-419d-8d18-c23db28c664f"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -554,7 +554,7 @@ ON a.`IdBarangTeknik`=m.`IdBarangTeknik`]]>
 				<text><![CDATA[__________________________]]></text>
 			</staticText>
 			<textField pattern="dd/MM/yyyy">
-				<reportElement x="702" y="10" width="100" height="20" uuid="f4c00761-63b4-447f-8182-7cace4854f0f"/>
+				<reportElement x="710" y="10" width="92" height="20" uuid="f4c00761-63b4-447f-8182-7cace4854f0f"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.0"/>
 					<topPen lineWidth="0.0"/>
@@ -568,11 +568,18 @@ ON a.`IdBarangTeknik`=m.`IdBarangTeknik`]]>
 				<textFieldExpression><![CDATA[$P{Tanggal}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="547" y="10" width="155" height="20" uuid="1776a53e-4775-4f49-b36e-05719125899d"/>
+				<reportElement x="647" y="10" width="64" height="20" uuid="1776a53e-4775-4f49-b36e-05719125899d"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Gadugi" size="12"/>
 				</textElement>
 				<text><![CDATA[Jambi, ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="622" y="129" width="180" height="20" uuid="8d32f277-b36e-4b6d-b86b-720f928b89a0"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Gadugi"/>
+				</textElement>
+				<text><![CDATA[Rev. 0, Tanggal Terbit 20 Januari 2014]]></text>
 			</staticText>
 		</band>
 	</lastPageFooter>

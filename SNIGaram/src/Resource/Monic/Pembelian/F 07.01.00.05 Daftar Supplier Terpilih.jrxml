@@ -13,7 +13,7 @@
 		<defaultValueExpression><![CDATA["2090-01-01"]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[SELECT `IdSupplierTerpilih` as 'ID', CONCAT(`NamaPemasok`, ', Palembang') as 'Nama Pemasok', `Produk`, `Spesifikasi` FROM `snitbsupplierterplilih` WHERE 1]]>
+		<![CDATA[SELECT `IdSupplierTerpilih` as 'ID', CONCAT(REPLACE(UCWORDS(`NamaPemasok`),'Pt.','PT.'), ', Palembang') as 'Nama Pemasok', `Produk`, `Spesifikasi` FROM `snitbsupplierterplilih` WHERE 1]]>
 	</queryString>
 	<field name="ID" class="java.lang.Integer"/>
 	<field name="Nama Pemasok" class="java.lang.String"/>
@@ -165,23 +165,23 @@
 		</band>
 	</detail>
 	<pageFooter>
-		<band height="139">
+		<band height="146">
 			<staticText>
-				<reportElement x="376" y="0" width="80" height="20" uuid="1776a53e-4775-4f49-b36e-05719125899d"/>
+				<reportElement x="421" y="18" width="55" height="20" uuid="1776a53e-4775-4f49-b36e-05719125899d"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Gadugi" size="12"/>
 				</textElement>
 				<text><![CDATA[Jambi, ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="390" y="116" width="165" height="20" uuid="01916bc1-384c-4852-9356-90e84c3e6983"/>
+				<reportElement x="421" y="103" width="134" height="20" uuid="01916bc1-384c-4852-9356-90e84c3e6983"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Gadugi" size="12"/>
 				</textElement>
 				<text><![CDATA[(Bagian Pembelian)]]></text>
 			</staticText>
 			<textField pattern="dd/MM/yyyy">
-				<reportElement x="455" y="0" width="100" height="20" uuid="c73ba5e1-741f-4f41-894c-a5510b3c4216"/>
+				<reportElement x="475" y="18" width="80" height="20" uuid="c73ba5e1-741f-4f41-894c-a5510b3c4216"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Gadugi" size="12"/>

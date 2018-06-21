@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="F 08.01.00.02 Survey Kepuasan Pelanggan" language="groovy" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="681fcae0-315d-47c3-91ca-fbcc5a2553a6">
-	<property name="ireport.zoom" value="1.2100000000000055"/>
+	<property name="ireport.zoom" value="1.2100000000000064"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="558"/>
+	<property name="ireport.y" value="364"/>
 	<parameter name="Tanggal" class="java.util.Date" isForPrompting="false">
 		<defaultValueExpression><![CDATA[new Date()]]></defaultValueExpression>
 	</parameter>
@@ -223,7 +223,7 @@
 				</textElement>
 				<text><![CDATA[:]]></text>
 			</staticText>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="112" y="0" width="181" height="20" uuid="f1161a8c-933b-460b-949e-7bb6bfa8d0ae"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.0"/>
@@ -237,7 +237,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{NamaPerusahaan}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="112" y="19" width="181" height="20" uuid="7fbf0d79-9427-4746-ac40-13c908166ded"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.0"/>
@@ -251,7 +251,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Alamat}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="112" y="38" width="181" height="20" uuid="14099655-bd5d-49a7-80d8-ea4f414f332b"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.0"/>
@@ -265,7 +265,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Tanggal}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="112" y="57" width="181" height="20" uuid="faf9c84a-098c-4f27-9559-6e3b1c4097f0"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.0"/>
@@ -828,8 +828,8 @@
 				<text><![CDATA[=]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="132" y="20" width="55" height="20" uuid="33408c54-d3cc-40dc-b598-fb93c97801f0"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
+				<reportElement x="133" y="20" width="55" height="20" uuid="33408c54-d3cc-40dc-b598-fb93c97801f0"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
 					<font fontName="Gadugi" size="12"/>
 				</textElement>
 				<text><![CDATA[Amat Baik]]></text>
@@ -842,8 +842,8 @@
 				<text><![CDATA[51 - 80]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="132" y="40" width="55" height="20" uuid="807a5e4f-b009-44ab-b5b0-d8c7eaea9c10"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
+				<reportElement x="133" y="40" width="55" height="20" uuid="807a5e4f-b009-44ab-b5b0-d8c7eaea9c10"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
 					<font fontName="Gadugi" size="12"/>
 				</textElement>
 				<text><![CDATA[Baik]]></text>
@@ -863,8 +863,8 @@
 				<text><![CDATA[10 - 50]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="132" y="60" width="55" height="20" uuid="978cbb9e-d71a-4ad5-8c41-efe3ede8db6a"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
+				<reportElement x="133" y="60" width="55" height="20" uuid="978cbb9e-d71a-4ad5-8c41-efe3ede8db6a"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
 					<font fontName="Gadugi" size="12"/>
 				</textElement>
 				<text><![CDATA[Kurang]]></text>

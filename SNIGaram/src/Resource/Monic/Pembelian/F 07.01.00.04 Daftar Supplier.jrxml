@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="F 07.01.00.04 Daftar Supplier" language="groovy" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="681fcae0-315d-47c3-91ca-fbcc5a2553a6">
 	<property name="ireport.zoom" value="1.100000000000005"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="93"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="Tanggal" class="java.util.Date" isForPrompting="false">
 		<defaultValueExpression><![CDATA[new Date()]]></defaultValueExpression>
 	</parameter>
@@ -13,7 +13,7 @@
 		<defaultValueExpression><![CDATA["2090-01-01"]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[SELECT `IdEvaluasi` as 'ID', `NamaPemasok` as 'Nama Pemasok', 'Palembang' as `Alamat`, REPLACE(SUBSTRING(SUBSTRING_INDEX(`HasilEvaluasi`, ',', 1), LENGTH(SUBSTRING_INDEX(`HasilEvaluasi`, ',', 1-1)) + 1), ',', '') as 'HasilEvaluasi1', REPLACE(SUBSTRING(SUBSTRING_INDEX(`HasilEvaluasi`, ',', 2), LENGTH(SUBSTRING_INDEX(`HasilEvaluasi`, ',', 2-1)) + 1), ',', '') as 'HasilEvaluasi2', REPLACE(SUBSTRING(SUBSTRING_INDEX(`HasilEvaluasi`, ',', 3), LENGTH(SUBSTRING_INDEX(`HasilEvaluasi`, ',', 3-1)) + 1), ',', '') as 'HasilEvaluasi3', REPLACE(SUBSTRING(SUBSTRING_INDEX(`HasilEvaluasi`, ',', 4), LENGTH(SUBSTRING_INDEX(`HasilEvaluasi`, ',', 4-1)) + 1), ',', '') as 'HasilEvaluasi4', REPLACE(SUBSTRING(SUBSTRING_INDEX(`Keterangan`, '~', 1), LENGTH(SUBSTRING_INDEX(`Keterangan`, '~', 1-1)) + 1), '~', '') as 'Keterangan1', REPLACE(SUBSTRING(SUBSTRING_INDEX(`Keterangan`, '~', 2), LENGTH(SUBSTRING_INDEX(`Keterangan`, '~', 2-1)) + 1), '~', '') as 'Keterangan2', REPLACE(SUBSTRING(SUBSTRING_INDEX(`Keterangan`, '~', 3), LENGTH(SUBSTRING_INDEX(`Keterangan`, '~', 3-1)) + 1), '~', '') as 'Keterangan3', REPLACE(SUBSTRING(SUBSTRING_INDEX(`Keterangan`, '~', 4), LENGTH(SUBSTRING_INDEX(`Keterangan`, '~', 4-1)) + 1), '~', '') as 'Keterangan4' FROM `snitbevaluasisupplier` WHERE 1]]>
+		<![CDATA[SELECT `IdEvaluasi` as 'ID', REPLACE(UCWORDS(`NamaPemasok`),'Pt.','PT.') as 'Nama Pemasok', 'Palembang' as `Alamat`, REPLACE(SUBSTRING(SUBSTRING_INDEX(`HasilEvaluasi`, ',', 1), LENGTH(SUBSTRING_INDEX(`HasilEvaluasi`, ',', 1-1)) + 1), ',', '') as 'HasilEvaluasi1', REPLACE(SUBSTRING(SUBSTRING_INDEX(`HasilEvaluasi`, ',', 2), LENGTH(SUBSTRING_INDEX(`HasilEvaluasi`, ',', 2-1)) + 1), ',', '') as 'HasilEvaluasi2', REPLACE(SUBSTRING(SUBSTRING_INDEX(`HasilEvaluasi`, ',', 3), LENGTH(SUBSTRING_INDEX(`HasilEvaluasi`, ',', 3-1)) + 1), ',', '') as 'HasilEvaluasi3', REPLACE(SUBSTRING(SUBSTRING_INDEX(`HasilEvaluasi`, ',', 4), LENGTH(SUBSTRING_INDEX(`HasilEvaluasi`, ',', 4-1)) + 1), ',', '') as 'HasilEvaluasi4', REPLACE(SUBSTRING(SUBSTRING_INDEX(`Keterangan`, '~', 1), LENGTH(SUBSTRING_INDEX(`Keterangan`, '~', 1-1)) + 1), '~', '') as 'Keterangan1', REPLACE(SUBSTRING(SUBSTRING_INDEX(`Keterangan`, '~', 2), LENGTH(SUBSTRING_INDEX(`Keterangan`, '~', 2-1)) + 1), '~', '') as 'Keterangan2', REPLACE(SUBSTRING(SUBSTRING_INDEX(`Keterangan`, '~', 3), LENGTH(SUBSTRING_INDEX(`Keterangan`, '~', 3-1)) + 1), '~', '') as 'Keterangan3', REPLACE(SUBSTRING(SUBSTRING_INDEX(`Keterangan`, '~', 4), LENGTH(SUBSTRING_INDEX(`Keterangan`, '~', 4-1)) + 1), '~', '') as 'Keterangan4' FROM `snitbevaluasisupplier` WHERE 1]]>
 	</queryString>
 	<field name="ID" class="java.lang.Integer"/>
 	<field name="Nama Pemasok" class="java.lang.String"/>
@@ -152,7 +152,7 @@
 				</textElement>
 				<text><![CDATA[:]]></text>
 			</staticText>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="112" y="5" width="181" height="20" uuid="f1161a8c-933b-460b-949e-7bb6bfa8d0ae"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.0"/>
@@ -166,7 +166,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Nama Pemasok}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="112" y="29" width="181" height="20" uuid="7fbf0d79-9427-4746-ac40-13c908166ded"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.0"/>
@@ -280,7 +280,7 @@
 				<textElement verticalAlignment="Middle">
 					<font fontName="Gadugi" size="12" isBold="false"/>
 				</textElement>
-				<text><![CDATA[Wkatu Pengiriman]]></text>
+				<text><![CDATA[Waktu Pengiriman]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="40" y="60" width="207" height="30" uuid="8d9c320f-3c0e-4fcf-819d-caf11b7412c1"/>
@@ -535,30 +535,30 @@
 		</band>
 	</detail>
 	<pageFooter>
-		<band height="173">
+		<band height="141">
 			<staticText>
-				<reportElement x="375" y="153" width="180" height="20" uuid="a66851d4-7b51-46d8-9c85-ab1c583ac759"/>
+				<reportElement x="375" y="121" width="180" height="20" uuid="a66851d4-7b51-46d8-9c85-ab1c583ac759"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Gadugi"/>
 				</textElement>
 				<text><![CDATA[Rev. 0, Tanggal Terbit 20 Januari 2014]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="376" y="0" width="80" height="20" uuid="1776a53e-4775-4f49-b36e-05719125899d"/>
+				<reportElement x="386" y="0" width="71" height="20" uuid="1776a53e-4775-4f49-b36e-05719125899d"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Gadugi" size="12"/>
 				</textElement>
 				<text><![CDATA[Jambi, ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="390" y="116" width="165" height="20" uuid="01916bc1-384c-4852-9356-90e84c3e6983"/>
+				<reportElement x="386" y="84" width="169" height="20" uuid="01916bc1-384c-4852-9356-90e84c3e6983"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Gadugi" size="12"/>
 				</textElement>
 				<text><![CDATA[(Bagian Pembelian)]]></text>
 			</staticText>
 			<textField pattern="dd/MM/yyyy">
-				<reportElement x="455" y="0" width="100" height="20" uuid="c73ba5e1-741f-4f41-894c-a5510b3c4216"/>
+				<reportElement x="456" y="0" width="99" height="20" uuid="c73ba5e1-741f-4f41-894c-a5510b3c4216"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Gadugi" size="12"/>

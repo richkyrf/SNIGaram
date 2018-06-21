@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="F 08.01.00.01 Pengaduan Pelanggan Tindakan Pencegahan Tindakan Perbaikan" language="groovy" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="681fcae0-315d-47c3-91ca-fbcc5a2553a6">
 	<property name="ireport.zoom" value="1.2100000000000055"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="240"/>
+	<property name="ireport.y" value="288"/>
 	<parameter name="Tanggal" class="java.util.Date" isForPrompting="false">
 		<defaultValueExpression><![CDATA[new Date()]]></defaultValueExpression>
 	</parameter>
@@ -358,7 +358,7 @@
 				</textElement>
 				<text><![CDATA[:]]></text>
 			</staticText>
-			<textField pattern="dd/MM/yyyy">
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
 				<reportElement x="146" y="29" width="409" height="20" uuid="5ec8adbf-5a5f-4bf9-9e7a-c75b00f2d6af"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
 				<textElement verticalAlignment="Middle">
@@ -366,7 +366,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Tanggal}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="146" y="48" width="409" height="20" uuid="ed50efe2-e18d-4195-a44e-48b517e2bdc1"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
 				<textElement verticalAlignment="Middle">
@@ -374,7 +374,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{AsalInstitusi}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="146" y="67" width="409" height="20" uuid="a8cf7205-1cca-4d7c-81f6-fa9c01b5ce9d"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
 				<textElement verticalAlignment="Middle">
@@ -382,7 +382,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{YangMenerima}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="146" y="86" width="409" height="20" uuid="a849dfd9-1fc1-4cf0-b4ac-36fe68b9a195"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
 				<textElement verticalAlignment="Middle">
@@ -390,7 +390,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{JenisPengaduan}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="146" y="105" width="409" height="20" uuid="6d0ac6d3-54d4-43bb-b1c9-5e1ce0c4b891"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
 				<textElement verticalAlignment="Middle">
@@ -398,7 +398,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{BagianYangMenangani}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement x="146" y="124" width="409" height="80" uuid="43a2983e-d91f-409e-8104-af491a76c01f"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
 				<textElement verticalAlignment="Top">
@@ -406,7 +406,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{RincianPengaduan}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement x="146" y="203" width="409" height="80" uuid="89f221eb-f177-49e2-9837-da2d080d8b91"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
 				<textElement verticalAlignment="Top">
@@ -414,7 +414,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{TindakLanjutPengaduan}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement x="146" y="282" width="409" height="80" uuid="a5346cb3-2c07-4707-93ca-52414c80555e"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
 				<textElement verticalAlignment="Top">
@@ -422,7 +422,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{TindakanPencegahan}]]></textFieldExpression>
 			</textField>
-			<textField pattern="dd/MM/yyyy">
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
 				<reportElement x="146" y="361" width="409" height="20" uuid="ccfcc7fc-afce-440a-9cc4-6b69fc5caa13"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
 				<textElement verticalAlignment="Middle">
@@ -430,7 +430,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{TargetTanggalPenyelesaian}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="146" y="381" width="409" height="20" uuid="b3f2e285-be83-4b09-a563-c989a8289c60"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
 				<textElement verticalAlignment="Middle">
@@ -474,7 +474,7 @@
 				</textElement>
 				<text><![CDATA[Dibuat oleh :]]></text>
 			</staticText>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="46" y="0" width="329" height="20" uuid="92568627-e846-4d5f-b515-00e1afef0a56"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
 				<textElement verticalAlignment="Middle">
