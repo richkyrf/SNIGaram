@@ -175,7 +175,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Tanggal}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField pattern="#,##0.00">
 				<reportElement x="110" y="0" width="70" height="20" uuid="fae8df37-ae41-4b18-809c-a681f9e4f158"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
@@ -189,7 +189,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{KadarAir}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField pattern="#,##0.00">
 				<reportElement x="180" y="0" width="70" height="20" uuid="3b657b75-dbd1-4c96-8333-ca35f0cdd746"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
@@ -262,36 +262,36 @@
 	<pageFooter>
 		<band height="25" splitType="Stretch"/>
 	</pageFooter>
-	<summary>
-		<band height="128" splitType="Stretch">
+	<lastPageFooter>
+		<band height="125">
 			<staticText>
-				<reportElement x="0" y="36" width="140" height="20" uuid="c9a8ebbf-1813-419d-8d18-c23db28c664f"/>
+				<reportElement x="0" y="17" width="140" height="20" uuid="c9a8ebbf-1813-419d-8d18-c23db28c664f"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Gadugi" size="12"/>
 				</textElement>
 				<text><![CDATA[Mengetahui]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="97" width="140" height="20" uuid="8581de20-e086-4569-a0e5-cc26fa3fd7de"/>
+				<reportElement x="0" y="85" width="140" height="20" uuid="8581de20-e086-4569-a0e5-cc26fa3fd7de"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Gadugi" size="12"/>
 				</textElement>
 				<text><![CDATA[Manajer Produksi]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="400" y="16" width="155" height="20" uuid="1776a53e-4775-4f49-b36e-05719125899d"/>
+				<reportElement x="400" y="17" width="155" height="20" uuid="1776a53e-4775-4f49-b36e-05719125899d"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Gadugi" size="12"/>
 				</textElement>
 				<text><![CDATA[Dibuat Oleh]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="400" y="97" width="155" height="20" uuid="f5bc1bea-f014-40bb-a287-40b199a10a32"/>
+				<reportElement x="400" y="85" width="155" height="20" uuid="f5bc1bea-f014-40bb-a287-40b199a10a32"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Gadugi" size="12"/>
 				</textElement>
 				<text><![CDATA[Quality Control/Analis]]></text>
 			</staticText>
 		</band>
-	</summary>
+	</lastPageFooter>
 </jasperReport>

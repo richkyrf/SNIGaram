@@ -14,13 +14,13 @@
 	</parameter>
 	<queryString>
 		<![CDATA[SELECT * FROM (
-SELECT CONCAT('-', a.`IdPenerimaan`) as 'ID', B.`Tanggal`, SUM(`KarungPelita`) AS 'Jumlah Produk', 'Sak' AS 'Satuan', IF(`NamaBarang` LIKE '%GRM KSR%',REPLACE(`NamaBarang`,`NamaBarang`,'Garam Kasar 50Kg'),IF(`NamaBarang` LIKE '%GRM HLS%',REPLACE(`NamaBarang`,`NamaBarang`,'Garam Halus 50Kg'),'')) AS 'Jenis Produk', REPLACE(UCWORDS(`Pemasok`),'Pt.','PT.') AS 'Nama Pemasok', 2000 as 'Harga', SUM(`KarungPelita`)*2000 as 'Total', '' AS 'Keterangan' FROM `tbpenerimaan` AS A JOIN `tbmpartai` AS B ON A.`IdPartai`=B.`IdPartai` JOIN `tbmbarang` AS C ON B.`IdBarang`=C.`IdBarang` JOIN `tbmpemasok`d ON c.`IdPemasok`=d.`IdPemasok` WHERE `IdPeminta`=1 AND B.`Tanggal` BETWEEN $P{Tanggal_Awal} AND $P{Tanggal_Akhir} GROUP BY `Tanggal`, `Jenis Produk`
+SELECT CONCAT('-', a.`IdPenerimaan`) as 'ID', A.`Tanggal`, SUM(`KarungPelita`)*50 AS 'Jumlah Produk', 'Kg' AS 'Satuan', IF(`NamaBarang` LIKE '%GRM KSR%',REPLACE(`NamaBarang`,`NamaBarang`,'Garam Kasar 50Kg'),IF(`NamaBarang` LIKE '%GRM HLS%',REPLACE(`NamaBarang`,`NamaBarang`,'Garam Halus 50Kg'),'')) AS 'Jenis Produk', REPLACE(UCWORDS(`Pemasok`),'Pt.','PT.') AS 'Nama Pemasok', 2000 as 'Harga', SUM(`KarungPelita`)*50*2000 as 'Total', '' AS 'Keterangan' FROM `tbpenerimaan` AS A JOIN `tbmpartai` AS B ON A.`IdPartai`=B.`IdPartai` JOIN `tbmbarang` AS C ON B.`IdBarang`=C.`IdBarang` JOIN `tbmpemasok`d ON c.`IdPemasok`=d.`IdPemasok` WHERE `IdPeminta`=1 AND A.`Tanggal` BETWEEN $P{Tanggal_Awal} AND $P{Tanggal_Akhir} GROUP BY A.`IdPartai`, `Jenis Produk`
 UNION ALL
-SELECT CONCAT('=', a.`IdPenerimaanLain`) as 'ID', `Tanggal`, SUM(`Netto`) AS 'Jumlah Produk', 'Kg' AS 'Satuan', REPLACE(REPLACE(UCWORDS(`NamaBarangLain`),'Dlm','Dalam'),'Grm','Garam') AS 'Jenis Produk', REPLACE(UCWORDS(`PemasokLain`),'Pt.','PT.') AS 'Nama Pemasok', 2000 as 'Harga', SUM(`Netto`)*2000 as 'Total', '' AS 'Keterangan' FROM `tbpenerimaanlain` AS A JOIN `tbmbaranglain` AS B ON A.`IdBarangLain`=B.`IdBarangLain` JOIN `tbmpemasoklain`c ON a.`IdPemasokLain`=c.`IdPemasokLain` WHERE (`IdJenisBarangLain`=1 OR `IdJenisBarangLain`=2 OR `IdJenisBarangLain`=4) AND `Tanggal` BETWEEN $P{Tanggal_Awal} AND $P{Tanggal_Akhir} GROUP BY `Tanggal`, `Jenis Produk`
+SELECT CONCAT('=', a.`IdPenerimaanLain`) as 'ID', `Tanggal`, SUM(`Netto`) AS 'Jumlah Produk', UCWORDS(`Satuan`) AS 'Satuan', REPLACE(REPLACE(UCWORDS(`NamaBarangLain`),'Dlm','Dalam'),'Grm','Garam') AS 'Jenis Produk', IFNULL(REPLACE(UCWORDS(`PemasokLain`),'Pt.','PT.'),'Trona JPM') AS 'Nama Pemasok', IF(`NamaBarangLain` LIKE '%IODIUM%',750000,IF(`NamaBarangLain` LIKE '%PLASTIK DLM%',30000,IF(`NamaBarangLain` LIKE '%PLASTIK LUAR%',20000,IF(`NamaBarangLain` LIKE '%ARTHESS%',15000,IF(`NamaBarangLain` LIKE '%TIMBANGAN%',125000,IF(`NamaBarangLain` LIKE '%LAKBAN%',8000,IF(`NamaBarangLain` LIKE '%TALI RAFIA%',15000,0))))))) as 'Harga', SUM(`Netto`)*IF(`NamaBarangLain` LIKE '%IODIUM%',750000,IF(`NamaBarangLain` LIKE '%PLASTIK DLM%',30000,IF(`NamaBarangLain` LIKE '%PLASTIK LUAR%',20000,IF(`NamaBarangLain` LIKE '%ARTHESS%',15000,IF(`NamaBarangLain` LIKE '%TIMBANGAN%',125000,IF(`NamaBarangLain` LIKE '%LAKBAN%',8000,IF(`NamaBarangLain` LIKE '%TALI RAFIA%',15000,0))))))) as 'Total', '' AS 'Keterangan' FROM `tbpenerimaanlain` AS A JOIN `tbmbaranglain` AS B ON A.`IdBarangLain`=B.`IdBarangLain` LEFT JOIN `tbmpemasoklain`c ON a.`IdPemasokLain`=c.`IdPemasokLain` WHERE `Tanggal` BETWEEN $P{Tanggal_Awal} AND $P{Tanggal_Akhir} GROUP BY `Tanggal`, `Jenis Produk`
 ) AS `tborderpesanan` ORDER BY `Tanggal`, `Jenis Produk`]]>
 	</queryString>
 	<field name="ID" class="java.lang.String"/>
-	<field name="Tanggal" class="java.sql.Date">
+	<field name="Tanggal" class="java.sql.Timestamp">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="Jumlah Produk" class="java.math.BigDecimal"/>
@@ -73,16 +73,8 @@ SELECT CONCAT('=', a.`IdPenerimaanLain`) as 'ID', `Tanggal`, SUM(`Netto`) AS 'Ju
 				</textElement>
 				<text><![CDATA[Kepada Yth :]]></text>
 			</staticText>
-			<staticText>
-				<reportElement x="0" y="124" width="175" height="20" uuid="a1635fbf-1b62-4128-bfa1-2ab813be7eff"/>
-				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Gadugi" size="12"/>
-				</textElement>
-				<text><![CDATA[Di Palembang]]></text>
-			</staticText>
 			<textField isBlankWhenNull="true">
-				<reportElement x="0" y="104" width="175" height="20" uuid="eda73313-896d-455f-8dd4-a7fa94c103ff"/>
+				<reportElement x="0" y="103" width="175" height="20" uuid="eda73313-896d-455f-8dd4-a7fa94c103ff"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
 				<textElement textAlignment="Justified" verticalAlignment="Middle">
 					<font fontName="Gadugi" size="12"/>
@@ -173,12 +165,20 @@ SELECT CONCAT('=', a.`IdPenerimaanLain`) as 'ID', `Tanggal`, SUM(`Netto`) AS 'Ju
 				</textElement>
 				<text><![CDATA[Total]]></text>
 			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="122" width="175" height="20" uuid="64e73663-89c2-4331-95b1-c04bed734493"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Gadugi" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Nama Pemasok}=="Trona JPM"?"Di Jambi":"Di Palembang"]]></textFieldExpression>
+			</textField>
 		</band>
 	</columnHeader>
 	<detail>
 		<band height="20">
 			<textField isStretchWithOverflow="true">
-				<reportElement stretchType="RelativeToTallestObject" x="264" y="0" width="23" height="20" uuid="7d780111-530a-4243-b54a-f2d442b89302"/>
+				<reportElement stretchType="RelativeToTallestObject" x="262" y="0" width="25" height="20" uuid="7d780111-530a-4243-b54a-f2d442b89302"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -186,7 +186,7 @@ SELECT CONCAT('=', a.`IdPenerimaanLain`) as 'ID', `Tanggal`, SUM(`Netto`) AS 'Ju
 					<bottomPen lineWidth="0.5"/>
 					<rightPen lineWidth="0.5"/>
 				</box>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
+				<textElement textAlignment="Right" verticalAlignment="Top">
 					<font fontName="Gadugi" size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Satuan}]]></textFieldExpression>
@@ -200,7 +200,7 @@ SELECT CONCAT('=', a.`IdPenerimaanLain`) as 'ID', `Tanggal`, SUM(`Netto`) AS 'Ju
 					<bottomPen lineWidth="0.5"/>
 					<rightPen lineWidth="0.5"/>
 				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
+				<textElement textAlignment="Center" verticalAlignment="Top">
 					<font fontName="Gadugi" size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Tanggal}]]></textFieldExpression>
@@ -214,7 +214,7 @@ SELECT CONCAT('=', a.`IdPenerimaanLain`) as 'ID', `Tanggal`, SUM(`Netto`) AS 'Ju
 					<bottomPen lineWidth="0.5"/>
 					<rightPen lineWidth="0.5"/>
 				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
+				<textElement textAlignment="Justified" verticalAlignment="Top">
 					<font fontName="Gadugi" size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Jenis Produk}]]></textFieldExpression>
@@ -228,13 +228,13 @@ SELECT CONCAT('=', a.`IdPenerimaanLain`) as 'ID', `Tanggal`, SUM(`Netto`) AS 'Ju
 					<bottomPen lineWidth="0.5"/>
 					<rightPen lineWidth="0.5"/>
 				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
+				<textElement textAlignment="Center" verticalAlignment="Top">
 					<font fontName="Gadugi" size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{PAGE_COUNT}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="#,##0;-#,##0">
-				<reportElement stretchType="RelativeToTallestObject" x="208" y="0" width="57" height="20" uuid="4a3775d7-2299-4c92-bfcd-cc5c9648ef2c"/>
+				<reportElement stretchType="RelativeToTallestObject" x="208" y="0" width="54" height="20" uuid="4a3775d7-2299-4c92-bfcd-cc5c9648ef2c"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -242,7 +242,7 @@ SELECT CONCAT('=', a.`IdPenerimaanLain`) as 'ID', `Tanggal`, SUM(`Netto`) AS 'Ju
 					<bottomPen lineWidth="0.5"/>
 					<rightPen lineWidth="0.0"/>
 				</box>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
+				<textElement textAlignment="Right" verticalAlignment="Top">
 					<font fontName="Gadugi" size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Jumlah Produk}]]></textFieldExpression>
@@ -256,13 +256,13 @@ SELECT CONCAT('=', a.`IdPenerimaanLain`) as 'ID', `Tanggal`, SUM(`Netto`) AS 'Ju
 					<bottomPen lineWidth="0.5"/>
 					<rightPen lineWidth="0.5"/>
 				</box>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
+				<textElement textAlignment="Right" verticalAlignment="Top">
 					<font fontName="Gadugi" size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Harga}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="365" y="0" width="22" height="20" uuid="02ac0713-2faf-4087-92af-3e7f732a5e25"/>
+				<reportElement stretchType="RelativeToTallestObject" x="365" y="0" width="22" height="20" uuid="02ac0713-2faf-4087-92af-3e7f732a5e25"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -270,7 +270,7 @@ SELECT CONCAT('=', a.`IdPenerimaanLain`) as 'ID', `Tanggal`, SUM(`Netto`) AS 'Ju
 					<bottomPen lineWidth="0.5"/>
 					<rightPen lineWidth="0.0"/>
 				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
+				<textElement textAlignment="Center" verticalAlignment="Top">
 					<font fontName="Gadugi" size="12" isBold="false"/>
 				</textElement>
 				<text><![CDATA[Rp.]]></text>
@@ -284,13 +284,13 @@ SELECT CONCAT('=', a.`IdPenerimaanLain`) as 'ID', `Tanggal`, SUM(`Netto`) AS 'Ju
 					<bottomPen lineWidth="0.5"/>
 					<rightPen lineWidth="0.5"/>
 				</box>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
+				<textElement textAlignment="Right" verticalAlignment="Top">
 					<font fontName="Gadugi" size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Total}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="287" y="0" width="22" height="20" uuid="8cf79216-c5d7-4a84-933f-497aac6ce37d"/>
+				<reportElement stretchType="RelativeToTallestObject" x="287" y="0" width="22" height="20" uuid="8cf79216-c5d7-4a84-933f-497aac6ce37d"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
 					<topPen lineWidth="0.5"/>
@@ -298,7 +298,7 @@ SELECT CONCAT('=', a.`IdPenerimaanLain`) as 'ID', `Tanggal`, SUM(`Netto`) AS 'Ju
 					<bottomPen lineWidth="0.5"/>
 					<rightPen lineWidth="0.0"/>
 				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
+				<textElement textAlignment="Center" verticalAlignment="Top">
 					<font fontName="Gadugi" size="12" isBold="false"/>
 				</textElement>
 				<text><![CDATA[Rp.]]></text>

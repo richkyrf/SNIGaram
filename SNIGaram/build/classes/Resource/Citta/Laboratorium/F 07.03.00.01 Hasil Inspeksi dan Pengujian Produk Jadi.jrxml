@@ -206,7 +206,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Tanggal}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField pattern="#,##0.00">
 				<reportElement x="180" y="0" width="70" height="20" uuid="fae8df37-ae41-4b18-809c-a681f9e4f158"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
@@ -220,7 +220,7 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{KadarAir}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField pattern="#,##0.00">
 				<reportElement x="250" y="0" width="70" height="20" uuid="3b657b75-dbd1-4c96-8333-ca35f0cdd746"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
@@ -288,7 +288,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField pattern="#,##0.00">
 				<reportElement x="110" y="0" width="70" height="20" uuid="b195230c-4024-4158-9a5b-9f986f2ea096"/>
 				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
 					<pen lineWidth="0.5"/>
